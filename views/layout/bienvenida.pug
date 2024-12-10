@@ -1,0 +1,40 @@
+main.bienvenida
+  #bienvenida__principal-box.bienvenida__principal-box
+    .bienvenida__border-principal
+      .bienvenida__fotoperfil-borde
+        .bienvenida__fotoperfil-principal
+      .bienvenida__titulo-bienvenida
+        h3.bienvenida__nombre-h2
+          | Pablo Daniel Chavez
+          span.bienvenida__ocupacion
+            | Desarrollador Web Full Stack
+      form#formulario.bienvenida__formulario.scale0
+        .bienvenida__boxForm
+          input#input__nombre.bienvenida__inputForm(type='text' placeholder='Nombre')
+        .bienvenida__boxForm
+          input#input__correo.bienvenida__inputForm(type='email' placeholder='Correo')
+        .bienvenida__boxForm
+          textarea#input__asunto.bienvenida__textareaForm(name='asunto' cols='0' rows='0' placeholder='Asunto')
+        button#btnEnviar.bienvenida__contacto(type='submit')
+          | Enviar
+      button#btnContacto.bienvenida__contacto(type='submit')
+        | Contactar
+      nav.bienvenida__navegacion
+        a#link__instagram.bienvenida__link-bienvenida(href='https://www.instagram.com/Pablo_grid/')
+          picture
+            source(srcset='img/iconos/icono-instagram-white.avif' type='image/avif')
+            source(srcset='img/iconos/icono-instagram-white.webp' type='image/webp')
+            source(srcset='img/iconos/icono-instagram-white.jpg' type='image/jpg')
+            img.bienvenida__redsocial-img(loading='lazy' decoding='async' src='img/iconos/icono-instagram-white.jpg' lazyalt='imagen' alt='icono instagram white' width='auto' height='auto')
+        a#link__whatsapp.bienvenida__link-bienvenida(href='https://wa.me/5491125457659')
+          picture
+            source(srcset='img/iconos/icono-whatsapp-white.avif' type='image/avif')
+            source(srcset='img/iconos/icono-whatsapp-white.webp' type='image/webp')
+            source(srcset='img/iconos/icono-whatsapp-white.jpg' type='image/jpg')
+            img.bienvenida__redsocial-img(loading='lazy' decoding='async' src='img/iconos/icono-whatsapp-white.jpg' lazyalt='imagen' alt='icono whatsapp white' width='auto' height='auto')
+        a#link__youtube.bienvenida__link-bienvenida(href='https://www.youtube.com/channel/UCDKL4JLgdmVmmBAJPRGx0Eg/featured')
+          picture
+            source(srcset='img/iconos/icono-youtube-white.avif' type='image/avif')
+            source(srcset='img/iconos/icono-youtube-white.webp' type='image/webp')
+            source(srcset='img/iconos/icono-youtube-white.jpg' type='image/jpg')
+            img.bienvenida__redsocial-img(loading='lazy' decoding='async' src='img/iconos/icono-youtube-white.jpg' lazyalt='imagen' alt='icono youtube white' width='auto' height='auto')

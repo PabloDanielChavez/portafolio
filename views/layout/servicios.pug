@@ -1,0 +1,35 @@
+section.servicios
+  h2.servicios__h2-servicios
+    | Servicios
+  .servicios__grid
+    #planes.servicios__planes
+      each servicio in servicios
+        .servicios__planes-box
+          h3.servicios__h3-servicios
+            | #{servicio.nombre}
+          p.servicios__detalles
+            | #{servicio.informacion_resumida}
+          .servicios__contenido
+            span.servicios__opcion
+              | Paginas
+            span.servicios__cantidad
+              | #{servicio.paginas}
+          .servicios__contenido
+            span.servicios__opcion
+              | Revisiones
+            span.servicios__cantidad
+              | #{servicio.revision}
+          span.servicios__divisor
+            .servicios__pre
+              p.servicios__precio
+                span.servicios__dolar
+                  | $
+                |                         #{servicio.precio}
+              span.servicios__descuento
+                | #{servicio.descuento}% de 000
+      .servicios__personalizar
+        .servicios__personalizar-box
+          p.servicios__parrafo
+            | Si quieres personalizar tu plan, puedes hacerlo
+            span.servicios__aqui
+              | aqu&iacute;

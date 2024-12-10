@@ -1,0 +1,26 @@
+main.informacion-portafolio
+  article.informacion-portafolio__panel
+    h2.informacion-portafolio__version-h2 #{pagina}
+        each version in versiones
+            ul.informacion-portafolio__listado-versiones
+                p.material-symbols-outlined.icono--done check_circle
+                    h3.informacion-portafolio__versiones-h3 #{version.nombre} - #{version.version}
+                .informacion-portafolio__grid
+                li.informacion-portafolio__box
+                    .informacion-portafolio__hf
+                        p.informacion-portafolio__version-parrafo.done #{version.version}
+                    .informacion-portafolio__hf
+                        p.informacion-portafolio__fecha Período de Implementación:
+                            p.informacion-portafolio__fecha.done #{version.fecha_inicio}
+                            p.informacion-portafolio__fecha -
+                            p.informacion-portafolio__fecha.done #{version.fecha_fin}
+                    .informacion-portafolio__texto
+                        h3.informacion-portafolio__fecha Detalles de la Versión
+                            p.informacion-portafolio__parrafo #{version.informacion}
+                        if version.informacion_front_end
+                            h3.informacion-portafolio__fecha Back end
+                                p.informacion-portafolio__parrafo #{version.informacion_front_end}
+                        if version.informacion_back_end
+                            h3.informacion-portafolio__fecha Front end
+                                p.informacion-portafolio__parrafo #{version.informacion_back_end}
+0

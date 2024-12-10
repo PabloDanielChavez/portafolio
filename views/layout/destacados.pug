@@ -1,0 +1,21 @@
+section.destacados
+  article.destacados__panel
+    h2.destacados__titulo-h2
+      | Destacados
+    p#destacados-texto.destacados__resumen
+      | Aqui podras visitar mis paginas destacadas, estas son destacadas por el numero de visitas que recibe, la cantidad de actualizaciones y la valoracion.
+    .destacados__grid
+      each destacado in destacados 
+        a.destacados__box(href=`${destacado.link}`)
+          picture
+            source(srcset=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}` type='image/avif')
+            source(srcset=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}`  type='image/webp')
+            source(srcset=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}`  type='image/jpg')
+            img.destacados__imagen(loading='lazy' decoding='async' src=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}` lazyalt='imagen' alt='Fondo gales' width='auto' height='auto')
+          .destacador__head
+            h3.destacados__h3 #{destacado.nombre}
+            p.destacados__parrafo-version Versión: 
+              span.destacado-portafolio__version-span #{destacado.version}
+          p.destacados__texto #{destacado.informacion}
+          p.destacados__parrafo-fecha Implementación: 
+            span.destacado-portafolio__version-span #{destacado.fecha_version}

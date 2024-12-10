@@ -1,0 +1,33 @@
+section.habilidades
+  .habilidades__panel
+    h2.habilidades__titulo-h2 Habilidades
+    p#habilidades-texto.habilidades__resumen
+      | Estas son mis habilidades de trabajo. Mi objetivo es alcanzar el 100%, que representa cuatro años de experiencia con cada uno de los lenguajes. El porcentaje refleja mi progreso, medido en meses de dedicación. Con el tiempo, iré agregando nuevas habilidades que vaya desarrollando durante mi continuo aprendizaje, un proceso que nunca terminará y que disfruto muchísimo.
+    .habilidades__grid
+      .habilidades__tecnicas
+        h3.habilidades__titulo-h3 Técnicas
+        .habilidades__contenedor
+          if habilidades.length
+            each habilidad in habilidades
+              if habilidad.categoria === 'tecnica'
+                .habilidades__tecnicas
+                  p.habilidades__nombre #{habilidad.nombre}
+                  .barra
+                    p.barra__porcentaje #{habilidad.experiencia}%
+                    span.barra__bar(class=`barra__bar--${habilidad.experiencia}`)
+          else
+            p No se encontraron habilidades.
+
+      .habilidades__profesionales
+        h3.habilidades__titulo-h3 Profesionales
+        .habilidades__contenedor
+          if habilidades.length
+            each habilidad in habilidades
+              if habilidad.categoria === 'profesional'
+                .habilidades__profesionales
+                  p.habilidades__nombre #{habilidad.nombre}
+                  .barra
+                    p.barra__porcentaje #{habilidad.experiencia}%
+                    span.barra__bar(class=`barra__bar--${habilidad.experiencia}`)
+          else
+            p No se encontraron habilidades.

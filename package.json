@@ -1,0 +1,28 @@
+{
+  "name": "portafolio",
+  "version": "1.0.0",
+  "description": "Portafolio Pablo Daniel Chavez",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "pablo_daniel_chavez@outlook.es"
+  },
+  "type": "module",
+  "author": "Pablo Daniel Chavez",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "mysql2": "^3.11.5",
+    "pug": "^3.0.3",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "keywords": []
+}
