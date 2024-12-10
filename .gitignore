@@ -1,3 +1,4 @@
+.gitignore
 /node_modules
 /beta
-.gitignore
+.env
