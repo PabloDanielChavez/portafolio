@@ -1,0 +1,606 @@
+<header id="header" class="header">
+    <div class="header__grid">
+        <a href="index.html">
+            <h1 class="header__titulo-h1">
+                Pablo
+            </h1>
+        </a>
+        <span id="menu" class="material-symbols-outlined">
+            menu
+        </span>
+        <div class="header__menu">
+            <a href="index.html" class="header__nav">
+                <span id="inicio" class="material-symbols-outlined">
+                    home
+                </span>
+                <span class="header__link">
+                    Inicio
+                </span>
+            </a>
+            <a href="informacion.html" class="header__nav">
+                <span id="informacion" class="material-symbols-outlined">
+                    info
+                </span>
+                <span class="header__link">
+                    informacion
+                </span>
+            </a>
+            <span id="btnServicios" class="header__nav">
+                <span id="spanServicios" class="material-symbols-outlined">
+                    work
+                </span>
+                <span class="header__link">
+                    Servicios
+                </span>
+            </span>
+            <span id="btnSobreMi" class="header__nav">
+                <span id="sobreMi" class="material-symbols-outlined">
+                    person
+                </span>
+                <span class="header__link">
+                    Sobre mí
+                </span>
+            </span>
+            <span id="btnTranslate" class="header__nav">
+                <span id="translate" class="material-symbols-outlined">
+                    translate
+                </span>
+                <span class="header__link">
+                    Traducir
+                </span>
+            </span>
+            <span id="btnTema" class="header__nav">
+                <span id="tema" class="material-symbols-outlined">
+                    palette
+                </span>
+                <span class="header__link">
+                    Temas
+                </span>
+            </span>
+        </div>
+    </div>
+</header>
+<div id="pantallaDeCarga" class="pantallaDeCarga">
+    <p class="pantallaDeCarga__texto">
+        Cargando...
+    </p>
+</div>
+<div class="panel__emergente" />
+<main class="bienvenida">
+    <div id="bienvenida__principal-box" class="bienvenida__principal-box">
+        <div class="bienvenida__border-principal">
+            <div class="bienvenida__fotoperfil-borde">
+                <div class="bienvenida__fotoperfil-principal" />
+            </div>
+        </div>
+        <div class="bienvenida__titulo-bienvenida">
+            <h3 class="bienvenida__nombre-h2">
+                Pablo Daniel Chavez
+                <span class="bienvenida__ocupacion">
+                    Aprendiz de desarrollo web
+                </span>
+            </h3>
+        </div>
+        <form id="formulario" class="bienvenida__formulario scale0">
+            <div class="bienvenida__boxForm">
+                <input id="input__nombre" class="bienvenida__inputForm" type="text" placeholder="Nombre" />
+            </div>
+            <div class="bienvenida__boxForm">
+                <input id="input__correo" class="bienvenida__inputForm" type="email" placeholder="Correo" />
+            </div>
+            <div class="bienvenida__boxForm">
+                <textarea id="input__asunto" class="bienvenida__textareaForm" name="asunto" cols="0" rows="0" placeholder="Asunto" />
+            </div>
+            <button id="btnEnviar" type="submit" class="bienvenida__contacto">
+                Enviar
+            </button>
+        </form>
+        <button id="btnContacto" type="submit" class="bienvenida__contacto">
+            Contactar
+        </button>
+        <nav class="bienvenida__navegacion">
+            <a id="link__instagram" class="bienvenida__link-bienvenida" href="https://www.instagram.com/Pablo_grid/">
+                <picture>
+                    <source srcset="img/iconos/icono-instagram-white.avif" type="image/avif" />
+                    <source srcset="img/iconos/icono-instagram-white.webp" type="image/webp" />
+                    <source srcset="img/iconos/icono-instagram-white.jpg" type="image/jpg" />
+                    <img class="bienvenida__redsocial-img" loading="lazy" decoding="async" src="img/iconos/icono-instagram-white.jpg" lazyalt="imagen" alt="icono instagram white" width="auto" height="auto" />
+                </picture>
+            </a>
+            <a id="link__whatsapp" class="bienvenida__link-bienvenida" href="https://wa.me/5491125457659">
+                <picture>
+                    <source srcset="img/iconos/icono-whatsapp-white.avif" type="image/avif" />
+                    <source srcset="img/iconos/icono-whatsapp-white.webp" type="image/webp" />
+                    <source srcset="img/iconos/icono-whatsapp-white.jpg" type="image/jpg" />
+                    <img class="bienvenida__redsocial-img" loading="lazy" decoding="async" src="img/iconos/icono-whatsapp-white.jpg" lazyalt="imagen" alt="icono whatsapp white" width="auto" height="auto" />
+                </picture>
+            </a>
+            <a id="link__youtube" class="bienvenida__link-bienvenida" href="https://www.youtube.com/channel/UCDKL4JLgdmVmmBAJPRGx0Eg/featured">
+                <picture>
+                    <source srcset="img/iconos/icono-youtube-white.avif" type="image/avif" />
+                    <source srcset="img/iconos/icono-youtube-white.webp" type="image/webp" />
+                    <source srcset="img/iconos/icono-youtube-white.jpg" type="image/jpg" />
+                    <img class="bienvenida__redsocial-img" loading="lazy" decoding="async" src="img/iconos/icono-youtube-white.jpg" lazyalt="imagen" alt="icono youtube white" width="auto" height="auto" />
+                </picture>
+            </a>
+        </nav>
+    </div>
+</main>
+<section class="sobremi">
+    <div class="sobremi__panel">
+        <h2 class="sobremi__titulo-h2">
+            Sobre mí
+        </h2>
+        <p class="sobremi__resumen">
+            <span class="sobremi__span-hola">
+                Hola soy Pablo
+            </span>
+            , bienvenido a mi portafolio, soy estudiante autodidacta de programacion web, En esta pagina hay detalles sobre quien soy, mi conocimiento y mis trabajos
+        </p>
+        <div class="sobremi__grid">
+            <div class="sobremi__contacto">
+                <h3 class="sobremi__titulo-h3">
+                    Datos personales
+                </h3>
+                <div class="sobremi__datos-box">
+                    <div class="sobremi__dato">
+                        <p class="sobremi__opcion-dato">
+                            Fecha de nacimiento
+                        </p>
+                        <a class="sobremi__detalle" href="#">
+                            05/12/1999
+                        </a>
+                    </div>
+                    <div class="sobremi__dato">
+                        <p class="sobremi__opcion-dato">
+                            Telefono
+                        </p>
+                        <a class="sobremi__detalle" href="tel:+54-911-2545-7659">
+                            +54-911-2545-7659
+                        </a>
+                    </div>
+                    <div class="sobremi__dato">
+                        <p class="sobremi__opcion-dato">
+                            Correo
+                        </p>
+                        <a class="sobremi__detalle" href="#">
+                            pablo_daniel_chavez@outlook.es
+                        </a>
+                    </div>
+                    <div class="sobremi__dato">
+                        <p class="sobremi__opcion-dato">
+                            Sitio web
+                        </p>
+                        <a class="sobremi__detalle" href="https://portafolio-pdc.netlify.app/">
+                            www.portafolio-pdc.netlify.app
+                        </a>
+                    </div>
+                    <div class="sobremi__dato">
+                        <p class="sobremi__opcion-dato">
+                            Vivo en
+                        </p>
+                        <a class="sobremi__detalle" href="https://goo.gl/maps/XxEwcjQFFGf6Gzme7">
+                            Buenos Aires - Argentina
+                        </a>
+                    </div>
+                    <div class="sobremi__dato">
+                        <p class="sobremi__opcion-dato">
+                            Estado del trabajo
+                        </p>
+                        <a class="sobremi__detalle" href="#">
+                            Freelance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sobremi__interes">
+                <h3 class="sobremi__titulo-h3">
+                    interés
+                </h3>
+                <div class="sobremi__interes-grid">
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            stadia_controller
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Juegos
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            headphones
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Musica
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            movie
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Peliculas
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            smartphone
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Celulares
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            menu_book
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Leer
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            coffee
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Café
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            travel_explore
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Viajar
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            house
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Hogar
+                        </span>
+                    </div>
+                    <div class="sobremi__interes-box">
+                        <span class="material-symbols-outlined sobremi__interes-icons">
+                            groups
+                        </span>
+                        <span class="sobremi__interes-icons-nombre">
+                            Amigos
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="habilidades">
+    <div class="habilidades__panel">
+        <h2 class="habilidades__titulo-h2">
+            Habilidades
+        </h2>
+        <p id="habilidades-texto" class="habilidades__resumen">
+            Estas son mis habilidades de trabajo, mi objetivo es llegar a un 100%, el cual este porcentaje es trabajar 5 años con cada uno de los lenguajes
+        </p>
+        <div class="habilidades__grid">
+            <div class="habilidades__tecnicas">
+                <h3 class="habilidades__titulo-h3">
+                    Técnicas
+                </h3>
+                <div class="habilidades__contenedor">
+                    <div class="habilidades__tecnicas">
+                        <p class="habilidades__nombre">
+                            HTML
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                15%
+                            </p>
+                            <span class="barra__bar barra__bar--15" />
+                        </div>
+                    </div>
+                    <div class="habilidades__tecnicas">
+                        <p class="habilidades__nombre">
+                            CSS
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                15%
+                            </p>
+                            <span class="barra__bar barra__bar--15" />
+                        </div>
+                    </div>
+                    <div class="habilidades__tecnicas">
+                        <p class="habilidades__nombre">
+                            GIT
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                5%
+                            </p>
+                            <span class="barra__bar barra__bar--5" />
+                        </div>
+                    </div>
+                    <div class="habilidades__tecnicas">
+                        <p class="habilidades__nombre">
+                            JavaScript
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                10%
+                            </p>
+                            <span class="barra__bar barra__bar--10" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="habilidades__profesionales">
+                <h3 class="habilidades__titulo-h3">
+                    Profesionales
+                </h3>
+                <div class="habilidades__contenedor">
+                    <div class="habilidades__profesionales">
+                        <p class="habilidades__nombre">
+                            Comunicación
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                70%
+                            </p>
+                            <span class="barra__bar barra__bar--70" />
+                        </div>
+                    </div>
+                    <div class="habilidades__profesionales">
+                        <p class="habilidades__nombre">
+                            Trabajo en equipo
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                90%
+                            </p>
+                            <span class="barra__bar barra__bar--90" />
+                        </div>
+                    </div>
+                    <div class="habilidades__profesionales">
+                        <p class="habilidades__nombre">
+                            Creatividad
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                55%
+                            </p>
+                            <span class="barra__bar barra__bar--55" />
+                        </div>
+                    </div>
+                    <div class="habilidades__profesionales">
+                        <p class="habilidades__nombre">
+                            Dedicación
+                        </p>
+                        <div class="barra">
+                            <p class="barra__porcentaje">
+                                80%
+                            </p>
+                            <span class="barra__bar barra__bar--80" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="destacados">
+    <article class="destacados__panel">
+        <h2 class="destacados__titulo-h2">
+            Destacados
+        </h2>
+        <p id="destacados-texto" class="destacados__resumen">
+            Aquí podras visitar mis paginas destacadas, estas son destacadas por el numero de visitas que recibe, la cantidad de actualizaciones y la valoracion.
+        </p>
+        <div class="destacados__grid">
+            <a class="destacados__box" href="https://profilekit-uno.netlify.app/">
+                <picture>
+                    <source srcset="img/proyectos/profilekit.avif" type="image/avif" />
+                    <source srcset="img/proyectos/profilekit.webp" type="image/webp" />
+                    <source srcset="img/proyectos/profilekit.jpg" type="image/jpg" />
+                    <img class="destacados__imagen" loading="lazy" decoding="async" src="img/proyectos/profilekit.jpg" lazyalt="imagen" alt="Fondo gales" width="auto" height="auto" />
+                </picture>
+                <h3 class="destacados__h3">
+                    Profilekit Demo 1
+                </h3>
+                <p class="destacados__texto" />
+            </a>
+            <a class="destacados__box" href="https://kayden-uno.netlify.app/">
+                <picture>
+                    <source srcset="img/proyectos/Kayden.avif" type="image/avif" />
+                    <source srcset="img/proyectos/Kayden.webp" type="image/webp" />
+                    <source srcset="img/proyectos/Kayden.jpg" type="image/jpg" />
+                    <img class="destacados__imagen" loading="lazy" decoding="async" src="img/proyectos/Kayden.jpg" lazyalt="imagen" alt="Fondo gales" width="auto" height="auto" />
+                </picture>
+                <h3 class="destacados__h3">
+                    Kayden Demo 1
+                </h3>
+                <p class="destacados__texto" />
+            </a>
+        </div>
+    </article>
+</section>
+<section class="servicios">
+    <h2 class="servicios__h2-servicios">
+        Servicios
+    </h2>
+    <div class="servicios__grid">
+        <div id="planes" class="servicios__planes">
+            <div class="servicios__planes-box">
+                <h3 class="servicios__h3-servicios">
+                    Basico
+                </h3>
+                <p class="servicios__detalles">
+                    Con este plan podras tener una web con 1 pagina
+                </p>
+                <div class="servicios__contenido">
+                    <span class="servicios__opcion">
+                        Paginas
+                    </span>
+                    <span class="servicios__cantidad">
+                        1
+                    </span>
+                </div>
+                <div class="servicios__contenido">
+                    <span class="servicios__opcion">
+                        Revisiones
+                    </span>
+                    <span class="servicios__cantidad">
+                        2
+                    </span>
+                </div>
+                <span class="servicios__divisor" />
+                <div class="servicios__pre">
+                    <p class="servicios__precio">
+                        <span class="servicios__dolar">
+                            $
+                        </span>
+                        0
+                    </p>
+                    <span class="servicios__descuento">
+                        0% de descuento
+                    </span>
+                </div>
+            </div>
+            <div class="servicios__planes-box">
+                <h3 class="servicios__h3-servicios">
+                    Estandar
+                </h3>
+                <p class="servicios__detalles">
+                    Con este plan podras tener una web con hasta 3 paginas
+                </p>
+                <div class="servicios__contenido">
+                    <span class="servicios__opcion">
+                        Paginas
+                    </span>
+                    <span class="servicios__cantidad">
+                        3
+                    </span>
+                </div>
+                <div class="servicios__contenido">
+                    <span class="servicios__opcion">
+                        Revisiones
+                    </span>
+                    <span class="servicios__cantidad">
+                        3
+                    </span>
+                </div>
+                <span class="servicios__divisor" />
+                <div class="servicios__pre">
+                    <p class="servicios__precio">
+                        <span class="servicios__dolar">
+                            $
+                        </span>
+                        0
+                    </p>
+                    <span class="servicios__descuento">
+                        0% de descuento
+                    </span>
+                </div>
+            </div>
+            <div class="servicios__planes-box">
+                <h3 class="servicios__h3-servicios">
+                    Premium
+                </h3>
+                <p class="servicios__detalles">
+                    Este plan te permite tener hasta una web con hasta 5 paginas
+                </p>
+                <div class="servicios__contenido">
+                    <span class="servicios__opcion">
+                        Paginas
+                    </span>
+                    <span class="servicios__cantidad">
+                        5
+                    </span>
+                </div>
+                <div class="servicios__contenido">
+                    <span class="servicios__opcion">
+                        Revisiones
+                    </span>
+                    <span class="servicios__cantidad">
+                        5
+                    </span>
+                </div>
+                <span class="servicios__divisor" />
+                <div class="servicios__pre">
+                    <p class="servicios__precio">
+                        <span class="servicios__dolar">
+                            $
+                        </span>
+                        0
+                    </p>
+                    <span class="servicios__descuento">
+                        0% de descuento
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="servicios__personalizar">
+            <div class="servicios__personalizar-box">
+                <p class="servicios__parrafo">
+                    Si quieres personalizar tu plan, puedes hacerlo
+                    <span class="servicios__aqui">
+                        aquí
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="footer__panel">
+        <nav class="footer__redes">
+            <a id="link__instagram" class="footer__redsocialBox" href="https://www.instagram.com/pablo.chavez20/">
+                <picture>
+                    <source srcset="img/iconos/icono-instagram-white.avif" type="image/avif" />
+                    <source srcset="img/iconos/icono-instagram-white.webp" type="image/webp" />
+                    <source srcset="img/iconos/icono-instagram-white.jpg" type="image/jpg" />
+                    <img class="footer__redsocial-img" loading="lazy" decoding="async" src="img/iconos/icono-instagram-white.jpg" lazyalt="imagen" alt="icono instagram white" width="auto" height="auto" />
+                </picture>
+            </a>
+            <a id="link__whatsapp" class="footer__redsocialBox" href="https://wa.me/5491125457659">
+                <picture>
+                    <source srcset="img/iconos/icono-whatsapp-white.avif" type="image/avif" />
+                    <source srcset="img/iconos/icono-whatsapp-white.webp" type="image/webp" />
+                    <source srcset="img/iconos/icono-whatsapp-white.jpg" type="image/jpg" />
+                    <img class="footer__redsocial-img" loading="lazy" decoding="async" src="img/iconos/icono-whatsapp-white.jpg" lazyalt="imagen" alt="icono whatsapp white" width="auto" height="auto" />
+                </picture>
+            </a>
+            <a id="link__youtube" class="footer__redsocialBox" href="https://www.youtube.com/channel/UCDKL4JLgdmVmmBAJPRGx0Eg/featured">
+                <picture>
+                    <source srcset="img/iconos/icono-youtube-white.avif" type="image/avif" />
+                    <source srcset="img/iconos/icono-youtube-white.webp" type="image/webp" />
+                    <source srcset="img/iconos/icono-youtube-white.jpg" type="image/jpg" />
+                    <img class="footer__redsocial-img" loading="lazy" decoding="async" src="img/iconos/icono-youtube-white.jpg" lazyalt="imagen" alt="icono youtube white" width="auto" height="auto" />
+                </picture>
+            </a>
+        </nav>
+        <div class="footer__titulo-footer">
+            <h3 class="footer__nombre-h2">
+                Pablo Daniel Chavez
+                <span class="footer__ocupacion">
+                    Aprendiz de desarrollo web
+                </span>
+            </h3>
+        </div>
+        <div class="footer__listado">
+            <a href="informacion.html" class="footer__link-listado">
+                <p class="footer__link-nombre">
+                    Informacion
+                </p>
+            </a>
+            <span class="footer__separacion-vertical" />
+            <a href="recientes.html" class="footer__link-listado">
+                <p class="footer__link-nombre">
+                    Recientes
+                </p>
+            </a>
+        </div>
+    </div>
+</footer>
+<script src="js/app-min.js" type="module" />
