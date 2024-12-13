@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 /node_modules
 /beta/Portafolio 0.0.5
 .env
 
+=======
+.gitignore
+/node_modules
+/beta/Portafolio 0.0.5
+.env
+>>>>>>> 6520b146868dcf20eaf3fadb98fa5bd8e0f90efc
