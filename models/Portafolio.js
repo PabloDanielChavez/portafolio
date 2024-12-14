@@ -13,7 +13,7 @@ export const Datos = db.define('datos_personales', {
     fecha_nacimiento: {
         type: Sequelize.STRING
     },
-    telefono: {
+    telefono: { 
         type: Sequelize.STRING
     },
     correo: {
@@ -145,6 +145,74 @@ export const Versiones = db.define('versiones', {
         allowNull: false
     },
     informacion_back_end: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_nombre_uno: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_texto_uno: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_nombre_dos: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_texto_dos: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_nombre_tres: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_texto_tres: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_nombre_cuatro: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoFront_texto_cuatro: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_nombre_uno: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_texto_uno: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_nombre_dos: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_texto_dos: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_nombre_tres: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_texto_tres: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_nombre_cuatro: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    infoBack_texto_cuatro: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    resumen_version: {
         type: DataTypes.TEXT,
         allowNull: false
     }

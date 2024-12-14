@@ -11,16 +11,41 @@ main.informacion-portafolio
                         p.informacion-portafolio__version-parrafo.done #{version.version}
                     .informacion-portafolio__hf
                         p.informacion-portafolio__fecha Período de Implementación:
-                            p.informacion-portafolio__fecha.done #{version.fecha_inicio}
+                            p.informacion-portafolio__fecha #{version.fecha_inicio}
                             p.informacion-portafolio__fecha -
-                            p.informacion-portafolio__fecha.done #{version.fecha_fin}
+                            p.informacion-portafolio__fecha #{version.fecha_fin}
                     .informacion-portafolio__texto
-                        h3.informacion-portafolio__fecha Detalles de la Versión
+                        h3.informacion-portafolio__seccion-parrafo Detalles de la Versión
                             p.informacion-portafolio__parrafo #{version.informacion}
-                        if version.informacion_front_end
-                            h3.informacion-portafolio__fecha Back end
+                            h3.informacion-portafolio__seccion-parrafo Back end
                                 p.informacion-portafolio__parrafo #{version.informacion_front_end}
-                        if version.informacion_back_end
-                            h3.informacion-portafolio__fecha Front end
+                                if version.infoBack_nombre_uno
+                                    ul.informacion-portafolio__ul #{version.infoBack_nombre_uno}
+                                        li #{version.infoBack_texto_uno}
+                                if version.infoBack_nombre_dos
+                                    ul.informacion-portafolio__ul #{version.infoBack_nombre_dos}
+                                        li #{version.infoBack_texto_dos}
+                                if version.infoBack_nombre_tres
+                                    ul.informacion-portafolio__ul #{version.infoBack_nombre_tres}
+                                        li #{version.infoBack_texto_tres}
+                                if version.infoBack_nombre_cuatro
+                                    ul.informacion-portafolio__ul #{version.infoBack_nombre_cuatro}
+                                        li #{version.infoBack_texto_cuatro}
+                            h3.informacion-portafolio__seccion-parrafo Front end
                                 p.informacion-portafolio__parrafo #{version.informacion_back_end}
+                                if version.infoBack_nombre_uno
+                                    ul.informacion-portafolio__ul #{version.infoFront_nombre_uno}
+                                        li #{version.infoFront_texto_uno}
+                                if version.infoFront_nombre_dos
+                                    ul.informacion-portafolio__ul #{version.infoFront_nombre_dos}
+                                        li #{version.infoFront_texto_dos}
+                                if version.infoFront_nombre_tres
+                                    ul.informacion-portafolio__ul #{version.infoFront_nombre_tres}
+                                        li #{version.infoFront_texto_tres}
+                                if version.infoFront_nombre_cuatro
+                                    ul.informacion-portafolio__ul #{version.infoFront_nombre_cuatro}
+                                        li #{version.infoFront_texto_cuatro}
+                            if version.resumen_version
+                                h3.informacion-portafolio__seccion-parrafo Resumen de la Versión
+                                    p.informacion-portafolio__parrafo #{version.resumen_version}
 0
