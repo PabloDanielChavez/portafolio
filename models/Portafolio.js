@@ -1,8 +1,16 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import db from '../config/db.js';
 
-export const Datos = db.define('datospersonales', {
-    fecha_nac: {
+export const Datos = db.define('datos_personales', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    nombre: {
+        type: Sequelize.STRING
+    },
+    fecha_nacimiento: {
         type: Sequelize.STRING
     },
     telefono: {
@@ -14,10 +22,13 @@ export const Datos = db.define('datospersonales', {
     sitio_web: {
         type: Sequelize.STRING
     },
-    ubicacion: {
+    lugar: {
         type: Sequelize.STRING
     },
     trabajo: {
+        type: Sequelize.STRING
+    },
+    estado_trabajo: {
         type: Sequelize.STRING
     }
 });
