@@ -1,5 +1,4 @@
 /node_modules
-/beta/Portafolio_0.0.5
+/beta
 .env
-/config/db.js
 >>>>>>> 6520b146868dcf20eaf3fadb98fa5bd8e0f90efc
