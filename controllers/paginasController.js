@@ -1,17 +1,19 @@
-import { Datos, Versiones, Habilidad as HabilidadModel, Destacados as DestacadosModel, Servicios as ServiciosModel } from '../models/Portafolio.js';
+import { Datos as DatosModel, Versiones, Habilidad as HabilidadModel, Destacados as DestacadosModel, Servicios as ServiciosModel} from '../models/Portafolio.js';
 
 const paginaInicio = async (req, res) => {
     try {
-        const [habilidades, destacados, servicios] = await Promise.all([
+        const [datos, habilidades, destacados, servicios] = await Promise.all([
+            DatosModel.findOne({}),
             HabilidadModel.findAll({}),
             DestacadosModel.findAll({order: [['fecha_version', 'DESC']]}),
             ServiciosModel.findAll({})
         ]);
 
         res.render('inicio', {
-            habilidades: habilidades,
-            destacados: destacados,
-            servicios: servicios
+            datos,
+            habilidades,
+            destacados,
+            servicios
             
         });
     } catch (error) {
