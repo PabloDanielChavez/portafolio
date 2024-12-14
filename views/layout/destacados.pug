@@ -7,11 +7,7 @@ section.destacados
     .destacados__grid
       each destacado in destacados 
         a.destacados__box(href=`${destacado.link}`)
-          picture
-            source(srcset=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}` type='image/avif')
-            source(srcset=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}`  type='image/webp')
-            source(srcset=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}`  type='image/jpg')
-            img.destacados__imagen(loading='lazy' decoding='async' src=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}` lazyalt='imagen' alt='Fondo gales' width='auto' height='auto')
+          img.destacados__imagen(loading='lazy' decoding='async' src=`img/proyectos/${destacado.nombre_img}.${destacado.formato_img}` lazyalt='imagen' alt='Fondo gales' width='auto' height='auto')
           .destacador__head
             h3.destacados__h3 #{destacado.nombre}
             p.destacados__parrafo-version Versión: 
