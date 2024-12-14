@@ -3,9 +3,9 @@ section.sobremi
     h2.sobremi__titulo-h2
       | Sobre m&iacute;
     p.sobremi__resumen
-      span.sobremi__span-hola
-        | Hola soy Pablo
-      |             , bienvenido a mi portafolio, soy estudiante autodidacta de programacion web, En esta pagina hay detalles sobre quien soy, mi conocimiento y mis trabajos
+      | Hola me llamo 
+      span.sobremi__span-hola #{datos.nombre}
+      | , soy un estudiante autodidacta apasionado por la programación. En esta página encontrarás información sobre quién soy, mis habilidades y los proyectos en los que he trabajado.
     .sobremi__grid
       .sobremi__contacto
         h3.sobremi__titulo-h3
@@ -15,27 +15,32 @@ section.sobremi
             p.sobremi__opcion-dato
               | Fecha de nacimiento
             a.sobremi__detalle(href='#')
-              | 05/12/1999
+              |  #{datos.fecha_nacimiento}
           .sobremi__dato
             p.sobremi__opcion-dato
-              | Telefono
+              | WhatsApp
             a.sobremi__detalle(href='tel:+54-911-2545-7659')
-              | +54-911-2545-7659
+              |  #{datos.telefono}
           .sobremi__dato
             p.sobremi__opcion-dato
               | Correo
             a.sobremi__detalle(href='#')
-              | pablo_daniel_chavez@outlook.es
+              |  #{datos.correo}
           .sobremi__dato
             p.sobremi__opcion-dato
-              | Sitio web
-            a.sobremi__detalle(href='https://portafolio-pdc.netlify.app/')
-              | www.portafolio-pdc.netlify.app
+              | Sitio web 
+            a.sobremi__detalle(href=`https://${datos.sitio_web}`)
+              |  #{datos.sitio_web}
           .sobremi__dato
             p.sobremi__opcion-dato
               | Vivo en
             a.sobremi__detalle(href='https://goo.gl/maps/XxEwcjQFFGf6Gzme7')
-              | Buenos Aires - Argentina
+              |  #{datos.lugar}
+          .sobremi__dato
+            p.sobremi__opcion-dato
+              | Enfoque
+            a.sobremi__detalle(href='#')
+              | #{datos.trabajo}
           .sobremi__dato
             p.sobremi__opcion-dato
               | Estado del trabajo
@@ -64,7 +69,7 @@ section.sobremi
             span.material-symbols-outlined.sobremi__interes-icons
               | smartphone
             span.sobremi__interes-icons-nombre
-              | Celulares
+              | Celulares   
           .sobremi__interes-box
             span.material-symbols-outlined.sobremi__interes-icons
               | menu_book
