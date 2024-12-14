@@ -5,13 +5,9 @@ dotenv.config();
 
 console.log('Database URL:', process.env.DATABASE_URL); // Línea de depuración
 
-if (!process.env.DATABASE_URL) {
-    throw new Error("DATABASE_URL no está definido $env:DATABASE_URL # Para Windows PowerShellida en las variables de entorno");
-}
-
-import Sequelize from 'sequelize'
-import dotenv from 'dotenv';
-dotenv.config()
+// if (!process.env.DATABASE_URL) {
+//     throw new Error("DATABASE_URL no está definido $env:DATABASE_URL # Para Windows PowerShellida en las variables de entorno");
+// }
  
 const db = new Sequelize(process.env.DATABASE_URL, {
     define: {
@@ -25,8 +21,6 @@ const db = new Sequelize(process.env.DATABASE_URL, {
     },
     operatorAliases: false
 });
- 
-export default db;
 
 // Autenticar la conexión y manejar errores
 db.authenticate()
