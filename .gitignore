@@ -1,53 +1,79 @@
-# 📦 Dependencias
+# ==================================================
+# 📦 DEPENDENCIAS
+# ==================================================
 node_modules/
+**/node_modules/
 
-# ⚙️ Build y compilación
+# ==================================================
+# ⚙️ NEXT.JS
+# ==================================================
 .next/
+**/.next/
 out/
+
+# ==================================================
+# 🏗 BUILD / PRODUCCIÓN
+# ==================================================
 dist/
 build/
 
-# 🔐 Variables de entorno
+# ==================================================
+# 🔐 VARIABLES DE ENTORNO
+# ==================================================
 .env
-.env.local
-.env.production
-.env.development
+.env.*
+!.env.example
 
-# 🧪 Logs y debugging
+# ==================================================
+# 🧪 LOGS
+# ==================================================
 *.log
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
 
-# 🧼 Archivos temporales del sistema
+# ==================================================
+# 🧪 TEST COVERAGE
+# ==================================================
+coverage/
+
+# ==================================================
+# 🧼 SISTEMA
+# ==================================================
 .DS_Store
 Thumbs.db
 
-# 🧪 Coverage de tests
-coverage/
-
-# 🐳 Docker
-docker-compose.override.yml
-*.pid
-
-# 🗃️ Archivos de bases de datos temporales
-*.sqlite
-*.sqlite3
-
-# 🧬 Sequelize (si no versionás migraciones/seeders)
-# migrations/
-# seeders/
-
-# 🖼️ Archivos empaquetados
-*.tgz
-
-# 🧠 IDEs y editores
+# ==================================================
+# 🧠 IDEs Y EDITORES
+# ==================================================
 .vscode/
 .idea/
 *.swp
 
-# 🧾 Documentos u otros archivos que no querés subir
-documentos/
+# ==================================================
+# 🐳 DOCKER
+# ==================================================
+docker-compose.override.yml
+*.pid
 
+# ==================================================
+# 🗃 BASES DE DATOS LOCALES
+# ==================================================
+*.sqlite
+*.sqlite3
+
+# ==================================================
+# 🗂 BACKEND ESPECÍFICO
+# ==================================================
 portafolio-backend/public/
 portafolio-backend/config/db.js
+
+# ==================================================
+# 📦 ARCHIVOS EMPAQUETADOS
+# ==================================================
+*.tgz
+
+# ==================================================
+# 📄 ARCHIVOS PERSONALES
+# ==================================================
+documentos/
