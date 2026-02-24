@@ -1,0 +1,53 @@
+# 📦 Dependencias
+node_modules/
+
+# ⚙️ Build y compilación
+.next/
+out/
+dist/
+build/
+
+# 🔐 Variables de entorno
+.env
+.env.local
+.env.production
+.env.development
+
+# 🧪 Logs y debugging
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# 🧼 Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# 🧪 Coverage de tests
+coverage/
+
+# 🐳 Docker
+docker-compose.override.yml
+*.pid
+
+# 🗃️ Archivos de bases de datos temporales
+*.sqlite
+*.sqlite3
+
+# 🧬 Sequelize (si no versionás migraciones/seeders)
+# migrations/
+# seeders/
+
+# 🖼️ Archivos empaquetados
+*.tgz
+
+# 🧠 IDEs y editores
+.vscode/
+.idea/
+*.swp
+
+# 🧾 Documentos u otros archivos que no querés subir
+documentos/
+
+portafolio-backend/public/
+portafolio-backend/config/db.js

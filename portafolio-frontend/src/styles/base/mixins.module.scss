@@ -1,0 +1,95 @@
+@use 'variables.module' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+
+@mixin telefonoXL {
+    @media (min-width: v.$telefonoXL) {
+        @content;
+    }
+}
+
+@mixin telefonoXXL {
+    @media (min-width: v.$telefonoXXL) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+
+@mixin tabletXL {
+    @media (min-width: v.$tabletXL) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+
+@mixin desktopXL {
+    @media (min-width: v.$desktopXL) {
+        @content;
+    }
+}
+
+@mixin desktopXXL {
+    @media (min-width: v.$desktopXL) {
+        @content;
+    }
+}
+
+@mixin botonLogReg($backColor, $fontColor) {
+    width: 100%;
+    height: 45px;
+    background-color: $backColor;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: $fontColor;
+    font-weight: 600;
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin bgImage($url, $colorDegradado) {
+    background-image: linear-gradient($colorDegradado 0%, $colorDegradado 100%), url($url );
+    background-repeat: no-repeat;
+    background-size: cover;
+    user-select: none;
+}
+
+@mixin bgColor($colorPrimario) {
+    background-image: linear-gradient($colorPrimario 0%, $colorPrimario 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@mixin bgImagePe($url) {
+    content: "";
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .5rem;
+    background-image: url($url );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}

@@ -1,0 +1,102 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0rem;
+    width: 100%;
+
+    &__Input {
+        box-shadow: none;
+        background-color: unset;
+        height: 2rem;
+        width: 90%;
+        min-width: 90%;
+        max-width: 90%;
+        padding: .3rem .7rem;
+        border: none;
+        border-bottom: 2px solid v.$color-beige-claro;
+        border-radius: 2px;
+        // background-color: v.$colorFondoBody;
+        transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+        outline: none;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.2rem;
+        font-weight: 100;
+        &:focus {
+            border-color: v.$color-naranja-intenso;
+        }
+    }
+
+    textarea {
+        height: 10rem;
+        min-height: 10rem;
+        max-height: 20rem;
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__parrafoDos {
+        display: flex;
+        flex-direction: column;
+        font-family: v.$fuenteParrafo;
+
+        font-size: 1rem;
+        font-weight: 400;
+        white-space: nowrap;
+
+        & span,
+        & a {
+            font-weight: 900;
+            color: v.$color-naranja-intenso;
+        }
+    }
+}
+
+.colorUno {
+    color: v.$color-beige-claro;
+}
+
+.redes {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+.redes__boxRedSocial {
+    color: v.$color-beige-claro;
+}
+.redes span {
+    font-size: 1.6rem;
+    transition: transform .2s ease-in-out, color .2s ease-in-out;
+    &:hover {
+        transform: scale(1.2);
+        color: v.$color-naranja-intenso;
+    }
+}
+
+.aCopy {
+    color: v.$color-beige-claro;
+    text-decoration: none;
+    transition: color .2s ease-in-out, color .2s ease-in-out;
+    &:hover {
+        color: v.$color-naranja-intenso;
+    }
+}
+.Copyright {
+    font-family: v.$fuenteTituloProfesion;
+    color: v.$color-beige-claro;
+    text-align: center;
+}

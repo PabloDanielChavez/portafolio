@@ -1,0 +1,143 @@
+// Fuentes
+$fuenteTitulo: 'Montserrat', sans-serif;
+$fuenteTituloProfesion: 'Roboto Mono', monospace;
+$fuentePrincipal: 'Roboto', sans-serif;
+$fuenteParrafo: 'Open Sans', sans-serif;
+$fuenteNumeroTlf: "WDXL Lubrifont TC", sans-serif;
+
+// Colores
+
+$color-beige-claro: #F5EBC8;
+$color-marron: #964B00;
+$color-naranja-intenso: #FF6400;
+$color-verde-oscuro: #323219;
+
+// $colorFondoBody: #fff;
+// $colorTitulo: #212529;
+// $colorTituloDos: #E9E9EA;
+// $colorTituloTres: #E9E9EA;
+// $colorLinks: #f0f1f2;
+// $colorSubTitulo: #212529;
+// $colorFondoDiv: #F4F6F9;
+// $colorParrafo: #343A40;
+// $colorParrafoDos: #272529;
+// $colorParrafoTres: #a0abc1;
+// $colorParrafoCuatro: #6c757d;
+// $colorPaCopyright: #707377;
+// $colorFondoFooter: #E9F1FF;
+// $colorFondoOscuro: #0F1115;
+// $colorBorder: #dee2e6;
+
+// $colorBtn: #E24727;
+// $colorBtnTransparente: rgba(13, 201, 145, .2);
+// $colorTextoBtn: #E6E9ED;
+// $colorBtnDos: #E6E9ED;
+// $colorTextoBtnDos: #0DC991;
+// $colorBtnTres: #07694C;
+// $colorFondoBtn: #07694C;
+
+
+
+
+
+// $primario: #2A373D;
+// $primarioDos: #551a8b;
+// $primarioDosTransparente: rgba(85, 26, 139, .4);
+// $primarioTres: #3486fa;
+// $primarioTresTransparente: rgb(52, 134, 250, .4);
+// $primarioCuatro: #FFCBA6;
+// $primarioOpacity: rgba(91, 87, 172, 0.9);
+// $rojo: rgb(255, 0, 0);
+// $celeste: #3486fa;
+// $verde: #15ef0d;
+// $blanco: #FFFFFF;
+// $blancoTransparente: rgba(255, 255, 255, 0.4);
+// $gris: #EBEBEB;
+// $grisClaro: #ccc;
+// $grisOscuro: #363636;
+// $grisOscuroTransparente: rgba(0, 0, 0, 0.7);
+// $negro: #2B2B2B;
+// $claro: $blanco;
+// $oscuro: #1c1c1c;
+
+// $letrasPrimario: $primario;
+// $letrasNegro: $negro;
+// $letrasRojo: $rojo;
+// $letrasCeleste: $celeste;
+// $letrasVerde: $verde;
+// $letrasClaro: $blanco;
+// $letrasOscuro: $oscuro;
+// $letrasGrisClaro: $grisClaro;
+// $letrasGrisOscuro: $grisOscuro;
+
+// $fondoPrimario: $primario;
+// $fondoOscuro: $oscuro;
+// $fondoClaro: $blanco;
+// $fondoSecundarioClaro: $grisOscuro;
+// $fondoSecundarioOscuro: $primario;
+
+// //
+// $colorBotonClaro: $primario;
+// $colorBotonOscuro: $primario;
+
+// Utilidades
+
+// $contenedor: 90%;
+$separacion: 5rem;
+
+
+@media screen and (max-width: 974px) {
+    $separacion: 5.6rem;
+}
+
+// $separacionMenuY: 0rem;
+// $separacionMenuX: 0rem;
+// $separacionMenu: 5rem + $separacionMenuY;
+
+
+$transparente: rgba(255, 255, 255, 0);
+$telefono: 487px;
+$telefonoXL: 696px;
+$telefonoXXL: 896px;
+$tablet: 974px;
+$tabletXL: 1218px;
+$tabletXXL: 1523px;
+$desktop: 1624px;
+$desktopXL: 1827px;
+$desktopXXL: 3000px;
+
+// background letras
+
+// $fondoBackUno: "https://png.pngtree.com/background/20210711/original/pngtree-colorful-bright-smoke-texture-background-picture-image_1162372.jpg";
+// $fondoBackDos: "../img/pngtree-forest-good-morning-little-bird-snow-mountain-png-image_36941.jpg";
+// $fondoBackTres: "../img/pngtree-ink-landscape-boat-chinese-style-png-image_34759.jpg";
+// $fondoBackCuatro: "../img/pngtree-ancient-architecture-antiquity-thick-coating-building-png-image_27774.jpg";
+// $fondoBackCinco: "../img/pngtree-love-starry-sky-beautiful-520-image_2162.jpg";
+// $fondoBackSeis: "https://png.pngtree.com/background/20220727/original/pngtree-cartoon-cute-hand-drawn-design-and-art-seamless-pattern-picture-image_1843162.jpg";
+
+// Variables de colores
+$color-uno: darkmagenta;
+$color-dos: rgb(188, 17, 188);
+$color-tres: rgb(208, 132, 208);
+$color-cuatro: rgb(255, 175, 255);
+$color-cinco: rgb(147, 11, 147);
+$color-seis: #977e97;
+$color-siete: rgb(221, 212, 212);
+$color-ocho: rgb(35, 5, 35);
+$color-nueve: rgb(255, 253, 255);
+$color-diez: #222;
+$color-once: rgb(102, 100, 100);
+
+
+$backgroundcolor-uno: rgba(10, 10, 36, 0.50);
+$backgroundcolor-dos: rgba(10, 10, 36, 0.90);
+$backgroundcolor-tres: rgba(10, 10, 36, 0.811);
+
+
+// Variables de tipografía
+$base-font-size: 16px;
+$heading-font-size: 24px;
+
+// Variables de espaciado
+$spacing-small: 8px;
+$spacing-large: 32px;

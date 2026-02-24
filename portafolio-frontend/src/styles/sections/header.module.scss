@@ -1,0 +1,141 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.scrollOff {
+    padding: 15px 2.5rem;
+}
+
+.scrollOn {
+    padding: 5px 2.5rem;
+}
+
+.header{
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: 3;
+    transition: padding .4s ease-in-out;
+
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+    }
+
+    &__H1 {
+        font-family: v.$fuenteTitulo;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        color: v.$color-naranja-intenso;
+        margin: 0;
+        &Color {
+            color: v.$color-verde-oscuro;
+        }
+    }
+    &__button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        width: 3rem;
+        position: relative;
+        z-index: 3;
+    color: v.$color-naranja-intenso;
+    }
+
+    &__aLogo,
+    &__imgLogo {
+        width: 3rem;
+        height: 3rem;
+        margin: 0 auto;
+    }
+
+    #NmrTel {
+        display: none;
+
+        @include m.tablet {
+            display: block;
+        }
+    }
+
+    &.activo {
+        padding: .6rem 1.5rem;
+    }
+
+    &__tel {
+        margin-left: auto;
+        font-family: v.$fuenteTitulo;
+        color: v.$color-naranja-intenso;
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.5;
+        padding: 0;
+        text-decoration: none;
+    }
+
+    
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+        font-size: 2rem;
+    }
+}
+
+.menuActivado,
+.menuDesactivado {
+    width: auto;
+    position: absolute;
+    top: 100%;
+    transition: left .4s ease-in-out;
+}
+
+.menuActivado {
+    left: 0rem;
+}
+.menuDesactivado {
+    left: -20rem;
+}
+
+
+
+.ventanaMenu {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 1vh 1vh;
+    gap: 1rem;
+    background-color: rgba(28, 28, 28, 0.6);
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 10px;
+    font-size: 1.5rem;
+    font-family: v.$fuenteTituloProfesion;
+    list-style: none;
+    &__btnNavOpc {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        color: #272529;
+        color: white;
+        font-family: "Open Sans", sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-decoration: none;
+        left: 0.2rem;
+        &:hover {
+            color: v.$color-naranja-intenso;
+            left: 0;
+        }
+    }
+}

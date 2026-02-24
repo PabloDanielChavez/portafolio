@@ -1,0 +1,28 @@
+{
+  "name": "portafolio-backend",
+  "version": "1.0.0",
+  "description": "Portafolio Pablo Daniel Chavez",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "pablo_daniel_chavez@outlook.es"
+  },
+  "type": "module",
+  "author": "Pablo Daniel Chavez",
+  "license": "ISC",
+  "dependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.2",
+    "pug": "^3.0.3",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

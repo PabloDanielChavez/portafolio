@@ -1,0 +1,90 @@
+@use 'base/variables.module.scss' as v;
+@use 'base/mixins.module.scss' as m;
+
+h1 {
+    font-size: 2.9rem;
+        @include m.tabletXL {
+            font-size: 3.9rem;
+        }
+        @include m.desktop {
+            font-size: 4.5rem;
+        }
+        @include m.desktopXXL {
+            font-size: 5.1rem;
+        }
+
+}
+
+// h2 {
+//     text-align: start;
+//     margin: 0 auto;
+//     font-family: v.$fuenteTituloProfesion;
+//     text-align: center;
+//     text-transform: uppercase;
+//     font-weight: 700;
+//     font-size: 2.6rem;
+//     @include m.tabletXL {
+//         font-size: 2.8rem;
+//     }
+//     @include m.desktop {
+//         font-size: 3.2rem;
+//     }
+//     @include m.desktopXXL {
+//         font-size: 3.8rem;
+//     }
+
+//     letter-spacing: 0;
+
+//     /* Clip Background Image */
+
+//     background: url(https://static.videezy.com/system/resources/thumbnails/000/044/986/original/200323-AbLineLight01.jpg) repeat-y;
+//     filter: saturate(300%);
+//     -webkit-background-clip: text;
+//     background-clip: text;
+//     background-size: auto;
+//     background-position:center;
+
+//     /* Animate Background Image */
+
+//     -webkit-text-fill-color: transparent;
+//     -webkit-animation: aitf 40s linear infinite alternate;
+
+//     /* Activate hardware acceleration for smoother animations */
+
+//     -webkit-transform: translate3d(0, 0, 0);
+//     -webkit-backface-visibility: hidden;
+
+// }
+
+h3 {
+    font-family: v.$fuenteTituloProfesion;
+    font-size: 2rem;
+        @include m.tabletXL {
+            font-size: 2.2rem;
+        }
+        @include m.desktop {
+            font-size: 2.4rem;
+        }
+        @include m.desktopXXL {
+            font-size: 2.6rem;
+        }
+
+}
+
+p {
+    // font-family: v.$fuenteParrafo;
+    font-size: 1.6rem;
+        @include m.tabletXL {
+            font-size: 1.7rem;
+        }
+        @include m.desktop {
+            font-size: 1.8rem;
+        }
+        @include m.desktopXXL {
+            font-size: 1.9rem;
+        }
+}
+
+a {
+    text-decoration: none;
+}

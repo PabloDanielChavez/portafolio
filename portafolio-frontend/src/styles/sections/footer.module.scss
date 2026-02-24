@@ -1,0 +1,36 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.footer {    
+    padding: 2rem 0;
+    background-image: linear-gradient( v.$backgroundcolor-uno, v.$backgroundcolor-dos), url(https://images.unsplash.com/photo-1550684376-efcbd6e3f031?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9uZG8lMjBuZWdyb3xlbnwwfHwwfHx8MA%3D%3D);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-size: 150% 100%;
+    &__grid {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    &__H1 {
+        font-family: v.$fuenteTitulo;
+        font-size: 2.4rem;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+        color: v.$color-naranja-intenso;
+        @include m.tabletXL {
+            font-size: 2.6rem;
+        }
+        @include m.desktop {
+            font-size: 2.8rem;
+        }
+        @include m.desktopXXL {
+            font-size: 3rem;
+        }
+    }
+}
