@@ -1,4 +1,4 @@
-import Bienvenida from "@/components/Bienvenida";
+import Bienvenida from "@/components/Header";
 // import Catalogo from "@/components/Catalogo";
 
 export default async function Home() {
