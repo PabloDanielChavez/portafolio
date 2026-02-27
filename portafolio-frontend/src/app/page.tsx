@@ -1,14 +1,12 @@
-import Bienvenida from "@/components/Header";
-// import Catalogo from "@/components/Catalogo";
+import Bienvenida from "@/components/Bienvenida";
+import Header from "@/components/Header";
+import { ReactNode } from "react";
 
 export default async function Home() {
 
   return (
-    <div>
-      <main>
-        {/* <Bienvenida /> 
-        <Catalogo catalogoPaginas={catalogoPaginas} /> */}
-      </main>
-    </div>
+        <>
+          <Bienvenida></Bienvenida>
+        </>
   );
 }

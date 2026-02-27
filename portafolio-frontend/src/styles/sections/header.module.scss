@@ -1,18 +1,28 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 .header{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    
-    border-bottom: 2px solid #202021;
+    display: none;
+    height: 0;
+    @include m.telefonoXL {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: 2px solid #202021;
+    }
+
 
     &_box {
         padding: 1.6rem 2rem;
     }
     &_layout {
-        display: grid;
-        grid-template-columns: 2fr 3fr;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        @include m.telefonoXL {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
     }
 
     &_box_available,
@@ -34,12 +44,18 @@
     }
 
     &_box_available {
-        margin-right: auto;
         position: relative;
+        @include m.telefonoXL {
+            margin-right: auto;
+        }
     }
-    
     &_box_time {
-        margin-left: auto;
+        display: none;
+        @include m.telefonoXL {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
     }
 
     &_circle {
@@ -52,11 +68,6 @@
     }
     &_available {
         text-transform: capitalize;
-    }
-    &_box_time {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
     }
     &_p_time {
         margin: 0;
