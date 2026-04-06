@@ -7,18 +7,19 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        height: auto;
         border-bottom: 2px solid #202021;
     }
-
 
     &_box {
         padding: 1.6rem 2rem;
     }
     &_layout {
+        width: auto;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         @include m.telefonoXL {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -27,11 +28,11 @@
 
     &_box_available,
     &_time {
-        padding: 1rem;
+        padding: .4rem;
         border-radius: 20px;
 
         background-color: #0E0E0E;
-        border: 1px solid #202021;
+        border: 1px solid #303030;
         color: white;
     }
 
@@ -40,34 +41,69 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 1rem;
+        gap: 1vh;
     }
 
     &_box_available {
         position: relative;
+        padding-left: 1.5rem;
         @include m.telefonoXL {
             margin-right: auto;
         }
     }
     &_box_time {
         display: none;
+        margin-left: auto;
         @include m.telefonoXL {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            gap: 1vh;
         }
     }
-
+    &_circle_box {
+        position: relative;
+        top: -0.5rem;
+        left: -0.5rem;
+    }
+    
     &_circle {
-        // position: absolute;
-        border-radius: 100%;
-        width: 8px;
-        height: 8px;
-
+        position: absolute;
         background-color: greenyellow;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 100%;
+    }
+
+    &_circle_animacion {
+        position: absolute;
+        top: -0.5rem;
+        left: -0.5rem;
+        background-color: greenyellow;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 100%;
+        animation: cargaSpan 1.2s infinite forwards;
+
+        @keyframes cargaSpan {
+            0% {
+                opacity: 0;
+                transform: scale(.3);
+            }
+
+            50% {
+                opacity: .7;
+                transform: scale(.7);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
     }
     &_available {
         text-transform: capitalize;
+        margin-left: .8rem;
     }
     &_p_time {
         margin: 0;

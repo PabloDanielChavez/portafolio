@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import style_ventana from "@/styles/sections/ventana.module.scss"
+import style_global from "@/styles/base/global.module.scss"
 import { 
   FaInstagram, 
   FaWhatsapp, 
@@ -20,8 +21,96 @@ interface VentanaProps {
 
 export default function Ventana({ children }: VentanaProps) {
 
-  return (
-    <article className={style_ventana.ventana}>
+return (
+  <main className={style_ventana.ventana}>
+      <div className={style_ventana.ventana_layoutPrincipal}>
+        <article className={style_ventana.ventana_header_box_layout}>
+          <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
+            <a href="#">
+              <div className={`${style_ventana.ventana_header_box_imagen}`}>
+                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Pablo-y-Bici.jpeg" alt="Pablo con bici" />
+              </div>
+            </a>
+          </div>
+          <div id="articleSelector" className={`${style_ventana.ventana_header_selector}`}>
+            <div className={`${style_ventana.ventana_header_navegador}`}>
+              <article className={`${style_ventana.ventana_header_selector_box}`}>
+                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
+                  {/* <span className="material-symbols-outlined">Person</span> */}
+                  <BsFillPersonVcardFill className={style_global.tamaño_icono} />
+                </div>
+              </article>
+              <article className={`${style_ventana.ventana_header_selector_box}`}>
+                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
+                  {/* <span className="material-symbols-outlined">Work</span> */}
+                  <FaBriefcase className={style_global.tamaño_icono} />
+                </div>
+              </article>
+              <article className={`${style_ventana.ventana_header_selector_box}`}>
+                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
+                  {/* <span className="material-symbols-outlined">Mail</span> */}
+                  <SiCodefactor className={style_global.tamaño_icono} />
+                </div>
+              </article>
+              <article className={`${style_ventana.ventana_header_selector_box}`}>
+                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
+                  {/* <span className="material-symbols-outlined">Mail</span> */}
+                  <FaEnvelope className={style_global.tamaño_icono} />
+                </div>
+              </article>
+            </div>
+          </div>
+          <div id="articleUpward" className={`${style_ventana.ventana_header_upward}`}>
+            <article className={`${style_ventana.ventana_header_selector_box}`}>
+              <div className={`${style_ventana.ventana_header_selector_opcion} `}>
+                <FaArrowUp className={style_global.tamaño_icono} />
+              </div>
+            </article>
+          </div>
+        </article>
+        <article className={style_ventana.ventana_central_box_layout}>
+          <Header></Header>
+          <div className={style_ventana.ventana_central_box}>
+            <section className={`${style_ventana.ventana_central_scroll}`} id="">
+              <div className={style_ventana.ventana_central_contenido}>
+                {children}
+              </div>
+            </section>
+          </div>
+        </article>
+        <article className={style_ventana.ventana_footer_box_layout}>
+          <div className={style_ventana.ventana_footer_layout}>
+            <div className={style_ventana.ventana_footer_box}>
+              <section className={`${style_ventana.ventana_footer_section} ${style_ventana.ventana_footer_lateral_derecho}`} id="">
+                <article>
+                  <div className={`${style_ventana.ventana_footer_navegador}`}>
+                    <article className={`${style_ventana.ventana_footer_selector_box}`}>
+                      <div className={`${style_ventana.ventana_footer_selector_opcion} `}>
+                        <FaInstagram className={style_global.tamaño_icono} />
+                      </div>
+                    </article>
+                    <article className={`${style_ventana.ventana_footer_selector_box}`}>
+                      <div className={`${style_ventana.ventana_footer_selector_opcion} `}>
+                        <FaWhatsapp className={style_global.tamaño_icono} />
+                      </div>
+                    </article>
+                    <article className={`${style_ventana.ventana_footer_selector_box}`}>
+                      <div className={`${style_ventana.ventana_footer_selector_opcion} `}>
+                        <FaLinkedin className={style_global.tamaño_icono} />
+                      </div>
+                    </article>
+                  </div>
+                </article>
+              </section>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  );
+}
+
+    {/* <article className={style_ventana.ventana}>
       <div className={style_ventana.ventana_layout}>
           <div className={style_ventana.ventana_box}>
             <section className={`${style_ventana.ventana_section} ${style_ventana.ventana_lateral_izquierda}`} id="">
@@ -36,25 +125,21 @@ export default function Ventana({ children }: VentanaProps) {
                 <div className={`${style_ventana.ventana_navegador}`}>
                   <article className={`${style_ventana.ventana_selector_box}`}>
                     <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      {/* <span className="material-symbols-outlined">Person</span> */}
                       <BsFillPersonVcardFill size={22} />
                     </div>
                   </article>
                   <article className={`${style_ventana.ventana_selector_box}`}>
                     <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      {/* <span className="material-symbols-outlined">Work</span> */}
                       <FaBriefcase size={22} />
                     </div>
                   </article>
                   <article className={`${style_ventana.ventana_selector_box}`}>
                     <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      {/* <span className="material-symbols-outlined">Mail</span> */}
                       <SiCodefactor size={22} />
                     </div>
                   </article>
                   <article className={`${style_ventana.ventana_selector_box}`}>
                     <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      {/* <span className="material-symbols-outlined">Mail</span> */}
                       <FaEnvelope size={22} />
                     </div>
                   </article>
@@ -63,7 +148,6 @@ export default function Ventana({ children }: VentanaProps) {
               <article id="articleUpward" className={`${style_ventana.ventana_articleUpward}`}>
                 <article className={`${style_ventana.ventana_selector_box}`}>
                   <div className={`${style_ventana.ventana_selector_opcion} `}>
-                    {/* <span className="material-symbols-outlined">arrow_upward</span> */}
                     <FaArrowUp size={22} />
                   </div>
                 </article>
@@ -80,29 +164,6 @@ export default function Ventana({ children }: VentanaProps) {
               </div>
             </section>
           </div>
-          <div className={style_ventana.ventana_box}>
-            <section className={`${style_ventana.ventana_section} ${style_ventana.ventana_lateral_derecho}`} id="">
-              <article>
-                <div className={`${style_ventana.ventana_navegador}`}>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaInstagram size={22} />
-                    </div>
-                  </article>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaWhatsapp size={22} />
-                    </div>
-                  </article>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaLinkedin size={22} />
-                    </div>
-                  </article>
-                </div>
-              </article>
-            </section>
-          </div>
       </div>
       <div className={style_ventana.ventana_layout}>
           <div className={style_ventana.ventana_box}>
@@ -129,6 +190,4 @@ export default function Ventana({ children }: VentanaProps) {
             </section>
           </div>
       </div>
-    </article>
-  );
-}
+    </article> */}

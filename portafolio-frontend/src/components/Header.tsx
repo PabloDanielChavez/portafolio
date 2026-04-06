@@ -8,11 +8,14 @@ export default function Header() {
       <div className={styles_header.header_box}>
         <div className={styles_header.header_layout}>
           <article className={styles_header.header_box_available}>
-            <span className={styles_header.header_circle}></span>
+            <span className={styles_header.header_circle_box}>
+              <span className={styles_header.header_circle}></span>
+              <span className={styles_header.header_circle_animacion}></span>
+            </span>
             <span className={styles_header.header_available}>Disponible para trabajar</span>
           </article>
           <article className={styles_header.header_box_time}>
-            <p className={styles_header.header_p_time}>Hora Local (ARG)</p>
+            <p className={styles_header.header_p_time}>Hora local (ARG)</p>
             <div className={styles_header.header_time}>
               <span className={styles_header.header_span_time}>07:36:45</span>
             </div>

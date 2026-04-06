@@ -31,6 +31,12 @@
     }
 }
 
+@mixin tabletXXL {
+    @media (min-width: v.$tabletXXL) {
+        @content;
+    }
+}
+
 @mixin desktop {
     @media (min-width: v.$desktop) {
         @content;
@@ -44,8 +50,69 @@
 }
 
 @mixin desktopXXL {
-    @media (min-width: v.$desktopXL) {
+    @media (min-width: v.$desktopXXL) {
         @content;
+    }
+}
+
+@mixin fontAutomatico ($valor) {
+    @media (min-width: v.$telefono) {
+        font-size: $valor;
+    }
+    @media (min-width: v.$telefonoXL) {
+        font-size: $valor + .5rem;
+    }
+    @media (min-width: v.$telefonoXXL) {
+        font-size: $valor + 1rem;
+    }
+    @media (min-width: v.$tablet) {
+        font-size: $valor + 1.5rem;
+    }
+    @media (min-width: v.$tabletXL) {
+        font-size: $valor + 2rem;
+    }
+    @media (min-width: v.$tabletXXL) {
+        font-size: $valor + 2.5rem;
+    }
+    @media (min-width: v.$desktop) {
+        font-size: $valor + 3.5rem;
+    }
+    @media (min-width: v.$desktopXL) {
+        font-size: $valor + 4.5rem;
+    }
+    @media (min-width: v.$desktopXXL) {
+        font-size: $valor + 5.5rem;
+    }
+}
+
+@mixin FontIconoAutomatico ($valor) {
+    font-size: $valor;
+    @media (min-width: v.$telefono) {
+        font-size: $valor + 1vh;
+    }
+    @media (min-width: v.$telefonoXL) {
+        font-size: $valor + 1.5vh;
+    }
+    @media (min-width: v.$telefonoXXL) {
+        font-size: $valor + 1.5vh;
+    }
+    @media (min-width: v.$tablet) {
+        font-size: $valor + 1.7vh;
+    }
+    @media (min-width: v.$tabletXL) {
+        font-size: $valor + 2vh;
+    }
+    @media (min-width: v.$tabletXXL) {
+        font-size: $valor + 2.3vh;
+    }
+    @media (min-width: v.$desktop) {
+        font-size: $valor + 2.5vh;
+    }
+    @media (min-width: v.$desktopXL) {
+        font-size: $valor + 2.7vh;
+    }
+    @media (min-width: v.$desktopXXL) {
+        font-size: $valor + 3.5vh;
     }
 }
 
@@ -61,6 +128,36 @@
     font-size: 16px;
     color: $fontColor;
     font-weight: 600;
+}
+
+@mixin gap ($valor) {
+    @media (min-width: v.$telefono) {
+        gap: $valor;
+    }
+    @media (min-width: v.$telefonoXL) {
+        gap: $valor + .5vh;
+    }
+    @media (min-width: v.$telefonoXXL) {
+        gap: $valor + .7vh;
+    }
+    @media (min-width: v.$tablet) {
+        gap: $valor + 1vh;
+    }
+    @media (min-width: v.$tabletXL) {
+        gap: $valor + 1.2vh;
+    }
+    @media (min-width: v.$tabletXXL) {
+        gap: $valor + 1.7vh;
+    }
+    @media (min-width: v.$desktop) {
+        gap: $valor + 2.5vh;
+    }
+    @media (min-width: v.$desktopXL) {
+        gap: $valor + 3.5vh;
+    }
+    @media (min-width: v.$desktopXXL) {
+        gap: $valor + 7.5vh;
+    }
 }
 
 @mixin grid($columnas, $espaciado ) {

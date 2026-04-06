@@ -7,6 +7,8 @@ export default async function Home() {
   return (
         <>
           <Bienvenida></Bienvenida>
+          <Bienvenida></Bienvenida>
+          <Bienvenida></Bienvenida>
         </>
   );
 }
