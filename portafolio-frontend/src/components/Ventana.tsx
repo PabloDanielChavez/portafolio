@@ -28,7 +28,7 @@ return (
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <a href="#">
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
-                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Pablo-y-Bici.jpeg" alt="Pablo con bici" />
+                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Logotipos PDC JPG/110 x 110.jpg" alt="Logo" />
               </div>
             </a>
           </div>
@@ -109,85 +109,3 @@ return (
     </main>
   );
 }
-
-    {/* <article className={style_ventana.ventana}>
-      <div className={style_ventana.ventana_layout}>
-          <div className={style_ventana.ventana_box}>
-            <section className={`${style_ventana.ventana_section} ${style_ventana.ventana_lateral_izquierda}`} id="">
-              <article id="articlePerfil" className={`${style_ventana.ventana_articlePerfil}`}>
-                <a href="#">
-                  <div className={`${style_ventana.ventana_box_imagen}`}>
-                    <img className={`${style_ventana.ventana_imagen_perfil}`} src="/img/Pablo-y-Bici.jpeg" alt="Pablo con bici" />
-                  </div>
-                </a>
-              </article>
-              <article id="articleSelector" className={`${style_ventana.ventana_articleSelector}`}>
-                <div className={`${style_ventana.ventana_navegador}`}>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <BsFillPersonVcardFill size={22} />
-                    </div>
-                  </article>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaBriefcase size={22} />
-                    </div>
-                  </article>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <SiCodefactor size={22} />
-                    </div>
-                  </article>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaEnvelope size={22} />
-                    </div>
-                  </article>
-                </div>
-              </article>
-              <article id="articleUpward" className={`${style_ventana.ventana_articleUpward}`}>
-                <article className={`${style_ventana.ventana_selector_box}`}>
-                  <div className={`${style_ventana.ventana_selector_opcion} `}>
-                    <FaArrowUp size={22} />
-                  </div>
-                </article>
-              </article>
-            </section>
-          </div>
-      </div>
-      <div className={style_ventana.ventana_layout}>
-          <Header></Header>
-          <div className={style_ventana.ventana__box_central}>
-            <section className={`${style_ventana.ventana_section} ${style_ventana.ventana_central}`} id="">
-              <div className={style_ventana.ventana_contenido}>
-                {children}
-              </div>
-            </section>
-          </div>
-      </div>
-      <div className={style_ventana.ventana_layout}>
-          <div className={style_ventana.ventana_box}>
-            <section className={`${style_ventana.ventana_section} ${style_ventana.ventana_lateral_derecho}`} id="">
-              <article>
-                <div className={`${style_ventana.ventana_navegador}`}>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaInstagram size={22} />
-                    </div>
-                  </article>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaWhatsapp size={22} />
-                    </div>
-                  </article>
-                  <article className={`${style_ventana.ventana_selector_box}`}>
-                    <div className={`${style_ventana.ventana_selector_opcion} `}>
-                      <FaLinkedin size={22} />
-                    </div>
-                  </article>
-                </div>
-              </article>
-            </section>
-          </div>
-      </div>
-    </article> */}

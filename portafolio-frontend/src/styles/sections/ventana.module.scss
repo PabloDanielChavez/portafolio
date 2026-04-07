@@ -2,22 +2,22 @@
 @use '../base/mixins.module.scss' as m;
 
 
-.ventana{
-    
-// *********    PRINCIPAL    ********* //
+.ventana {
     width: 100%;
-    height: 100dvh;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #111 0%, #0d0d0d 60%);
+
+    @include m.telefonoXXL {
+    height: 100vh;
     overflow: hidden;
-    background-color: #000;
-    @include m.telefonoXL {
-        height: 100vh;
     }
     &_layoutPrincipal {
         display: flex;
         flex-direction: column;
+
         @include m.telefonoXXL {
             display: grid;
-            grid-template-columns: 1fr 10fr 1fr;
+            grid-template-columns: 1fr 8fr 1fr;
         }
     }
 
@@ -35,7 +35,8 @@
     }
     &_header_box_layout,
     &_footer_box_layout {
-        height: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
     }
     &_central_box_layout {
 
@@ -43,9 +44,16 @@
     
     &_header_box_layout,
     &_footer_box_layout {
-        height: 100%;
-        padding: 2vh 0;
+    display: none;
+
+    @include m.telefonoXXL {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0;
         background-color: #000;
+    }
     }
 
     &_header_box_layout {
@@ -71,11 +79,17 @@
         // display: none;
         overflow: hidden;
         position: relative;
+        border-radius: 50%;
+        border: 2px solid #2a2a2a;
+        box-shadow: 0 0 20px rgba(255,255,255,0.05);
+
+        width: 5dvh;
+        height: 5dvh;
         @include m.telefono {
-            width: 10dvh;
-            height: 10dvh;
+            width: 7dvh;
+            height: 7dvh;
         }
-        @include m.telefonoXL {
+        @include m.tabletXL {
             border-radius: 50%;
             border: 6px solid #303030;
             width: 11dvh;
@@ -85,12 +99,16 @@
             align-items: center;
             justify-content: center;
         }
+        &:hover {
+            transform: scale(1.05);
+            border-color: #444;
+    }
     }
     &_header_imagen_perfil {
-        width: 200%;
-        height: 200%;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        position: relative;
+        position: center;
         top: 35%;
     }
     &_header_navegador,
@@ -116,13 +134,15 @@
         justify-content: center;
 
         color: #999999;
-        transition: all .2s ease-in-out;
+
+        border-radius: 10px;
+        transition: all 0.25s ease;
 
         &.activo,
         &:hover {
-            background-color: #303030;
-            color: white;
-            cursor: pointer;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            color: #fff;
+            transform: scale(1.08);
         }
 
         & span {
@@ -141,24 +161,55 @@
 
 // *********    CENTER    ********* //
 
+    &_central_box_layout {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
     &_central_box {
-        position: relative;
-        width: 102%;
-        height: 100%;
+        width: 100%;
+        height: auto;
+        flex: 1; // ocupa todo el espacio disponible
+        overflow: hidden;
+        overflow-y: auto;
     }
     &_central_scroll {
         width: 100%;
+        height: auto;
+        overflow: visible;
         overflow-y: auto;
-        height: 100%;   
+
+        @include m.telefonoXXL {
+            height: 100%;
+        }
+    }
+    &_central_scroll {
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #3a3a3a;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     }
     &_central_contenido {
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        margin: 0 10%;
-        padding: 2rem 0;
-        width: 80%;
-        gap: 4rem;
+        margin: 0 auto;
+        padding: 3rem 0;
+        width: min(900px, 90%);
+        gap: 3rem;
     }
 
 // *********    FOOTER    ********* //
@@ -174,177 +225,3 @@
     &_footer_selector_box {}
     &_footer_selector_opcion {}
 }
-// .ventana {
-//     background-color: #000000;
-
-//     height: 100vh;
-//     width: 100%;
-//     overflow: hidden;
-
-//     // *********    PRINCIPAL    ********* //
-//     &_layoutPrincipal {
-//         display: grid;
-//         // grid-template-rows: 1fr 12fr 0;
-//         grid-template-columns: 1fr 6fr 1fr;
-//         overflow: hidden;
-//         @include m.telefonoXL {
-//             display: grid;
-//             grid-template-columns: 1fr 6fr 1fr;
-//             grid-template-rows: 1fr;
-//             height: 100%;
-//         }
-//     }
-//     &_box,
-//     &_box_central {
-//         position: relative;
-//         width: 102%;
-//         height: 100%;
-//     }
-//     &_box {
-//         height: 0;
-//         @include m.tabletXL {
-//             height: 100%;
-//         }
-//     }
-
-//     // *********    SECCIÓN CENTRAL    ********* //
-//     &_section {
-//         display: flex;
-//         flex-direction: column;
-//         width: 100%;
-//         min-height: 100%;
-//     }
-
-//     &_central {
-//         width: 100%;
-//         overflow-y: auto;
-//     }
-
-//     &_contenido {
-//         display: flex;
-//         flex-direction: column;
-//         overflow: hidden;
-//         margin: 0 10%;
-//         padding: 2rem 0;
-//         width: 80%;
-//         gap: 4rem;
-//     }
-
-//     // *********    LATERALES    ********* //
-//     &_lateral_izquierda,
-//     &_lateral_derecho {
-//         position: static;
-//         background-color: black;
-//         display: flex;
-//         flex-direction: row;
-//         @include m.telefono {
-//             display: flex;
-//             flex-direction: column;
-//             align-items: center;
-//             justify-content: center;
-//         }
-//     }
-
-//     &_lateral_izquierda {
-//         border-right: 2px solid #303030;
-//         display: flex;
-//         align-items: center;
-//         @include m.telefono {
-//             display: flex;
-//             flex-direction: column;
-//             position: relative;
-//             left: 0;
-//         }
-//     }
-
-//     &_lateral_derecho {
-//         border-left: 2px solid #303030;
-//         position: relative;
-//         right: 0%;
-//     }
-
-
-//     // *********    LATERAL IZQUIERDO CONTENIDO    ********* //
-//     &_box_imagen {
-//         display: none;
-//         position: static;
-//         overflow: hidden;
-//         @include m.tabletXL {
-//             border-radius: 50%;
-//             border: 6px solid #202021;
-//             width: 12dvh;
-//             height: 12dvh;
-
-//             display: flex;
-//             align-items: center;
-//             justify-content: center;
-//         }
-//     }
-
-//     &_imagen_perfil {
-//         width: 100%;
-//         height: 100%;
-//         object-fit: cover;
-//     }
-
-//     &_navegador {
-//         padding: 1.5rem;
-//         display: flex;
-//         flex-direction: row;
-//         align-items: center;
-//         @include m.telefono {
-//             flex-direction: column;
-//         }
-//     }
-
-//     &_articlePerfil {
-//         margin: 2rem 0 auto 0;
-//     }
-
-//     &_articleSelector {
-//         margin: auto 0;
-//     }
-
-//     &_articleUpward {
-//         display: none;
-//         position: static;
-//         margin: auto 0 2rem 0;
-//         @include m.tabletXL {
-//             display: inline-block;
-//             position: absolute;
-//         }
-//     }
-
-//     &_selector_box {
-//         display: flex;
-//         flex-direction: row;
-//         @include m.tabletXL {
-//             flex-direction: column;
-//             gap: 1rem;
-//         }
-//     }
-
-//     &_selector_opcion {
-//         width: 2.8rem;
-//         height: 2.8rem;
-//         border-radius: 8px;
-
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-
-//         color: #999999;
-//         transition: all .2s ease-in-out;
-
-//         &.activo,
-//         &:hover {
-//             background-color: #121212;
-//             color: white;
-//             cursor: pointer;
-//         }
-
-//         & span {
-//             font-size: 1.6rem;
-//         }
-//     }
-// }

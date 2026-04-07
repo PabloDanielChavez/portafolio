@@ -10,7 +10,10 @@ const app = express();
 
 //  Permitir CORS desde localhost:3000 (React)
 app.use(cors({
-    origin: 'http://localhost:3000', // React
+    origin: [
+        'http://localhost:3000',
+        'https://portafolio-ajb1.onrender.com'
+    ], // React
     credentials: true
 }));
 

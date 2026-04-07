@@ -23,15 +23,15 @@ export default function Bienvenida() {
         <div className={style_bienvenida.bienvenida_layout}>
             <article className={style_bienvenida.bienvenida_header}>
                 <div className={style_bienvenida.bienvenida_header_box_imagen}>
-                    <img className={style_bienvenida.bienvenida_header_imagen_perfil} src="/img/Pablo-y-Bici.jpeg" alt="Pablo con bici"/>
+                    <img className={style_bienvenida.bienvenida_header_imagen_perfil} src="/img/Logotipos PDC JPG/500 x 500.jpg" alt="LOGOTIPO"/>
                 </div>
                 <div className={style_bienvenida.bienvenida_header_box_informacion}>
                     <div className={style_bienvenida.bienvenida_header_box_soy}>
                         <span className={style_bienvenida.bienvenida_header_soy_span}>✋</span>
                         <h3 className={style_bienvenida.bienvenida_header_soy_h3}>hola, Soy</h3>
                     </div>
-                    <h1 className={style_bienvenida.bienvenida_header_h1_nombre}>pablo Daniel Chavez</h1>
-                    <p className={style_bienvenida.bienvenida_header_p_descripcion}>Desarrollador web de Buenos Aires, Argntina, con pasión por crear experiencias digitales fluidas y un historial comprobado.</p>
+                    <h1 className={style_bienvenida.bienvenida_header_h1_nombre}>Pablo Daniel Chavez</h1>
+                    <p className={style_bienvenida.bienvenida_header_p_descripcion}>Desarrollador web Full Stack de Buenos Aires, Argntina, con pasión por crear experiencias digitales con un historial comprobado.</p>
                     <div className={style_bienvenida.bienvenida_header_btn_layout}>
                         <button className={style_bienvenida.bienvenida_header_btn} type="button">
                             <MdOutlineEmail size={20}></MdOutlineEmail>
