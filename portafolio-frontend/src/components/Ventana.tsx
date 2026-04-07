@@ -1,5 +1,5 @@
 "use client";
-
+import Header from "@/components/Header";
 import { ReactNode } from "react";
 import style_ventana from "@/styles/sections/ventana.module.scss"
 import style_global from "@/styles/base/global.module.scss"
@@ -13,7 +13,6 @@ import {
 } from "react-icons/fa";
 import { BsFillPersonVcardFill } from "react-icons/bs";
 import { SiCodefactor } from "react-icons/si";
-import Header from "./Header";
 
 interface VentanaProps {
   children: ReactNode;
@@ -28,7 +27,7 @@ return (
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <a href="#">
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
-                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Logotipos PDC JPG/110 x 110.jpg" alt="Logo" />
+                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="img/Logotipo_Portafolio_PDC/Logo/Logo_110x110px.png" alt="Logo" />
               </div>
             </a>
           </div>
@@ -69,13 +68,11 @@ return (
           </div>
         </article>
         <article className={style_ventana.ventana_central_box_layout}>
-          <Header></Header>
           <div className={style_ventana.ventana_central_box}>
-            <section className={`${style_ventana.ventana_central_scroll}`} id="">
-              <div className={style_ventana.ventana_central_contenido}>
-                {children}
-              </div>
-            </section>
+          <Header></Header>
+            <div className={style_ventana.ventana_central_contenido}>
+              {children}
+            </div>
           </div>
         </article>
         <article className={style_ventana.ventana_footer_box_layout}>

@@ -22,10 +22,10 @@ export default function Experiencia() {
                         <span className={style_experiencia.experiencia_header_span}>
                             <BiBriefcase></BiBriefcase>
                         </span>
-                        <h2 className={style_experiencia.experiencia_header_h2}>My Experience</h2>
+                        <h2 className={style_experiencia.experiencia_header_h2}>Mi Experiencia</h2>
                     </div>
                     <div className={style_experiencia.experiencia_header_box_informacion_texto}>
-                        <p>Navigating diverse environments with adaptability and expertise for holistic solutions.</p>
+                        <p>Navega por entornos diversos con adaptabilidad y experiencia para ofrecer soluciones integrales.</p>
                     </div>
                 </div>
                 <div className={style_experiencia.experiencia_contenido_box}>
@@ -34,7 +34,7 @@ export default function Experiencia() {
                             <div className={style_experiencia.experiencia_contenido_article_header_layout}>
                                 <div className={style_experiencia.experiencia_contenido_article_header_emp}>
                                     <div className={style_experiencia.experiencia_contenido_article_header_icono}>
-                                        <img src="/img/Logotipos PDC PNG/110 x 110.png" alt="img" />
+                                        <img src="img/Logotipo_Portafolio_PDC/Logo/Logo_110x110px.png" alt="img" />
                                     </div>
                                     <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
                                         <h3 className={style_experiencia.experiencia_contenido_article_header_nombre_h3}>Portafolio</h3>
@@ -58,7 +58,7 @@ export default function Experiencia() {
                             <div className={style_experiencia.experiencia_contenido_article_header_layout}>
                                 <div className={style_experiencia.experiencia_contenido_article_header_emp}>
                                     <div className={style_experiencia.experiencia_contenido_article_header_icono}>
-                                        <img src="/img/Logotipos PDC PNG/110 x 110.png" alt="img" />
+                                        <img src="img/Logotipo_Portafolio_PDC/Logo/Logo_Vector_solo_con_relleno_BLANCO_1.png" alt="img" />
                                     </div>
                                     <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
                                         <h3 className={style_experiencia.experiencia_contenido_article_header_nombre_h3}>Esperanza De Vida</h3>

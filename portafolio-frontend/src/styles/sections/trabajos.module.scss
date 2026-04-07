@@ -1,0 +1,224 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.trabajos {
+  padding: 40px 16px;
+  background: #0d0d0d;
+  color: #e5e5e5;
+
+  @include m.telefonoXL {
+    padding: 60px 20px;
+  }
+
+  &_layout {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  &_header_box {
+    margin-bottom: 30px;
+
+    @include m.tablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &_header_box_informacion_titulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @include m.tablet {
+      gap: 10px;
+    }
+  }
+
+  &_header_span {
+    font-size: 18px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+    @include m.tablet {
+      font-size: 20px;
+    }
+  }
+
+  &_header_h2 {
+    font-size: 22px;
+    font-weight: 600;
+
+    @include m.telefonoXL {
+      font-size: 26px;
+    }
+
+    @include m.tabletXL {
+      font-size: 28px;
+    }
+  }
+
+  &_header_box_informacion_texto {
+    margin-top: 10px;
+
+    p {
+      color: #9ca3af;
+      font-size: 13px;
+
+      @include m.tablet {
+        font-size: 14px;
+      }
+    }
+  }
+
+  /* CONTENEDOR */
+  &_contenido_box_layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include m.tablet {
+      gap: 20px;
+    }
+  }
+
+  /* CARD */
+  &_card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #111111;
+    border: 1px solid #1f1f1f;
+    border-radius: 16px;
+    padding: 14px;
+    transition: all 0.3s ease;
+
+    @include m.telefonoXL {
+      flex-direction: row;
+      gap: 20px;
+      padding: 16px;
+    }
+
+    &:hover {
+      border-color: #2a2a2a;
+      transform: translateY(-4px);
+    }
+  }
+
+  /* IMAGEN */
+  &_card_img {
+    width: 100%;
+    height: 180px;
+
+    @include m.telefonoXL {
+      width: 45%;
+      height: 160px;
+    }
+
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0f0f0f;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* INFO */
+  &_card_info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &_card_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+
+      @include m.tablet {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &_card_link {
+    font-size: 12px;
+
+    @include m.tablet {
+      font-size: 13px;
+    }
+
+    color: #9ca3af;
+    text-decoration: none;
+    background: #1a1a1a;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: 0.2s;
+
+    &:hover {
+      color: #fff;
+      background: #262626;
+    }
+  }
+
+  &_card_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 12px;
+    color: #9ca3af;
+
+    @include m.tablet {
+      font-size: 13px;
+      gap: 8px;
+    }
+  }
+
+  &_card_desc {
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.6;
+
+    @include m.tablet {
+      font-size: 14px;
+    }
+  }
+
+  /* BOTÓN */
+  &_card_footer {
+    margin-top: 10px;
+  }
+
+  &_card_btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 12px;
+
+    @include m.tablet {
+      padding: 14px;
+      font-size: 13px;
+    }
+
+    background: #111111;
+    border: 1px solid #1f1f1f;
+    border-radius: 12px;
+    color: #e5e5e5;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #1a1a1a;
+      border-color: #2a2a2a;
+    }
+  }
+}

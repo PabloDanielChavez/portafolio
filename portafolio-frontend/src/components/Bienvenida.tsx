@@ -23,14 +23,17 @@ export default function Bienvenida() {
         <div className={style_bienvenida.bienvenida_layout}>
             <article className={style_bienvenida.bienvenida_header}>
                 <div className={style_bienvenida.bienvenida_header_box_imagen}>
-                    <img className={style_bienvenida.bienvenida_header_imagen_perfil} src="/img/Logotipos PDC JPG/500 x 500.jpg" alt="LOGOTIPO"/>
+                    <img className={style_bienvenida.bienvenida_header_imagen_perfil} src="img/Logotipo_Portafolio_PDC/Logo/Logo_500x500px.png" alt="LOGOTIPO"/>
                 </div>
                 <div className={style_bienvenida.bienvenida_header_box_informacion}>
-                    <div className={style_bienvenida.bienvenida_header_box_soy}>
-                        <span className={style_bienvenida.bienvenida_header_soy_span}>✋</span>
-                        <h3 className={style_bienvenida.bienvenida_header_soy_h3}>hola, Soy</h3>
-                    </div>
-                    <h1 className={style_bienvenida.bienvenida_header_h1_nombre}>Pablo Daniel Chavez</h1>
+                    
+                    <h1 className={style_bienvenida.bienvenida_header_h1_nombre}>
+                        <div className={style_bienvenida.bienvenida_header_box_soy}>
+                            <span className={style_bienvenida.bienvenida_header_soy_span}>✋</span>
+                            <h3 className={style_bienvenida.bienvenida_header_soy_h3}>hola, Soy</h3>
+                        </div>
+                        Pablo Daniel Chavez
+                    </h1>
                     <p className={style_bienvenida.bienvenida_header_p_descripcion}>Desarrollador web Full Stack de Buenos Aires, Argntina, con pasión por crear experiencias digitales con un historial comprobado.</p>
                     <div className={style_bienvenida.bienvenida_header_btn_layout}>
                         <button className={style_bienvenida.bienvenida_header_btn} type="button">

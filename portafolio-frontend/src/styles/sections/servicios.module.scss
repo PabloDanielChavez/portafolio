@@ -1,7 +1,7 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
-.experiencia {
+.servicios {
   padding: 40px 16px;
   background: #0d0d0d;
   color: #e5e5e5;
@@ -70,13 +70,19 @@
     }
   }
 
+  // GRID (mobile-first)
   &_contenido_box_layout {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
 
-    @include m.tablet {
-      gap: 25px;
+    @include m.telefonoXL {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @include m.tabletXL {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
@@ -100,12 +106,12 @@
   &_contenido_article_header_layout {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 
     @include m.telefonoXL {
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
     }
   }
 
@@ -120,14 +126,19 @@
   }
 
   &_contenido_article_header_icono {
+    font-size: 1.6rem;
     width: 40px;
     height: 40px;
 
     @include m.tablet {
       width: 45px;
       height: 45px;
+      font-size: 2rem;
     }
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 10px;
     overflow: hidden;
     background: #1a1a1a;
@@ -190,18 +201,15 @@
     }
   }
 
-  &_contenido_article_header_fecha_p {
-    font-size: 12px;
+  &_contenido_article_header_flecha_p {
+    font-size: 1.3rem;
     color: #9ca3af;
+    align-self: flex-end;
 
-    @include m.tablet {
-      font-size: 13px;
+    @include m.telefonoXL {
+      align-self: center;
+      font-size: 1.5rem;
     }
-  }
-
-  &_contenido_article_header_fecha_span {
-    margin: 0 5px;
-    color: #c084fc;
   }
 
   &_contenido_article_contenido_layout {

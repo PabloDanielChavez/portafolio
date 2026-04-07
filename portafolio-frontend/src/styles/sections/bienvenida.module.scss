@@ -4,31 +4,52 @@
 .bienvenida {
   background: #0d0d0d;
   color: #e5e5e5;
-  padding: 60px 20px;
+  padding: 40px 16px;
+
+  @include m.telefonoXL {
+    padding: 60px 20px;
+  }
 
   &_layout {
     max-width: 1000px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-  }
-
-  //  HEADER
-  &_header {
-    display: grid;
     gap: 30px;
 
-    @include m.telefonoXL {
-      grid-template-columns: 1fr 2fr;
+    @include m.tablet {
+      gap: 40px;
+    }
+  }
+
+  // HEADER
+  &_header {
+    display: grid;
+    gap: 24px;
+
+    @include m.telefonoXXL {
+      grid-template-columns: 1fr 1.5fr;
       align-items: center;
+    }
+
+    @include m.tablet {
+      grid-template-columns: 1fr 2fr;
     }
   }
 
   &_header_box_imagen {
     width: 100%;
-    max-width: 280px;
+    max-width: 220px;
     margin: auto;
+
+    @include m.telefonoXL {
+      max-width: 260px;
+    }
+
+    @include m.tablet {
+      max-width: 280px;
+    }
+
     border-radius: 20px;
     overflow: hidden;
     background: #111;
@@ -61,25 +82,41 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    justify-content: center;
+
+    @include m.tablet {
+      justify-content: flex-start;
+    }
   }
 
   &_header_soy_span {
     animation: saludo 4s infinite;
-    font-size: 20px;
+    font-size: 18px;
+
+    @include m.tablet {
+      font-size: 20px;
+    }
   }
 
   &_header_soy_h3 {
-    font-size: 14px;
+    font-size: 12px;
     color: #9ca3af;
-    text-transform: uppercase;
     letter-spacing: 1px;
+
+    @include m.tablet {
+      font-size: 14px;
+    }
   }
 
   &_header_h1_nombre {
     margin: 0;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     color: white;
+
+    @include m.telefonoXL {
+      font-size: 28px;
+    }
 
     @include m.tabletXL {
       font-size: 42px;
@@ -87,12 +124,14 @@
   }
 
   &_header_p_descripcion {
-    font-size: 15px;
+    font-size: 14px;
     color: #9ca3af;
     max-width: 500px;
+    margin: 0 auto;
 
     @include m.tablet {
       margin: 0;
+      font-size: 15px;
     }
   }
 
@@ -111,7 +150,12 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 16px;
+    padding: 10px 14px;
+
+    @include m.tablet {
+      padding: 10px 16px;
+    }
+
     border-radius: 10px;
     background: #111;
     border: 1px solid #1f1f1f;
@@ -129,22 +173,36 @@
 
   &_header_btn_span {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 11px;
+
+    @include m.tablet {
+      font-size: 12px;
+    }
+
     letter-spacing: 1px;
   }
 
-  //  SOCIAL SCROLL
+  // SOCIAL SCROLL
   ul {
-    padding: 0px;
+    padding: 0;
   }
+
   &_center {
     overflow: hidden;
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
     border-radius: 20px;
     border: 1px solid #1f1f1f;
     background: #111;
     padding: 10px;
+
+    @include m.tablet {
+      width: 70%;
+    }
+
+    @include m.tabletXL {
+      width: 50%;
+    }
   }
 
   &_track {
@@ -161,9 +219,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-right: 30px;
+    margin-right: 20px;
     color: #9ca3af;
-    font-size: 16px;
+    font-size: 14px;
+
+    @include m.tablet {
+      font-size: 16px;
+      margin-right: 30px;
+    }
+
     transition: all 0.2s ease;
 
     &:hover {
@@ -174,18 +238,24 @@
 
   &_center_redsocial_span {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 11px;
+
+    @include m.tablet {
+      font-size: 12px;
+    }
+
     letter-spacing: 1px;
   }
 
-  //  FOOTER STATS
-  &_footer {
-  }
-
+  // FOOTER STATS
   &_footer_layout {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 10px;
+
+    @include m.telefonoXL {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     @include m.tabletXL {
       grid-template-columns: repeat(4, 1fr);
@@ -196,7 +266,12 @@
     background: #111;
     border: 1px solid #1f1f1f;
     border-radius: 14px;
-    padding: 20px;
+    padding: 16px;
+
+    @include m.tablet {
+      padding: 20px;
+    }
+
     text-align: center;
     transition: all 0.25s ease;
 
@@ -207,9 +282,13 @@
   }
 
   &_footer_h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: white;
+
+    @include m.tablet {
+      font-size: 22px;
+    }
 
     @include m.tabletXL {
       font-size: 28px;
@@ -217,8 +296,12 @@
   }
 
   &_footer_span {
-    font-size: 13px;
+    font-size: 12px;
     color: #9ca3af;
+
+    @include m.tablet {
+      font-size: 13px;
+    }
   }
 }
 

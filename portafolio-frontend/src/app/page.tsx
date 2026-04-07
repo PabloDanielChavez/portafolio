@@ -1,6 +1,10 @@
 import Bienvenida from "@/components/Bienvenida";
 import Experiencia from "@/components/Experiencia";
-import Header from "@/components/Header";
+import Stacks from "@/components/Stacks";
+import Servicios from "@/components/Servicios";
+import Trabajos from "@/components/Trabajos";
+import Clientes from "@/components/Clientes";
+import Footer from "@/components/Footer";
 import { ReactNode } from "react";
 
 export default async function Home() {
@@ -9,6 +13,11 @@ export default async function Home() {
         <>
           <Bienvenida></Bienvenida>
           <Experiencia></Experiencia>
+          <Stacks></Stacks>
+          <Servicios></Servicios>
+          <Trabajos></Trabajos>
+          <Clientes></Clientes>
+          <Footer></Footer>
         </>
   );
 }

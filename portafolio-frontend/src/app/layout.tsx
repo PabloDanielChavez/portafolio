@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Ventana from "@/components/Ventana";
-import "../styles/globals.scss";
+import "../styles/base/global.module.scss";
 import "../styles/base/normalice.scss"
 
 const roboto = Roboto({
@@ -12,9 +12,9 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Portafolio PDC",
   description: "Portafolio Pablo Daniel Chavez",
-  themeColor:"000",
+  themeColor:"0d0d0d",
   icons: {
-    icon: "portafolio-frontend/public/img/Logo PNG/48 x 48.png"
+    icon: "img/Logotipo_Portafolio_PDC/Icono/Icono_48x48px.png"
   }
 };
 
