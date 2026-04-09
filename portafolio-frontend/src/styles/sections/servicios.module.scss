@@ -26,10 +26,12 @@
   &_header_box_informacion_titulo {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 
     @include m.tablet {
       gap: 10px;
+      justify-content: flex-start;
     }
   }
 
@@ -80,10 +82,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
-
-    @include m.tabletXL {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
   &_contenido_article {
@@ -105,14 +103,10 @@
 
   &_contenido_article_header_layout {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     gap: 10px;
-
-    @include m.telefonoXL {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
   }
 
   &_contenido_article_header_emp {
@@ -129,6 +123,7 @@
     font-size: 1.6rem;
     width: 40px;
     height: 40px;
+    color: #c084fc;
 
     @include m.tablet {
       width: 45px;

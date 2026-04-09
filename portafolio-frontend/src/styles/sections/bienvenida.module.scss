@@ -189,7 +189,7 @@
 
   &_center {
     overflow: hidden;
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     border-radius: 20px;
     border: 1px solid #1f1f1f;
@@ -250,7 +250,7 @@
   // FOOTER STATS
   &_footer_layout {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
 
     @include m.telefonoXL {

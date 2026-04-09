@@ -1,6 +1,6 @@
 import Bienvenida from "@/components/Bienvenida";
 import Experiencia from "@/components/Experiencia";
-import Stacks from "@/components/Stacks";
+import Habilidades from "@/components/Habilidades";
 import Servicios from "@/components/Servicios";
 import Trabajos from "@/components/Trabajos";
 import Clientes from "@/components/Clientes";
@@ -13,7 +13,7 @@ export default async function Home() {
         <>
           <Bienvenida></Bienvenida>
           <Experiencia></Experiencia>
-          <Stacks></Stacks>
+          <Habilidades></Habilidades>
           <Servicios></Servicios>
           <Trabajos></Trabajos>
           <Clientes></Clientes>

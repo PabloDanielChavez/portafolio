@@ -26,10 +26,12 @@
   &_header_box_informacion_titulo {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 
     @include m.tablet {
       gap: 10px;
+      justify-content: flex-start;
     }
   }
 

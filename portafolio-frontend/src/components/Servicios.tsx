@@ -5,8 +5,11 @@ import style_servicios from "@/styles/sections/servicios.module.scss"
 import { FaArrowRight } from "react-icons/fa";
 import { AiTwotoneSchedule } from "react-icons/ai";
 import { MdOutlineWeb } from "react-icons/md";
-import { TbWorld } from "react-icons/tb";
-import { PiPaintBrushBold } from "react-icons/pi";
+import { TbChartBarPopular, TbWorld } from "react-icons/tb";
+import { PiPaintBrushBold, PiPalette } from "react-icons/pi";
+import { LuMonitorSmartphone } from "react-icons/lu";
+import { HiOutlineCodeBracket } from "react-icons/hi2";
+import { FiDatabase } from "react-icons/fi";
 
 export default function servicios() {
 
@@ -31,10 +34,10 @@ export default function servicios() {
                             <div className={style_servicios.servicios_contenido_article_header_layout}> 
                                 <div className={style_servicios.servicios_contenido_article_header_emp}> 
                                     <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <MdOutlineWeb />
+                                        <LuMonitorSmartphone />
                                     </div> 
                                     <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Web Design</h3>
+                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Diseño Web</h3>
                                     </div> 
                                 </div> 
                                 <div className={style_servicios.servicios_contenido_article_header_flecha}> 
@@ -42,7 +45,7 @@ export default function servicios() {
                                 </div> 
                             </div> 
                             <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Crafting visually captivating and user-friendly websites for online success.</p>
+                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Creamos sitios web visualmente atractivos, rápidos y fáciles de usar para lograr el éxito en línea.</p>
                             </div>
                         </article>
                         
@@ -50,10 +53,10 @@ export default function servicios() {
                             <div className={style_servicios.servicios_contenido_article_header_layout}> 
                                 <div className={style_servicios.servicios_contenido_article_header_emp}> 
                                     <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <TbWorld />
+                                        <HiOutlineCodeBracket />
                                     </div> 
                                     <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Web Development</h3>
+                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Desarrollo Web y Apps</h3>
                                     </div> 
                                 </div> 
                                 <div className={style_servicios.servicios_contenido_article_header_flecha}> 
@@ -61,7 +64,7 @@ export default function servicios() {
                                 </div> 
                             </div> 
                             <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Bringing ideas to life with robust and scalable web solutions.</p>
+                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Damos vida a tus ideas con soluciones robustas, escalables y aplicaciones de alto rendimiento desarrolladas a medida.</p>
                             </div>
                         </article>
                         
@@ -69,10 +72,10 @@ export default function servicios() {
                             <div className={style_servicios.servicios_contenido_article_header_layout}> 
                                 <div className={style_servicios.servicios_contenido_article_header_emp}> 
                                     <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <PiPaintBrushBold />
+                                        <PiPalette />
                                     </div> 
                                     <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Graphic Design</h3>
+                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Diseño Gráfico y Multimedia</h3>
                                     </div> 
                                 </div> 
                                 <div className={style_servicios.servicios_contenido_article_header_flecha}> 
@@ -80,7 +83,7 @@ export default function servicios() {
                                 </div> 
                             </div> 
                             <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Creating visually stunning designs that captivate and engage audiences.</p>
+                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Creamos piezas visualmente impactantes y contenido en video que cautivan y atraen a tu público objetivo.</p>
                             </div>
                         </article>
                         
@@ -88,10 +91,10 @@ export default function servicios() {
                             <div className={style_servicios.servicios_contenido_article_header_layout}> 
                                 <div className={style_servicios.servicios_contenido_article_header_emp}> 
                                     <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <PiPaintBrushBold />
+                                        <TbChartBarPopular />
                                     </div> 
                                     <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>SEO</h3>
+                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>SEO Técnico y Performance</h3>
                                     </div> 
                                 </div> 
                                 <div className={style_servicios.servicios_contenido_article_header_flecha}> 
@@ -99,7 +102,26 @@ export default function servicios() {
                                 </div> 
                             </div> 
                             <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Elevating online visibility and driving organic traffic through strategies.</p>
+                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Mejoramos tu visibilidad mediante estrategias efectivas y optimización de carga para un posicionamiento orgánico superior.</p>
+                            </div>
+                        </article>
+                        
+                        <article className={style_servicios.servicios_contenido_article}> 
+                            <div className={style_servicios.servicios_contenido_article_header_layout}> 
+                                <div className={style_servicios.servicios_contenido_article_header_emp}> 
+                                    <div className={style_servicios.servicios_contenido_article_header_icono}> 
+                                        <FiDatabase />
+                                    </div> 
+                                    <div className={style_servicios.servicios_contenido_article_header_nombre}> 
+                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Gestión de Datos y E-commerce</h3>
+                                    </div> 
+                                </div> 
+                                <div className={style_servicios.servicios_contenido_article_header_flecha}> 
+                                    <p className={style_servicios.servicios_contenido_article_header_flecha_p}><FaArrowRight /></p>
+                                </div> 
+                            </div> 
+                            <div className={style_servicios.servicios_contenido_article_contenido_layout}>
+                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Estructuramos bases de datos seguras y desarrollamos tiendas online personalizadas que potencian tus ventas.</p>
                             </div>
                         </article>
                     </div>
