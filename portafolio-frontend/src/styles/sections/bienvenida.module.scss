@@ -195,7 +195,26 @@
     border: 1px solid #1f1f1f;
     background: #111;
     padding: 10px;
+    position: relative; /* Obligatorio para que el hijo flote dentro */
+    overflow: hidden; 
 
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Tu degradado aquí */
+      background: linear-gradient(to right, 
+          #111 0%, 
+          transparent 30%, 
+          transparent 70%, 
+          #111 100%
+      );
+    pointer-events: none; /* Permite hacer click a través del degradado */
+    z-index: 2; /* Lo pone por encima de los hijos */
+}
     @include m.tablet {
       width: 70%;
     }
@@ -232,7 +251,7 @@
 
     &:hover {
       color: white;
-      transform: scale(1.05);
+      cursor: pointer;
     }
   }
 

@@ -15,6 +15,7 @@ import {
 import { BsFillPersonVcardFill } from "react-icons/bs";
 import { SiCodefactor } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
+import { PiMicrosoftOutlookLogo } from "react-icons/pi";
 
 export default function Bienvenida() {
 
@@ -66,6 +67,14 @@ export default function Bienvenida() {
                             <FaFacebookSquare></FaFacebookSquare>
                             <span className={style_bienvenida.bienvenida_center_redsocial_span}>Facebook</span>
                         </li>
+                        <li className={style_bienvenida.bienvenida_center_box_redsocial}>
+                            <FaInstagram></FaInstagram>
+                            <span className={style_bienvenida.bienvenida_center_redsocial_span}>Instagram</span>
+                        </li>
+                        <li className={style_bienvenida.bienvenida_center_box_redsocial}>
+                            <PiMicrosoftOutlookLogo ></PiMicrosoftOutlookLogo>
+                            <span className={style_bienvenida.bienvenida_center_redsocial_span}>Outlook</span>
+                        </li>
                     </ul>
                     <ul className={style_bienvenida.bienvenida_center_layout}>
                         <li className={style_bienvenida.bienvenida_center_box_redsocial}>
@@ -83,6 +92,14 @@ export default function Bienvenida() {
                         <li className={style_bienvenida.bienvenida_center_box_redsocial}>
                             <FaFacebookSquare></FaFacebookSquare>
                             <span className={style_bienvenida.bienvenida_center_redsocial_span}>Facebook</span>
+                        </li>
+                        <li className={style_bienvenida.bienvenida_center_box_redsocial}>
+                            <FaInstagram></FaInstagram>
+                            <span className={style_bienvenida.bienvenida_center_redsocial_span}>Instagram</span>
+                        </li>
+                        <li className={style_bienvenida.bienvenida_center_box_redsocial}>
+                            <PiMicrosoftOutlookLogo ></PiMicrosoftOutlookLogo>
+                            <span className={style_bienvenida.bienvenida_center_redsocial_span}>Outlook</span>
                         </li>
                     </ul>
                 </div>

@@ -62,12 +62,14 @@
   &_header_box_informacion_texto {
     margin-top: 10px;
 
-    p {
+    &_p {
       color: #9ca3af;
       font-size: 13px;
-
+      text-align: center;
+      
       @include m.tablet {
         font-size: 14px;
+        text-align: start;
       }
     }
   }
