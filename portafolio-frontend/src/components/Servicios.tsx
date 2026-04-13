@@ -11,7 +11,18 @@ import { LuMonitorSmartphone } from "react-icons/lu";
 import { HiOutlineCodeBracket } from "react-icons/hi2";
 import { FiDatabase } from "react-icons/fi";
 
-export default function servicios() {
+type Servicios = {
+    id:number;
+    nombre_servicio:string;
+    informacion_servicio:string;
+    reactIcon:string;
+};
+
+type Props = {
+    servicios: Servicios[];
+};
+
+export default function servicios({ servicios }: Props) {
 
   return (
     <article className={style_servicios.servicios}>
@@ -30,100 +41,37 @@ export default function servicios() {
                 </div>
                 <div className={style_servicios.servicios_contenido_box}>
                     <div className={style_servicios.servicios_contenido_box_layout}>
-                        <article className={style_servicios.servicios_contenido_article}> 
-                            <div className={style_servicios.servicios_contenido_article_header_layout}> 
-                                <div className={style_servicios.servicios_contenido_article_header_emp}> 
-                                    <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <LuMonitorSmartphone />
+                        {servicios.map(ser => {
+                            const renderIcono = (nombreString: string) => {
+                                if (nombreString === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
+                                if (nombreString === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
+                                if (nombreString === "PiPalette") return <PiPalette />;
+                                if (nombreString === "TbChartBarPopular") return <TbChartBarPopular />;
+                                if (nombreString === "FiDatabase") return <FiDatabase />;
+                                
+                                return <FiDatabase />; // Un icono por defecto
+                            };
+                            return (
+                            <article key={ser.id} className={style_servicios.servicios_contenido_article}> 
+                                <div className={style_servicios.servicios_contenido_article_header_layout}> 
+                                    <div className={style_servicios.servicios_contenido_article_header_emp}> 
+                                        <div className={style_servicios.servicios_contenido_article_header_icono}> 
+                                            {renderIcono(ser.reactIcon)}
+                                        </div> 
+                                        <div className={style_servicios.servicios_contenido_article_header_nombre}> 
+                                            <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>{ser?.nombre_servicio}</h3>
+                                        </div> 
                                     </div> 
-                                    <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Diseño Web</h3>
-                                    </div> 
-                                </div> 
-                                <div className={style_servicios.servicios_contenido_article_header_flecha}> 
-                                    <p className={style_servicios.servicios_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div> 
-                            </div> 
-                            <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Creamos sitios web visualmente atractivos, rápidos y fáciles de usar para lograr el éxito en línea.</p>
-                            </div>
-                        </article>
-                        
-                        <article className={style_servicios.servicios_contenido_article}> 
-                            <div className={style_servicios.servicios_contenido_article_header_layout}> 
-                                <div className={style_servicios.servicios_contenido_article_header_emp}> 
-                                    <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <HiOutlineCodeBracket />
-                                    </div> 
-                                    <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Desarrollo Web y Apps</h3>
+                                    <div className={style_servicios.servicios_contenido_article_header_flecha}> 
+                                        <p className={style_servicios.servicios_contenido_article_header_flecha_p}><FaArrowRight /></p>
                                     </div> 
                                 </div> 
-                                <div className={style_servicios.servicios_contenido_article_header_flecha}> 
-                                    <p className={style_servicios.servicios_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div> 
-                            </div> 
-                            <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Damos vida a tus ideas con soluciones robustas, escalables y aplicaciones de alto rendimiento desarrolladas a medida.</p>
-                            </div>
-                        </article>
-                        
-                        <article className={style_servicios.servicios_contenido_article}> 
-                            <div className={style_servicios.servicios_contenido_article_header_layout}> 
-                                <div className={style_servicios.servicios_contenido_article_header_emp}> 
-                                    <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <PiPalette />
-                                    </div> 
-                                    <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Diseño Gráfico y Multimedia</h3>
-                                    </div> 
-                                </div> 
-                                <div className={style_servicios.servicios_contenido_article_header_flecha}> 
-                                    <p className={style_servicios.servicios_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div> 
-                            </div> 
-                            <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Creamos piezas visualmente impactantes y contenido en video que cautivan y atraen a tu público objetivo.</p>
-                            </div>
-                        </article>
-                        
-                        <article className={style_servicios.servicios_contenido_article}> 
-                            <div className={style_servicios.servicios_contenido_article_header_layout}> 
-                                <div className={style_servicios.servicios_contenido_article_header_emp}> 
-                                    <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <TbChartBarPopular />
-                                    </div> 
-                                    <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>SEO Técnico y Performance</h3>
-                                    </div> 
-                                </div> 
-                                <div className={style_servicios.servicios_contenido_article_header_flecha}> 
-                                    <p className={style_servicios.servicios_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div> 
-                            </div> 
-                            <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Mejoramos tu visibilidad mediante estrategias efectivas y optimización de carga para un posicionamiento orgánico superior.</p>
-                            </div>
-                        </article>
-                        
-                        <article className={style_servicios.servicios_contenido_article}> 
-                            <div className={style_servicios.servicios_contenido_article_header_layout}> 
-                                <div className={style_servicios.servicios_contenido_article_header_emp}> 
-                                    <div className={style_servicios.servicios_contenido_article_header_icono}> 
-                                        <FiDatabase />
-                                    </div> 
-                                    <div className={style_servicios.servicios_contenido_article_header_nombre}> 
-                                        <h3 className={style_servicios.servicios_contenido_article_header_nombre_h3}>Gestión de Datos y E-commerce</h3>
-                                    </div> 
-                                </div> 
-                                <div className={style_servicios.servicios_contenido_article_header_flecha}> 
-                                    <p className={style_servicios.servicios_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div> 
-                            </div> 
-                            <div className={style_servicios.servicios_contenido_article_contenido_layout}>
-                                <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>Estructuramos bases de datos seguras y desarrollamos tiendas online personalizadas que potencian tus ventas.</p>
-                            </div>
-                        </article>
+                                <div className={style_servicios.servicios_contenido_article_contenido_layout}>
+                                    <p className={style_servicios.servicios_contenido_article_contenido_puesto_p_informacion}>{ser?.informacion_servicio}</p>
+                                </div>
+                            </article>
+                            )
+                        })}
                     </div>
                 </div>
             </article>

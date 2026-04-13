@@ -1,7 +1,12 @@
 import express from 'express';
-import { obtenerPaginas } from '../controllers/apiController.js';
+import { obtenerPerfil, obtenerHabilidades, obtenerExperiencia, obtenerServicios, obtenerClientes, obtenerTrabajos }from '../controllers/apiController.js';
 const router = express.Router();
 
-router.get('/api/paginas', obtenerPaginas);
+router.get("/api/perfil", obtenerPerfil);
+router.get("/api/habilidades", obtenerHabilidades);
+router.get("/api/experiencia", obtenerExperiencia);
+router.get("/api/servicios", obtenerServicios);
+router.get("/api/trabajos", obtenerTrabajos);
+router.get("/api/clientes", obtenerClientes);
 
 export default router;

@@ -12,11 +12,14 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Portafolio PDC",
   description: "Portafolio Pablo Daniel Chavez",
-  themeColor:"0d0d0d",
   icons: {
     icon: "img/Logotipo_Portafolio_PDC/Icono/Icono_48x48px.png"
   }
 };
+
+export const viewport = {
+  themeColor: '#0d0d0d',
+}
 
 export default function RootLayout({
   children,

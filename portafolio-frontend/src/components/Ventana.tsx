@@ -27,7 +27,7 @@ return (
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <a href="#">
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
-                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="img/Logotipo_Portafolio_PDC/Logo/Logo_110x110px.png" alt="Logo" />
+                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Logotipo_Portafolio_PDC/Logo/Logo_110x110px.png" alt="Logo" />
               </div>
             </a>
           </div>

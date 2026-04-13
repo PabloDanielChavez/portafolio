@@ -9,7 +9,30 @@ import { TbWorld } from "react-icons/tb";
 import { PiPaintBrushBold } from "react-icons/pi";
 import { IoIosRocket } from "react-icons/io";
 
-export default function Trabajos() {
+type Trabajos = {
+    id:number;
+    nombre_trabajo:string;
+    categoria_trabajo:string;
+    numero_pagina:string;
+    style_trabajo:string;
+    complejidad_trabajo:string;
+    enlace_trabajo:string;
+    enlace_trabajoResumido:string;
+    tiempo_trabajo:string;
+    resumen_trabajo:string;
+    informacion_trabajo:string;
+    opinion_trabajo:string;
+    valoracion_trabajo:string;
+    nombre_archivo:string;
+    nombre_imagen:string;
+    formato_imagen:string;
+};
+
+type Props = {
+    trabajos: Trabajos[];
+};
+
+export default function Trabajos({ trabajos }: Props) {
 
   return (
     <article className={style_trabajos.trabajos}>
@@ -28,48 +51,32 @@ export default function Trabajos() {
                 </div>
                 <div className={style_trabajos.trabajos_contenido_box}>
                     <div className={style_trabajos.trabajos_contenido_box_layout}>
-                        <article className={style_trabajos.trabajos_card}>
-                            <div className={style_trabajos.trabajos_card_img}>
-                                <img src="https://framerusercontent.com/images/34CNONDmkqhYuIXHQCjxqCbWjDQ.png?scale-down-to=512" alt="Devcraft" />
-                            </div>
-                            <div className={style_trabajos.trabajos_card_info}>
-                                <div className={style_trabajos.trabajos_card_header}>
-                                    <h3>Devcraft</h3>
-                                    <a href="#" className={style_trabajos.trabajos_card_link}>devcraft.com</a>
-                                </div>
-                                <div className={style_trabajos.trabajos_card_meta}>
-                                    <span>Portfolio</span>
-                                    <span>•</span>
-                                    <span>4 Pages</span>
-                                    <span>•</span>
-                                    <span>Dark Theme</span>
-                                </div>
-                                <p className={style_trabajos.trabajos_card_desc}>Demostrando experiencia, pasión e innovación en el ámbito del desarrollo.</p>
-                            </div>
-                        </article>
-
-                        <article className={style_trabajos.trabajos_card}>
-                            <div className={style_trabajos.trabajos_card_img}>
-                                <img src="https://framerusercontent.com/images/2BMySs6ve9g9IU6tbFt5J4r58o.jpg?scale-down-to=512&width=811&height=504" alt="Zenith Gym" />
-                            </div>
-                            <div className={style_trabajos.trabajos_card_info}>
-                                <div className={style_trabajos.trabajos_card_header}>
-                                    <h3>Zenith Gym</h3>
-                                    <a href="#" className={style_trabajos.trabajos_card_link}>zenith.com</a>
-                                </div>
-                                <div className={style_trabajos.trabajos_card_meta}>
-                                    <span>Fitness</span>
-                                    <span>•</span>
-                                    <span>5 Pages</span>
-                                    <span>•</span>
-                                    <span>Light Theme</span>
-                                </div>
-                                <p className={style_trabajos.trabajos_card_desc}>Brindando a los entusiastas del fitness una experiencia online inmersiva.</p>
-                            </div>
-                        </article>
+                        {trabajos?.map(tra => {
+                            return (
+                                <article key={tra.id} className={style_trabajos.trabajos_card}>
+                                    <div className={style_trabajos.trabajos_card_img}>
+                                        <img src={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`} alt={tra?.nombre_imagen} />
+                                    </div>
+                                    <div className={style_trabajos.trabajos_card_info}>
+                                        <div className={style_trabajos.trabajos_card_header}>
+                                            <h3>{tra?.nombre_trabajo}</h3>
+                                            <a href={tra?.enlace_trabajo} className={style_trabajos.trabajos_card_link}>{tra?.enlace_trabajoResumido}</a>
+                                        </div>
+                                        <div className={style_trabajos.trabajos_card_meta}>
+                                            <span>{tra?.complejidad_trabajo}</span>
+                                            <span>•</span>
+                                            <span>{tra?.numero_pagina} Paginas</span>
+                                            <span>•</span>
+                                            <span>{tra?.tiempo_trabajo}</span>
+                                        </div>
+                                        <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
+                                    </div>
+                                </article>
+                            )
+                        })}
                         
                         <div className={style_trabajos.trabajos_card_footer}>
-                            <button className={style_trabajos.trabajos_card_btn}>VIEW ALL PROJECTS →</button>
+                            <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
                         </div>
                     </div>
                 </div>

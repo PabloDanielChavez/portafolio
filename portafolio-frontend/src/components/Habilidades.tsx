@@ -6,7 +6,23 @@ import { FaArrowRight } from "react-icons/fa";
 import { PiStack } from "react-icons/pi";
 import { MdWeb } from "react-icons/md";
 
-export default function Stacks() {
+type Habilidades = {
+    id:number;
+    nombre_habilidad:string;
+    categoria_habilidad:string;
+    tiempo_habilidad:string;
+    experiencia_habilidad:string;
+    nombre_archivo:string;
+    nombre_imagen:string;
+    formato_imagen:string;
+};
+
+type Props = {
+    habilidades: Habilidades[];
+};
+
+
+export default function Habilidades({ habilidades }: Props) {
 
   return (
     <article className={style_habilidades.habilidades}>
@@ -25,107 +41,26 @@ export default function Stacks() {
                 </div>
                 <div className={style_habilidades.habilidades_contenido_box}>
                     <div className={style_habilidades.habilidades_contenido_box_layout}>
-
-                        <article className={style_habilidades.habilidades_contenido_article}> 
-                            <div className={style_habilidades.habilidades_contenido_article_header_layout}> 
-                                <div className={style_habilidades.habilidades_contenido_article_header_emp}> 
-                                    <div className={style_habilidades.habilidades_contenido_article_header_icono}> 
-                                        <img src="img/Logotipo_Portafolio_PDC/Logo_Web_Design/Logo_Web_Design_48x48px.png" alt="img" /> 
+                        {habilidades.map(hab => {
+                            return (
+                                <article key={hab.id} className={style_habilidades.habilidades_contenido_article}> 
+                                    <div className={style_habilidades.habilidades_contenido_article_header_layout}> 
+                                        <div className={style_habilidades.habilidades_contenido_article_header_emp}> 
+                                            <div className={style_habilidades.habilidades_contenido_article_header_icono}> 
+                                                <img src={`img/Logotipo_Portafolio_PDC/${hab?.nombre_archivo}/${hab?.nombre_imagen}.${hab?.formato_imagen}`} alt="img" />
+                                            </div> 
+                                            <div className={style_habilidades.habilidades_contenido_article_header_nombre}> 
+                                                <h3 className={style_habilidades.habilidades_contenido_article_header_nombre_h3}>{hab?.nombre_habilidad}</h3> 
+                                                <a className={style_habilidades.habilidades_contenido_article_header_nombre_enlace} href="#">{hab?.categoria_habilidad}</a> 
+                                            </div> 
+                                        </div> 
+                                        <div className={style_habilidades.habilidades_contenido_article_header_flecha}> 
+                                            <p className={style_habilidades.habilidades_contenido_article_header_flecha_p}><FaArrowRight /></p>
+                                        </div> 
                                     </div> 
-                                    <div className={style_habilidades.habilidades_contenido_article_header_nombre}> 
-                                        <h3 className={style_habilidades.habilidades_contenido_article_header_nombre_h3}>Html, Css y Sass</h3> 
-                                        <a className={style_habilidades.habilidades_contenido_article_header_nombre_enlace} href="#">Web Design</a> 
-                                    </div> 
-                                </div> 
-                                <div className={style_habilidades.habilidades_contenido_article_header_flecha}> 
-                                    <p className={style_habilidades.habilidades_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div> 
-                            </div> 
-                        </article>
-
-                        <article className={style_habilidades.habilidades_contenido_article}>
-                            <div className={style_habilidades.habilidades_contenido_article_header_layout}>
-                                <div className={style_habilidades.habilidades_contenido_article_header_emp}>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_icono}>
-                                        <img src="img/Logotipo_Portafolio_PDC/Logo_FrontEnd_Development/Logo_FrontEnd_Development_48x48px.png" alt="img" />
-                                    </div>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_nombre}>
-                                        <h3 className={style_habilidades.habilidades_contenido_article_header_nombre_h3}>
-                                            JavaScript, React y Next.js
-                                        </h3>
-                                        <a className={style_habilidades.habilidades_contenido_article_header_nombre_enlace} href="#">
-                                            Frontend Development
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className={style_habilidades.habilidades_contenido_article_header_flecha}>
-                                    <p className={style_habilidades.habilidades_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article className={style_habilidades.habilidades_contenido_article}>
-                            <div className={style_habilidades.habilidades_contenido_article_header_layout}>
-                                <div className={style_habilidades.habilidades_contenido_article_header_emp}>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_icono}>
-                                        <img src="img/Logotipo_Portafolio_PDC/Logo_BackEnd_Development/Logo_BackEnd_Development_48x48px.png" alt="img" />
-                                    </div>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_nombre}>
-                                        <h3 className={style_habilidades.habilidades_contenido_article_header_nombre_h3}>
-                                            Node.js y Sequelize
-                                        </h3>
-                                        <a className={style_habilidades.habilidades_contenido_article_header_nombre_enlace} href="#">
-                                            Backend Development
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className={style_habilidades.habilidades_contenido_article_header_flecha}>
-                                    <p className={style_habilidades.habilidades_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article className={style_habilidades.habilidades_contenido_article}>
-                            <div className={style_habilidades.habilidades_contenido_article_header_layout}>
-                                <div className={style_habilidades.habilidades_contenido_article_header_emp}>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_icono}>
-                                        <img src="img/Logotipo_Portafolio_PDC/Logo_Database_Management/Logo_Database_Management_48x48px.png" alt="img" />
-                                    </div>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_nombre}>
-                                        <h3 className={style_habilidades.habilidades_contenido_article_header_nombre_h3}>
-                                            MySQL
-                                        </h3>
-                                        <a className={style_habilidades.habilidades_contenido_article_header_nombre_enlace} href="#">
-                                            Database Management
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className={style_habilidades.habilidades_contenido_article_header_flecha}>
-                                    <p className={style_habilidades.habilidades_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article className={style_habilidades.habilidades_contenido_article}>
-                            <div className={style_habilidades.habilidades_contenido_article_header_layout}>
-                                <div className={style_habilidades.habilidades_contenido_article_header_emp}>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_icono}>
-                                        <img src="img/Logotipo_Portafolio_PDC/Logo_Multimedia_&_Content_Design/Logo_Multimedia_&_Content_Design_48x48px.png" alt="img" />
-                                    </div>
-                                    <div className={style_habilidades.habilidades_contenido_article_header_nombre}>
-                                        <h3 className={style_habilidades.habilidades_contenido_article_header_nombre_h3}>
-                                            Photoshop, Premiere Pro y Canva
-                                        </h3>
-                                        <a className={style_habilidades.habilidades_contenido_article_header_nombre_enlace} href="#">
-                                            Multimedia & Content Design
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className={style_habilidades.habilidades_contenido_article_header_flecha}>
-                                    <p className={style_habilidades.habilidades_contenido_article_header_flecha_p}><FaArrowRight /></p>
-                                </div>
-                            </div>
-                        </article>
+                                </article>
+                            )
+                        })}
                     </div>
                 </div>
             </article>

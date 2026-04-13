@@ -234,13 +234,17 @@
     display: flex;
   }
 
-  &_center_box_redsocial {
+  &_center_box_redsocial,
+  a {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-right: 20px;
+    // margin-right: 20px;
     color: #9ca3af;
     font-size: 14px;
+    color: #9ca3af;
+    font-style: none;
+    text-decoration: none;
 
     @include m.tablet {
       font-size: 16px;

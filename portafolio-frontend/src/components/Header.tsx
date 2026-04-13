@@ -1,8 +1,27 @@
 
 "use client";
 import styles_header from '../styles/sections/header.module.scss';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
+  const [hora, setHora] = useState('');
+
+  useEffect(() => {
+    const obtenerHora = () => {
+      return new Date().toLocaleTimeString('es-AR', {
+        timeZone: 'America/Argentina/Buenos_Aires',
+        hour12: false
+      });
+    };
+
+    setHora(obtenerHora());
+
+    const intervalo = setInterval(() => {
+      setHora(obtenerHora());
+    }, 1000);
+
+    return () => clearInterval(intervalo);
+  }, []);
   return (
     <header className={styles_header.header}>
       <div className={styles_header.header_box}>
@@ -17,7 +36,7 @@ export default function Header() {
           <article className={styles_header.header_box_time}>
             <p className={styles_header.header_p_time}>Hora local (ARG)</p>
             <div className={styles_header.header_time}>
-              <span className={styles_header.header_span_time}>07:36:45</span>
+              <span className={styles_header.header_span_time}>{hora}</span>
             </div>
           </article>
         </div>
