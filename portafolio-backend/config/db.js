@@ -1,4 +1,8 @@
 import Sequelize from 'sequelize';
+import dotenv from 'dotenv';
+
+// Esto carga las variables de entorno si estás en local
+dotenv.config({ path: '.env.development' });
 
 const db = new Sequelize(
     process.env.BD_NAME, 
