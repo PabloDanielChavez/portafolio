@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Bienvenida from "@/components/Bienvenida";
 import Experiencia from "@/components/Experiencia";
 import Habilidades from "@/components/Habilidades";
@@ -5,6 +7,7 @@ import Servicios from "@/components/Servicios";
 import Trabajos from "@/components/Trabajos";
 import Clientes from "@/components/Clientes";
 import Footer from "@/components/Footer";
+
 
 async function getData() {
   const urlBase = process.env.NEXT_PUBLIC_API_URL;
