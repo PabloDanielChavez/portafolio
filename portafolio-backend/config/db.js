@@ -1,10 +1,4 @@
 import Sequelize from 'sequelize';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-// Extraemos el entorno actual (por defecto 'development')
-const env = process.env.NODE_ENV || 'development';
 
 const db = new Sequelize(
     process.env.DB_NAME, 
