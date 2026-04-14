@@ -5,40 +5,44 @@ import Servicios from "@/components/Servicios";
 import Trabajos from "@/components/Trabajos";
 import Clientes from "@/components/Clientes";
 import Footer from "@/components/Footer";
-import { ReactNode } from "react";
 
 async function getData() {
-  const urlBase = "http://localhost:4000/api/";
-  // Definimos los recursos que queremos traer
+  const urlBase = process.env.NEXT_PUBLIC_API_URL;
+
+  if (!urlBase) {
+    console.error(" ERROR: NEXT_PUBLIC_API_URL no está definida.");
+    return {}; 
+  }
+
   const endpoints = ['perfil', 'habilidades', 'experiencia', 'servicios', 'trabajos', 'clientes'];
 
   try {
     const promesas = endpoints.map(endpoint => 
       fetch(`${urlBase}${endpoint}`, { cache: "no-store" })
-        .then(res => res.ok ? res.json() : []) // Si falla, devolvemos array vacío
+        .then(res => res.ok ? res.json() : [])
         .catch(() => []) 
     );
 
-    // Ejecutamos todas las peticiones al mismo tiempo
     const resultados = await Promise.all(promesas);
-    // Definimos qué forma tiene el objeto que retorna la API
+
     interface DataResult {
-      [key: string]: any; // Esto permite indexar con strings: data["Perfil"]
+      [key: string]: any;
     }
 
-    // Casting inicial: indicamos que el objeto inicial es de tipo DataResult
     const dataFinal = endpoints.reduce((acc: DataResult, name, index) => {
       const key = name.charAt(0).toUpperCase() + name.slice(1);
       acc[key] = resultados[index];
       return acc;
-    }, {} as DataResult); // <--- Aquí está el truco: "as DataResult"
+    }, {} as DataResult);
 
     return dataFinal;
   } catch (error) {
-    console.error("Error crítico en automatizador:", error);
+    console.error("Error crítico al obtener datos:", error);
     return {};
   }
-}export default async function Home() {
+}
+
+export default async function Home() {
   const data = await getData();
 
   return (
