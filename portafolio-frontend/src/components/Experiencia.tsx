@@ -49,8 +49,7 @@ export default function Experiencia({ experiencia }: Props) {
                 </div>
                 <div className={style_experiencia.experiencia_contenido_box}>
                     <div className={style_experiencia.experiencia_contenido_box_layout}>
-                        
-                        {experiencia.map(exp => {
+                        {experiencia && experiencia.map(exp => {
                             return (
                                 <article key={exp.id} className={style_experiencia.experiencia_contenido_article}>
                                     <div className={style_experiencia.experiencia_contenido_article_header_layout}>

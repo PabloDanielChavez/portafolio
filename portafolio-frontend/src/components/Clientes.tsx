@@ -45,7 +45,7 @@ export default function clientes({ clientes }: Props) {
                 </div>
                 <div className={style_clientes.clientes_contenido_box}>
                     <div className={style_clientes.clientes_contenido_box_layout}>
-                        {clientes.map((cli) => (
+                        {clientes && clientes.map((cli) => (
                             <article key={cli.id} className={style_clientes.clientes_card}>
                                 <div className={style_clientes.clientes_card_header}>
                                     <div className={style_clientes.clientes_card_user}>

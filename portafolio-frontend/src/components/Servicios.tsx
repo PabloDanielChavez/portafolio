@@ -41,7 +41,7 @@ export default function servicios({ servicios }: Props) {
                 </div>
                 <div className={style_servicios.servicios_contenido_box}>
                     <div className={style_servicios.servicios_contenido_box_layout}>
-                        {servicios.map(ser => {
+                        {servicios && servicios.map(ser => {
                             const renderIcono = (nombreString: string) => {
                                 if (nombreString === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
                                 if (nombreString === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;

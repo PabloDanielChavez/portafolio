@@ -41,7 +41,7 @@ export default function Habilidades({ habilidades }: Props) {
                 </div>
                 <div className={style_habilidades.habilidades_contenido_box}>
                     <div className={style_habilidades.habilidades_contenido_box_layout}>
-                        {habilidades.map(hab => {
+                        {habilidades && habilidades.map(hab => {
                             return (
                                 <article key={hab.id} className={style_habilidades.habilidades_contenido_article}> 
                                     <div className={style_habilidades.habilidades_contenido_article_header_layout}> 

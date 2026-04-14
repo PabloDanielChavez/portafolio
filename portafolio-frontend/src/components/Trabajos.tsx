@@ -51,7 +51,7 @@ export default function Trabajos({ trabajos }: Props) {
                 </div>
                 <div className={style_trabajos.trabajos_contenido_box}>
                     <div className={style_trabajos.trabajos_contenido_box_layout}>
-                        {trabajos?.map(tra => {
+                        {trabajos && trabajos?.map(tra => {
                             return (
                                 <article key={tra.id} className={style_trabajos.trabajos_card}>
                                     <div className={style_trabajos.trabajos_card_img}>
