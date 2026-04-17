@@ -46,7 +46,6 @@
         flex-direction: column;
         align-items: center;
         height: 100dvh;
-        overflow: hidden;
         @include m.telefono {
             height: 100vh;
         }
@@ -116,7 +115,6 @@
             justify-content: center;
         }
         &:hover {
-            transform: scale(1.05);
             border-color: #444;
     }
     }
@@ -158,11 +156,7 @@
         &:hover {
             background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
             color: #fff;
-            transform: scale(1.08);
-        }
-
-        & span {
-            font-size: 1.6rem;
+            cursor: pointer;
         }
     }
     &_header_selector_opcion,
@@ -175,10 +169,48 @@
         }
     }
 
-    &_header_selector_link {
+    &_header_link {
         text-decoration: none;
         font-style: none;
-        color: #999999;
+        color: #555;
+        &:hover {
+            color: #9c9c9c;
+        }
+    }
+
+    &_header_selector_nombre_box {
+        display: block;
+        z-index: 2;
+        position: fixed;
+        left: 75%;
+        background-color: #1a1a1a;
+        padding: 8px 16px;
+        border-radius: 8px;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        &::before {
+            content: "";
+            position: absolute;
+            left: -6px; /* Ajusta según el tamaño */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-right: 6px solid #1a1a1a; /* Mismo color que el fondo del span */
+        }
+    }
+
+    &_header_selector_nombre_span {
+        font-family: 'Montserrat', sans-serif;
+        color: #e0e0e0;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: .8rem;
+        letter-spacing: 1px;
     }
 
 // *********    CENTER    ********* //

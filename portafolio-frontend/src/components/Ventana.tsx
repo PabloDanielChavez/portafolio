@@ -1,6 +1,6 @@
 "use client";
 import Header from "@/components/Header";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import style_ventana from "@/styles/sections/ventana.module.scss"
 import style_global from "@/styles/base/global.module.scss"
 import { 
@@ -13,12 +13,15 @@ import {
 } from "react-icons/fa";
 import { BsFillPersonVcardFill } from "react-icons/bs";
 import { SiCodefactor } from "react-icons/si";
+import { IconType } from "react-icons";
+import { SelectorItem } from "./sub_components/SelectorBtn";
 
 interface VentanaProps {
   children: ReactNode;
 }
 
 export default function Ventana({ children }: VentanaProps) {
+
 
 return (
   <main className={style_ventana.ventana}>
@@ -33,26 +36,10 @@ return (
           </div>
           <div id="articleSelector" className={`${style_ventana.ventana_header_selector}`}>
             <div className={`${style_ventana.ventana_header_navegador}`}>
-              <article className={`${style_ventana.ventana_header_selector_box}`}>
-                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  <BsFillPersonVcardFill className={style_global.tamaño_icono} />
-                </div>
-              </article>
-              <article className={`${style_ventana.ventana_header_selector_box}`}>
-                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  <FaBriefcase className={style_global.tamaño_icono} />
-                </div>
-              </article>
-              <article className={`${style_ventana.ventana_header_selector_box}`}>
-                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  <SiCodefactor className={style_global.tamaño_icono} />
-                </div>
-              </article>
-              <article className={`${style_ventana.ventana_header_selector_box}`}>
-                <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  <FaEnvelope className={style_global.tamaño_icono} />
-                </div>
-              </article>
+              <SelectorItem href="/perfil" Icon={BsFillPersonVcardFill} label="Perfil" />
+              <SelectorItem href="/Experiencia" Icon={FaBriefcase} label="Experiencia" />
+              <SelectorItem href="/servicios" Icon={SiCodefactor} label="servicios" />
+              <SelectorItem href="/contacto" Icon={FaEnvelope} label="contacto" />
             </div>
           </div>
           <div id="articleUpward" className={`${style_ventana.ventana_header_upward}`}>
