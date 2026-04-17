@@ -36,8 +36,8 @@ export default function Trabajos({ trabajos }: Props) {
                                         <div className={style_trabajos.trabajos_card_img}>
                                             <Image 
                                                 src={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`} 
-                                                width={50} 
-                                                height={50}
+                                                width={500} 
+                                                height={500}
                                                 alt={tra?.nombre_imagen}
                                             />
                                         </div>
