@@ -6,7 +6,8 @@
     @include m.telefonoXL {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 80%;
+        padding: 0 10%;
         height: auto;
         border-bottom: 2px solid #202021;
     }

@@ -23,11 +23,11 @@ export default function Ventana({ children }: VentanaProps) {
 return (
   <main className={style_ventana.ventana}>
       <div className={style_ventana.ventana_layoutPrincipal}>
-        <article className={style_ventana.ventana_header_box_layout}>
+        <article id="" className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaIzq}` }>
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <a href="#">
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
-                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Logotipo_Portafolio_PDC/Logo/Logo_110x110px.png" alt="Logo" />
+                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg" alt="Logo" />
               </div>
             </a>
           </div>
@@ -35,25 +35,21 @@ return (
             <div className={`${style_ventana.ventana_header_navegador}`}>
               <article className={`${style_ventana.ventana_header_selector_box}`}>
                 <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  {/* <span className="material-symbols-outlined">Person</span> */}
                   <BsFillPersonVcardFill className={style_global.tamaño_icono} />
                 </div>
               </article>
               <article className={`${style_ventana.ventana_header_selector_box}`}>
                 <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  {/* <span className="material-symbols-outlined">Work</span> */}
                   <FaBriefcase className={style_global.tamaño_icono} />
                 </div>
               </article>
               <article className={`${style_ventana.ventana_header_selector_box}`}>
                 <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  {/* <span className="material-symbols-outlined">Mail</span> */}
                   <SiCodefactor className={style_global.tamaño_icono} />
                 </div>
               </article>
               <article className={`${style_ventana.ventana_header_selector_box}`}>
                 <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                  {/* <span className="material-symbols-outlined">Mail</span> */}
                   <FaEnvelope className={style_global.tamaño_icono} />
                 </div>
               </article>
@@ -75,7 +71,7 @@ return (
             </div>
           </div>
         </article>
-        <article className={style_ventana.ventana_footer_box_layout}>
+        <article id="" className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaDer}` }>
           <div className={style_ventana.ventana_footer_layout}>
             <div className={style_ventana.ventana_footer_box}>
               <section className={`${style_ventana.ventana_footer_section} ${style_ventana.ventana_footer_lateral_derecho}`} id="">

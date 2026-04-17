@@ -14,12 +14,30 @@
     &_layoutPrincipal {
         display: flex;
         flex-direction: column;
+        position: relative;
 
-        @include m.telefonoXXL {
-            display: grid;
-            grid-template-columns: 1fr 8fr 1fr;
+        @include m.telefonoXL {
+            flex-direction: row;
+            // grid-template-columns: 1fr 8fr 1fr;
         }
     }
+    
+    .seccionVentanaIzq,
+    .seccionVentanaDer {
+        width: 10%;
+        position: fixed;
+    }
+
+    .seccionVentanaIzq {
+        left: 0;
+        border-right: 2px solid #303030;
+    }
+
+    .seccionVentanaDer {
+        right: 0;
+        border-left: 2px solid #303030;
+    }
+
 
     &_header_box_layout,
     &_central_box_layout,
@@ -41,7 +59,7 @@
     &_central_box_layout {
 
     }
-    
+
     &_header_box_layout,
     &_footer_box_layout {
     display: none;
@@ -57,12 +75,10 @@
     }
 
     &_header_box_layout {
-        border-right: 2px solid #303030;
         justify-content: space-around;
     }
 
     &_footer_box_layout {
-        border-left: 2px solid #303030;
         justify-content: center;
     }
 
@@ -157,6 +173,12 @@
             display: flex;
             align-items: center;
         }
+    }
+
+    &_header_selector_link {
+        text-decoration: none;
+        font-style: none;
+        color: #999999;
     }
 
 // *********    CENTER    ********* //
