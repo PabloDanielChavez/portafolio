@@ -1,0 +1,70 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.header {
+    &_box {
+        margin-bottom: 30px;
+
+        @include m.tablet {
+        margin-bottom: 40px;
+        }
+    }
+
+    &_title_group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        @include m.tabletXL {
+            gap: 10px;
+            justify-content: flex-start;
+        }
+    }
+
+    &_header_icon {
+        font-size: 18px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+
+        @include m.tablet {
+            font-size: 20px;
+        }
+    }
+
+    &_header_title {
+        font-size: 22px;
+        font-weight: 600;
+        text-align: center;
+        
+        @include m.telefonoXL {
+            text-align: start;
+            font-size: 26px;
+        }
+
+        @include m.tabletXL {
+            font-size: 28px;
+        }
+    }
+
+    &_header_description {
+        margin-top: 10px;
+        display: flex;
+
+        &__p {
+            color: #9ca3af;
+            font-size: 13px;
+            text-align: center;
+            justify-content: center;
+        
+        
+            @include m.tabletXL {
+                font-size: 14px;
+                text-align: start;
+                justify-content: flex-start;
+            }
+        }
+    }
+}

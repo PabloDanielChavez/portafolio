@@ -1,0 +1,21 @@
+export type PerfilType = {
+    id: number;
+    nombre: string;
+    apellido: string;
+    edad:number;
+    fecha_nacimiento:string;
+    ubicacion:string;
+    nombre_instagram:string;
+    nombre_facebook:string;
+    nombre_linkedin:string;
+    nombre_github:string;
+    numero_whatsapp:string;
+    informacion_resumida:string;
+    informacion_detallada:string;
+    foto_perfil:string;
+    profesion:string;
+    clientes_felices:number;
+    tiempo_experiencia:number;
+    trabajos_completos:number;
+    opiniones_recibidas:number;
+};

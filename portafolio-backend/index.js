@@ -1,5 +1,5 @@
 import express from 'express';
-import cors from 'cors'; // 💥 AÑADÍ ESTO
+import cors from 'cors'; 
 import router from './routes/api.js';
 
 import db from './config/db.js';
@@ -22,7 +22,7 @@ db.authenticate()
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // ✅ importante si vas a recibir JSON
+app.use(express.json()); 
 app.use(express.static('public'));
 
 app.use('/', router);

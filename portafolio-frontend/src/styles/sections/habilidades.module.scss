@@ -11,56 +11,6 @@
     margin: 0 auto;
   }
 
-  // &_header {
-  // }
-
-  &_header_box {
-    margin-bottom: 40px;
-  }
-
-  &_header_box_informacion_titulo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    @include m.tablet {
-      gap: 10px;
-      justify-content: flex-start;
-    }
-  }
-
-  &_header_span {
-    font-size: 20px;
-    // color: #a855f7;
-    color: #FFF;
-    display: flex;
-    align-items: center;
-  }
-
-  &_header_h2 {
-    font-size: 28px;
-    font-weight: 600;
-  }
-
-  &_header_box_informacion_texto {
-    margin-top: 10px;
-
-    &_p {
-      color: #9ca3af;
-      font-size: 13px;
-      text-align: center;
-      
-      @include m.tablet {
-        font-size: 14px;
-        text-align: start;
-      }
-    }
-  }
-
-  // &_contenido_box {
-  // }
-
   &_contenido_box_layout {
     display: flex;
     flex-direction: column;

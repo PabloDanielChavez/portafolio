@@ -10,16 +10,12 @@ import { PiPaintBrushBold, PiPalette } from "react-icons/pi";
 import { LuMonitorSmartphone } from "react-icons/lu";
 import { HiOutlineCodeBracket } from "react-icons/hi2";
 import { FiDatabase } from "react-icons/fi";
+import { ServiciosType } from "@/types/servicios";
+import SectionHeader from "./sub_components/SectionHeader";
 
-type Servicios = {
-    id:number;
-    nombre_servicio:string;
-    informacion_servicio:string;
-    reactIcon:string;
-};
 
 type Props = {
-    servicios: Servicios[];
+    servicios: ServiciosType[];
 };
 
 export default function servicios({ servicios }: Props) {
@@ -28,17 +24,11 @@ export default function servicios({ servicios }: Props) {
     <article className={style_servicios.servicios}>
         <div className={style_servicios.servicios_layout}>
             <article className={style_servicios.servicios_header}>
-                <div className={style_servicios.servicios_header_box}>
-                    <div className={style_servicios.servicios_header_box_informacion_titulo}>
-                        <span className={style_servicios.servicios_header_span}>
-                            <AiTwotoneSchedule />
-                        </span>
-                        <h2 className={style_servicios.servicios_header_h2}>Mi Servicios</h2>
-                    </div>
-                    <div className={style_servicios.servicios_header_box_informacion_texto}>
-                        <p>Formular estrategias integrales para alcanzar sus objetivos de diseño y superar las expectativas.</p>
-                    </div>
-                </div>
+                <SectionHeader 
+                    icon={<AiTwotoneSchedule />} 
+                    title="Mi Servicios" 
+                    description="Formular estrategias integrales para alcanzar sus objetivos de diseño y superar las expectativas." 
+                />
                 <div className={style_servicios.servicios_contenido_box}>
                     <div className={style_servicios.servicios_contenido_box_layout}>
                         {servicios && servicios.map(ser => {

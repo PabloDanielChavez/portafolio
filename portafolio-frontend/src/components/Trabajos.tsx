@@ -8,80 +8,64 @@ import { MdOutlineWeb } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
 import { PiPaintBrushBold } from "react-icons/pi";
 import { IoIosRocket } from "react-icons/io";
+import { TrabajosType } from "@/types/trabajos";
+import SectionHeader from "./sub_components/SectionHeader";
+import Image from "next/image";
 
-type Trabajos = {
-    id:number;
-    nombre_trabajo:string;
-    categoria_trabajo:string;
-    numero_pagina:string;
-    style_trabajo:string;
-    complejidad_trabajo:string;
-    enlace_trabajo:string;
-    enlace_trabajoResumido:string;
-    tiempo_trabajo:string;
-    resumen_trabajo:string;
-    informacion_trabajo:string;
-    opinion_trabajo:string;
-    valoracion_trabajo:string;
-    nombre_archivo:string;
-    nombre_imagen:string;
-    formato_imagen:string;
-};
+
 
 type Props = {
-    trabajos: Trabajos[];
+    trabajos: TrabajosType[];
 };
 
 export default function Trabajos({ trabajos }: Props) {
-
-  return (
-    <article className={style_trabajos.trabajos}>
-        <div className={style_trabajos.trabajos_layout}>
-            <article className={style_trabajos.trabajos_header}>
-                <div className={style_trabajos.trabajos_header_box}>
-                    <div className={style_trabajos.trabajos_header_box_informacion_titulo}>
-                    <span className={style_trabajos.trabajos_header_span}>
-                        <IoIosRocket />
-                    </span>
-                    <h2 className={style_trabajos.trabajos_header_h2}>Trabajos Realizados</h2>
-                    </div>
-                    <div className={style_trabajos.trabajos_header_box_informacion_texto}>
-                        <p>Descubre una colección de mis trabajos de diseño más innovadores y visualmente impactantes.</p>
-                    </div>
-                </div>
-                <div className={style_trabajos.trabajos_contenido_box}>
-                    <div className={style_trabajos.trabajos_contenido_box_layout}>
-                        {trabajos && trabajos?.map(tra => {
-                            return (
-                                <article key={tra.id} className={style_trabajos.trabajos_card}>
-                                    <div className={style_trabajos.trabajos_card_img}>
-                                        <img src={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`} alt={tra?.nombre_imagen} />
-                                    </div>
-                                    <div className={style_trabajos.trabajos_card_info}>
-                                        <div className={style_trabajos.trabajos_card_header}>
-                                            <h3>{tra?.nombre_trabajo}</h3>
-                                            <a href={tra?.enlace_trabajo} className={style_trabajos.trabajos_card_link}>{tra?.enlace_trabajoResumido}</a>
+    return (
+        <article className={style_trabajos.trabajos}>
+            <div className={style_trabajos.trabajos_layout}>
+                <article className={style_trabajos.trabajos_header}>
+                    <SectionHeader 
+                        icon={<IoIosRocket />} 
+                        title="Trabajos Realizados" 
+                        description="Descubre una colección de mis trabajos de diseño más innovadores y visualmente impactantes." 
+                    />
+                    <div className={style_trabajos.trabajos_contenido_box}>
+                        <div className={style_trabajos.trabajos_contenido_box_layout}>
+                            {trabajos && trabajos?.map(tra => {
+                                return (
+                                    <article key={tra.id} className={style_trabajos.trabajos_card}>
+                                        <div className={style_trabajos.trabajos_card_img}>
+                                            <Image 
+                                                src={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`} 
+                                                width={50} 
+                                                height={50}
+                                                alt={tra?.nombre_imagen}
+                                            />
                                         </div>
-                                        <div className={style_trabajos.trabajos_card_meta}>
-                                            <span>{tra?.complejidad_trabajo}</span>
-                                            <span>•</span>
-                                            <span>{tra?.numero_pagina} Paginas</span>
-                                            <span>•</span>
-                                            <span>{tra?.tiempo_trabajo}</span>
+                                        <div className={style_trabajos.trabajos_card_info}>
+                                            <div className={style_trabajos.trabajos_card_header}>
+                                                <h3>{tra?.nombre_trabajo}</h3>
+                                                <a href={tra?.enlace_trabajo} className={style_trabajos.trabajos_card_link}>{tra?.enlace_trabajoResumido}</a>
+                                            </div>
+                                            <div className={style_trabajos.trabajos_card_meta}>
+                                                <span>{tra?.complejidad_trabajo}</span>
+                                                <span>•</span>
+                                                <span>{tra?.numero_pagina} Paginas</span>
+                                                <span>•</span>
+                                                <span>{tra?.tiempo_trabajo}</span>
+                                            </div>
+                                            <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
                                         </div>
-                                        <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
-                                    </div>
-                                </article>
-                            )
-                        })}
-                        
-                        <div className={style_trabajos.trabajos_card_footer}>
-                            <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
+                                    </article>
+                                )
+                            })}
+                            
+                            <div className={style_trabajos.trabajos_card_footer}>
+                                <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </div>
-    </article>
-  );
+                </article>
+            </div>
+        </article>
+    );
 }

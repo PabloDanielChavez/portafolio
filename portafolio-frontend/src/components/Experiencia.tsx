@@ -1,5 +1,7 @@
 "use client";
 
+
+import { ExperienciaType } from "@/types/experiencia";
 import { ReactNode } from "react";
 import style_experiencia from "@/styles/sections/experiencia.module.scss"
 import { 
@@ -10,23 +12,12 @@ import { BsFillPersonVcardFill } from "react-icons/bs";
 import { SiCodefactor } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
 import { BiBriefcase } from "react-icons/bi";
+import SectionHeader from "./sub_components/SectionHeader";
+import Image from "next/image";
 
-type Experiencia = {
-    id:number;
-    nombre_empresa:string;
-    tipo_empresa:string;
-    enlace_empresa:string;
-    enlace_trabajoResumido:string;
-    tiempo_inicio:string;
-    tiempo_final:string;
-    puesto_empresa:string;
-    detalle_puesto:string;
-    empresa_imagen:string;
-    empresa_imagenFormato:string;
-};
 
 type Props = {
-    experiencia: Experiencia[];
+    experiencia: ExperienciaType[];
 };
 
 export default function Experiencia({ experiencia }: Props) {
@@ -35,18 +26,11 @@ export default function Experiencia({ experiencia }: Props) {
     <article className={style_experiencia.experiencia}>
         <div className={style_experiencia.experiencia_layout}>
             <article className={style_experiencia.experiencia_header}>
-                <div className={style_experiencia.experiencia_header_box}>
-                    <div className={style_experiencia.experiencia_header_box_informacion_titulo}>
-                        <span className={style_experiencia.experiencia_header_span}>
-                            <BiBriefcase></BiBriefcase>
-                        </span>
-                        <h2 className={style_experiencia.experiencia_header_h2}>Mi Experiencia</h2>
-                        
-                    </div>
-                    <div className={style_experiencia.experiencia_header_box_informacion_texto}>
-                        <p>Navega por entornos diversos con adaptabilidad y experiencia para ofrecer soluciones integrales.</p>
-                    </div>
-                </div>
+                <SectionHeader 
+                    icon={<BiBriefcase />} 
+                    title={"Experiencia"} 
+                    description={"Navega por entornos diversos con adaptabilidad y experiencia..."}
+                />
                 <div className={style_experiencia.experiencia_contenido_box}>
                     <div className={style_experiencia.experiencia_contenido_box_layout}>
                         {experiencia && experiencia.map(exp => {
@@ -55,7 +39,13 @@ export default function Experiencia({ experiencia }: Props) {
                                     <div className={style_experiencia.experiencia_contenido_article_header_layout}>
                                         <div className={style_experiencia.experiencia_contenido_article_header_emp}>
                                             <div className={style_experiencia.experiencia_contenido_article_header_icono}>
-                                                <img src={`img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`} alt="img" />
+                                                <Image 
+                                                    src={`/img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`} 
+                                                    alt={exp?.nombre_empresa} 
+                                                    width={50} 
+                                                    height={50}
+                                                    className={style_experiencia.avatar_img}
+                                                />
                                             </div>
                                             <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
                                                 <h3 className={style_experiencia.experiencia_contenido_article_header_nombre_h3}>{exp?.nombre_empresa}</h3>

@@ -189,7 +189,7 @@
 
   &_center {
     overflow: hidden;
-    width: 90%;
+    width: 50%;
     margin: 0 auto;
     border-radius: 20px;
     border: 1px solid #1f1f1f;
@@ -215,13 +215,6 @@
     pointer-events: none; /* Permite hacer click a través del degradado */
     z-index: 2; /* Lo pone por encima de los hijos */
 }
-    @include m.tablet {
-      width: 70%;
-    }
-
-    @include m.tabletXL {
-      width: 50%;
-    }
   }
 
   &_track {
@@ -232,6 +225,14 @@
 
   &_center_layout {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    list-style-type: none;
+    & li {
+      font-style: none;
+      text-decoration: none;
+    }
   }
 
   &_center_box_redsocial,
@@ -239,16 +240,15 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    // margin-right: 20px;
     color: #9ca3af;
-    font-size: 14px;
+    font-size: 18px;
     color: #9ca3af;
     font-style: none;
     text-decoration: none;
+    margin-right: 30px;
 
     @include m.tablet {
-      font-size: 16px;
-      margin-right: 30px;
+      font-size: 20px;
     }
 
     transition: all 0.2s ease;
