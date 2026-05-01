@@ -1,18 +1,6 @@
 "use client";
-import Header from "@/components/Header";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import style_ventana from "@/styles/sections/ventana.module.scss"
-import style_global from "@/styles/base/global.module.scss"
-import { 
-  FaInstagram, 
-  FaWhatsapp, 
-  FaLinkedin,
-  FaEnvelope, 
-  FaBriefcase,
-  FaArrowUp 
-} from "react-icons/fa";
-import { BsFillPersonVcardFill } from "react-icons/bs";
-import { SiCodefactor } from "react-icons/si";
 import { IconType } from "react-icons";
 
 interface SelectorItemProps {
