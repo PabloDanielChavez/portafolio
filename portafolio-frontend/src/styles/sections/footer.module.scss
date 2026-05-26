@@ -113,6 +113,7 @@
     &_span {
         line-height: 1.4;
         word-break: break-all;
+        min-width: max-content;
     }
 
     &_box_copy {
