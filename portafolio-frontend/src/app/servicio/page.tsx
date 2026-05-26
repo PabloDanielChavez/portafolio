@@ -6,7 +6,7 @@ import Clientes from "@/components/Clientes";
 import Footer from "@/components/Footer";
 import { getAllPortfolioData } from "@/services/fetchData";
 
-export default async function Perfil() {
+export default async function Serv() {
   const data = await getAllPortfolioData();
   if (!data) return <div>Error al cargar</div>;
 

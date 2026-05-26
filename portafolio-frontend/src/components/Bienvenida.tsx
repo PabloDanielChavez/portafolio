@@ -3,7 +3,8 @@ import { PerfilType } from "@/types/perfil";
 import style_bienvenida from "@/styles/sections/bienvenida.module.scss";
 import { 
     FaInstagram, FaWhatsapp, FaLinkedin, 
-    FaGithubSquare, FaFacebookSquare 
+    FaGithubSquare, FaFacebookSquare, 
+    FaGithub
 } from "react-icons/fa";
 import { PiMicrosoftOutlookLogo } from "react-icons/pi";
 
@@ -47,9 +48,18 @@ export default function Bienvenida({ perfil }: Props) {
                             {user?.profesion} de Buenos Aires, Argentina.
                         </p>
                         <div className={style_bienvenida.bienvenida_header_btn_layout}>
+                            {/* Agregar links de enlaces */}
+                            <a href={``} className={style_bienvenida.bienvenida_header_btn}>
+                                <FaLinkedin size={20} /> 
+                                <span className={style_bienvenida.bienvenida_header_btn_span}>Linkedin</span>
+                            </a>
+                            <a href={``} className={style_bienvenida.bienvenida_header_btn}>
+                                <FaGithub size={20} />
+                                <span className={style_bienvenida.bienvenida_header_btn_span}>GitHub</span>
+                            </a>
                             <a href={`https://wa.me/${user?.numero_whatsapp}`} className={style_bienvenida.bienvenida_header_btn}>
                                 <FaWhatsapp size={20} />
-                                <span className={style_bienvenida.bienvenida_header_btn_span}>enviar whatsapp</span>
+                                <span className={style_bienvenida.bienvenida_header_btn_span}>Whatsapp</span>
                             </a>
                         </div>
                     </div>
