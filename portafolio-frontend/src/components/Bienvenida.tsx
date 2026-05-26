@@ -49,11 +49,11 @@ export default function Bienvenida({ perfil }: Props) {
                         </p>
                         <div className={style_bienvenida.bienvenida_header_btn_layout}>
                             {/* Agregar links de enlaces */}
-                            <a href={``} className={style_bienvenida.bienvenida_header_btn}>
+                            <a href={`https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/`} className={style_bienvenida.bienvenida_header_btn}>
                                 <FaLinkedin size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Linkedin</span>
                             </a>
-                            <a href={``} className={style_bienvenida.bienvenida_header_btn}>
+                            <a href={`https://github.com/PabloDanielChavez/portafolio`} className={style_bienvenida.bienvenida_header_btn}>
                                 <FaGithub size={20} />
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>GitHub</span>
                             </a>
