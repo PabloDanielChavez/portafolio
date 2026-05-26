@@ -1,36 +1,141 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
-.footer {    
-    padding: 2rem 0;
-    background-image: linear-gradient( v.$backgroundcolor-uno, v.$backgroundcolor-dos), url(https://images.unsplash.com/photo-1550684376-efcbd6e3f031?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9uZG8lMjBuZWdyb3xlbnwwfHwwfHx8MA%3D%3D);
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-size: 150% 100%;
-    &__grid {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        justify-content: center;
-        margin-top: 2rem;
+.footer {
+    // CONTENEDOR PRINCIPAL DEL FOOTER
+    &_grid_principal {
+        background: #0d0d0d;
+        color: #e5e5e5;
+        padding: 40px 16px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+        border-top: 1px solid #1f1f1f; // Delicada línea superior para separar secciones
+
+        @include m.tablet {
+        padding: 60px 20px;
+        grid-template-columns: 1fr 3fr; // Logo a la izquierda (menor tamaño), enlaces a la derecha
+        align-items: start;
+        }
     }
 
-    &__H1 {
-        font-family: v.$fuenteTitulo;
-        font-size: 2.4rem;
-        font-weight: 700;
-        text-align: center;
-        text-transform: uppercase;
-        color: v.$color-naranja-intenso;
-        @include m.tabletXL {
-            font-size: 2.6rem;
-        }
-        @include m.desktop {
-            font-size: 2.8rem;
-        }
-        @include m.desktopXXL {
-            font-size: 3rem;
+    // CONTENEDOR DEL LOGO/FOTO
+    &_box_logo {
+        display: flex;
+        justify-content: center;
+
+        @include m.tablet {
+        justify-content: flex-start;
         }
     }
+
+    // IMAGEN DEL LOGO
+    &_imagen_logo {
+        border-radius: 20px; // Coherente con las imágenes de la sección Bienvenida
+        border: 1px solid #1f1f1f;
+        background: #111111;
+        object-fit: cover;
+        transition: transform 0.4s ease, border-color 0.4s ease;
+
+        &:hover {
+        transform: scale(1.05);
+        border-color: #2a2a2a;
+        }
+    }
+
+    // GRID QUE ENCAPSULA LAS 3 COLUMNAS DE ENLACES
+    &_grid_enlaces {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 32px;
+
+        @include m.telefonoXL {
+        grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include m.tabletXL {
+        grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    // CADA COLUMNA INDIVIDUAL (Navegación, Contacto, Redes)
+    &_box {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    // TÍTULOS DE CADA COLUMNA
+    &_h2 {
+        font-size: 13px;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    // LISTAS
+    &_ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &_li {
+        display: block;
+    }
+
+    // ENLACES E ICONOS
+    &_a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: #9ca3af;
+        font-size: 14px;
+        text-decoration: none;
+        transition: all 0.25s ease;
+
+        // Estilo para los iconos de React Icons incorporados
+        svg {
+        color: #c084fc; // Color lila acento heredado de tu sección servicios
+        transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        &:hover {
+        color: #ffffff;
+        transform: translateX(4px); // Sutil desplazamiento hacia la derecha al hacer hover
+
+        svg {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+        }
+    }
+
+    &_span {
+        line-height: 1.4;
+        word-break: break-all; // Previene que correos largos rompan el layout en móviles muy pequeños
+    }
+
+    // SECCIÓN INFERIOR DE COPYRIGHT
+    &_box_copy {
+        grid-column: 1 / -1; // Se extiende por todo el ancho del grid en desktop
+        border-top: 1px solid #1f1f1f;
+        padding-top: 24px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    &_copy_p {
+        font-size: 12px;
+        color: #6b7280; // Un gris ligeramente más tenue para jerarquía de lectura
+        margin: 0;
+        letter-spacing: 0.5px;
+    }   
 }
