@@ -50,17 +50,6 @@ export default function Header() {
           <ul className={styles_footer.footer_ul}>
             <li className={styles_footer.footer_li}>
               <a href={`/`} className={styles_footer.footer_a}>
-                <PiMicrosoftOutlookLogo size={20} /> 
-                <span className={styles_footer.footer_span}>Pablo_daniel_Chavez@outlook.es</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className={styles_footer.footer_box}>
-          <h2 className={styles_footer.footer_h2}>Redes</h2>
-          <ul className={styles_footer.footer_ul}>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
                 <LiaLinkedin size={20} /> 
                 <span className={styles_footer.footer_span}>Linkedin</span>
               </a>
@@ -75,6 +64,12 @@ export default function Header() {
               <a href={`/`} className={styles_footer.footer_a}>
                 <FaWhatsapp size={20} /> 
                 <span className={styles_footer.footer_span}>Whatsapp</span>
+              </a>
+            </li>
+            <li className={styles_footer.footer_li}>
+              <a href={`/`} className={styles_footer.footer_a}>
+                <PiMicrosoftOutlookLogo size={20} /> 
+                <span className={styles_footer.footer_span}>Pablo_daniel_Chavez@outlook.es</span>
               </a>
             </li>
           </ul>
