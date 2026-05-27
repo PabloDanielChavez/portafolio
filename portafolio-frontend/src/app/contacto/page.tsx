@@ -15,7 +15,6 @@ export default async function Contacto() {
       <Habilidades habilidades={data.Habilidades} />
       <Servicios servicios={data.Servicios} />
       <Clientes clientes={data.Clientes} />
-      <Footer />
     </>
   );
 }

@@ -21,7 +21,6 @@ export default async function Perfil() {
       <Servicios servicios={data.Servicios} />
       <Trabajos trabajos={data.Trabajos} />
       <Clientes clientes={data.Clientes} />
-      <Footer />
     </>
   );
 }

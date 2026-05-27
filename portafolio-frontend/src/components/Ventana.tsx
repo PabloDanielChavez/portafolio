@@ -1,5 +1,6 @@
 "use client";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import { ReactNode, useRef } from "react"; // 1. Importamos useRef (puedes quitar useState si no lo usas)
 import style_ventana from "@/styles/sections/ventana.module.scss"
 import style_global from "@/styles/base/global.module.scss"
@@ -48,7 +49,7 @@ export default function Ventana({ children }: VentanaProps) {
           <div id="articleSelector" className={`${style_ventana.ventana_header_selector}`}>
             <div className={`${style_ventana.ventana_header_navegador}`}>
               <SelectorItem href="/perfil" Icon={BsFillPersonVcardFill} label="Perfil" lado="der"/>
-              <SelectorItem href="/Experiencia" Icon={FaBriefcase} label="Experiencia"  lado="der"/>
+              <SelectorItem href="/experiencia" Icon={FaBriefcase} label="Experiencia"  lado="der"/>
               <SelectorItem href="/servicios" Icon={SiCodefactor} label="servicios"  lado="der"/>
               <SelectorItem href="/contacto" Icon={FaEnvelope} label="contacto"  lado="der"/>
             </div>
@@ -75,6 +76,7 @@ export default function Ventana({ children }: VentanaProps) {
             <div className={style_ventana.ventana_central_contenido} >
               {children}
             </div>
+            <Footer></Footer>
           </div>
         </article>
         <article id="" className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaDer}` }>

@@ -15,7 +15,6 @@ export default async function Serv() {
       <Servicios servicios={data.Servicios} />
       <Trabajos trabajos={data.Trabajos} />
       <Clientes clientes={data.Clientes} />
-      <Footer />
     </>
   );
 }

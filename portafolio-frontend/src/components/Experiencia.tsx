@@ -1,6 +1,5 @@
 "use client";
 
-
 import { ExperienciaType } from "@/types/experiencia";
 import { ReactNode } from "react";
 import style_experiencia from "@/styles/sections/experiencia.module.scss"
