@@ -294,7 +294,6 @@
     @include m.tablet {
       padding: 20px;
     }
-
     text-align: center;
     transition: all 0.25s ease;
 
@@ -321,7 +320,6 @@
   &_footer_span {
     font-size: 12px;
     color: #9ca3af;
-
     @include m.tablet {
       font-size: 13px;
     }

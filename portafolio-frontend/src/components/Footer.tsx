@@ -18,7 +18,7 @@ export default function Header() {
       <div className={styles_footer.footer_box_logo}>
         <Image 
             className={styles_footer.footer_imagen_logo} 
-            src="/img/Logotipo_Portafolio_PDC/Logo/Logo_48x48px.jpg"
+            src="/img/Logotipo_Portafolio_PDC/Logo/Logo_180x180px.png"
             alt="LOGOTIPO"
             width={150}
             height={150}

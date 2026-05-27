@@ -1,40 +1,52 @@
 "use client";
 import { useState } from "react";
-import style_ventana from "@/styles/sections/ventana.module.scss"
+import style_ventana from "@/styles/sections/ventana.module.scss";
 import { IconType } from "react-icons";
 
 interface SelectorItemProps {
-  href: string;
-  Icon: IconType; // Usamos IconType para que acepte componentes de react-icons
-  label: string;
+    href: string;
+    Icon: IconType;
+    label: string;
+    lado?: "izq" | "der";
 }
-export const SelectorItem = ({ href, Icon, label }: SelectorItemProps) => {
+
+export const SelectorItem = ({ href, Icon, label, lado = "der" }: SelectorItemProps) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    // Seleccionamos la clase CSS dinámicamente según el lado
+    const claseNombreBox = lado === "izq" 
+        ? style_ventana.ventana_header_selector_nombre_box_izq 
+        : style_ventana.ventana_header_selector_nombre_box_der;
+
     return (
-        <article className={style_ventana.ventana_header_selector_box}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}>
-            <div className={style_ventana.ventana_header_selector_opcion}>
-                <a href={href} className={style_ventana.ventana_header_link}>
-                    <Icon className={style_ventana.ventana_header_link} 
-                        style={{ 
-                        color: isHovered ? "white" : "#555", 
-                        transition: 'color 0.3s ease',
-                    }}/>
-                </a>
-            </div>
-            <div 
-                className={style_ventana.ventana_header_selector_nombre_box}
+        <article 
+        className={style_ventana.ventana_header_selector_box}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        >
+        <div className={style_ventana.ventana_header_selector_opcion}>
+            <a href={href} className={style_ventana.ventana_header_link}>
+            <Icon 
+                className={style_ventana.ventana_header_link} 
                 style={{ 
-                opacity: isHovered ? 1 : 0, 
-                transition: 'opacity 0.3s ease',
-                color:  'white'
+                color: isHovered ? "white" : "#555", 
+                transition: 'color 0.3s ease',
                 }}
-            >
-                <span className={style_ventana.ventana_header_selector_nombre_span}>
-                    {label}
-                </span>
-            </div>
+            />
+            </a>
+        </div>
+        <div 
+            className={claseNombreBox} // Clase dinámica aplicada aquí
+            style={{ 
+            opacity: isHovered ? 1 : 0, 
+            transition: 'opacity 0.3s ease',
+            color: 'white'
+            }}
+        >
+            <span className={style_ventana.ventana_header_selector_nombre_span}>
+            {label}
+            </span>
+        </div>
         </article>
     );
 };
