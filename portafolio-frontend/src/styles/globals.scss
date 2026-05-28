@@ -2,6 +2,11 @@
 @use 'base/mixins.module.scss' as m;
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 h1 {
     font-size: 2.9rem;
         @include m.tabletXL {

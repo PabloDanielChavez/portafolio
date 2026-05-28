@@ -1,0 +1,310 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.contacto {
+    padding: 40px 16px;
+    background: #0d0d0d;
+    color: #e5e5e5;
+
+    @include m.telefonoXL {
+        padding: 60px 20px;
+    }
+
+    &_layout {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        @include m.tablet {
+            gap: 40px;
+        }
+    }
+
+    // BOTONES DE ACCIÓN (Email, Llamada)
+    &_action_buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 20px 0;
+
+        @include m.tablet {
+            margin: 30px 0;
+            gap: 16px;
+        }
+    }
+
+    &_btn_action {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #111111;
+        border: 1px solid #1f1f1f;
+        padding: 12px 20px;
+        border-radius: 10px;
+        color: #9ca3af;
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        @include m.tablet {
+            font-size: 12px;
+            padding: 12px 24px;
+        }
+
+        &:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+            border-color: #2a2a2a;
+            transform: translateY(-2px);
+        }
+    }
+
+    // CAJA PRINCIPAL (Formulario + Redes)
+    &_contenido_box_layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 10px;
+
+        @include m.tabletXL {
+            grid-template-columns: 1.4fr 1fr;
+            gap: 30px;
+        }
+    }
+
+    // FORMULARIO
+    &_form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        background: #111111;
+        border: 1px solid #1f1f1f;
+        border-radius: 16px;
+        padding: 20px;
+
+        @include m.tablet {
+            padding: 30px;
+            gap: 20px;
+        }
+
+        &_group_row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+
+            @include m.tablet {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        &_input, &_textarea {
+            box-sizing: border-box; // <-- ¡ESTA ES LA SOLUCIÓN!
+            width: 100%;
+            background: #0f0f0f;
+            border: 1px solid #1f1f1f;
+            border-radius: 10px;
+            padding: 16px;
+            color: #e5e5e5;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+
+            &::placeholder {
+                color: #6b7280;
+            }
+
+            &:focus {
+                border-color: #c084fc; 
+                box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.1);
+            }
+        }
+
+        &_textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        &_submit {
+            background: #c084fc;
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+
+            &:hover {
+                background: #a855f7; 
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(192, 132, 252, 0.25);
+            }
+        }
+    }
+
+    // TARJETAS REDES SOCIALES
+    &_social_grid {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &_social_card { 
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #111111;
+        border: 1px solid #1f1f1f;
+        border-radius: 16px;
+        padding: 16px 20px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit; 
+        &:hover {
+            text-decoration: none;
+            color: inherit; 
+        }
+
+        @include m.tablet {
+            padding: 20px 24px;
+        }
+
+        &:hover {
+            background: #151515;
+            border-color: #2a2a2a;
+            transform: translateY(-3px);
+        }
+
+        &_left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        &_icon {
+            font-size: 1.5rem;
+            color: #c084fc;
+            background: #1a1a1a;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &_info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        &_count {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        &_label {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        &_arrow {
+            color: #4b5563;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        &:hover &_arrow {
+            color: #c084fc;
+            transform: translateX(4px); // Pequeño empuje a la flecha al hacer hover
+        }
+    }
+
+    &_divider {
+        border: 0;
+        border-top: 1px solid #1f1f1f;
+        margin: 40px 0;
+
+        @include m.tablet {
+            margin: 60px 0;
+        }
+    }
+
+    // SECCIÓN FAQS
+    &_faqs_section {
+        width: 100%;
+    }
+
+    &_faqs_grid { 
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 30px;
+
+        @include m.tabletXL {
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+    }
+
+    &_faq_item { 
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #111111;
+        border: 1px solid #1f1f1f;
+        border-radius: 16px;
+        padding: 20px;
+        gap: 16px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            border-color: #2a2a2a;
+            background: #151515;
+            transform: translateY(-2px);
+        }
+
+        &_pregunta { 
+            font-size: 14px;
+            font-weight: 500;
+            color: #e5e5e5;
+            line-height: 1.5;
+
+            @include m.tablet {
+                font-size: 15px;
+            }
+        }
+
+        &_btn_toggle { 
+            background: #1a1a1a;
+            border: 1px solid #1f1f1f;
+            color: #9ca3af;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+
+            &:hover {
+                color: #ffffff;
+                background: #c084fc;
+                border-color: #c084fc;
+                transform: rotate(90deg); // Efecto visual muy lindo para el ícono "+"
+            }
+        }
+    }
+}

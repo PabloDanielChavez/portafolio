@@ -35,3 +35,34 @@ export async function getAllPortfolioData() {
     return null;
   }
 }
+
+// ... (tu código anterior de getAllPortfolioData queda igual)
+
+// Nueva función para enviar el formulario
+export async function enviarMensajeContacto(datosDelFormulario: { nombre: string, correo: string, mensaje: string }) {
+  if (!urlBase) {
+    console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
+    return { ok: false, mensaje: "Error interno: URL no configurada" };
+  }
+
+  try {
+    const respuesta = await fetch(`${urlBase}contacto`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datosDelFormulario)
+    });
+
+    const resultado = await respuesta.json();
+
+    return { 
+        ok: respuesta.ok, 
+        mensaje: resultado.mensaje || "Error desconocido" 
+    };
+
+  } catch (error) {
+    console.error("Error al enviar el mensaje al backend:", error);
+    return { ok: false, mensaje: "No se pudo conectar con el servidor." };
+  }
+}

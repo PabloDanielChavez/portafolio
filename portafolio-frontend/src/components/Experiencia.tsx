@@ -13,6 +13,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { BiBriefcase } from "react-icons/bi";
 import SectionHeader from "./sub_components/SectionHeader";
 import Image from "next/image";
+import Link from "next/link";
 
 
 type Props = {
@@ -34,35 +35,50 @@ export default function Experiencia({ experiencia }: Props) {
                     <div className={style_experiencia.experiencia_contenido_box_layout}>
                         {experiencia && experiencia.map(exp => {
                             return (
-                                <article key={exp.id} className={style_experiencia.experiencia_contenido_article}>
-                                    <div className={style_experiencia.experiencia_contenido_article_header_layout}>
-                                        <div className={style_experiencia.experiencia_contenido_article_header_emp}>
-                                            <div className={style_experiencia.experiencia_contenido_article_header_icono}>
-                                                <Image 
-                                                    src={`/img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`} 
-                                                    alt={exp?.nombre_empresa} 
-                                                    width={50} 
-                                                    height={50}
-                                                    className={style_experiencia.avatar_img}
-                                                />
+                                <Link 
+                                    key={exp.id}
+                                    className={style_experiencia.experiencia_LINK} 
+                                    href={`/experiencia/${exp.id}`}
+                                >
+                                    <article key={exp.id} className={style_experiencia.experiencia_contenido_article}>
+                                        <div className={style_experiencia.experiencia_contenido_article_header_layout}>
+                                            <div className={style_experiencia.experiencia_contenido_article_header_emp}>
+                                                <div className={style_experiencia.experiencia_contenido_article_header_icono}>
+                                                    <Image 
+                                                        src={`/img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`} 
+                                                        alt={exp?.nombre_empresa} 
+                                                        width={50} 
+                                                        height={50}
+                                                        className={style_experiencia.avatar_img}
+                                                    />
+                                                </div>
+                                                <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
+                                                    <h3 className={style_experiencia.experiencia_contenido_article_header_nombre_h3}>
+                                                            {exp.nombre_empresa}
+                                                    </h3>                                                    
+                                                    {/* <Link 
+                                                        key={exp.id}
+                                                        className={style_experiencia.experiencia_contenido_article_header_nombre_enlace} 
+                                                        href={`${exp?.enlace_empresa}`}
+                                                    >
+                                                        {exp?.enlace_trabajoResumido}
+                                                    </Link> */}
+                                                </div>
+                                                
+                                                <div className={style_experiencia.experiencia_contenido_article_header_categoria}>
+                                                    <div className={style_experiencia.experiencia_contenido_article_header_categoria_nombre}>{exp?.tipo_empresa}</div>
+                                                </div>
                                             </div>
-                                            <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
-                                                <h3 className={style_experiencia.experiencia_contenido_article_header_nombre_h3}>{exp?.nombre_empresa}</h3>
-                                                <a className={style_experiencia.experiencia_contenido_article_header_nombre_enlace} href={exp?.enlace_empresa}>{exp?.enlace_trabajoResumido}</a>
-                                            </div>
-                                            <div className={style_experiencia.experiencia_contenido_article_header_categoria}>
-                                                <div className={style_experiencia.experiencia_contenido_article_header_categoria_nombre}>{exp?.tipo_empresa}</div>
+                                            <div className={style_experiencia.experiencia_contenido_article_header_fecha}>
+                                                <p className={style_experiencia.experiencia_contenido_article_header_fecha_p}>{exp?.tiempo_inicio}<span className={style_experiencia.experiencia_contenido_article_header_fecha_span}>-</span>{exp?.tiempo_final}</p>
                                             </div>
                                         </div>
-                                        <div className={style_experiencia.experiencia_contenido_article_header_fecha}>
-                                            <p className={style_experiencia.experiencia_contenido_article_header_fecha_p}>{exp?.tiempo_inicio}<span className={style_experiencia.experiencia_contenido_article_header_fecha_span}>-</span>{exp?.tiempo_final}</p>
+                                        <div className={style_experiencia.experiencia_contenido_article_contenido_layout}>
+                                            <h3 className={style_experiencia.experiencia_contenido_article_contenido_puesto_h3}>{exp?.puesto_empresa}</h3>
+                                            <p className={style_experiencia.experiencia_contenido_article_contenido_puesto_p_informacion}>{exp?.detalle_puesto}</p>
                                         </div>
-                                    </div>
-                                    <div className={style_experiencia.experiencia_contenido_article_contenido_layout}>
-                                        <h3 className={style_experiencia.experiencia_contenido_article_contenido_puesto_h3}>{exp?.puesto_empresa}</h3>
-                                        <p className={style_experiencia.experiencia_contenido_article_contenido_puesto_p_informacion}>{exp?.detalle_puesto}</p>
-                                    </div>
-                                </article>
+                                    </article>
+                                </Link>
                             )
                         })}
                     </div>

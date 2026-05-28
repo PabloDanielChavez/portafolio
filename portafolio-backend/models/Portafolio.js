@@ -44,7 +44,14 @@ export const experiencia = db.define('experiencia', {
     puesto_empresa: stringField(),
     detalle_puesto: stringField(),
     empresa_imagen: stringField(),
-    empresa_imagenFormato: stringField()
+    empresa_imagenFormato: stringField(),
+    rol_descripcion_larga: stringField(),
+    tecnologias: stringField(),
+    logros: stringField(),
+    desafios_soluciones: stringField(),
+    desafio: stringField(),
+    solucion: stringField(),
+    imagenes_proyecto: stringField()
 }, modelOptions('experiencia'));
 
 export const habilidades = db.define('habilidades', {
@@ -94,3 +101,12 @@ export const clientes = db.define('clientes', {
     nombre_imagen: stringField(),
     formato_imagen: stringField()
 }, modelOptions('clientes'));
+
+// Al final de models/Portafolio.js
+
+export const mensajes = db.define('mensajes', {
+    id: idField(),
+    nombre: stringField(),
+    correo: stringField(),
+    mensaje: stringField()
+}, modelOptions('mensajes')); 

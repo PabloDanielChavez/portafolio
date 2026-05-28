@@ -25,6 +25,15 @@
     }
   }
 
+  &_LINK {
+    text-decoration: none;
+    color: inherit; 
+    &:hover {
+      text-decoration: none;
+      color: inherit; 
+    }
+  }
+
   &_contenido_article {
     background: #111111;
     border: 1px solid #1f1f1f;
