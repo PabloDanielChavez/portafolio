@@ -66,20 +66,16 @@ export default function Contacto({ perfil }: Props) {
                         title="Me encanta que estes aquí." 
                         description="Conéctate conmigo hoy. ¡Creemos algo asombroso juntos!" 
                     />
-                    
-                    {/* Botones de acción rápida superiores */}
                     <div className={style_contacto.contacto_action_buttons}>
                         <Link href="mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
                             <MdOutlineEmail size={18} />
                             <span>ENVÍAME UN CORREO</span>
                         </Link>
-                        <Link href="https://wa.me/5491164096414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
+                        <Link href="https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
                             <FaWhatsapp size={18} />
                             <span>ENVÍAME UN MENSAJE</span>
                         </Link>
                     </div>
-
-                    {/* Caja contenedora del Formulario + Redes */}
                     <div className={style_contacto.contacto_contenido_box}>
                         <div className={style_contacto.contacto_contenido_box_layout}>
                             <form className={style_contacto.contacto_form} onSubmit={manejarEnvio}>
@@ -116,7 +112,6 @@ export default function Contacto({ perfil }: Props) {
                                 </button>
                                 <p className={style_contacto.contacto_form_parrafo}>Para asegurar un funcionamiento óptimo y proteger la integridad de este sitio, se procesan datos técnicos básicos (dispositivo, navegador y momento del envío) durante el contacto.</p>
                             </form>
-
                             <div className={style_contacto.contacto_social_grid}>
                                 {redesSociales && redesSociales.map((red) => (
                                     <Link 
