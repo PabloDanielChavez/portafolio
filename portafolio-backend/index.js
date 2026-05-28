@@ -6,12 +6,15 @@ import db from './config/db.js';
 
 const app = express();
 
+
 //  Permitir CORS desde localhost:3000 (React)
 app.use(cors({
     origin: [
         'http://localhost:3000',
-        'https://portafolio-ajb1.onrender.com'
+        'https://portafolio-ajb1.onrender.com',
+        'https://portafolio-6jlx.onrender.com'
     ], // React
+    methods: ['GET', 'POST'],
     credentials: true
 }));
 
@@ -22,7 +25,7 @@ db.authenticate()
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); 
+app.use(express.json());
 app.use(express.static('public'));
 
 app.use('/', router);
