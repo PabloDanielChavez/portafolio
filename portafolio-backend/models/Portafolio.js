@@ -11,6 +11,7 @@ const modelOptions = (name) => ({
 const stringField = () => ({ type: DataTypes.TEXT, allowNull: false });
 const intField = () => ({ type: DataTypes.INTEGER, allowNull: false });
 const idField = () => ({ type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true });
+const jsonField = () => ({ type: DataTypes.JSON, allowNull: true });
 
 export const perfil = db.define('perfil', {
     id: idField(),
@@ -108,5 +109,7 @@ export const mensajes = db.define('mensajes', {
     id: idField(),
     nombre: stringField(),
     correo: stringField(),
-    mensaje: stringField()
-}, modelOptions('mensajes')); 
+    mensaje: stringField(),
+    metadata: jsonField(),
+    origen_url: stringField()
+}, modelOptions('mensajes'));

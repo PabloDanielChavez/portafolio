@@ -7,12 +7,23 @@ export const guardarMensaje = async (req, res) => {
     try {
         // req.body es el "paquete" que te manda el frontend
         const { nombre, correo, mensaje } = req.body;
+        
+        // Captura de metadatos
+        const clientIp = requestIp.getClientIp(req); 
+        const agent = useragent.parse(req.headers['user-agent']);
 
         // Guardamos en la base de datos usando Sequelize
         const nuevoMensaje = await mensajes.create({
             nombre: nombre,
             correo: correo,
-            mensaje: mensaje
+            mensaje: mensaje,
+            metadata: {
+                fecha: new Date().toISOString(),
+                navegador: agent.toAgent(),
+                sistema_operativo: agent.os.toString(),
+                dispositivo: agent.device.toString()
+            },
+            origen_url: window.location.href
         });
 
         // Le respondemos al frontend que todo salió de 10
