@@ -73,7 +73,7 @@ export default function Contacto({ perfil }: Props) {
                             <MdOutlineEmail size={18} />
                             <span>ENVÍAME UN CORREO</span>
                         </Link>
-                        <Link href="https://wa.me/5491154096414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
+                        <Link href="https://wa.me/5491164096414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
                             <FaWhatsapp size={18} />
                             <span>ENVÍAME UN MENSAJE</span>
                         </Link>
