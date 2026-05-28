@@ -39,7 +39,18 @@ export async function getAllPortfolioData() {
 // ... (tu código anterior de getAllPortfolioData queda igual)
 
 // Nueva función para enviar el formulario
-export async function enviarMensajeContacto(datosDelFormulario: { nombre: string, correo: string, mensaje: string }) {
+export async function enviarMensajeContacto(datosDelFormulario: { 
+    nombre: string, 
+    correo: string, 
+    mensaje: string,
+    metadata: {
+        fecha: string,
+        navegador: string,
+        sistema_operativo: string,
+        dispositivo: string
+    },
+    origen_url: string
+}) {
   if (!urlBase) {
     console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
     return { ok: false, mensaje: "Error interno: URL no configurada" };
