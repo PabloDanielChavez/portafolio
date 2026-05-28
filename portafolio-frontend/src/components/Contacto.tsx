@@ -10,7 +10,7 @@ import SectionHeader from "./sub_components/SectionHeader";
 import { PerfilType } from "@/types/perfil";
 import { enviarMensajeContacto } from "@/services/fetchData";
 import Link from "next/link";
-import UAParser from 'ua-parser-js'; // Importa la librería para detectar el navegador
+import { UAParser } from 'ua-parser-js';
 
 interface Props {
     perfil: PerfilType[];
@@ -28,21 +28,11 @@ export default function Contacto({ perfil }: Props) {
     const manejarEnvio = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
 
-        const parser = new UAParser(); // Crea una instancia para obtener la información del navegador
-        const agent = parser.getResult();
-
         const datosDelFormulario = {
             nombre: nombre,
             correo: correo,
             mensaje: mensaje,
-            metadata: {
-                fecha: new Date().toISOString(),
-                // Ajusta según la estructura real que devuelva la librería
-                navegador: `${agent.browser.name} ${agent.browser.version}`,
-                sistema_operativo: `${agent.os.name} ${agent.os.version}`,
-                dispositivo: `${agent.device.model || 'Desktop'}`
-            },
-            origen_url: window.location.href
+            origen_url: window.location.href 
         };
         
         const respuesta = await enviarMensajeContacto(datosDelFormulario);

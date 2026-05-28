@@ -110,6 +110,9 @@ export const mensajes = db.define('mensajes', {
     nombre: stringField(),
     correo: stringField(),
     mensaje: stringField(),
-    metadata: jsonField(),
+    fecha: stringField(),
+    navegador: stringField(),
+    sistema_operativo: stringField(),
+    dispositivo: stringField(),
     origen_url: stringField()
 }, modelOptions('mensajes'));

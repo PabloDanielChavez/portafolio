@@ -43,12 +43,6 @@ export async function enviarMensajeContacto(datosDelFormulario: {
     nombre: string, 
     correo: string, 
     mensaje: string,
-    metadata: {
-        fecha: string,
-        navegador: string,
-        sistema_operativo: string,
-        dispositivo: string
-    },
     origen_url: string
 }) {
   if (!urlBase) {

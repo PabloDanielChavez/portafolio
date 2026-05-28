@@ -1,41 +1,32 @@
 // controllers/apiControllers.js
-
+import requestIp from 'request-ip';
+import useragent from 'useragent';
 import { perfil, habilidades, experiencia, servicios, trabajos, clientes, mensajes } from '../models/Portafolio.js';
 
-// 2. Creamos el nuevo controlador para recibir y guardar los datos
 export const guardarMensaje = async (req, res) => {
     try {
-        // req.body es el "paquete" que te manda el frontend
-        const { nombre, correo, mensaje } = req.body;
-        
-        // Captura de metadatos
-        const clientIp = requestIp.getClientIp(req); 
+        const { nombre, correo, mensaje, origen_url } = req.body;
         const agent = useragent.parse(req.headers['user-agent']);
 
-        // Guardamos en la base de datos usando Sequelize
         const nuevoMensaje = await mensajes.create({
             nombre: nombre,
             correo: correo,
             mensaje: mensaje,
-            metadata: {
-                fecha: new Date().toISOString(),
-                navegador: agent.toAgent(),
-                sistema_operativo: agent.os.toString(),
-                dispositivo: agent.device.toString()
-            },
-            origen_url: window.location.href
+            navegador: agent.toAgent(),
+            fecha: new Date().toISOString(), 
+            sistema_operativo: agent.os.toString(),
+            dispositivo: agent.device.toString(),
+            origen_url: origen_url
         });
 
-        // Le respondemos al frontend que todo salió de 10
-        res.status(201).json({ 
-            mensaje: '¡Mensaje guardado con éxito!', 
-            id: nuevoMensaje.id 
-        });
+        res.status(201).json({ mensaje: '¡Mensaje guardado!', id: nuevoMensaje.id });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ mensaje: 'Error al guardar el mensaje en la base de datos.' });
+        res.status(500).json({ mensaje: 'Error al guardar el mensaje.' });
     }
 };
+
+
 export const obtenerPerfil = async (req, res) => {
     try {
         const perfilSalida = await perfil.findAll();
