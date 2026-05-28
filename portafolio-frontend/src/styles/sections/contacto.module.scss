@@ -80,6 +80,7 @@
     &_form {
         display: flex;
         flex-direction: column;
+        height: min-content;
         gap: 16px;
         background: #111111;
         border: 1px solid #1f1f1f;
@@ -122,11 +123,22 @@
                 border-color: #c084fc; 
                 box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.1);
             }
+            &_parrafo {
+                font-size: 0.85rem;
+                color: #9ca3af;
+                border-top: 1px solid #374151; /* Línea divisoria superior */
+                line-height: 1.4;
+                margin-top: 1rem;
+                padding-top: 0.5rem;
+                font-style: italic;  
+                text-align: center; 
+                opacity: 0.8;
+            }
         }
 
         &_textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 200px;
         }
 
         &_submit {

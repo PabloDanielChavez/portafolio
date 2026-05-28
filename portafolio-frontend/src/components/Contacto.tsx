@@ -112,6 +112,7 @@ export default function Contacto({ perfil }: Props) {
                                 <button type="submit" className={style_contacto.contacto_form_submit}>
                                     Enviar tu Mensaje
                                 </button>
+                                <p className={style_contacto.contacto_form_parrafo}>Para asegurar un funcionamiento óptimo y proteger la integridad de este sitio, se procesan datos técnicos básicos (dispositivo, navegador y momento del envío) durante el contacto.</p>
                             </form>
 
                             <div className={style_contacto.contacto_social_grid}>
