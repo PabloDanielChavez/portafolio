@@ -1,11 +1,12 @@
 
 "use client";
 import Link from 'next/link';
-import styles_footer from '../styles/sections/footer.module.scss';
-import { PiMicrosoftOutlookLogo, PiStack } from 'react-icons/pi';
-import { LiaLinkedin } from 'react-icons/lia';
-import { FaBriefcase, FaEnvelope, FaGithub, FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
+import { LiaLinkedin } from 'react-icons/lia';
+import styles_footer from '../styles/sections/footer.module.scss';
+
+import { PiMicrosoftOutlookLogo, PiStack } from 'react-icons/pi';
+import { FaBriefcase, FaEnvelope, FaGithub, FaWhatsapp } from 'react-icons/fa';
 import { BsFillPersonVcardFill } from 'react-icons/bs';
 import { SiCodefactor } from 'react-icons/si';
 import { BiBriefcase } from 'react-icons/bi';
@@ -13,6 +14,29 @@ import { AiTwotoneSchedule } from 'react-icons/ai';
 import { IoIosRocket } from 'react-icons/io';
 
 export default function Header() {
+
+  const secciones = [
+    { id: 'navegacion', titulo: 'Navegación' },
+    { id: 'secciones', titulo: 'Secciones' },
+    { id: 'contacto', titulo: 'Contacto' }
+  ];
+
+  const linksFooter = [
+        { id:"1", seccion:"navegacion" , name: "Perfil", icon: <BsFillPersonVcardFill size={18} />, url: `http://localhost:3000/perfil` },
+        { id:"2", seccion:"navegacion" , name: "Experiencia", icon: <FaBriefcase size={18} />, url: `http://localhost:3000/experiencia` },
+        { id:"3", seccion:"navegacion" , name: "Servicios", icon: <SiCodefactor size={18} />, url: `http://localhost:3000/servicios` },
+        { id:"4", seccion:"navegacion" , name: "Contacto", icon: <FaEnvelope size={18} />, url: `http://localhost:3000/contacto` },
+        { id:"5", seccion:"secciones" , name: "Clientes", icon: <AiTwotoneSchedule size={18} />, url: `http://localhost:3000/clientes` },
+        { id:"6", seccion:"secciones" , name: "Experiencia", icon: <BiBriefcase size={18} />, url: `http://localhost:3000/experiencia` },
+        { id:"7", seccion:"secciones" , name: "Habilidades", icon: <PiStack size={18} />, url: `http://localhost:3000/habilidades` },
+        { id:"8", seccion:"secciones" , name: "Servicios", icon: <AiTwotoneSchedule size={18} />, url: `http://localhost:3000/servicios` },
+        { id:"9", seccion:"secciones" , name: "Trabajos", icon: <IoIosRocket size={18} />, url: `http://localhost:3000/trabajos` },
+        { id:"10", seccion:"contacto" , name: "Linkedin", icon: <LiaLinkedin size={18} />, url: `https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/` },
+        { id:"11", seccion:"contacto" , name: "GitHub", icon: <FaGithub size={18} />, url: `https://github.com/PabloDanielChavez/portafolio` },
+        { id:"12", seccion:"contacto" , name: "Whatsapp", icon: <FaWhatsapp size={18} />, url: `https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto...` },
+        { id:"13", seccion:"contacto" , name: "Pablo_daniel_Chavez@outlook.es", icon: <PiMicrosoftOutlookLogo size={18} />, url: `mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto...` },
+    ];
+
   return (
     <footer className={styles_footer.footer_grid_principal}>
       <div className={styles_footer.footer_box_logo}>
@@ -25,100 +49,23 @@ export default function Header() {
         />
       </div>
       <div className={styles_footer.footer_grid_enlaces}>
-        <div className={styles_footer.footer_box}>
-          <h2 className={styles_footer.footer_h2}>Navegacion</h2>
-          <ul className={styles_footer.footer_ul}>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <BsFillPersonVcardFill size={20} />
-                <span className={styles_footer.footer_span}>Perfil</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <FaBriefcase size={20} />
-                <span className={styles_footer.footer_span}>Experiencia</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <SiCodefactor size={20} />
-                <span className={styles_footer.footer_span}>Servicios</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <FaEnvelope size={20} />
-                <span className={styles_footer.footer_span}>Contacto</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className={styles_footer.footer_box}>
-          <h2 className={styles_footer.footer_h2}>Secciones</h2>
-          <ul className={styles_footer.footer_ul}>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <AiTwotoneSchedule size={20} /> 
-                <span className={styles_footer.footer_span}>Clientes</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <BiBriefcase size={20} /> 
-                <span className={styles_footer.footer_span}>Experiencia</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <PiStack size={20} /> 
-                <span className={styles_footer.footer_span}>Habilidades</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <AiTwotoneSchedule size={20} /> 
-                <span className={styles_footer.footer_span}>Servicios</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <IoIosRocket size={20} /> 
-                <span className={styles_footer.footer_span}>Trabajos</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className={styles_footer.footer_box}>
-          <h2 className={styles_footer.footer_h2}>Contacto</h2>
-          <ul className={styles_footer.footer_ul}>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <LiaLinkedin size={20} /> 
-                <span className={styles_footer.footer_span}>Linkedin</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <FaGithub size={20} /> 
-                <span className={styles_footer.footer_span}>GitHub</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <FaWhatsapp size={20} /> 
-                <span className={styles_footer.footer_span}>Whatsapp</span>
-              </a>
-            </li>
-            <li className={styles_footer.footer_li}>
-              <a href={`/`} className={styles_footer.footer_a}>
-                <PiMicrosoftOutlookLogo size={20} /> 
-                <span className={styles_footer.footer_span}>Pablo_daniel_Chavez@outlook.es</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+        {secciones.map((seccion) => (
+          <div key={seccion.id} className={styles_footer.footer_box}>
+            <h2 className={styles_footer.footer_h2}>{seccion.titulo}</h2>
+            <ul className={styles_footer.footer_ul}>
+              {linksFooter
+                .filter((link) => link.seccion === seccion.id)
+                .map((link) => (
+                  <li key={link.id} className={styles_footer.footer_li}>
+                    <Link href={link.url} className={styles_footer.footer_a}>
+                      {link.icon}
+                      <span className={styles_footer.footer_span}>{link.name}</span>
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ))}
       </div>
       <div className={styles_footer.footer_box_copy}>
         <p className={styles_footer.footer_copy_p}>©2026 Pablo Daniel Chavez. Todos los derechos reservados.</p>

@@ -2,7 +2,7 @@
 
 import { ReactNode, useState } from "react"; // <-- Agregamos useState
 import style_contacto from "@/styles/sections/contacto.module.scss";
-import { FaArrowRight, FaPlus, FaInstagram, FaLinkedin, FaDribbble, FaWhatsapp, FaGithubSquare, FaFacebookSquare } from "react-icons/fa";
+import { FaArrowRight, FaPlus, FaInstagram, FaLinkedin, FaDribbble, FaWhatsapp, FaGithubSquare, FaFacebookSquare, FaMinus } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6"; 
 import { MdOutlineEmail, MdCall } from "react-icons/md";
 import { BsQuestionCircle } from "react-icons/bs";
@@ -14,6 +14,21 @@ import { UAParser } from 'ua-parser-js';
 
 interface Props {
     perfil: PerfilType[];
+}
+
+// Define la estructura de tu objeto de pregunta
+interface Pregunta {
+    id: number | string;
+    pregunta: string;
+    respuesta: string;
+}
+
+// Define las props que recibe tu componente
+interface FaqItemProps {
+    pf: Pregunta;
+    style: {
+        [key: string]: string; // Esto acepta cualquier nombre de clase que venga del módulo CSS
+    };
 }
 
 export default function Contacto({ perfil }: Props) {
@@ -48,12 +63,49 @@ export default function Contacto({ perfil }: Props) {
     };
     
     const redesSociales = [
-        { name: "whatsapp", icon: <FaWhatsapp />, url: `https://wa.me/${user?.numero_whatsapp}`, seguidores: 10 },
-        { name: "Linkedin", icon: <FaLinkedin />, url: `https://www.linkedin.com/in/${user?.nombre_linkedin}`, seguidores: 10 },
-        { name: "Github", icon: <FaGithubSquare />, url: `https://github.com/${user?.nombre_github}`, seguidores: 10 },
-        { name: "Facebook", icon: <FaFacebookSquare />, url: `https://www.facebook.com/${user?.nombre_facebook}`, seguidores: 10 },
-        { name: "Instagram", icon: <FaInstagram />, url: `https://www.instagram.com/${user?.nombre_instagram}` , seguidores: 10},
+        { name: "whatsapp", icon: <FaWhatsapp size={22}/>, url: `https://wa.me/${user?.numero_whatsapp}`, seguidores: 10 },
+        { name: "Linkedin", icon: <FaLinkedin size={22}/>, url: `https://www.linkedin.com/in/${user?.nombre_linkedin}`, seguidores: 10 },
+        { name: "Github", icon: <FaGithubSquare size={22}/>, url: `https://github.com/${user?.nombre_github}`, seguidores: 10 },
+        { name: "Instagram", icon: <FaInstagram size={22}/>, url: `https://www.instagram.com/${user?.nombre_instagram}` , seguidores: 10},
     ];
+
+    const preguntasFrecuentes = [
+        { id:"1", pregunta: "¿Puedes trabajar con clientes de forma remota?", respuesta: `¡absolutamente! Tengo experiencia trabajando con clientes de todo el mundo. A través de canales de comunicación eficaces, como correo electrónico, videollamadas y herramientas de gestión de proyectos, garantizo una colaboración perfecta independientemente de la ubicación geográfica.` },
+        { id:"2", pregunta: "¿mi sitio web será compatible con dispositivos móviles?", respuesta: `¡absolutamente! La capacidad de respuesta móvil es una prioridad absoluta en el panorama digital actual. Diseño y desarrollo sitios web que respondan completamente y se adapten perfectamente a diversos dispositivos y tamaños de pantalla. Su sitio web proporcionará una experiencia de usuario óptima, ya sea que se acceda desde computadoras de escritorio, teléfonos inteligentes o tabletas.` },
+        { id:"3", pregunta: "¿Cuánto tiempo suele tardar en completar un proyecto?", respuesta: `El cronograma de cada proyecto varía según su alcance y complejidad. Factores como la cantidad de páginas, las funcionalidades requeridas y el proceso de comentarios de los clientes pueden afectar la línea de tiempo. Al analizar los requisitos de su proyecto, le proporcionaré un cronograma realista y lo mantendré actualizado durante todo el proceso.` },
+        { id:"4", pregunta: "¿Puedes integrar herramientas de terceros en mi sitio web?", respuesta: `Valoro sus aportes y colaboración durante todo el proceso de diseño. Al completar el diseño inicial, le brindo la oportunidad de revisar y brindar comentarios. Incorporo sus sugerencias y revisiones para garantizar que el producto final se alinee con su visión.` },
+        { id:"5", pregunta: "¿Ofrecen mantenimiento del sitio web?", respuesta: `Sí, ofrezco servicios de mantenimiento de sitios web para garantizar que su sitio web se mantenga actualizado, seguro y optimizado. Desde actualizaciones de contenido y correcciones de errores hasta optimización del rendimiento y mejoras de seguridad, puedo brindar soporte continuo para mantener su sitio web funcionando sin problemas.` },
+        { id:"6", pregunta: "¿Cómo maneja las revisiones del sitio web?", respuesta: `Los términos de pago pueden variar según el alcance y la duración del proyecto. Generalmente, necesito un porcentaje del costo total del proyecto como depósito inicial antes de comenzar el trabajo.` },
+        { id:"7", pregunta: "¿Puedes optimizar mi sitio web?", respuesta: `¡ciertamente! Incorporo las mejores prácticas de optimización de motores de búsqueda (SEO) en mi proceso de diseño web. Esto incluye el uso de palabras clave relevantes, la optimización de metaetiquetas, la creación de URL compatibles con los motores de búsqueda y garantizar que su sitio web tenga una base sólida para una mejor visibilidad de los motores de búsqueda.` },
+        { id:"8", pregunta: "¿Cuáles son sus condiciones de pago?", respuesta: `Los términos de pago pueden variar según el alcance y la duración del proyecto. Generalmente, necesito un porcentaje del costo total del proyecto como depósito inicial antes de comenzar el trabajo.` }
+    ];
+    
+    const mitad = Math.ceil(preguntasFrecuentes.length / 2);
+    const col1 = preguntasFrecuentes.slice(0, mitad);
+    const col2 = preguntasFrecuentes.slice(mitad);
+
+    const FaqItem = ({ pf, style }: FaqItemProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+        return (
+            <article className={style.contacto_faq_article}>
+                <div 
+                    className={style.contacto_faq_article_header} 
+                    onClick={() => setIsOpen(!isOpen)} // Puedes hacer clic en todo el header
+                >
+                    <span className={style.contacto_faq_pregunta}>{pf.pregunta}</span>
+                    <button type="button" className={style.contacto_faq_btn_toggle}>
+                        {isOpen ? <FaMinus size={22} /> : <FaPlus size={22} />}
+                    </button>
+                </div>
+                
+                {/* Aplicamos una clase condicional para la transición */}
+                <div className={`${style.contacto_faq_article_footer} ${isOpen ? style.abierto : ''}`}>
+                    <p className={style.contacto_faq_parrafo}>{pf.respuesta}</p>
+                </div>
+            </article>
+        );
+    };
 
     return (
         <section className={style_contacto.contacto}>
@@ -93,8 +145,8 @@ export default function Contacto({ perfil }: Props) {
                                         placeholder="Correo electrónico" 
                                         className={style_contacto.contacto_form_input} 
                                         required 
-                                        value={correo} // <-- Conectado al estado
-                                        onChange={(e) => setCorreo(e.target.value)} // <-- Actualiza el estado
+                                        value={correo}
+                                        onChange={(e) => setCorreo(e.target.value)}
                                     />
                                 </div>
                                 <div className={style_contacto.contacto_form_group}>
@@ -103,8 +155,8 @@ export default function Contacto({ perfil }: Props) {
                                         className={style_contacto.contacto_form_textarea} 
                                         rows={6}
                                         required 
-                                        value={mensaje} // <-- Conectado al estado
-                                        onChange={(e) => setMensaje(e.target.value)} // <-- Actualiza el estado
+                                        value={mensaje} 
+                                        onChange={(e) => setMensaje(e.target.value)}
                                     />
                                 </div>
                                 <button type="submit" className={style_contacto.contacto_form_submit}>
@@ -140,10 +192,7 @@ export default function Contacto({ perfil }: Props) {
                         </div>
                     </div>
                 </article>
-
                 <hr className={style_contacto.contacto_divider} />
-
-                {/* ================= SECCIÓN CONSULTAS COMUNES (FAQs) ================= */}
                 <article className={style_contacto.contacto_faqs_section}>
                     <SectionHeader 
                         icon={<BsQuestionCircle />} 
@@ -151,16 +200,17 @@ export default function Contacto({ perfil }: Props) {
                         description="Obtenga respuestas a consultas comunes. Sus preguntas, abordadas simplemente." 
                     />
 
-                    <div className={style_contacto.contacto_faqs_grid}>
-                        
-                        {/* {faqs && faqs.map((faq) => (
-                            <div key={faq.id} className={style_contacto.contacto_faq_item}>
-                                <span className={style_contacto.contacto_faq_pregunta}>{faq.pregunta}</span>
-                                <button type="button" className={style_contacto.contacto_faq_btn_toggle}>
-                                    <FaPlus />
-                                </button>
-                            </div>
-                        ))} */}
+                    <div className={style_contacto.contacto_faqs_layout}>
+                        <div className={style_contacto.contacto_faqs_columna}>
+                            {col1.map((pf) => (
+                                <FaqItem key={pf.id} pf={pf} style={style_contacto} />
+                            ))}
+                        </div>
+                        <div className={style_contacto.contacto_faqs_columna}>
+                            {col2.map((pf) => (
+                                <FaqItem key={pf.id} pf={pf} style={style_contacto} />
+                            ))}
+                        </div>
                     </div>
                 </article>
 
