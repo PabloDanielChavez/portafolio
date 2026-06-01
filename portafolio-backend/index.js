@@ -13,6 +13,7 @@ app.use(cors({
         'http://localhost:3000',
         'https://portafolio-ajb1.onrender.com',
         'https://portafolio-6jlx.onrender.com'
+        'https://portpc.netlify.app'
     ], // React
     methods: ['GET', 'POST'],
     credentials: true
