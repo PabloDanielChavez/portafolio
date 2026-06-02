@@ -32,17 +32,3 @@ export default async function Home() {
     </>
   );
 }
-
-
-
-// export default function Page() {
-//   return (
-//     <main>
-//       <h1>Mi Portafolio</h1>
-//       <ComponentesSuperiores />
-      
-//       {/* El componente se cargará de forma separada al resto de la página */}
-//       <Experiencia experiencia={datosExperiencia} />
-//     </main>
-//   );
-// }

@@ -20,7 +20,6 @@ export function ImagenComponent({ style, url, alt, widthE, heightE, priority }: 
             width={widthE} 
             height={heightE}
             {...(priority === "prioridad" && { priority: true })}
-            placeholder="blur"
         />
     );
 }

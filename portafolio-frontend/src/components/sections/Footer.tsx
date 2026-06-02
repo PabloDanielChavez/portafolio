@@ -1,9 +1,8 @@
 
 "use client";
 import Link from 'next/link';
-import Image from 'next/image';
 import { LiaLinkedin } from 'react-icons/lia';
-import styles_footer from '../styles/sections/footer.module.scss';
+import styles_footer from '@/styles/sections/footer.module.scss';
 
 import { PiMicrosoftOutlookLogo, PiStack } from 'react-icons/pi';
 import { FaBriefcase, FaEnvelope, FaGithub, FaWhatsapp } from 'react-icons/fa';

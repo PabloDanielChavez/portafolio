@@ -18,8 +18,6 @@ import { BsFillPersonVcardFill } from "react-icons/bs";
 import { SiCodefactor } from "react-icons/si";
 import { SelectorItem } from "./sub_components/SelectorBtn";
 import { BiMenu } from "react-icons/bi";
-import Link from "next/link";
-import Image from "next/image";
 import { ImagenComponent } from "./sub_components/ImagenM";
 
 interface VentanaProps {
@@ -62,7 +60,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
             <a href="#">
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
                 <ImagenComponent 
-                  style={style_ventana.ventana_header_imagen_perfil}
+                  style={`${style_ventana.ventana_header_imagen_perfil}`}
                   url="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"
                   alt="Logo"
                   widthE={100}

@@ -1,6 +1,6 @@
 
 "use client";
-import styles_header from '../styles/sections/header.module.scss';
+import styles_header from '@/styles/sections/header.module.scss';
 import { useState, useEffect } from 'react';
 
 export default function Header() {
