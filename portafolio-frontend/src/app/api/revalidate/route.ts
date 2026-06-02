@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(request: NextRequest) {
     // 1. Verificación de seguridad: No queremos que cualquiera pueda borrar tu caché.
     const secret = request.nextUrl.searchParams.get('secret');
-    if (secret !== process.env.MY_SECRET_TOKEN) {
+    if (secret !== process.env.MI_TOKEN_SECRETO) {
         return NextResponse.json({ message: 'No autorizado' }, { status: 401 });
     }
 
