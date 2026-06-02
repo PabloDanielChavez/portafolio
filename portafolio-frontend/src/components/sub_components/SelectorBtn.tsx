@@ -2,6 +2,7 @@
 import { useState } from "react";
 import style_ventana from "@/styles/sections/ventana.module.scss";
 import { IconType } from "react-icons";
+import Link from "next/link";
 
 interface SelectorItemProps {
     href: string;
@@ -13,7 +14,6 @@ interface SelectorItemProps {
 export const SelectorItem = ({ href, Icon, label, lado = "der" }: SelectorItemProps) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    // Seleccionamos la clase CSS dinámicamente según el lado
     const claseNombreBox = lado === "izq" 
         ? style_ventana.ventana_header_selector_nombre_box_izq 
         : style_ventana.ventana_header_selector_nombre_box_der;
@@ -25,7 +25,7 @@ export const SelectorItem = ({ href, Icon, label, lado = "der" }: SelectorItemPr
         onMouseLeave={() => setIsHovered(false)}
         >
         <div className={style_ventana.ventana_header_selector_opcion}>
-            <a href={href} className={style_ventana.ventana_header_link}>
+            <Link href={href} className={style_ventana.ventana_header_link}>
             <Icon 
                 className={style_ventana.ventana_header_link} 
                 style={{ 
@@ -33,7 +33,7 @@ export const SelectorItem = ({ href, Icon, label, lado = "der" }: SelectorItemPr
                 transition: 'color 0.3s ease',
                 }}
             />
-            </a>
+            </Link>
         </div>
         <div 
             className={claseNombreBox} // Clase dinámica aplicada aquí

@@ -11,6 +11,7 @@ import { IoIosRocket } from "react-icons/io";
 import { TrabajosType } from "@/types/trabajos";
 import SectionHeader from "./sub_components/SectionHeader";
 import Image from "next/image";
+import { ImagenComponent } from "./sub_components/ImagenM";
 
 
 
@@ -34,11 +35,13 @@ export default function Trabajos({ trabajos }: Props) {
                                 return (
                                     <article key={tra.id} className={style_trabajos.trabajos_card}>
                                         <div className={style_trabajos.trabajos_card_img}>
-                                            <Image 
-                                                src={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`} 
-                                                width={500} 
-                                                height={500}
+                                            <ImagenComponent 
+                                                style={style_trabajos.ha}
+                                                url={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`}
                                                 alt={tra?.nombre_imagen}
+                                                widthE={500}
+                                                heightE={500}
+                                                priority=""
                                             />
                                         </div>
                                         <div className={style_trabajos.trabajos_card_info}>

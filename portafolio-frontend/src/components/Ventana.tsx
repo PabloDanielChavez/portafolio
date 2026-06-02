@@ -1,7 +1,7 @@
 "use client";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ReactNode, useRef } from "react"; // 1. Importamos useRef (puedes quitar useState si no lo usas)
+import { ReactNode, useRef } from "react";
 import style_ventana from "@/styles/sections/ventana.module.scss"
 import style_global from "@/styles/base/global.module.scss"
 import { 
@@ -10,22 +10,36 @@ import {
   FaLinkedin,
   FaEnvelope, 
   FaBriefcase,
-  FaArrowUp 
+  FaArrowUp, 
+  FaGithubSquare,
+  FaFacebookSquare
 } from "react-icons/fa";
 import { BsFillPersonVcardFill } from "react-icons/bs";
 import { SiCodefactor } from "react-icons/si";
 import { SelectorItem } from "./sub_components/SelectorBtn";
+import { BiMenu } from "react-icons/bi";
+import Link from "next/link";
+import Image from "next/image";
+import { ImagenComponent } from "./sub_components/ImagenM";
 
 interface VentanaProps {
-  children: ReactNode;
+  children: React.ReactNode;
+  perfil: any; // O mejor aún, el tipo específico (ej. PerfilType[])
 }
 
-export default function Ventana({ children }: VentanaProps) {
+export default function Ventana({ children, perfil }: VentanaProps) {
 
-  // 2. Creamos la referencia para el contenedor que realmente tiene el scroll
   const contenidoRef = useRef<HTMLDivElement>(null);
+  
+  const user = perfil?.[0];
+  const redesSociales = [
+      { name: "whatsapp", icon: <FaWhatsapp />, url: `https://wa.me/${user?.numero_whatsapp}` },
+      { name: "Linkedin", icon: <FaLinkedin />, url: `https://www.linkedin.com/in/${user?.nombre_linkedin}` },
+      { name: "Github", icon: <FaGithubSquare />, url: `https://github.com/${user?.nombre_github}` },
+      { name: "Facebook", icon: <FaFacebookSquare />, url: `https://www.facebook.com/${user?.nombre_facebook}` },
+      { name: "Instagram", icon: <FaInstagram />, url: `https://www.instagram.com/${user?.nombre_instagram}` },
+  ];
 
-  // 3. Modificamos la función para que apunte a la referencia y no a 'window'
   const scrollToTop = () => {
     if (contenidoRef.current) {
       contenidoRef.current.scrollTo({
@@ -35,6 +49,11 @@ export default function Ventana({ children }: VentanaProps) {
     }
   };
 
+  const expMenu = () => {
+    if (contenidoRef.current) {
+    } 
+  }
+
   return (
     <main className={style_ventana.ventana}>
       <div className={style_ventana.ventana_layoutPrincipal}>
@@ -42,7 +61,14 @@ export default function Ventana({ children }: VentanaProps) {
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <a href="#">
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
-                <img className={`${style_ventana.ventana_header_imagen_perfil}`} src="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg" alt="Logo" />
+                <ImagenComponent 
+                  style={style_ventana.ventana_header_imagen_perfil}
+                  url="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"
+                  alt="Logo"
+                  widthE={100}
+                  heightE={145}
+                  priority="prioridad"
+                />
               </div>
             </a>
           </div>
@@ -72,8 +98,38 @@ export default function Ventana({ children }: VentanaProps) {
         <article className={style_ventana.ventana_central_box_layout}>
           <div className={style_ventana.ventana_central_box} ref={contenidoRef}>
             <Header></Header>
-            {/* 4. Le pasamos la referencia 'ref' al contenedor de children */}
             <div className={style_ventana.ventana_central_contenido} >
+              <div 
+                id="articleUpward" 
+                className={`${style_ventana.ventana_header_menu}`}
+                onClick={expMenu}
+                role="button"
+                tabIndex={0}
+              >
+                <BiMenu size={24} className={style_global.ventana_menu_icono} />
+              </div>
+              <div>
+                {/* <div key={seccion.id} className={styles_footer.footer_box}>
+                  <h2 className={styles_footer.footer_h2}>{seccion.titulo}</h2>
+                  <ul className={styles_footer.footer_ul}>
+                    <li key={link.id} className={styles_footer.footer_li}>
+                      <Link href={link.url} className={styles_footer.footer_a}>
+                        {link.icon}
+                        <span className={styles_footer.footer_span}>{link.name}</span>
+                      </Link>
+                      <Link href={href} className={style_ventana.ventana_header_link}>
+                        <Icon 
+                            className={style_ventana.ventana_header_link} 
+                            style={{ 
+                            color: isHovered ? "white" : "#555", 
+                            transition: 'color 0.3s ease',
+                            }}
+                        />
+                      </Link>
+                    </li>
+                  </ul>
+                </div> */}
+              </div>
               {children}
             </div>
             <Footer></Footer>
@@ -85,9 +141,9 @@ export default function Ventana({ children }: VentanaProps) {
               <section className={`${style_ventana.ventana_footer_section} ${style_ventana.ventana_footer_lateral_derecho}`} id="">
                 <article>
                   <div className={`${style_ventana.ventana_footer_navegador}`}>
-                    <SelectorItem href="/" Icon={FaInstagram} label="Instagram" lado="izq"/>
-                    <SelectorItem href="/" Icon={FaWhatsapp} label="Whatsapp"  lado="izq"/>
-                    <SelectorItem href="/" Icon={FaLinkedin} label="Linkedin"  lado="izq"/>
+                    <SelectorItem href={redesSociales[0].url} Icon={FaWhatsapp} label={redesSociales[0].name}  lado="izq"/>
+                    <SelectorItem href={redesSociales[2].url} Icon={FaLinkedin} label={redesSociales[2].name} lado="izq"/>
+                    <SelectorItem href={redesSociales[1].url} Icon={FaGithubSquare} label={redesSociales[1].name}  lado="izq"/>
                   </div>
                 </article>
               </section>

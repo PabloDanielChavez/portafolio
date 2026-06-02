@@ -6,7 +6,6 @@ import Habilidades from "@/components/Habilidades";
 import Servicios from "@/components/Servicios";
 import Trabajos from "@/components/Trabajos";
 import Clientes from "@/components/Clientes";
-import Footer from "@/components/Footer";
 import { getAllPortfolioData } from "@/services/fetchData";
 
 export default async function Home() {

@@ -7,6 +7,7 @@ import { BiBriefcase, BiCodeAlt, BiTrophy, BiExtension } from "react-icons/bi";
 import { IoMdArrowBack } from "react-icons/io";
 import SectionHeader from "./sub_components/SectionHeader";
 import Link from "next/link";
+import { ImagenComponent } from "./sub_components/ImagenM";
 
 type Props = {
     exp: ExperienciaType;
@@ -33,12 +34,13 @@ export default function PagExperienciaDetalle({ exp }: Props) {
                                 <div className={style_experiencia.experiencia_contenido_article_header_layout}>
                                     <div className={style_experiencia.experiencia_contenido_article_header_emp}>
                                         <div className={style_experiencia.experiencia_contenido_article_header_icono}>
-                                            <Image 
-                                                src={`/img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`} 
-                                                alt={exp?.nombre_empresa} 
-                                                width={50} 
-                                                height={50}
-                                                className={style_experiencia.avatar_img}
+                                            <ImagenComponent 
+                                                style={style_experiencia.avatar_img}
+                                                url={`/img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`}
+                                                alt={exp?.nombre_empresa}
+                                                widthE={50}
+                                                heightE={50}
+                                                priority=""
                                             />
                                         </div>
                                         <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
@@ -75,7 +77,7 @@ export default function PagExperienciaDetalle({ exp }: Props) {
                                     </p>
                                 </div>
                             </article>
-                            {/* {exp.desafios_soluciones && exp.desafios_soluciones.length > 0 && (
+                            {exp.desafios_soluciones && exp.desafios_soluciones.length > 0 && (
                                 <article className={style_experiencia.experiencia_contenido_article}>
                                     <div className={style_experiencia.experiencia_contenido_article_contenido_layout}>
                                         <h3 className={style_experiencia.experiencia_contenido_article_contenido_puesto_h3}>
@@ -127,7 +129,7 @@ export default function PagExperienciaDetalle({ exp }: Props) {
                                         </div>
                                     </article>
                                 )}
-                            </div> */}
+                            </div>
 
                         </div>
                     </div>

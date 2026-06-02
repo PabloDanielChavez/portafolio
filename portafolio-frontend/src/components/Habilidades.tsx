@@ -8,6 +8,7 @@ import { MdWeb } from "react-icons/md";
 import { HabilidadesType } from "@/types/habilidades";
 import SectionHeader from "./sub_components/SectionHeader";
 import Image from "next/image";
+import { ImagenComponent } from "./sub_components/ImagenM";
 
 
 
@@ -34,12 +35,14 @@ export default function Habilidades({ habilidades }: Props) {
                                 <article key={hab.id} className={style_habilidades.habilidades_contenido_article}> 
                                     <div className={style_habilidades.habilidades_contenido_article_header_layout}> 
                                         <div className={style_habilidades.habilidades_contenido_article_header_emp}> 
-                                            <div className={style_habilidades.habilidades_contenido_article_header_icono}> 
-                                                <Image 
-                                                    src={`/img/Logotipo_Portafolio_PDC/${hab?.nombre_archivo}/${hab?.nombre_imagen}.${hab?.formato_imagen}`} 
-                                                    alt={hab?.nombre_habilidad} 
-                                                    width={50} 
-                                                    height={50}
+                                            <div className={style_habilidades.habilidades_contenido_article_header_icono}>
+                                                <ImagenComponent 
+                                                    style={style_habilidades.ha}
+                                                    url={`/img/Logotipo_Portafolio_PDC/${hab?.nombre_archivo}/${hab?.nombre_imagen}.${hab?.formato_imagen}`}
+                                                    alt={hab?.nombre_habilidad}
+                                                    widthE={50}
+                                                    heightE={50}
+                                                    priority=""
                                                 />
                                             </div> 
                                             <div className={style_habilidades.habilidades_contenido_article_header_nombre}> 

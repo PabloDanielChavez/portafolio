@@ -7,6 +7,8 @@ import {
     FaGithub
 } from "react-icons/fa";
 import { PiMicrosoftOutlookLogo } from "react-icons/pi";
+import Link from "next/link";
+import { ImagenComponent } from "./sub_components/ImagenM";
 
 interface Props {
     perfil: PerfilType[];
@@ -28,12 +30,13 @@ export default function Bienvenida({ perfil }: Props) {
             <div className={style_bienvenida.bienvenida_layout}>
                 <article className={style_bienvenida.bienvenida_header}>
                     <div className={style_bienvenida.bienvenida_header_box_imagen}>
-                        <Image 
-                            className={style_bienvenida.bienvenida_header_imagen_perfil} 
-                            src="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg" 
+                        <ImagenComponent 
+                            style={style_bienvenida.bienvenida_header_imagen_perfil}
+                            url="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"
                             alt="LOGOTIPO"
-                            width={150}
-                            height={150}
+                            widthE={150}
+                            heightE={150}
+                            priority="prioridad"
                         />
                     </div>
                     <div className={style_bienvenida.bienvenida_header_box_informacion}>
@@ -48,19 +51,27 @@ export default function Bienvenida({ perfil }: Props) {
                             {user?.profesion} de Buenos Aires, Argentina.
                         </p>
                         <div className={style_bienvenida.bienvenida_header_btn_layout}>
-                            {/* Agregar links de enlaces */}
-                            <a href={`https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/`} className={style_bienvenida.bienvenida_header_btn}>
-                                <FaLinkedin size={20} /> 
+                            <Link
+                                className={style_bienvenida.bienvenida_header_btn} 
+                                href={`https://www.linkedin.com/in/${user?.nombre_linkedin}/`}
+                            >
+                                <FaGithub size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Linkedin</span>
-                            </a>
-                            <a href={`https://github.com/PabloDanielChavez/portafolio`} className={style_bienvenida.bienvenida_header_btn}>
-                                <FaGithub size={20} />
+                            </Link>
+                            <Link
+                                className={style_bienvenida.bienvenida_header_btn} 
+                                href={`https://github.com/${user?.nombre_github}`}
+                            >
+                                <FaWhatsapp size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>GitHub</span>
-                            </a>
-                            <a href={`https://wa.me/${user?.numero_whatsapp}`} className={style_bienvenida.bienvenida_header_btn}>
-                                <FaWhatsapp size={20} />
+                            </Link>
+                            <Link
+                                className={style_bienvenida.bienvenida_header_btn} 
+                                href={`https://wa.me/${user?.numero_whatsapp}`}
+                            >
+                                <FaLinkedin size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Whatsapp</span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </article>

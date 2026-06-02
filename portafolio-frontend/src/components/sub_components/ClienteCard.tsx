@@ -3,18 +3,21 @@ import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { ClientesType } from "@/types/clientes";
 import style from "@/styles/sections/clientes.module.scss";
+import { ImagenComponent } from "./ImagenM";
+import Link from "next/link";
 
 export const ClienteCard = ({ cli }: { cli: ClientesType }) => (
   <article className={style.clientes_card}>
     <div className={style.clientes_card_header}>
       <div className={style.clientes_card_user}>
         <div className={style.clientes_card_avatar}>
-          <Image 
-            src={`/img/Logotipo_Portafolio_PDC/${cli?.nombre_archivo}/${cli?.nombre_imagen}.${cli?.formato_imagen}`}
-            alt={cli?.nombre_cliente}
-            width={50}
-            height={50}
-            className={style.avatar_img}
+          <ImagenComponent 
+              style={style.avatar_img}
+              url={`/img/Logotipo_Portafolio_PDC/${cli?.nombre_archivo}/${cli?.nombre_imagen}.${cli?.formato_imagen}`}
+              alt={cli?.nombre_cliente}
+              widthE={50}
+              heightE={50}
+              priority=""
           />
         </div>
         <div className={style.clientes_card_info}>
@@ -22,9 +25,9 @@ export const ClienteCard = ({ cli }: { cli: ClientesType }) => (
           <span>{cli.ubicacion_cliente}</span>
         </div>
       </div>
-      <a href={"#"/*cli.enlace_instagram*/} target="_blank" className={style.clientes_card_btn}>
+      <Link href={"https://www.instagram.com/paginasweb.chavez/"} target="_blank" className={style.clientes_card_btn}>
         <FaInstagram />
-      </a>
+      </Link>
     </div>
     <div className={style.clientes_card_body}>
       <p>{cli.opinion_cliente}</p>

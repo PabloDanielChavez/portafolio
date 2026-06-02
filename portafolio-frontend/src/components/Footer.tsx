@@ -12,6 +12,7 @@ import { SiCodefactor } from 'react-icons/si';
 import { BiBriefcase } from 'react-icons/bi';
 import { AiTwotoneSchedule } from 'react-icons/ai';
 import { IoIosRocket } from 'react-icons/io';
+import { ImagenComponent } from './sub_components/ImagenM';
 
 export default function Header() {
 
@@ -40,12 +41,13 @@ export default function Header() {
   return (
     <footer className={styles_footer.footer_grid_principal}>
       <div className={styles_footer.footer_box_logo}>
-        <Image 
-            className={styles_footer.footer_imagen_logo} 
-            src="/img/Logotipo_Portafolio_PDC/Logo/Logo_180x180px.png"
-            alt="LOGOTIPO"
-            width={150}
-            height={150}
+        <ImagenComponent 
+            style={styles_footer.footer_imagen_logo}
+            url={`/img/Logotipo_Portafolio_PDC/Logo/Logo_180x180px.png`}
+            alt={"LOGOTIPO"}
+            widthE={150}
+            heightE={150}
+            priority=""
         />
       </div>
       <div className={styles_footer.footer_grid_enlaces}>

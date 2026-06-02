@@ -14,6 +14,7 @@ import { BiBriefcase } from "react-icons/bi";
 import SectionHeader from "./sub_components/SectionHeader";
 import Image from "next/image";
 import Link from "next/link";
+import { ImagenComponent } from "./sub_components/ImagenM";
 
 
 type Props = {
@@ -44,12 +45,13 @@ export default function Experiencia({ experiencia }: Props) {
                                         <div className={style_experiencia.experiencia_contenido_article_header_layout}>
                                             <div className={style_experiencia.experiencia_contenido_article_header_emp}>
                                                 <div className={style_experiencia.experiencia_contenido_article_header_icono}>
-                                                    <Image 
-                                                        src={`/img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`} 
-                                                        alt={exp?.nombre_empresa} 
-                                                        width={50} 
-                                                        height={50}
-                                                        className={style_experiencia.avatar_img}
+                                                    <ImagenComponent 
+                                                        style={style_experiencia.avatar_img}
+                                                        url={`/img/Logotipo_Portafolio_PDC/Logo/${exp?.empresa_imagen}.${exp?.empresa_imagenFormato}`}
+                                                        alt={exp?.nombre_empresa}
+                                                        widthE={50}
+                                                        heightE={50}
+                                                        priority=""
                                                     />
                                                 </div>
                                                 <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
