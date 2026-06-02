@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import styles_seccionHeader from "@/styles/sections/SectionHeader.module.scss";
 

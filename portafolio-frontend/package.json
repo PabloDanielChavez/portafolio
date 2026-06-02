@@ -8,6 +8,19 @@
     "start": "cross-env NODE_ENV=production next start",
     "lint": "next lint"
   },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not ie 11" 
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.2.0",
     "@netlify/plugin-nextjs": "^5.15.10",

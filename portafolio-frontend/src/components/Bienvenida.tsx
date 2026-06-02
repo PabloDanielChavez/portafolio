@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { PerfilType } from "@/types/perfil";
 import style_bienvenida from "@/styles/sections/bienvenida.module.scss";

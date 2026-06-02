@@ -1,4 +1,4 @@
-// Componente interno para la Tarjeta
+"use client";
 import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { ClientesType } from "@/types/clientes";

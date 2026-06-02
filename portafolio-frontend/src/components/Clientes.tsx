@@ -1,3 +1,5 @@
+"use client";
+
 import { AiTwotoneSchedule } from "react-icons/ai";
 import style_clientes from "@/styles/sections/clientes.module.scss";
 import { ClientesType } from "@/types/clientes";
