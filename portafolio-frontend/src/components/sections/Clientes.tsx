@@ -4,7 +4,7 @@ import { AiTwotoneSchedule } from "react-icons/ai";
 import style_clientes from "@/styles/sections/clientes.module.scss";
 import { ClientesType } from "@/types/clientes";
 import { ClienteCard } from "@/components/sub_components/ClienteCard";
-import SectionHeader from "./sub_components/SectionHeader";
+import SectionHeader from "../sub_components/SectionHeader";
 
 type Props = {
     clientes: ClientesType[];

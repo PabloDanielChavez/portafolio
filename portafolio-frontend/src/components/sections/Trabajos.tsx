@@ -9,9 +9,9 @@ import { TbWorld } from "react-icons/tb";
 import { PiPaintBrushBold } from "react-icons/pi";
 import { IoIosRocket } from "react-icons/io";
 import { TrabajosType } from "@/types/trabajos";
-import SectionHeader from "./sub_components/SectionHeader";
+import SectionHeader from "../sub_components/SectionHeader";
 import Image from "next/image";
-import { ImagenComponent } from "./sub_components/ImagenM";
+import { ImagenComponent } from "../sub_components/ImagenM";
 
 
 

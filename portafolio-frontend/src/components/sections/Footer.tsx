@@ -12,7 +12,7 @@ import { SiCodefactor } from 'react-icons/si';
 import { BiBriefcase } from 'react-icons/bi';
 import { AiTwotoneSchedule } from 'react-icons/ai';
 import { IoIosRocket } from 'react-icons/io';
-import { ImagenComponent } from './sub_components/ImagenM';
+import { ImagenComponent } from '../sub_components/ImagenM';
 
 export default function Header() {
 

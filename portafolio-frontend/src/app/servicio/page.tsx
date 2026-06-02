@@ -1,9 +1,9 @@
 export const dynamic = 'force-dynamic';
 
-import Servicios from "@/components/Servicios";
-import Trabajos from "@/components/Trabajos";
-import Clientes from "@/components/Clientes";
-import Footer from "@/components/Footer";
+import Servicios from "@/components/sections/Servicios";
+import Trabajos from "@/components/sections/Trabajos";
+import Clientes from "@/components/sections/Clientes";
+import Footer from "@/components/sections/Footer";
 import { getAllPortfolioData } from "@/services/fetchData";
 
 export default async function Serv() {

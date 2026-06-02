@@ -11,7 +11,7 @@ import { LuMonitorSmartphone } from "react-icons/lu";
 import { HiOutlineCodeBracket } from "react-icons/hi2";
 import { FiDatabase } from "react-icons/fi";
 import { ServiciosType } from "@/types/servicios";
-import SectionHeader from "./sub_components/SectionHeader";
+import SectionHeader from "../sub_components/SectionHeader";
 
 
 type Props = {

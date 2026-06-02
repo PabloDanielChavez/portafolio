@@ -1,12 +1,21 @@
-export const dynamic = 'force-dynamic';
-
-import Bienvenida from "@/components/Bienvenida";
-import Experiencia from "@/components/Experiencia";
-import Habilidades from "@/components/Habilidades";
-import Servicios from "@/components/Servicios";
-import Trabajos from "@/components/Trabajos";
-import Clientes from "@/components/Clientes";
+import { loadSection } from "@/components/sub_components/LoadSection";
 import { getAllPortfolioData } from "@/services/fetchData";
+
+
+import Bienvenida from "@/components/sections/Bienvenida";
+import { ExperienciaType } from "@/types/experiencia"; 
+import { HabilidadesType } from "@/types/habilidades";
+import { ClientesType } from "@/types/clientes";
+import { ServiciosType } from "@/types/servicios";
+import { TrabajosType } from "@/types/trabajos";
+
+
+const Experiencia = loadSection<{ experiencia: ExperienciaType[] }>("Experiencia");
+const Habilidades = loadSection<{ habilidades: HabilidadesType[] }>("Habilidades");
+const Clientes = loadSection<{ clientes: ClientesType[] }>("Clientes");
+const Servicios = loadSection<{ servicios: ServiciosType[] }>("Servicios");
+const Trabajos = loadSection<{ trabajos: TrabajosType[] }>("Trabajos");
+
 
 export default async function Home() {
   const data = await getAllPortfolioData();
@@ -23,3 +32,17 @@ export default async function Home() {
     </>
   );
 }
+
+
+
+// export default function Page() {
+//   return (
+//     <main>
+//       <h1>Mi Portafolio</h1>
+//       <ComponentesSuperiores />
+      
+//       {/* El componente se cargará de forma separada al resto de la página */}
+//       <Experiencia experiencia={datosExperiencia} />
+//     </main>
+//   );
+// }

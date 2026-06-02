@@ -1,12 +1,12 @@
 export const dynamic = 'force-dynamic';
 
-import Bienvenida from "@/components/Bienvenida";
-import Experiencia from "@/components/Experiencia";
-import Habilidades from "@/components/Habilidades";
-import Servicios from "@/components/Servicios";
-import Trabajos from "@/components/Trabajos";
-import Clientes from "@/components/Clientes";
-import Footer from "@/components/Footer";
+import Bienvenida from "@/components/sections/Bienvenida";
+import Experiencia from "@/components/sections/Experiencia";
+import Habilidades from "@/components/sections/Habilidades";
+import Servicios from "@/components/sections/Servicios";
+import Trabajos from "@/components/sections/Trabajos";
+import Clientes from "@/components/sections/Clientes";
+import Footer from "@/components/sections/Footer";
 import { getAllPortfolioData } from "@/services/fetchData";
 
 export default async function Perfil() {

@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { PiMicrosoftOutlookLogo } from "react-icons/pi";
 import Link from "next/link";
-import { ImagenComponent } from "./sub_components/ImagenM";
+import { ImagenComponent } from "../sub_components/ImagenM";
 
 interface Props {
     perfil: PerfilType[];

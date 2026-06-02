@@ -1,6 +1,6 @@
 "use client";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/sections/Header";
+import Footer from "@/components/sections/Footer";
 import { ReactNode, useRef } from "react";
 import style_ventana from "@/styles/sections/ventana.module.scss"
 import style_global from "@/styles/base/global.module.scss"

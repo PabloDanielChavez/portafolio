@@ -6,9 +6,9 @@ import { FaArrowRight } from "react-icons/fa";
 import { PiStack } from "react-icons/pi";
 import { MdWeb } from "react-icons/md";
 import { HabilidadesType } from "@/types/habilidades";
-import SectionHeader from "./sub_components/SectionHeader";
+import SectionHeader from "../sub_components/SectionHeader";
 import Image from "next/image";
-import { ImagenComponent } from "./sub_components/ImagenM";
+import { ImagenComponent } from "../sub_components/ImagenM";
 
 
 

@@ -1,20 +1,11 @@
 "use client";
 
 import { ExperienciaType } from "@/types/experiencia";
-import { ReactNode } from "react";
 import style_experiencia from "@/styles/sections/experiencia.module.scss"
-import { 
-    FaWhatsapp, 
-    FaLinkedin
-} from "react-icons/fa";
-import { BsFillPersonVcardFill } from "react-icons/bs";
-import { SiCodefactor } from "react-icons/si";
-import { MdOutlineEmail } from "react-icons/md";
 import { BiBriefcase } from "react-icons/bi";
-import SectionHeader from "./sub_components/SectionHeader";
-import Image from "next/image";
+import SectionHeader from "../sub_components/SectionHeader";
 import Link from "next/link";
-import { ImagenComponent } from "./sub_components/ImagenM";
+import { ImagenComponent } from "../sub_components/ImagenM";
 
 
 type Props = {

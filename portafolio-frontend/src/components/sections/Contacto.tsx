@@ -6,7 +6,7 @@ import { FaArrowRight, FaPlus, FaInstagram, FaLinkedin, FaDribbble, FaWhatsapp, 
 import { FaXTwitter } from "react-icons/fa6"; 
 import { MdOutlineEmail, MdCall } from "react-icons/md";
 import { BsQuestionCircle } from "react-icons/bs";
-import SectionHeader from "./sub_components/SectionHeader";
+import SectionHeader from "../sub_components/SectionHeader";
 import { PerfilType } from "@/types/perfil";
 import { enviarMensajeContacto } from "@/services/fetchData";
 import Link from "next/link";

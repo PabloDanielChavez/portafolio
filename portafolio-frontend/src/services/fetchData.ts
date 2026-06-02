@@ -11,7 +11,9 @@ export async function getAllPortfolioData() {
 
   try {
     const promesas = endpoints.map(endpoint => 
-      fetch(`${urlBase}${endpoint}`, { cache: "no-store" })
+      fetch(`${urlBase}${endpoint}`, { 
+        next: { revalidate: 3600 } // 1 hora de caché en la CDN
+       })
         .then(res => res.ok ? res.json() : [])
         .catch(() => []) 
     );
