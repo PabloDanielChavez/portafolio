@@ -97,7 +97,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
           <div className={style_ventana.ventana_central_box} ref={contenidoRef}>
             <Header></Header>
             <div className={style_ventana.ventana_central_contenido} >
-              <div 
+              {/* <div 
                 id="articleUpward" 
                 className={`${style_ventana.ventana_header_menu}`}
                 onClick={expMenu}
@@ -105,7 +105,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
                 tabIndex={0}
               >
                 <BiMenu size={24} className={style_global.ventana_menu_icono} />
-              </div>
+              </div> */}
               <div>
                 {/* <div key={seccion.id} className={styles_footer.footer_box}>
                   <h2 className={styles_footer.footer_h2}>{seccion.titulo}</h2>
