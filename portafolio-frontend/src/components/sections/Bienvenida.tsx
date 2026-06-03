@@ -56,22 +56,22 @@ export default function Bienvenida({ perfil }: Props) {
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://www.linkedin.com/in/${user?.nombre_linkedin}/`}
-                            >
-                                <FaGithub size={20} /> 
+                            > 
+                                <FaLinkedin size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Linkedin</span>
                             </Link>
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://github.com/${user?.nombre_github}`}
                             >
-                                <FaWhatsapp size={20} /> 
+                                <FaGithub size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>GitHub</span>
                             </Link>
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://wa.me/${user?.numero_whatsapp}`}
                             >
-                                <FaLinkedin size={20} /> 
+                                <FaWhatsapp size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Whatsapp</span>
                             </Link>
                         </div>
