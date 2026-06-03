@@ -1,0 +1,119 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.pagTrabajo {
+  // Contenedor principal que abarca toda la vista
+  &_detalle_container {
+    padding: 60px 20px;
+    background: #0b0b0b; // Fondo uniforme para toda la página
+    color: #f5f5f5;
+    min-height: 100vh;
+  }
+
+  &_layout {
+    max-width: 1100px; // Un poco más ancho para más detalle
+    margin: 0 auto;
+  }
+
+  /* NAVEGACIÓN */
+  &_LINK {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b8b8b;
+    text-decoration: none;
+    margin-bottom: 40px;
+    transition: 0.25s;
+    &:hover { color: #c084fc; transform: translateX(-3px); }
+  }
+
+  /* HERO SECTION */
+  &_detalle_hero {
+    margin-bottom: 50px;
+    h1 { font-size: 3rem; margin-bottom: 10px; }
+  }
+
+  &_detalle_link {
+    color: #c084fc;
+    text-decoration: none;
+    font-size: 14px;
+    &:hover { text-decoration: underline; }
+  }
+
+  /* GRID PRINCIPAL */
+  &_detalle_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+
+    @include m.tablet {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  /* COLUMNA IMAGEN */
+  &_detalle_img_main {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #1a1a1a;
+  }
+
+  /* COLUMNA DETALLE */
+  &_detalle_contenido {
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+    p {
+      line-height: 1.8;
+      color: #a1a1aa;
+      margin-bottom: 30px;
+    }
+  }
+
+  &_detalle_specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: #111111;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #1a1a1a;
+    span { color: #d4d4d8; font-size: 14px; }
+  }
+
+  /* MANTENEMOS TUS MÉTRICAS EXISTENTES PERO ADAPTADAS */
+  &_card_metrics {
+    display: flex;
+    gap: 25px;
+    margin-top: 2rem;
+  } 
+
+  &_layout_metrics {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &_card_metrics_titulo {
+    font-size: 11px;
+    color: #8b8b8b;
+    text-transform: uppercase;
+  }
+
+  &_card_metrics_puntaje {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .verde { background: rgba(34, 197, 94, 0.1); color: #00CC66; }
+  .amarillo { background: rgba(255, 170, 0, 0.1); color: #FFAA00; }
+  .rojo { background: rgba(255, 51, 51, 0.1); color: #FF3333; }
+}

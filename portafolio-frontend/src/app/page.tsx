@@ -12,7 +12,7 @@ import { ServiciosType } from "@/types/servicios";
 import { TrabajosType } from "@/types/trabajos";
 
 
-const Experiencia = loadSection<{ experiencia: ExperienciaType[], exp_desafio: exp_desafioType[], exp_tecnologia: exp_tecnologiaType[] }>("Experiencia");
+const Experiencia = loadSection<{ experiencia: ExperienciaType[], exp_desafio: exp_desafioType[], exp_tecnologia: exp_tecnologiaType[], showFooter?: boolean }>("Experiencia");
 const Habilidades = loadSection<{ habilidades: HabilidadesType[] }>("Habilidades");
 const Clientes = loadSection<{ clientes: ClientesType[] }>("Clientes");
 const Servicios = loadSection<{ servicios: ServiciosType[] }>("Servicios");
@@ -26,7 +26,7 @@ export default async function Home() {
   return (
     <>
       <Bienvenida perfil={data.Perfil} />
-      <Experiencia experiencia={data.Experiencia} exp_desafio={data.ExpDesafio} exp_tecnologia={data.ExpTecnologia} />
+      <Experiencia experiencia={data.Experiencia} exp_desafio={data.ExpDesafio} exp_tecnologia={data.ExpTecnologia} showFooter={false}/>
       <Servicios servicios={data.Servicios} />
       <Trabajos trabajos={data.Trabajos} />
       <Habilidades habilidades={data.Habilidades} />

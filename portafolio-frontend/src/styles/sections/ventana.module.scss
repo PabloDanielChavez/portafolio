@@ -26,6 +26,7 @@
     .seccionVentanaDer {
         width: 10%;
         position: fixed;
+        z-index: 2;
     }
 
     .seccionVentanaIzq {
@@ -63,7 +64,7 @@
     &_footer_box_layout {
         display: none;
 
-        @include m.telefonoXXL {
+        @include m.tablet {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -100,11 +101,11 @@
 
         width: 5dvh;
         height: 5dvh;
-        @include m.telefono {
+        @include m.tabletXL {
             width: 7dvh;
             height: 7dvh;
         }
-        @include m.tabletXL {
+        @include m.desktop {
             border-radius: 50%;
             border: 6px solid #303030;
             width: 11dvh;
@@ -256,6 +257,7 @@
         flex: 1; // ocupa todo el espacio disponible
         overflow: hidden;
         overflow-y: auto;
+        position: relative;
     }
     &_central_scroll {
         width: 100%;
@@ -289,7 +291,10 @@
         overflow: hidden;
         margin: 0 auto;
         padding: 3rem 0;
-        width: min(900px, 90%);
+        width: min(900px, 75%);
+        @include m.tablet {
+            width: min(900px, 90%);
+        }
         gap: 3rem;
 
         position: relative;

@@ -15,4 +15,8 @@ export type TrabajosType = {
     nombre_archivo:string;
     nombre_imagen:string;
     formato_imagen:string;
+    performance: number;
+    accessibility: number;
+    practices: number;
+    seo: number;
 };

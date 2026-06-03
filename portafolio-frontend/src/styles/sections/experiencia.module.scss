@@ -208,4 +208,32 @@
       font-size: 14px;
     }
   }
+  /* BOTÓN */
+  &_card_footer {
+    margin-top: 10px;
+  }
+
+  &_card_btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 12px;
+
+    @include m.tablet {
+      padding: 14px;
+      font-size: 13px;
+    }
+
+    background: #111111;
+    border: 1px solid #1f1f1f;
+    border-radius: 12px;
+    color: #e5e5e5;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #1a1a1a;
+      border-color: #2a2a2a;
+    }
+  }
 }

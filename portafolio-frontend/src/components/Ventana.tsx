@@ -19,6 +19,7 @@ import { SiCodefactor } from "react-icons/si";
 import { SelectorItem } from "./sub_components/SelectorBtn";
 import { BiMenu } from "react-icons/bi";
 import { ImagenComponent } from "./sub_components/ImagenM";
+import Link from "next/link";
 
 interface VentanaProps {
   children: React.ReactNode;
@@ -57,7 +58,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
       <div className={style_ventana.ventana_layoutPrincipal}>
         <article id="" className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaIzq}` }>
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
-            <a href="#">
+            <Link href="/perfil" className={`${style_ventana.ventana_header_link}`}>
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
                 <ImagenComponent 
                   style={`${style_ventana.ventana_header_imagen_perfil}`}
@@ -68,14 +69,14 @@ export default function Ventana({ children, perfil }: VentanaProps) {
                   priority="prioridad"
                 />
               </div>
-            </a>
+            </Link>
           </div>
           <div id="articleSelector" className={`${style_ventana.ventana_header_selector}`}>
             <div className={`${style_ventana.ventana_header_navegador}`}>
               <SelectorItem href="/perfil" Icon={BsFillPersonVcardFill} label="Perfil" lado="der"/>
-              <SelectorItem href="/experiencia" Icon={FaBriefcase} label="Experiencia"  lado="der"/>
-              <SelectorItem href="/servicios" Icon={SiCodefactor} label="servicios"  lado="der"/>
-              <SelectorItem href="/contacto" Icon={FaEnvelope} label="contacto"  lado="der"/>
+              <SelectorItem href="/trabajos" Icon={FaBriefcase} label="Trabajos"  lado="der"/>
+              <SelectorItem href="/servicios" Icon={SiCodefactor} label="Servicios"  lado="der"/>
+              <SelectorItem href="/contacto" Icon={FaEnvelope} label="Contacto"  lado="der"/>
             </div>
           </div>
           <div 

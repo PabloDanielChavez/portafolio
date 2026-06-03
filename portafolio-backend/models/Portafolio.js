@@ -102,7 +102,11 @@ export const trabajos = db.define('trabajos', {
     valoracion_trabajo: stringField(),
     nombre_archivo: stringField(),
     nombre_imagen: stringField(),
-    formato_imagen: stringField()
+    formato_imagen: stringField(),
+    performance: intField(),
+    accessibility: intField(),
+    practices: intField(),
+    seo: intField()
 }, modelOptions('trabajos'));
 
 export const clientes = db.define('clientes', {

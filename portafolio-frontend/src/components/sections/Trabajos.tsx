@@ -1,16 +1,10 @@
 "use client";
 
-import { ReactNode } from "react";
 import style_trabajos from "@/styles/sections/trabajos.module.scss"
 import { FaArrowRight } from "react-icons/fa";
-import { AiTwotoneSchedule } from "react-icons/ai";
-import { MdOutlineWeb } from "react-icons/md";
-import { TbWorld } from "react-icons/tb";
-import { PiPaintBrushBold } from "react-icons/pi";
 import { IoIosRocket } from "react-icons/io";
 import { TrabajosType } from "@/types/trabajos";
 import SectionHeader from "../sub_components/SectionHeader";
-import Image from "next/image";
 import { ImagenComponent } from "../sub_components/ImagenM";
 
 
@@ -57,11 +51,23 @@ export default function Trabajos({ trabajos }: Props) {
                                                 <span>{tra?.tiempo_trabajo}</span>
                                             </div>
                                             <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
+                                            <div className={style_trabajos.trabajos_card_metrics}>
+                                                {[
+                                                    { valor: tra?.performance, etiqueta: "Performance" },
+                                                    { valor: tra?.practices, etiqueta: "Best Practiques" },
+                                                    { valor: tra?.accessibility, etiqueta: "Accessibility" },
+                                                    { valor: tra?.seo, etiqueta: "SEO" },
+                                                ].map((stat, idx) => (
+                                                    <article key={idx} className={`${style_trabajos.trabajos_layout_metrics}`}> 
+                                                        <span className={`${style_trabajos.trabajos_card_metrics_puntaje} ${stat.valor >= 90 ? style_trabajos.verde : stat.valor >= 50 ? style_trabajos.amarillo : style_trabajos.rojo}`} title={stat.etiqueta}>{stat.valor}</span>
+                                                        <span className={style_trabajos.trabajos_card_metrics_titulo} title={stat.etiqueta}>{stat.etiqueta}</span>
+                                                    </article>
+                                                ))}
+                                            </div>
                                         </div>
                                     </article>
                                 )
                             })}
-                            
                             <div className={style_trabajos.trabajos_card_footer}>
                                 <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
                             </div>

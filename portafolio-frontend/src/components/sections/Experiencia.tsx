@@ -6,13 +6,15 @@ import { BiBriefcase } from "react-icons/bi";
 import SectionHeader from "../sub_components/SectionHeader";
 import Link from "next/link";
 import { ImagenComponent } from "../sub_components/ImagenM";
+import { FaArrowRight } from "react-icons/fa";
 
 
 type Props = {
     experiencia: ExperienciaType[];
+    showFooter?: boolean; 
 };
 
-export default function Experiencia({ experiencia }: Props) {
+export default function Experiencia({ experiencia, showFooter }: Props) {
 
   return (
     <article className={style_experiencia.experiencia}>
@@ -73,10 +75,20 @@ export default function Experiencia({ experiencia }: Props) {
                                     </article>
                                 </Link>
                             )
-                        })}
+                        })}  
+                        {showFooter && (    
+                            <div className={style_experiencia.experiencia_card_footer}>
+                                <Link 
+                                    href={`/experiencia`} 
+                                    className={style_experiencia.experiencia_card_link}
+                                >
+                                    <button className={style_experiencia.experiencia_card_btn}>Más Expereriencia <FaArrowRight /></button>
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </div>
-            </article>
+            </article> 
         </div>
     </article>
   );

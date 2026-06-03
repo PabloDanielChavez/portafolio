@@ -1,8 +1,10 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 .header{
-    display: none;
     height: 0;
+    position: fixed;
+    z-index: 1;
+    background: radial-gradient(circle at top, #111 0%, #0d0d0d 60%);
     @include m.telefonoXL {
         display: flex;
         flex-direction: column;
