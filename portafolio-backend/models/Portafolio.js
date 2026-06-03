@@ -55,6 +55,19 @@ export const experiencia = db.define('experiencia', {
     imagenes_proyecto: stringField()
 }, modelOptions('experiencia'));
 
+export const exp_desafio = db.define('exp_desafio', {
+    id: idField(),
+    exp_id: intField(),
+    exp_desafio: stringField(),
+    exp_solucion: stringField()
+}, modelOptions('exp_desafio'));
+
+export const exp_tecnologia = db.define('exp_tecnologia', {
+    id: idField(),
+    exp_id: intField(),
+    exp_tecnologia: stringField()
+}, modelOptions('exp_tecnologia'));
+
 export const habilidades = db.define('habilidades', {
     id: idField(),
     nombre_habilidad: stringField(),

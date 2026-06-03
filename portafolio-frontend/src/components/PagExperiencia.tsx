@@ -8,13 +8,19 @@ import { IoMdArrowBack } from "react-icons/io";
 import SectionHeader from "./sub_components/SectionHeader";
 import Link from "next/link";
 import { ImagenComponent } from "./sub_components/ImagenM";
+import { exp_desafioType } from "@/types/exp_desafio";
+import { exp_tecnologiaType } from "@/types/exp_tecnologia";
 
 type Props = {
     exp: ExperienciaType;
+    exp_desafio: exp_desafioType;
+    exp_tecnologia: exp_tecnologiaType;
 };
 
-export default function PagExperienciaDetalle({ exp }: Props) {
+export default function PagExperienciaDetalle({ exp, exp_desafio, exp_tecnologia }: Props) {
     if (!exp) return <p>Cargando detalles de la experiencia...</p>;
+    const desafiosFiltrados = (exp_desafio as any[]).filter(d => d.exp_id === exp.id);
+    const tecnologiasFiltradas = (exp_tecnologia as any[]).filter(t => t.exp_id === exp.id).map(t => t.exp_tecnologia);
     return (
         <article className={style_experiencia.experiencia}>
             <div className={style_experiencia.experiencia_layout}>
@@ -77,19 +83,19 @@ export default function PagExperienciaDetalle({ exp }: Props) {
                                     </p>
                                 </div>
                             </article>
-                            {exp.desafios_soluciones && exp.desafios_soluciones.length > 0 && (
+                            {desafiosFiltrados && desafiosFiltrados.length > 0 && (
                                 <article className={style_experiencia.experiencia_contenido_article}>
                                     <div className={style_experiencia.experiencia_contenido_article_contenido_layout}>
                                         <h3 className={style_experiencia.experiencia_contenido_article_contenido_puesto_h3}>
                                             <BiExtension /> Desafíos Técnicos Superados
                                         </h3>
                                         <div className={style_experiencia.experiencia_detalle_desafios_grid}>
-                                            {exp.desafios_soluciones.map((item, index) => (
+                                            {desafiosFiltrados.map((item, index) => (
                                                 <div key={index} className={style_experiencia.experiencia_detalle_desafio_card}>
                                                     <span className={style_experiencia.experiencia_detalle_tag_problema}>Problema</span>
-                                                    <p className={style_experiencia.experiencia_contenido_article_contenido_puesto_p_informacion}>{item.desafio}</p>
+                                                    <p className={style_experiencia.experiencia_contenido_article_contenido_puesto_p_informacion}>{item.exp_desafio}</p>
                                                     <span className={style_experiencia.experiencia_detalle_tag_solucion}>Solución</span>
-                                                    <p className={style_experiencia.experiencia_contenido_article_contenido_puesto_p_informacion}>{item.solucion}</p>
+                                                    <p className={style_experiencia.experiencia_contenido_article_contenido_puesto_p_informacion}>{item.exp_solucion}</p>
                                                 </div>
                                             ))}
                                         </div>
@@ -97,14 +103,14 @@ export default function PagExperienciaDetalle({ exp }: Props) {
                                 </article>
                             )}
                             <div className={style_experiencia.experiencia_detalle_columnas}>
-                                {exp.tecnologias && (
+                                {tecnologiasFiltradas && tecnologiasFiltradas.length > 0 && (
                                     <article className={style_experiencia.experiencia_contenido_article}>
                                         <div className={style_experiencia.experiencia_contenido_article_contenido_layout}>
                                             <h3 className={style_experiencia.experiencia_contenido_article_contenido_puesto_h3}>
                                                 <BiCodeAlt /> Tecnologías Aplicadas
                                             </h3>
                                             <div className={style_experiencia.experiencia_detalle_tech_badges}>
-                                                {exp.tecnologias.map((tech) => (
+                                                {tecnologiasFiltradas.map((tech) => (
                                                     <span key={tech} className={style_experiencia.experiencia_detalle_tech_tag}>
                                                         {tech}
                                                     </span>
@@ -113,7 +119,7 @@ export default function PagExperienciaDetalle({ exp }: Props) {
                                         </div>
                                     </article>
                                 )}
-                                {exp.logros && (
+                                {/* {exp.logros && (
                                     <article className={style_experiencia.experiencia_contenido_article}>
                                         <div className={style_experiencia.experiencia_contenido_article_contenido_layout}>
                                             <h3 className={style_experiencia.experiencia_contenido_article_contenido_puesto_h3}>
@@ -128,7 +134,7 @@ export default function PagExperienciaDetalle({ exp }: Props) {
                                             </ul>
                                         </div>
                                     </article>
-                                )}
+                                )} */}
                             </div>
 
                         </div>

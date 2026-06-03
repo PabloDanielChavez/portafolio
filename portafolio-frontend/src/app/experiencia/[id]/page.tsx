@@ -30,7 +30,11 @@ export default async function ExpDetailPage({ params }: Props) {
 
   return (
     <>
-      <PagExperienciaDetalle exp={experienciaIndividual} />
+      <PagExperienciaDetalle 
+        exp={experienciaIndividual} 
+        exp_desafio={data.ExpDesafio} 
+        exp_tecnologia={data.ExpTecnologia} 
+      />
     </>
   );
 }

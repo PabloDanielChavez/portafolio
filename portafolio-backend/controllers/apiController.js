@@ -1,7 +1,7 @@
 // controllers/apiControllers.js
 import requestIp from 'request-ip';
 import useragent from 'useragent';
-import { perfil, habilidades, experiencia, servicios, trabajos, clientes, mensajes } from '../models/Portafolio.js';
+import { perfil, habilidades, experiencia, exp_desafio, exp_tecnologia, servicios, trabajos, clientes, mensajes } from '../models/Portafolio.js';
 
 export const guardarMensaje = async (req, res) => {
     try {
@@ -57,6 +57,26 @@ export const obtenerExperiencia = async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ mensaje: 'Error al obtener la Experiencia.' });
+    }
+};
+
+export const obtenerExpDesafio = async (req, res) => {
+    try {
+        const expDesafioSalida = await exp_desafio.findAll();
+        res.json(expDesafioSalida);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error al obtener los Desafíos de Experiencia.' });
+    }
+};
+
+export const obtenerExpTecnologia = async (req, res) => {
+    try {
+        const expTecnologiaSalida = await exp_tecnologia.findAll();
+        res.json(expTecnologiaSalida);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error al obtener los Desafíos de Experiencia.' });
     }
 };
 

@@ -7,7 +7,7 @@ export async function getAllPortfolioData() {
     return null;
   }
 
-  const endpoints = ['perfil', 'habilidades', 'experiencia', 'servicios', 'trabajos', 'clientes', 'seccion'];
+  const endpoints = ['perfil', 'habilidades', 'experiencia', 'exp_desafio', 'exp_tecnologia', 'servicios', 'trabajos', 'clientes', 'seccion'];
 
   try {
     const promesas = endpoints.map(endpoint => 
@@ -25,10 +25,12 @@ export async function getAllPortfolioData() {
       Perfil: resultados[0],
       Habilidades: resultados[1],
       Experiencia: resultados[2],
-      Servicios: resultados[3],
-      Trabajos: resultados[4],
-      Clientes: resultados[5],
-      Seccion: resultados[6],
+      ExpDesafio: resultados[3],
+      ExpTecnologia: resultados[4],
+      Servicios: resultados[5],
+      Trabajos: resultados[6],
+      Clientes: resultados[7],
+      Seccion: resultados[8],
     };
 
     return dataFinal;
