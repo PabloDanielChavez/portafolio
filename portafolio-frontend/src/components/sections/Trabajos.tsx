@@ -70,17 +70,15 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                         </div>
                                     </article>
                                     ))}
-                                    {!showFooter && (
-                                    <div className={style_trabajos.trabajos_card_footer}>
-                                        <Link 
-                                            href={`/trabajos`} 
-                                            className={style_trabajos.trabajos_card_btn}
-                                        >
-                                            <button className={style_trabajos.trabajos_card_btn}>
-                                                Más Proyectos <FaArrowRight />
-                                            </button>
-                                        </Link>
-                                    </div>
+                                    {showFooter && (
+                                        <div className={style_trabajos.trabajos_card_footer}>
+                                            <Link 
+                                                href={`/trabajos`} 
+                                                className={style_trabajos.trabajos_card_btn}
+                                            >
+                                                <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
+                                            </Link>
+                                        </div>
                                     )}
                                 </>
                             )}
