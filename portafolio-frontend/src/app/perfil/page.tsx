@@ -6,7 +6,6 @@ import Habilidades from "@/components/sections/Habilidades";
 import Servicios from "@/components/sections/Servicios";
 import Trabajos from "@/components/sections/Trabajos";
 import Clientes from "@/components/sections/Clientes";
-import Footer from "@/components/sections/Footer";
 import { getAllPortfolioData } from "@/services/fetchData";
 
 export default async function Perfil() {
@@ -16,11 +15,10 @@ export default async function Perfil() {
   return (
     <>
       <Bienvenida perfil={data.Perfil} />
-      <Experiencia experiencia={data.Experiencia} />
-      <Habilidades habilidades={data.Habilidades} />
-      <Servicios servicios={data.Servicios} />
       <Trabajos trabajos={data.Trabajos} />
-      <Clientes clientes={data.Clientes} />
+      <Experiencia experiencia={data.Experiencia} />
+      <Servicios servicios={data.Servicios} />
+      <Habilidades habilidades={data.Habilidades} />
     </>
   );
 }

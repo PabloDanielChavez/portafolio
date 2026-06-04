@@ -6,14 +6,16 @@ import { IoIosRocket } from "react-icons/io";
 import { TrabajosType } from "@/types/trabajos";
 import SectionHeader from "../sub_components/SectionHeader";
 import { ImagenComponent } from "../sub_components/ImagenM";
+import Link from "next/link";
 
 
 
 type Props = {
     trabajos: TrabajosType[];
+    showFooter?: boolean 
 };
 
-export default function Trabajos({ trabajos }: Props) {
+export default function Trabajos({ trabajos, showFooter }: Props) {
     return (
         <article className={style_trabajos.trabajos}>
             <div className={style_trabajos.trabajos_layout}>
@@ -25,8 +27,9 @@ export default function Trabajos({ trabajos }: Props) {
                     />
                     <div className={style_trabajos.trabajos_contenido_box}>
                         <div className={style_trabajos.trabajos_contenido_box_layout}>
-                            {trabajos && trabajos?.map(tra => {
-                                return (
+                            {trabajos && (
+                                <>
+                                    {trabajos.slice(0, !showFooter ? trabajos.length : 2).map((tra) => (
                                     <article key={tra.id} className={style_trabajos.trabajos_card}>
                                         <div className={style_trabajos.trabajos_card_img}>
                                             <ImagenComponent 
@@ -66,11 +69,21 @@ export default function Trabajos({ trabajos }: Props) {
                                             </div>
                                         </div>
                                     </article>
-                                )
-                            })}
-                            <div className={style_trabajos.trabajos_card_footer}>
-                                <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
-                            </div>
+                                    ))}
+                                    {!showFooter && (
+                                    <div className={style_trabajos.trabajos_card_footer}>
+                                        <Link 
+                                            href={`/trabajos`} 
+                                            className={style_trabajos.trabajos_card_btn}
+                                        >
+                                            <button className={style_trabajos.trabajos_card_btn}>
+                                                Más Proyectos <FaArrowRight />
+                                            </button>
+                                        </Link>
+                                    </div>
+                                    )}
+                                </>
+                            )}
                         </div>
                     </div>
                 </article>

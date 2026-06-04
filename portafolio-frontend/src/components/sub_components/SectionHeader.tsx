@@ -19,7 +19,7 @@ export default function SectionHeader({ icon, title, description }: SectionHeade
             <h2 className={styles_seccionHeader.header_title}>{title}</h2>
         </div>
         <div className={styles_seccionHeader.header_description}>
-            <p className={styles_seccionHeader.header_description__p}>{description}</p>
+            <p className={styles_seccionHeader.header_description_p}>{description}</p>
         </div>
     </div>
     );

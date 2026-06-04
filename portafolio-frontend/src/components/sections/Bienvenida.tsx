@@ -83,10 +83,10 @@ export default function Bienvenida({ perfil }: Props) {
                             <ul key={i} className={style_bienvenida.bienvenida_center_layout}>
                                 {redesSociales.map((red) => (
                                     <li key={red.name}>
-                                        <a href={red.url} className={style_bienvenida.bienvenida_center_box_redsocial}>
+                                        <Link href={red.url} className={style_bienvenida.bienvenida_center_box_redsocial}>
                                             {red.icon}
                                             <span className={style_bienvenida.bienvenida_center_redsocial_span}>{red.name}</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

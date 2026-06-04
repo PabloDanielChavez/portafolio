@@ -6,7 +6,7 @@ import { TrabajosType } from "@/types/trabajos";
 
 const Trabajos = loadSection<{ 
     trabajos: TrabajosType[]; 
-    showFooter?: boolean // Agrega esto aquí
+    showFooter?: boolean 
 }>("Trabajos");
 
 

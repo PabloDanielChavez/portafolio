@@ -27,8 +27,9 @@ export default function Experiencia({ experiencia, showFooter }: Props) {
                 />
                 <div className={style_experiencia.experiencia_contenido_box}>
                     <div className={style_experiencia.experiencia_contenido_box_layout}>
-                        {experiencia && experiencia.map(exp => {
-                            return (
+                        {experiencia && (
+                            <>
+                                    {experiencia.slice(0, !showFooter ? experiencia.length : 2).map((exp) => (
                                 <Link 
                                     key={exp.id}
                                     className={style_experiencia.experiencia_LINK} 
@@ -74,8 +75,9 @@ export default function Experiencia({ experiencia, showFooter }: Props) {
                                         </div>
                                     </article>
                                 </Link>
-                            )
-                        })}  
+                                ))}
+                            </>
+                        )} 
                         {showFooter && (    
                             <div className={style_experiencia.experiencia_card_footer}>
                                 <Link 

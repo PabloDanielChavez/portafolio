@@ -291,8 +291,11 @@
         overflow: hidden;
         margin: 0 auto;
         padding: 3rem 0;
-        width: min(900px, 75%);
+        width: 90%;
         @include m.tablet {
+            width: 75%;
+        }
+        @include m.tabletXXL {
             width: min(900px, 90%);
         }
         gap: 3rem;
