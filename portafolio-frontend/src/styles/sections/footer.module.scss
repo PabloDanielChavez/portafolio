@@ -2,6 +2,13 @@
 @use '../base/mixins.module.scss' as m;
 
 .footer {
+    padding: 40px 16px;
+    background: #0d0d0d;
+    color: #e5e5e5;
+
+    @include m.telefonoXL {
+        padding: 60px 20px;
+    }
     &_grid_principal {
         background: #0d0d0d;
         color: #e5e5e5;

@@ -30,45 +30,51 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                             {trabajos && (
                                 <>
                                     {trabajos.slice(0, !showFooter ? trabajos.length : 2).map((tra) => (
-                                    <article key={tra.id} className={style_trabajos.trabajos_card}>
-                                        <div className={style_trabajos.trabajos_card_img}>
-                                            <ImagenComponent 
-                                                style={style_trabajos.ha}
-                                                url={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`}
-                                                alt={tra?.nombre_imagen}
-                                                widthE={500}
-                                                heightE={500}
-                                                priority=""
-                                            />
-                                        </div>
-                                        <div className={style_trabajos.trabajos_card_info}>
-                                            <div className={style_trabajos.trabajos_card_header}>
-                                                <h3>{tra?.nombre_trabajo}</h3>
-                                                <a href={tra?.enlace_trabajo} className={style_trabajos.trabajos_card_link}>{tra?.enlace_trabajoResumido}</a>
-                                            </div>
-                                            <div className={style_trabajos.trabajos_card_meta}>
-                                                <span>{tra?.complejidad_trabajo}</span>
-                                                <span>•</span>
-                                                <span>{tra?.numero_pagina} Paginas</span>
-                                                <span>•</span>
-                                                <span>{tra?.tiempo_trabajo}</span>
-                                            </div>
-                                            <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
-                                            <div className={style_trabajos.trabajos_card_metrics}>
-                                                {[
-                                                    { valor: tra?.performance, etiqueta: "Performance" },
-                                                    { valor: tra?.practices, etiqueta: "Best Practiques" },
-                                                    { valor: tra?.accessibility, etiqueta: "Accessibility" },
-                                                    { valor: tra?.seo, etiqueta: "SEO" },
-                                                ].map((stat, idx) => (
-                                                    <article key={idx} className={`${style_trabajos.trabajos_layout_metrics}`}> 
-                                                        <span className={`${style_trabajos.trabajos_card_metrics_puntaje} ${stat.valor >= 90 ? style_trabajos.verde : stat.valor >= 50 ? style_trabajos.amarillo : style_trabajos.rojo}`} title={stat.etiqueta}>{stat.valor}</span>
-                                                        <span className={style_trabajos.trabajos_card_metrics_titulo} title={stat.etiqueta}>{stat.etiqueta}</span>
-                                                    </article>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </article>
+                                        <Link 
+                                            key={tra.id}
+                                            className={style_trabajos.trabajos_LINK} 
+                                            href={`/trabajos/${tra.id}`}
+                                        >
+                                            <article key={tra.id} className={style_trabajos.trabajos_card}>
+                                                <div className={style_trabajos.trabajos_card_img}>
+                                                    <ImagenComponent 
+                                                        style={style_trabajos.ha}
+                                                        url={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`}
+                                                        alt={tra?.nombre_imagen}
+                                                        widthE={500}
+                                                        heightE={500}
+                                                        priority=""
+                                                    />
+                                                </div>
+                                                <div className={style_trabajos.trabajos_card_info}>
+                                                    <div className={style_trabajos.trabajos_card_header}>
+                                                        <h3>{tra?.nombre_trabajo}</h3>
+                                                        <Link href={tra?.enlace_trabajo} className={style_trabajos.trabajos_card_link}>{tra?.enlace_trabajoResumido}</Link>
+                                                    </div>
+                                                    <div className={style_trabajos.trabajos_card_meta}>
+                                                        <span>{tra?.complejidad_trabajo}</span>
+                                                        <span>•</span>
+                                                        <span>{tra?.numero_pagina} Paginas</span>
+                                                        <span>•</span>
+                                                        <span>{tra?.tiempo_trabajo}</span>
+                                                    </div>
+                                                    <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
+                                                    <div className={style_trabajos.trabajos_card_metrics}>
+                                                        {[
+                                                            { valor: tra?.performance, etiqueta: "Performance" },
+                                                            { valor: tra?.practices, etiqueta: "Best Practiques" },
+                                                            { valor: tra?.accessibility, etiqueta: "Accessibility" },
+                                                            { valor: tra?.seo, etiqueta: "SEO" },
+                                                        ].map((stat, idx) => (
+                                                            <article key={idx} className={`${style_trabajos.trabajos_layout_metrics}`}> 
+                                                                <span className={`${style_trabajos.trabajos_card_metrics_puntaje} ${stat.valor >= 90 ? style_trabajos.verde : stat.valor >= 50 ? style_trabajos.amarillo : style_trabajos.rojo}`} title={stat.etiqueta}>{stat.valor}</span>
+                                                                <span className={style_trabajos.trabajos_card_metrics_titulo} title={stat.etiqueta}>{stat.etiqueta}</span>
+                                                            </article>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </Link>
                                     ))}
                                     {showFooter && (
                                         <div className={style_trabajos.trabajos_card_footer}>

@@ -26,7 +26,7 @@
     .seccionVentanaDer {
         width: 10%;
         position: fixed;
-        z-index: 2;
+        z-index: 5;
     }
 
     .seccionVentanaIzq {
@@ -98,9 +98,14 @@
         border-radius: 50%;
         border: 2px solid #2a2a2a;
         box-shadow: 0 0 20px rgba(255,255,255,0.05);
+        box-sizing: border-box;
 
-        width: 5dvh;
-        height: 5dvh;
+        width: 3dvh;
+        height: 3dvh;
+        @include m.telefonoXL {
+            width: 3dvh;
+            height: 3dvh;
+        }
         @include m.tabletXL {
             width: 7dvh;
             height: 7dvh;
@@ -311,7 +316,7 @@
         right: 0px;
         width: min-content;
         height: min-content;
-        z-index: 10;
+        z-index: 4;
         background-color: red;
         &:hover {
             cursor: pointer;

@@ -24,6 +24,15 @@
       gap: 20px;
     }
   }
+  
+  &_LINK {
+    text-decoration: none;
+    color: inherit; 
+    &:hover {
+      text-decoration: none;
+      color: inherit; 
+    }
+  }
 
   &_card {
     display: flex;
