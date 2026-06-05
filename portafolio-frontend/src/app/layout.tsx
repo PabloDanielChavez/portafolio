@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Ventana from "@/components/Ventana";
 import Script from "next/script";
+import "material-symbols/outlined.css"; 
 
 import { getAllPortfolioData } from "@/services/fetchData";
 
 const roboto = Roboto({
   subsets: ["latin"],
-  weight: ["100","300","400","500","700","900"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -45,29 +47,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             gtag('config', 'G-Z7439LP7QW');
           `}
         </Script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          id="material-symbols-css"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
-          rel="stylesheet"
-          media="print"
-        />
-        <Script id="optimize-material-symbols" strategy="afterInteractive">
-          {`
-            const fontLink = document.getElementById('material-symbols-css');
-            if (fontLink) {
-              fontLink.media = 'all';
-            }
-          `}
-        </Script>
-
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
       </head>
       <body className={roboto.className} style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
         <Ventana perfil={data?.Perfil}>
