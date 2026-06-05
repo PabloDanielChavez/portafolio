@@ -35,6 +35,7 @@ export default function Bienvenida({ perfil }: Props) {
                             width={150} 
                             height={150}
                             priority
+                            sizes="150px"
                         />
                     </div>
                     <div className={style_bienvenida.bienvenida_header_box_informacion}>

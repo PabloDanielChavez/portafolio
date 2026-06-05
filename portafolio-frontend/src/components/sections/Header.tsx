@@ -5,23 +5,31 @@ import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [hora, setHora] = useState('');
+  const [isMounted, setIsMounted] = useState(false); // <-- El guardián contra el error #418
 
   useEffect(() => {
+    setIsMounted(true); // <-- Se ejecuta SÓLO en el navegador
+
     const obtenerHora = () => {
       return new Date().toLocaleTimeString('es-AR', {
         timeZone: 'America/Argentina/Buenos_Aires',
         hour12: false
       });
     };
-
     setHora(obtenerHora());
-
     const intervalo = setInterval(() => {
       setHora(obtenerHora());
     }, 1000);
-
     return () => clearInterval(intervalo);
   }, []);
+  if (!isMounted) {
+    return (
+      <article className={styles_header.header_box_time}>
+        Hora Local (ARG): --:--:--
+      </article>
+    );
+  }
+
   return (
     <header className={styles_header.header}>
       <div className={styles_header.header_box}>
@@ -34,10 +42,7 @@ export default function Header() {
             <span className={styles_header.header_available}>Disponible para trabajar</span>
           </article>
           <article className={styles_header.header_box_time}>
-            <p className={styles_header.header_p_time}>Hora local (ARG)</p>
-            <div className={styles_header.header_time}>
-              <span className={styles_header.header_span_time}>{hora}</span>
-            </div>
+            Hora Local (ARG): {hora}
           </article>
         </div>
       </div>
