@@ -36,6 +36,7 @@ export default function Bienvenida({ perfil }: Props) {
                             height={150}
                             priority
                             sizes="150px"
+                            fetchPriority="high" // 👈 ESTO le dice al navegador que es la imagen más importante
                         />
                     </div>
                     <div className={style_bienvenida.bienvenida_header_box_informacion}>
@@ -53,7 +54,7 @@ export default function Bienvenida({ perfil }: Props) {
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://www.linkedin.com/in/${user?.nombre_linkedin}/`}
-                                aria-label={`Síguenos en ${user?.nombre_linkedin}`}
+                                aria-label={`Ir a mi LinkedIn ${user?.nombre_linkedin}`}
                             > 
                                 <FaLinkedin size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Linkedin</span>
@@ -61,7 +62,7 @@ export default function Bienvenida({ perfil }: Props) {
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://github.com/${user?.nombre_github}`}
-                                aria-label={`Síguenos en ${user?.nombre_linkedin}`}
+                                aria-label={`Ir a mi GitHub  ${user?.nombre_github}`}
                             >
                                 <FaGithub size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>GitHub</span>
@@ -69,7 +70,7 @@ export default function Bienvenida({ perfil }: Props) {
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://wa.me/${user?.numero_whatsapp}`}
-                                aria-label={`Síguenos en ${user?.nombre_linkedin}`}
+                                aria-label={`Ir a mi Whatsapp ${user?.numero_whatsapp}`}
                             >
                                 <FaWhatsapp size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Whatsapp</span>
