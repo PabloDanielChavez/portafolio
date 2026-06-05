@@ -35,6 +35,7 @@ export const SelectorItem = ({ href, Icon, label, lado = "der" }: SelectorItemPr
                         color: isHovered ? "white" : "#555", 
                         transition: 'color 0.3s ease',
                         }}
+                        aria-hidden="true"
                     />
                 </Link>
             </div>

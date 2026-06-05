@@ -41,7 +41,7 @@ export default function Bienvenida({ perfil }: Props) {
                         <h1 className={style_bienvenida.bienvenida_header_h1_nombre}>
                             <div className={style_bienvenida.bienvenida_header_box_soy}>
                                 <span className={style_bienvenida.bienvenida_header_soy_span}>✋</span>
-                                <h3 className={style_bienvenida.bienvenida_header_soy_h3}>hola, Soy</h3>
+                                <span className={style_bienvenida.bienvenida_header_soy_h3}>hola, Soy</span>
                             </div>
                             {user?.nombre} {user?.apellido}
                         </h1>

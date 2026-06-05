@@ -55,7 +55,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
 
   return (
     <main className={style_ventana.ventana}>
-      <nav className={style_ventana.ventana_layoutPrincipal} role="navegation">
+      <nav className={style_ventana.ventana_layoutPrincipal}>
         <div className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaIzq}` }>
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <Link 
