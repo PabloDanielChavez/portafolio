@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [hora, setHora] = useState('');
-  const [isMounted, setIsMounted] = useState(false); // <-- El guardián contra el error #418
+  const [isMounted, setIsMounted] = useState(false); 
 
   useEffect(() => {
-    setIsMounted(true); // <-- Se ejecuta SÓLO en el navegador
+    setIsMounted(true); 
 
     const obtenerHora = () => {
       return new Date().toLocaleTimeString('es-AR', {
@@ -42,7 +42,7 @@ export default function Header() {
             <span className={styles_header.header_available}>Disponible para trabajar</span>
           </article>
           <article className={styles_header.header_box_time}>
-            Hora Local (ARG): {hora}
+              <span className={styles_header.header_span_time}>Hora Local (ARG): {hora}</span>
           </article>
         </div>
       </div>
