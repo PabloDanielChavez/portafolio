@@ -3,29 +3,23 @@ import styles_header from '@/styles/sections/header.module.scss';
 import { useState, useEffect } from 'react';
 
 export default function Header() {
-  // Inicializamos el estado directamente con el placeholder de carga '--:--:--'
-  const [hora, setHora] = useState('--:--:--');
+  // const [hora, setHora] = useState('--:--:--');
 
-  useEffect(() => {
-    const obtenerHora = () => {
-      return new Date().toLocaleTimeString('es-AR', {
-        timeZone: 'America/Argentina/Buenos_Aires',
-        hour12: false
-      });
-    };
+  // useEffect(() => {
+  //   const obtenerHora = () => {
+  //     return new Date().toLocaleTimeString('es-AR', {
+  //       timeZone: 'America/Argentina/Buenos_Aires',
+  //       hour12: false
+  //     });
+  //   };
+  //   setHora(obtenerHora());
 
-    // Colocamos la hora real inmediatamente al montar el componente en el cliente
-    setHora(obtenerHora());
+  //   const intervalo = setInterval(() => {
+  //     setHora(obtenerHora());
+  //   }, 1000);
 
-    const intervalo = setInterval(() => {
-      setHora(obtenerHora());
-    }, 1000);
-
-    return () => clearInterval(intervalo);
-  }, []);
-
-  // Ya no necesitamos el if (!isMounted) con un return diferente.
-  // El HTML estructural es EXACTAMENTE el mismo en servidor y cliente.
+  //   return () => clearInterval(intervalo);
+  // }, []);
   return (
     <header className={styles_header.header}>
       <div className={styles_header.header_box}>
@@ -37,9 +31,9 @@ export default function Header() {
             </span>
             <span className={styles_header.header_available}>Disponible para trabajar</span>
           </article>
-          <article className={styles_header.header_box_time}>
+          {/* <article className={styles_header.header_box_time}>
               <span className={styles_header.header_span_time}>Hora Local (ARG): {hora}</span>
-          </article>
+          </article> */}
         </div>
       </div>
     </header>
