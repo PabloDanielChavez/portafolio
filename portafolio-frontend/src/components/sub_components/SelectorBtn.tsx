@@ -20,33 +20,36 @@ export const SelectorItem = ({ href, Icon, label, lado = "der" }: SelectorItemPr
 
     return (
         <article 
-        className={style_ventana.ventana_header_selector_box}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+            className={style_ventana.ventana_header_selector_box}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-        <div className={style_ventana.ventana_header_selector_opcion}>
-            <Link href={href} className={style_ventana.ventana_header_link}>
-            <Icon 
-                className={style_ventana.ventana_header_link} 
+            <div className={style_ventana.ventana_header_selector_opcion}>
+                <Link 
+                    href={href} className={style_ventana.ventana_header_link}
+                    aria-label={`Link a ${label}`}
+                >
+                    <Icon 
+                        className={style_ventana.ventana_header_link} 
+                        style={{ 
+                        color: isHovered ? "white" : "#555", 
+                        transition: 'color 0.3s ease',
+                        }}
+                    />
+                </Link>
+            </div>
+            <div 
+                className={claseNombreBox}
                 style={{ 
-                color: isHovered ? "white" : "#555", 
-                transition: 'color 0.3s ease',
+                opacity: isHovered ? 1 : 0, 
+                transition: 'opacity 0.3s ease',
+                color: 'white'
                 }}
-            />
-            </Link>
-        </div>
-        <div 
-            className={claseNombreBox} // Clase dinámica aplicada aquí
-            style={{ 
-            opacity: isHovered ? 1 : 0, 
-            transition: 'opacity 0.3s ease',
-            color: 'white'
-            }}
-        >
-            <span className={style_ventana.ventana_header_selector_nombre_span}>
-            {label}
-            </span>
-        </div>
+            >
+                <span className={style_ventana.ventana_header_selector_nombre_span}>
+                    {label}
+                </span>
+            </div>
         </article>
     );
 };
