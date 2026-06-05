@@ -17,19 +17,19 @@ export default function Header() {
   ];
 
   const linksFooter = [
-        { id:"1", seccion:"navegacion" , name: "Perfil", icon: <BsFillPersonVcardFill size={18} />, url: `/perfil` },
-        { id:"2", seccion:"navegacion" , name: "Trabajos", icon: <FaBriefcase size={18} />, url: `/trabajos` },
-        { id:"3", seccion:"navegacion" , name: "Servicios", icon: <SiCodefactor size={18} />, url: `/servicios` },
-        { id:"4", seccion:"navegacion" , name: "Contacto", icon: <FaEnvelope size={18} />, url: `/contacto` },
-        { id:"5", seccion:"secciones" , name: "Clientes", icon: <AiTwotoneSchedule size={18} />, url: `` },
-        { id:"6", seccion:"secciones" , name: "Trabajos", icon: <BiBriefcase size={18} />, url: `` },
-        { id:"7", seccion:"secciones" , name: "Habilidades", icon: <PiStack size={18} />, url: `` },
-        { id:"8", seccion:"secciones" , name: "Servicios", icon: <AiTwotoneSchedule size={18} />, url: `` },
-        { id:"9", seccion:"secciones" , name: "Trabajos", icon: <IoIosRocket size={18} />, url: `` },
-        { id:"10", seccion:"contacto" , name: "Linkedin", icon: <LiaLinkedin size={18} />, url: `https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/` },
-        { id:"11", seccion:"contacto" , name: "GitHub", icon: <FaGithub size={18} />, url: `https://github.com/PabloDanielChavez/portafolio` },
-        { id:"12", seccion:"contacto" , name: "Whatsapp", icon: <FaWhatsapp size={18} />, url: `https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto...` },
-        { id:"13", seccion:"contacto" , name: "Pablo_daniel_Chavez@outlook.es", icon: <PiMicrosoftOutlookLogo size={18} />, url: `mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto...` },
+        { id:"1", seccion:"navegacion" , name: "Perfil", icon: <BsFillPersonVcardFill aria-hidden="true" size={18} />, url: `/perfil` },
+        { id:"2", seccion:"navegacion" , name: "Trabajos", icon: <FaBriefcase aria-hidden="true" size={18} />, url: `/trabajos` },
+        { id:"3", seccion:"navegacion" , name: "Servicios", icon: <SiCodefactor aria-hidden="true" size={18} />, url: `/servicios` },
+        { id:"4", seccion:"navegacion" , name: "Contacto", icon: <FaEnvelope aria-hidden="true" size={18} />, url: `/contacto` },
+        { id:"5", seccion:"secciones" , name: "Clientes", icon: <AiTwotoneSchedule aria-hidden="true" size={18} />, url: `` },
+        { id:"6", seccion:"secciones" , name: "Trabajos", icon: <BiBriefcase aria-hidden="true" size={18} />, url: `` },
+        { id:"7", seccion:"secciones" , name: "Habilidades", icon: <PiStack aria-hidden="true" size={18} />, url: `` },
+        { id:"8", seccion:"secciones" , name: "Servicios", icon: <AiTwotoneSchedule aria-hidden="true" size={18} />, url: `` },
+        { id:"9", seccion:"secciones" , name: "Trabajos", icon: <IoIosRocket aria-hidden="true" size={18} />, url: `` },
+        { id:"10", seccion:"contacto" , name: "Linkedin", icon: <LiaLinkedin aria-hidden="true" size={18} />, url: `https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/` },
+        { id:"11", seccion:"contacto" , name: "GitHub", icon: <FaGithub aria-hidden="true" size={18} />, url: `https://github.com/PabloDanielChavez/portafolio` },
+        { id:"12", seccion:"contacto" , name: "Whatsapp", icon: <FaWhatsapp aria-hidden="true" size={18} />, url: `https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto...` },
+        { id:"13", seccion:"contacto" , name: "Pablo_daniel_Chavez@outlook.es", icon: <PiMicrosoftOutlookLogo aria-hidden="true" size={18} />, url: `mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto...` },
     ];
 
   return (
