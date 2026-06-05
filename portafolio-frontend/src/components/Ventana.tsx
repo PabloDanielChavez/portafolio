@@ -55,8 +55,8 @@ export default function Ventana({ children, perfil }: VentanaProps) {
 
   return (
     <main className={style_ventana.ventana}>
-      <div className={style_ventana.ventana_layoutPrincipal}>
-        <article className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaIzq}` }>
+      <nav className={style_ventana.ventana_layoutPrincipal} role="navegation">
+        <div className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaIzq}` }>
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <Link 
               href="/" 
@@ -99,8 +99,8 @@ export default function Ventana({ children, perfil }: VentanaProps) {
               </div>
             </article>
           </div>
-        </article>
-        <article className={style_ventana.ventana_central_box_layout}>
+        </div>
+        <div className={style_ventana.ventana_central_box_layout}>
           <div className={style_ventana.ventana_central_box} ref={contenidoRef}>
             <Header></Header>
             <div className={style_ventana.ventana_central_contenido} >
@@ -139,8 +139,8 @@ export default function Ventana({ children, perfil }: VentanaProps) {
             </div>
             <Footer></Footer>
           </div>
-        </article>
-        <article className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaDer}` }>
+        </div>
+        <div className={`${style_ventana.ventana_header_box_layout} ${style_ventana.seccionVentanaDer}` }>
           <div className={style_ventana.ventana_footer_layout}>
             <div className={style_ventana.ventana_footer_box}>
               <section className={`${style_ventana.ventana_footer_section} ${style_ventana.ventana_footer_lateral_derecho}`} id="">
@@ -154,8 +154,8 @@ export default function Ventana({ children, perfil }: VentanaProps) {
               </section>
             </div>
           </div>
-        </article>
-      </div>
+        </div>
+      </nav>
     </main>
   );
 }
