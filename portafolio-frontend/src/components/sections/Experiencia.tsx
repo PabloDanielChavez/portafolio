@@ -34,6 +34,7 @@ export default function Experiencia({ experiencia, showFooter }: Props) {
                                         key={exp.id}
                                         className={style_experiencia.experiencia_LINK} 
                                         href={`/experiencia/${exp.id}`}
+                                        aria-label={`Más sobre ${exp.nombre_empresa}`}
                                     >
                                         <article key={exp.id} className={style_experiencia.experiencia_contenido_article}>
                                             <div className={style_experiencia.experiencia_contenido_article_header_layout}>
@@ -83,8 +84,14 @@ export default function Experiencia({ experiencia, showFooter }: Props) {
                                 <Link 
                                     href={`/experiencia`} 
                                     className={style_experiencia.experiencia_card_link}
+                                    aria-label="Ver toda la experiencia"
                                 >
-                                    <button className={style_experiencia.experiencia_card_btn}>Más Expereriencia <FaArrowRight /></button>
+                                    <button 
+                                        className={style_experiencia.experiencia_card_btn} 
+                                        aria-label="Ver todas las experiencias"
+                                    >
+                                        Más Expereriencia <FaArrowRight />
+                                    </button>
                                 </Link>
                             </div>
                         )}

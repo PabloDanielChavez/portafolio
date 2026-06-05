@@ -24,7 +24,11 @@ export default function PagExperienciaDetalle({ exp, exp_desafio, exp_tecnologia
     return (
         <article className={style_experiencia.experiencia}>
             <div className={style_experiencia.experiencia_layout}>
-                <Link href="/" className={style_experiencia.experiencia_LINK}>
+                <Link 
+                    href="/" 
+                    className={style_experiencia.experiencia_LINK} 
+                    aria-label="Volver al Inicio"
+                >
                     <IoMdArrowBack /> Volver al Inicio
                 </Link>
                 <header className={style_experiencia.experiencia_header}>
@@ -51,9 +55,15 @@ export default function PagExperienciaDetalle({ exp, exp_desafio, exp_tecnologia
                                         </div>
                                         <div className={style_experiencia.experiencia_contenido_article_header_nombre}>
                                             <h3 className={style_experiencia.experiencia_contenido_article_header_nombre_h3}>{exp?.nombre_empresa}</h3>
-                                            <a className={style_experiencia.experiencia_contenido_article_header_nombre_enlace} href={exp?.enlace_empresa} target="_blank" rel="noreferrer">
+                                            <Link 
+                                                className={style_experiencia.experiencia_contenido_article_header_nombre_enlace} 
+                                                href={exp?.enlace_empresa} 
+                                                target="_blank" 
+                                                rel="noreferrer"
+                                                aria-label={`Ir a ${exp?.nombre_empresa}`}
+                                            >
                                                 {exp?.enlace_trabajoResumido}
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className={style_experiencia.experiencia_contenido_article_header_categoria}>
                                             <div className={style_experiencia.experiencia_contenido_article_header_categoria_nombre}>{exp?.tipo_empresa}</div>

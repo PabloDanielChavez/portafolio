@@ -18,23 +18,26 @@ export default function PagTrabajoDetalle({ tra }: Props) {
         // Fondo aplicado directamente al contenedor principal (sin aspecto de card)
         <article className={style_trabajos.pagTrabajo_detalle_container}>
             <div className={style_trabajos.pagTrabajo_layout}>
-                
-                {/* Navegación */}
-                <Link href="/" className={style_trabajos.pagTrabajo_LINK}>
+                <Link 
+                    href="/" 
+                    className={style_trabajos.pagTrabajo_LINK} 
+                    aria-label="Volver a Inicio"
+                >
                     <IoMdArrowBack /> Volver al Portafolio
                 </Link>
-
-                {/* Hero Section */}
                 <header className={style_trabajos.pagTrabajo_detalle_hero}>
                     <h1>{tra.nombre_trabajo}</h1>
-                    <a href={tra.enlace_trabajo} target="_blank" rel="noreferrer" className={style_trabajos.pagTrabajo_detalle_link}>
+                    <Link 
+                        href={tra.enlace_trabajo} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className={style_trabajos.pagTrabajo_detalle_link}
+                        aria-label={`Ir al trabajo: ${tra.enlace_trabajoResumido}`}
+                    >
                         {tra.enlace_trabajo}
-                    </a>
+                    </Link>
                 </header>
-
-                {/* Main Grid */}
                 <div className={style_trabajos.pagTrabajo_detalle_grid}>
-                    {/* Columna Izquierda: Imagen y Métricas */}
                     <aside className={style_trabajos.pagTrabajo_detalle_aside}>
                         <ImagenComponent 
                             style={style_trabajos.pagTrabajo_detalle_img_main}
@@ -61,14 +64,10 @@ export default function PagTrabajoDetalle({ tra }: Props) {
                             ))}
                         </div>
                     </aside>
-
-                    {/* Columna Derecha: Contenido Detallado */}
                     <section className={style_trabajos.pagTrabajo_detalle_contenido}>
                         <h3>Resumen Ejecutivo</h3>
                         <p>{tra.resumen_trabajo}</p>
-
                         <h3>Rol y Responsabilidades</h3>
-
                         <div className={style_trabajos.pagTrabajo_detalle_specs}>
                             <span><strong>Páginas:</strong> {tra.numero_pagina}</span>
                             <span><strong>Tiempo:</strong> {tra.tiempo_trabajo}</span>

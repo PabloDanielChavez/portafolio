@@ -58,9 +58,15 @@ export default function Header() {
                 .filter((link) => link.seccion === seccion.id)
                 .map((link) => (
                   <li key={link.id} className={styles_footer.footer_li}>
-                    <Link href={link.url} className={styles_footer.footer_a}>
+                    <Link 
+                      href={link.url} 
+                      className={styles_footer.footer_a} 
+                      aria-label={`Ir a ${link.name}`}
+                    >
                       {link.icon}
-                      <span className={styles_footer.footer_span}>{link.name}</span>
+                      <span className={styles_footer.footer_span}>
+                        {link.name}
+                      </span>
                     </Link>
                   </li>
                 ))}

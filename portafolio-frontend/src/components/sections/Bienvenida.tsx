@@ -56,6 +56,7 @@ export default function Bienvenida({ perfil }: Props) {
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://www.linkedin.com/in/${user?.nombre_linkedin}/`}
+                                aria-label={`Síguenos en ${user?.nombre_linkedin}`}
                             > 
                                 <FaLinkedin size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Linkedin</span>
@@ -63,6 +64,7 @@ export default function Bienvenida({ perfil }: Props) {
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://github.com/${user?.nombre_github}`}
+                                aria-label={`Síguenos en ${user?.nombre_linkedin}`}
                             >
                                 <FaGithub size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>GitHub</span>
@@ -70,6 +72,7 @@ export default function Bienvenida({ perfil }: Props) {
                             <Link
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://wa.me/${user?.numero_whatsapp}`}
+                                aria-label={`Síguenos en ${user?.nombre_linkedin}`}
                             >
                                 <FaWhatsapp size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Whatsapp</span>
@@ -83,7 +86,11 @@ export default function Bienvenida({ perfil }: Props) {
                             <ul key={i} className={style_bienvenida.bienvenida_center_layout}>
                                 {redesSociales.map((red) => (
                                     <li key={red.name}>
-                                        <Link href={red.url} className={style_bienvenida.bienvenida_center_box_redsocial}>
+                                        <Link 
+                                            href={red.url} 
+                                            className={style_bienvenida.bienvenida_center_box_redsocial}
+                                            aria-label={`Síguenos en ${red.name}`}
+                                        >
                                             {red.icon}
                                             <span className={style_bienvenida.bienvenida_center_redsocial_span}>{red.name}</span>
                                         </Link>

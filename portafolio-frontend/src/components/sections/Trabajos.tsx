@@ -34,6 +34,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                             key={tra.id}
                                             className={style_trabajos.trabajos_LINK} 
                                             href={`/trabajos/${tra.id}`}
+                                            aria-label={`Ver detalles de ${tra?.nombre_trabajo}`}
                                         >
                                             <article key={tra.id} className={style_trabajos.trabajos_card}>
                                                 <div className={style_trabajos.trabajos_card_img}>
@@ -48,8 +49,15 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                 </div>
                                                 <div className={style_trabajos.trabajos_card_info}>
                                                     <div className={style_trabajos.trabajos_card_header}>
-                                                        <h3>{tra?.nombre_trabajo}</h3>
-                                                        <Link href={tra?.enlace_trabajo} className={style_trabajos.trabajos_card_link}>{tra?.enlace_trabajoResumido}</Link>
+                                                        <h3>
+                                                            {tra?.nombre_trabajo}</h3>
+                                                        <Link 
+                                                            href={tra?.enlace_trabajo} 
+                                                            className={style_trabajos.trabajos_card_link} 
+                                                            aria-label={`Ir a ${tra?.enlace_trabajoResumido}`}
+                                                        >
+                                                            {tra?.enlace_trabajoResumido}
+                                                        </Link>
                                                     </div>
                                                     <div className={style_trabajos.trabajos_card_meta}>
                                                         <span>{tra?.complejidad_trabajo}</span>
@@ -81,6 +89,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                             <Link 
                                                 href={`/trabajos`} 
                                                 className={style_trabajos.trabajos_card_btn}
+                                                aria-label="Ver todos los trabajos"
                                             >
                                                 <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
                                             </Link>

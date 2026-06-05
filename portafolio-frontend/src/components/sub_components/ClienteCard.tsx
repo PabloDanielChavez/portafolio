@@ -25,7 +25,11 @@ export const ClienteCard = ({ cli }: { cli: ClientesType }) => (
           <span>{cli.ubicacion_cliente}</span>
         </div>
       </div>
-      <Link href={"https://www.instagram.com/paginasweb.chavez/"} target="_blank" className={style.clientes_card_btn}>
+      <Link 
+        href={"https://www.instagram.com/paginasweb.chavez/"} 
+        target="_blank" className={style.clientes_card_btn} 
+        aria-label={`${cli.nombre_cliente} en Instagram`}
+      >
         <FaInstagram />
       </Link>
     </div>
