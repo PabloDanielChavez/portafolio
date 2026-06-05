@@ -1,13 +1,14 @@
-import { loadSection } from "@/components/sub_components/LoadSection";
+
+import dynamic from "next/dynamic";
 import { getAllPortfolioData } from "@/services/fetchData";
 
 import { TrabajosType } from "@/types/trabajos"; 
 
 
-const Trabajos = loadSection<{ 
-    trabajos: TrabajosType[]; 
-    showFooter?: boolean 
-}>("Trabajos");
+const Trabajos = dynamic(() => import('@/components/sections/Trabajos'), {
+    loading: () => <p>Cargando sección...</p>,
+    ssr: true,
+});
 
 
 export default async function Tra() {

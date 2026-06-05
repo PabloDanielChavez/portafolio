@@ -1,7 +1,12 @@
-export const dynamic = 'force-dynamic';
 
-import PagTrabajoDetalle from "@/components/PagTrabajo";
+import dynamic from 'next/dynamic';
+
 import { getAllPortfolioData } from "@/services/fetchData";
+
+const PagTrabajoDetalle = dynamic(() => import('@/components/PagTrabajo'), {
+    loading: () => <p>Cargando sección...</p>,
+    ssr: true,
+});
 
 type Props = {
   params: Promise<{

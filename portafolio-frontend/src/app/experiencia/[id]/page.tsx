@@ -1,7 +1,6 @@
-export const dynamic = 'force-dynamic';
-
-import PagExperienciaDetalle from "@/components/PagExperiencia";
+import dynamic from 'next/dynamic';
 import { getAllPortfolioData } from "@/services/fetchData";
+const PagExperienciaDetalle = dynamic(() => import('@/components/PagExperiencia'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
 
 type Props = {
   params: Promise<{
@@ -10,24 +9,17 @@ type Props = {
 };
 
 export default async function ExpDetailPage({ params }: Props) {
-  // 1. Desenvolvemos la promesa de params usando await
   const { id } = await params;
-
   const data = await getAllPortfolioData();
-  
   if (!data || !data.Experiencia) {
     return <div style={{ color: '#e5e5e5', padding: '40px', textAlign: 'center' }}>Error al cargar los datos</div>;
   }
-
-  // 2. Ahora usamos la constante 'id' que ya fue obtenida de forma asíncrona
   const experienciaIndividual = data.Experiencia.find(
     (item: any) => item.id.toString() === id
   );
-
   if (!experienciaIndividual) {
     return <div style={{ color: '#e5e5e5', padding: '40px', textAlign: 'center' }}>Experiencia no encontrada</div>;
   }
-
   return (
     <>
       <PagExperienciaDetalle 

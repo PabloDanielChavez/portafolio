@@ -1,14 +1,7 @@
-import { loadSection } from "@/components/sub_components/LoadSection";
+import dynamic from 'next/dynamic';
 import { getAllPortfolioData } from "@/services/fetchData";
 
-import { ExperienciaType } from "@/types/experiencia"; 
-
-
-const Experiencia = loadSection<{ 
-  experiencia: ExperienciaType[]; 
-  showFooter?: boolean // Agrega esto aquí
-}>("Experiencia");
-
+const Experiencia = dynamic(() => import('@/components/sections/Experiencia'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
 
 export default async function Exp() {
   const data = await getAllPortfolioData();
