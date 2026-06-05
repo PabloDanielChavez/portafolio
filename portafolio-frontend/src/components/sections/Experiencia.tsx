@@ -2,11 +2,11 @@
 
 import { ExperienciaType } from "@/types/experiencia";
 import style_experiencia from "@/styles/sections/experiencia.module.scss"
-import { BiBriefcase } from "react-icons/bi";
 import SectionHeader from "../sub_components/SectionHeader";
 import Link from "next/link";
 import { ImagenComponent } from "../sub_components/ImagenM";
-import { FaArrowRight } from "react-icons/fa";
+
+import { BiBriefcase, FaArrowRight} from "@/components/utils/Iconos";
 
 
 type Props = {

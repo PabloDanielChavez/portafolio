@@ -4,13 +4,8 @@ import Link from 'next/link';
 import { LiaLinkedin } from 'react-icons/lia';
 import styles_footer from '@/styles/sections/footer.module.scss';
 
-import { PiMicrosoftOutlookLogo, PiStack } from 'react-icons/pi';
-import { FaBriefcase, FaEnvelope, FaGithub, FaWhatsapp } from 'react-icons/fa';
-import { BsFillPersonVcardFill } from 'react-icons/bs';
-import { SiCodefactor } from 'react-icons/si';
-import { BiBriefcase } from 'react-icons/bi';
-import { AiTwotoneSchedule } from 'react-icons/ai';
-import { IoIosRocket } from 'react-icons/io';
+
+import { BiBriefcase, AiTwotoneSchedule, BsFillPersonVcardFill, FaBriefcase, SiCodefactor, FaEnvelope, PiStack, IoIosRocket, FaGithub, FaWhatsapp, PiMicrosoftOutlookLogo} from "@/components/utils/Iconos";
 import { ImagenComponent } from '../sub_components/ImagenM';
 
 export default function Header() {

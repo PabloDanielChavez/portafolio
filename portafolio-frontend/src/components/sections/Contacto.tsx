@@ -2,15 +2,11 @@
 
 import { ReactNode, useState } from "react"; // <-- Agregamos useState
 import style_contacto from "@/styles/sections/contacto.module.scss";
-import { FaArrowRight, FaPlus, FaInstagram, FaLinkedin, FaDribbble, FaWhatsapp, FaGithubSquare, FaFacebookSquare, FaMinus } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6"; 
-import { MdOutlineEmail, MdCall } from "react-icons/md";
-import { BsQuestionCircle } from "react-icons/bs";
 import SectionHeader from "../sub_components/SectionHeader";
 import { PerfilType } from "@/types/perfil";
 import { enviarMensajeContacto } from "@/services/fetchData";
 import Link from "next/link";
-import { UAParser } from 'ua-parser-js';
+import { FaArrowRight, FaGithubSquare, FaInstagram, FaLinkedin, FaMinus, FaPlus, FaWhatsapp, MdOutlineEmail, BsQuestionCircle } from "@/components/utils/Iconos";
 
 interface Props {
     perfil: PerfilType[];

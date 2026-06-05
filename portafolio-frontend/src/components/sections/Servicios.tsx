@@ -2,16 +2,10 @@
 
 import { ReactNode } from "react";
 import style_servicios from "@/styles/sections/servicios.module.scss"
-import { FaArrowRight } from "react-icons/fa";
-import { AiTwotoneSchedule } from "react-icons/ai";
-import { MdOutlineWeb } from "react-icons/md";
-import { TbChartBarPopular, TbWorld } from "react-icons/tb";
-import { PiPaintBrushBold, PiPalette } from "react-icons/pi";
-import { LuMonitorSmartphone } from "react-icons/lu";
-import { HiOutlineCodeBracket } from "react-icons/hi2";
-import { FiDatabase } from "react-icons/fi";
+import { AiTwotoneSchedule, FiDatabase, HiOutlineCodeBracket, LuMonitorSmartphone, PiPalette, TbChartBarPopular} from "@/components/utils/Iconos";
 import { ServiciosType } from "@/types/servicios";
 import SectionHeader from "../sub_components/SectionHeader";
+import { FaArrowRight } from "react-icons/fa6";
 
 
 type Props = {
@@ -34,7 +28,7 @@ export default function servicios({ servicios }: Props) {
                         {servicios && servicios.map(ser => {
                             const renderIcono = (nombreString: string) => {
                                 if (nombreString === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
-                                if (nombreString === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
+                                if (nombreString === "HiOutlineCodeBracket") return <HiOutlineCodeBracket/>;
                                 if (nombreString === "PiPalette") return <PiPalette />;
                                 if (nombreString === "TbChartBarPopular") return <TbChartBarPopular />;
                                 if (nombreString === "FiDatabase") return <FiDatabase />;
