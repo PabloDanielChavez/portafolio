@@ -174,7 +174,7 @@ export default function Contacto({ perfil }: Props) {
                                                 {red.icon}
                                             </div>
                                             <div className={style_contacto.contacto_social_info}>
-                                                <h4 className={style_contacto.contacto_social_count}>{red.dato}</h4>
+                                                <span className={style_contacto.contacto_social_count}>{red.dato}</span>
                                             </div>
                                         </div>
                                         <div className={style_contacto.contacto_social_arrow}>
