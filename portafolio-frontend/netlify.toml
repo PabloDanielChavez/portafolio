@@ -1,2 +1,12 @@
 [build]
   command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Esto fuerza a Netlify a dirigir todas las peticiones a Next.js
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
