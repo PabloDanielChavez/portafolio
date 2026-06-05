@@ -89,7 +89,10 @@ export default function Ventana({ children, perfil }: VentanaProps) {
           > 
             <article className={`${style_ventana.ventana_header_selector_box}`}>
               <div className={`${style_ventana.ventana_header_selector_opcion} `}>
-                <FaArrowUp className={style_global.tamaño_icono} />
+                <FaArrowUp 
+                  className={style_global.tamaño_icono} 
+                  aria-label={`Subir`}
+                />
               </div>
             </article>
           </div>
