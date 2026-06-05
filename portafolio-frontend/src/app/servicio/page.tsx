@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { getAllPortfolioData } from "@/services/fetchData";
 
 import Servicios from '@/components/sections/Servicios';
