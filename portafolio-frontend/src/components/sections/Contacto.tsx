@@ -63,10 +63,10 @@ export default function Contacto({ perfil }: Props) {
     };
     
     const redesSociales = [
-        { name: "whatsapp", icon: <FaWhatsapp size={22}/>, url: `https://wa.me/${user?.numero_whatsapp}`, seguidores: 10 },
-        { name: "Linkedin", icon: <FaLinkedin size={22}/>, url: `https://www.linkedin.com/in/${user?.nombre_linkedin}`, seguidores: 10 },
-        { name: "Github", icon: <FaGithubSquare size={22}/>, url: `https://github.com/${user?.nombre_github}`, seguidores: 10 },
-        { name: "Instagram", icon: <FaInstagram size={22}/>, url: `https://www.instagram.com/${user?.nombre_instagram}` , seguidores: 10},
+        { name: "whatsapp", icon: <FaWhatsapp size={22}/>, url: `https://wa.me/${user?.numero_whatsapp}`, titulo: "WhatsApp", dato: `${user?.numero_whatsapp}` },
+        { name: "Linkedin", icon: <FaLinkedin size={22}/>, url: `https://www.linkedin.com/in/${user?.nombre_linkedin}`, titulo: "LinkedIn", dato: `${user?.nombre_linkedin}` },
+        { name: "Github", icon: <FaGithubSquare size={22}/>, url: `https://github.com/${user?.nombre_github}`, titulo: "GitHub", dato: `${user?.nombre_github}` },
+        { name: "Instagram", icon: <FaInstagram size={22}/>, url: `https://www.instagram.com/${user?.nombre_instagram}`, titulo: "Instagram", dato: `${user?.nombre_instagram}` },
     ];
 
     const preguntasFrecuentes = [
@@ -91,15 +91,13 @@ export default function Contacto({ perfil }: Props) {
             <article className={style.contacto_faq_article}>
                 <div 
                     className={style.contacto_faq_article_header} 
-                    onClick={() => setIsOpen(!isOpen)} // Puedes hacer clic en todo el header
+                    onClick={() => setIsOpen(!isOpen)}
                 >
                     <span className={style.contacto_faq_pregunta}>{pf.pregunta}</span>
-                    <button type="button" className={style.contacto_faq_btn_toggle}>
+                    <button aria-label="Alternar preguntas frecuentes" aria-describedby={`titulo-${pf.pregunta}`} type="button" className={style.contacto_faq_btn_toggle}>
                         {isOpen ? <FaMinus size={22} /> : <FaPlus size={22} />}
                     </button>
                 </div>
-                
-                {/* Aplicamos una clase condicional para la transición */}
                 <div className={`${style.contacto_faq_article_footer} ${isOpen ? style.abierto : ''}`}>
                     <p className={style.contacto_faq_parrafo}>{pf.respuesta}</p>
                 </div>
@@ -110,24 +108,12 @@ export default function Contacto({ perfil }: Props) {
     return (
         <section className={style_contacto.contacto}>
             <div className={style_contacto.contacto_layout}>
-                
-                {/* ================= SECCIÓN CONTACTO ================= */}
                 <article className={style_contacto.contacto_header}>
                     <SectionHeader 
                         icon={<MdOutlineEmail />} 
-                        title="Me encanta que estes aquí." 
+                        title="Contacto" 
                         description="Conéctate conmigo hoy. ¡Creemos algo asombroso juntos!" 
                     />
-                    <div className={style_contacto.contacto_action_buttons}>
-                        <Link href="mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
-                            <MdOutlineEmail size={18} />
-                            <span>ENVÍAME UN CORREO</span>
-                        </Link>
-                        <Link href="https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
-                            <FaWhatsapp size={18} />
-                            <span>ENVÍAME UN MENSAJE</span>
-                        </Link>
-                    </div>
                     <div className={style_contacto.contacto_contenido_box}>
                         <div className={style_contacto.contacto_contenido_box_layout}>
                             <form className={style_contacto.contacto_form} onSubmit={manejarEnvio}>
@@ -162,6 +148,16 @@ export default function Contacto({ perfil }: Props) {
                                 <button type="submit" className={style_contacto.contacto_form_submit}>
                                     Enviar tu Mensaje
                                 </button>
+                                <div className={style_contacto.contacto_action_buttons}>
+                                    <Link href="mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
+                                        <MdOutlineEmail size={18} />
+                                        <span>CORREO</span>
+                                    </Link>
+                                    <Link href="https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." className={style_contacto.contacto_btn_action}>
+                                        <FaWhatsapp size={18} />
+                                        <span>WHATSAPP</span>
+                                    </Link>
+                                </div>
                                 <p className={style_contacto.contacto_form_parrafo}>Para asegurar un funcionamiento óptimo y proteger la integridad de este sitio, se procesan datos técnicos básicos (dispositivo, navegador y momento del envío) durante el contacto.</p>
                             </form>
                             <div className={style_contacto.contacto_social_grid}>
@@ -178,8 +174,7 @@ export default function Contacto({ perfil }: Props) {
                                                 {red.icon}
                                             </div>
                                             <div className={style_contacto.contacto_social_info}>
-                                                <h4 className={style_contacto.contacto_social_count}>{red.seguidores}</h4>
-                                                <span className={style_contacto.contacto_social_label}>Seguidores</span>
+                                                <h4 className={style_contacto.contacto_social_count}>{red.dato}</h4>
                                             </div>
                                         </div>
                                         <div className={style_contacto.contacto_social_arrow}>
@@ -197,7 +192,7 @@ export default function Contacto({ perfil }: Props) {
                     <SectionHeader 
                         icon={<BsQuestionCircle />} 
                         title="Consultas comunes" 
-                        description="Obtenga respuestas a consultas comunes. Sus preguntas, abordadas simplemente." 
+                        description="Obtenga respuestas a consultas comunes." 
                     />
 
                     <div className={style_contacto.contacto_faqs_layout}>
