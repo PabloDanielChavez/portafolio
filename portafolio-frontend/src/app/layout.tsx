@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Ventana from "@/components/Ventana";
-// IMPORTANTE: Asegúrate de que tus estilos globales se importen correctamente
-import "../styles/base/global.module.scss";
-import "../styles/base/normalice.scss";
 
 import { getAllPortfolioData } from "@/services/fetchData";
 
@@ -31,8 +28,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="es">
       <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          rel="preload" 
+          href="/media/ccee61546c0358b7-s.83a2e280.woff2" 
+          as="font" 
+          type="font/woff2" 
+          crossOrigin="anonymous" 
+        />
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
           rel="stylesheet"
         />
       </head>

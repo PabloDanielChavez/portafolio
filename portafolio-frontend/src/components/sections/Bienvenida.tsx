@@ -32,13 +32,14 @@ export default function Bienvenida({ perfil }: Props) {
             <div className={style_bienvenida.bienvenida_layout}>
                 <article className={style_bienvenida.bienvenida_header}>
                     <div className={style_bienvenida.bienvenida_header_box_imagen}>
-                        <ImagenComponent 
-                            style={style_bienvenida.bienvenida_header_imagen_perfil}
-                            url="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"
-                            alt="LOGOTIPO"
-                            widthE={150}
-                            heightE={150}
-                            priority="prioridad"
+                        <Image 
+                            className={style_bienvenida.bienvenida_header_imagen_perfil}
+                            src={"/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"} 
+                            alt={"LOGOTIPO"}
+                            title={"LOGOTIPO"}
+                            width={150} 
+                            height={150}
+                            priority
                         />
                     </div>
                     <div className={style_bienvenida.bienvenida_header_box_informacion}>
