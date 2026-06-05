@@ -105,7 +105,7 @@ export default function Bienvenida({ perfil }: Props) {
                             { valor: user?.opiniones_recibidas, etiqueta: "Premios recibidos" },
                         ].map((stat, idx) => (
                             <article key={idx} className={style_bienvenida.bienvenida_footer_box}>
-                                <h3 className={style_bienvenida.bienvenida_footer_h3}>{stat.valor}</h3>
+                                <span className={style_bienvenida.bienvenida_footer_h3}>{stat.valor}</span>
                                 <span className={style_bienvenida.bienvenida_footer_span}>{stat.etiqueta}</span>
                             </article>
                         ))}
