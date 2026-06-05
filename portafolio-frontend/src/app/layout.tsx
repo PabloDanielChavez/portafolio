@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Ventana from "@/components/Ventana";
+import Script from "next/script"; 
 
 import { getAllPortfolioData } from "@/services/fetchData";
 
@@ -12,8 +13,11 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Portafolio PDC",
   description: "Portafolio Pablo Daniel Chavez",
+  verification: {
+    google: '4yIUAbvNIcrI3UhHJW9vszJTkYpBcBoyjlRtCzn7mUc',
+  },
   icons: {
-    icon: "/img/Logotipo_Portafolio_PDC/Icono/Icono_48x48px.png" // Asegúrate de que inicie con /
+    icon: "/img/Logotipo_Portafolio_PDC/Icono/Icono_48x48px.png"
   }
 };
 
@@ -28,6 +32,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="es">
       <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-XXXXXXXXXX');
+          `}
+        </Script>
+
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
           rel="preload" 
