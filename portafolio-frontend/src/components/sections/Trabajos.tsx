@@ -50,14 +50,11 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                 <div className={style_trabajos.trabajos_card_info}>
                                                     <div className={style_trabajos.trabajos_card_header}>
                                                         <h3>
-                                                            {tra?.nombre_trabajo}</h3>
-                                                        <Link 
-                                                            href={tra?.enlace_trabajo} 
-                                                            className={style_trabajos.trabajos_card_link} 
-                                                            aria-label={`Ir a ${tra?.enlace_trabajoResumido}`}
-                                                        >
+                                                            {tra?.nombre_trabajo}
+                                                        </h3>
+                                                        <div className={style_trabajos.trabajos_card_link}>
                                                             {tra?.enlace_trabajoResumido}
-                                                        </Link>
+                                                        </div>
                                                     </div>
                                                     <div className={style_trabajos.trabajos_card_meta}>
                                                         <span>{tra?.complejidad_trabajo}</span>
