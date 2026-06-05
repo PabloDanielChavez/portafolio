@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import Ventana from "@/components/Ventana";
-import Script from "next/script"; 
+import Script from "next/script"; // Asegurate de mantener esta importación arriba
 
 import { getAllPortfolioData } from "@/services/fetchData";
 
@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="es">
       <head>
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z7439LP7QW"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'G-Z7439LP7QW');
           `}
         </Script>
 
