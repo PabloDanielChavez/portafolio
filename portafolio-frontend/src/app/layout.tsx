@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           rel="stylesheet"
         />
       </head>
-      <body className={roboto.className} style={{ overflowX: "hidden" }}>
+      <body className={roboto.className} style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
         <Ventana perfil={data?.Perfil}>
           {children}
         </Ventana>
