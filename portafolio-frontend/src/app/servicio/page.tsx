@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic';
 import { getAllPortfolioData } from "@/services/fetchData";
 
-const Servicios = dynamic(() => import('@/components/sections/Servicios'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Trabajos = dynamic(() => import('@/components/sections/Trabajos'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Clientes = dynamic(() => import('@/components/sections/Clientes'), { loading: () => <p>Cargando sección...</p>, ssr: true,});
+import Servicios from '@/components/sections/Servicios';
+import Trabajos from '@/components/sections/Trabajos';
+import Clientes from '@/components/sections/Clientes';
 
-export default async function Serv() {
+export default async function Servicio() {
   const data = await getAllPortfolioData();
   if (!data) return <div>Error al cargar</div>;
 
