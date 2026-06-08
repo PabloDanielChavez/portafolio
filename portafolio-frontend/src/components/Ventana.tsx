@@ -65,7 +65,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
                 <ImagenComponent 
                   style={`${style_ventana.ventana_header_imagen_perfil}`}
-                  url="/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"
+                  url="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
                   alt="Logo"
                   widthE={100}
                   heightE={145}
