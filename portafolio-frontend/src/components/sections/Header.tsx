@@ -18,7 +18,7 @@ export default function Header({ expMenu }: HeaderProps) {
             role="button"
             tabIndex={0}
           >
-            <BiMenu size={32} />
+            <BiMenu size={32} aria-label={`Menu`}/>
           </div>
           <div 
             className={`${styles_header.header_menu}`}
@@ -26,7 +26,7 @@ export default function Header({ expMenu }: HeaderProps) {
             role="button"
             tabIndex={0}
           >
-            <IoMdLink size={28} />
+            <IoMdLink size={28} aria-label={`Redes`}/>
           </div>
         </div>
       </div>
