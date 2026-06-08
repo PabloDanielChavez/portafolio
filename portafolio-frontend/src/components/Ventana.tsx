@@ -76,7 +76,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
           </div>
           <div id="articleSelector" className={`${style_ventana.ventana_header_selector}`}>
             <div className={`${style_ventana.ventana_header_navegador}`}>
-              <SelectorItem href="/perfil" Icon={BsFillPersonVcardFill} label="Perfil" lado="der"/>
+              <SelectorItem href="/" Icon={BsFillPersonVcardFill} label="Perfil" lado="der"/>
               <SelectorItem href="/trabajos" Icon={FaBriefcase} label="Trabajos"  lado="der"/>
               <SelectorItem href="/servicios" Icon={SiCodefactor} label="Servicios"  lado="der"/>
               <SelectorItem href="/contacto" Icon={FaEnvelope} label="Contacto"  lado="der"/>
