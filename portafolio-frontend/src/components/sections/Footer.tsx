@@ -37,7 +37,7 @@ export default function Header() {
       <div className={styles_footer.footer_box_logo}>
         <ImagenComponent 
             style={styles_footer.footer_imagen_logo}
-            url={`/img/Logotipo_Portafolio_PDC/Logo/Logo_180x180px.png`}
+            url="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
             alt={"LOGOTIPO"}
             widthE={150}
             heightE={150}
