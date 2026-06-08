@@ -58,10 +58,17 @@ export default function Header() {
                       className={styles_footer.footer_a} 
                       aria-label={`Ir a ${link.name}`}
                     >
-                      {link.icon}
-                      <span className={styles_footer.footer_span}>
-                        {link.name}
-                      </span>
+                      {(link.name === "navegacion" || link.name === "secciones") && (
+                        <>
+                          {link.icon}
+                          <span className={styles_footer.footer_span}>{link.name}</span>
+                        </>
+                      )}
+                      {link.name === "contacto" && (
+                        <span className={styles_footer.footer_span_icono}>
+                          {link.icon}
+                        </span>
+                      )}
                     </Link>
                   </li>
                 ))}

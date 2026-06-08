@@ -130,6 +130,10 @@
         line-height: 1.4;
         word-break: break-all;
         min-width: max-content;
+        &_icono {
+            padding: 1rem;
+            background-color: #111;
+        }
     }
 
     &_box_copy {
