@@ -21,8 +21,9 @@ interface VentanaProps {
 
 export default function Ventana({ children, perfil }: VentanaProps) {
   const contenidoRef = useRef<HTMLDivElement>(null);
+  const menuIzqRef = useRef<HTMLDivElement>(null);
+  const menuDerRef = useRef<HTMLDivElement>(null);
   
-  // 1. Inicializamos en null para saber que todavía no medimos la pantalla
   const [menuIzqAbierto, setMenuIzqAbierto] = useState<boolean | null>(null);
   const [menuDerAbierto, setMenuDerAbierto] = useState<boolean | null>(null);
 
@@ -37,11 +38,43 @@ export default function Ventana({ children, perfil }: VentanaProps) {
       }
     };
     
-    // Mide inmediatamente en el cliente apenas se monta el componente
     handleResize();
-    
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const esMovil = () => window.innerWidth <= 768;
+
+    const cerrarMenusSiEsMovil = () => {
+      if (esMovil()) {
+        setMenuIzqAbierto(false);
+        setMenuDerAbierto(false);
+      }
+    };
+
+    const handleClickFuera = (event: MouseEvent) => {
+      if (!esMovil()) return;
+
+      const target = event.target as HTMLElement;
+      
+      const clickDentroIzq = menuIzqRef.current?.contains(target);
+      const clickDentroDer = menuDerRef.current?.contains(target);
+      
+      const clickEnHeader = target.closest("header") || target.closest('[role="button"]') || target.closest('button');
+
+      if (!clickDentroIzq && !clickDentroDer && !clickEnHeader) {
+        cerrarMenusSiEsMovil();
+      }
+    };
+
+    document.addEventListener("click", handleClickFuera);
+    window.addEventListener("scroll", cerrarMenusSiEsMovil, true); 
+
+    return () => {
+      document.removeEventListener("click", handleClickFuera);
+      window.removeEventListener("scroll", cerrarMenusSiEsMovil, true);
+    };
   }, []);
 
   const user = perfil?.[0];
@@ -59,27 +92,24 @@ export default function Ventana({ children, perfil }: VentanaProps) {
 
   const expMenu = (lado: 'izq' | 'der') => {
     if (lado === 'izq') {
-      setMenuIzqAbierto(!menuIzqAbierto);
+      setMenuIzqAbierto((prev) => !prev);
     } else {
-      setMenuDerAbierto(!menuDerAbierto);
+      setMenuDerAbierto((prev) => !prev);
     }
   };
 
-  // 2. Definimos las clases dinámicamente evitando lecturas erróneas del servidor
   const claseMenuIzq = menuIzqAbierto === null 
-    ? style_ventana.seccionVentanaIzqCont // Por defecto oculto en SSR para evitar parpadeos en mobile
+    ? style_ventana.seccionVentanaIzqCont 
     : (menuIzqAbierto ? style_ventana.seccionVentanaIzqExpa : style_ventana.seccionVentanaIzqCont);
 
   const claseMenuDer = menuDerAbierto === null 
-    ? style_ventana.seccionVentanaDerCont // Por defecto oculto en SSR
+    ? style_ventana.seccionVentanaDerCont 
     : (menuDerAbierto ? style_ventana.seccionVentanaDerExpa : style_ventana.seccionVentanaDerCont);
 
   return (
     <main className={style_ventana.ventana}>
       <nav className={style_ventana.ventana_layoutPrincipal}>
-        
-        {/* Panel Izquierdo */}
-        <div className={`${style_ventana.ventana_header_box_layout} ${claseMenuIzq}`}>
+        <div ref={menuIzqRef} className={`${style_ventana.ventana_header_box_layout} ${claseMenuIzq}`}>
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
             <Link href="/" className={`${style_ventana.ventana_header_link}`} aria-label="Ir al Inicio">
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
@@ -110,8 +140,6 @@ export default function Ventana({ children, perfil }: VentanaProps) {
             <SelectorItem li={false} href="" Icon={FaArrowUp} label="Subir" lado="der"/>
           </div>
         </div>
-
-        {/* Cuerpo Central */}
         <div className={style_ventana.ventana_central_box_layout}>
           <div className={style_ventana.ventana_central_box} ref={contenidoRef}>
             <Header expMenu={expMenu} />
@@ -121,9 +149,7 @@ export default function Ventana({ children, perfil }: VentanaProps) {
             <Footer />
           </div>
         </div>
-
-        {/* Panel Derecho */}
-        <div className={`${style_ventana.ventana_header_box_layout} ${claseMenuDer}`}>
+        <div ref={menuDerRef} className={`${style_ventana.ventana_header_box_layout} ${claseMenuDer}`}>
           <div className={style_ventana.ventana_footer_layout}>
             <div className={style_ventana.ventana_footer_box}>
               <section className={`${style_ventana.ventana_footer_section} ${style_ventana.ventana_footer_lateral_derecho}`}>
@@ -138,7 +164,6 @@ export default function Ventana({ children, perfil }: VentanaProps) {
             </div>
           </div>
         </div>
-
       </nav>
     </main>
   );

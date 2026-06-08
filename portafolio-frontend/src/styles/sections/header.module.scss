@@ -1,25 +1,31 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
-.header{
+
+.header {
     position: fixed;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    z-index: 6;
+    width: 60%; 
+    left: 20%;
+    z-index: 6; 
     background-color: transparent;
+
     @include m.tablet {
         display: none;
+        width: 100%;
+        left: 0;
     }
 
     &_box {
         margin: 0 .4rem;
     }
+    
     &_layout {
         width: auto;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around; 
     }
 
     &_menu {
@@ -33,7 +39,6 @@
         
         transition: color 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
 
-        // Transición elástica solo para el ícono de adentro
         svg {
             transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
