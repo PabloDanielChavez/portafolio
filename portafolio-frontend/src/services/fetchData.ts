@@ -12,7 +12,7 @@ export async function getAllPortfolioData() {
   try {
     const promesas = endpoints.map(endpoint => 
       fetch(`${urlBase}${endpoint}`, { 
-          next: { revalidate: 3600 } // 1 hora de caché en la CDN
+          next: { revalidate: 3600 }
         })
         .then(res => res.ok ? res.json() : [])
         .catch(() => []) 
@@ -37,31 +37,52 @@ export async function getAllPortfolioData() {
     return null;
   }
 }
+type ProyectoAuditoria = {
+  id: number;
+  enlace_despliegue: string;
+};
 
-export const dispararAuditoriaBackend = async (id: number, url: string) => {
+export const dispararAuditoriaMultipleBackend = async (proyectos: ProyectoAuditoria[]) => {
   if (!urlBase) {
     console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
     return { success: false, error: "URL del backend no configurada." };
   }
 
+  const resultados = [];
+
   try {
-    const respuesta = await fetch(`${urlBase}actualizar-auditoria`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id, url }),
-    });
+    for (const proyecto of proyectos) {
+      try {
+        const respuesta = await fetch(`${urlBase}actualizar-auditoria`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: proyecto.id, url: proyecto.enlace_despliegue }),
+        });
 
-    const data = await respuesta.json();
+        let data: any = {};
+        try {
+          data = await respuesta.json();
+        } catch (e) {
+          data = { mensaje: "Error inesperado en el formato del servidor." };
+        }
 
-    if (!respuesta.ok) {
-      throw new Error(data.mensaje || 'Error al actualizar la auditoría');
+        if (!respuesta.ok) {
+          const textoError = data.mensaje || data.error || `Error del servidor (${respuesta.status})`;
+          console.warn(`Aviso en ID ${proyecto.id}:`, textoError);
+          
+          resultados.push({ id: proyecto.id, success: false, error: textoError });
+        } else {
+          resultados.push({ id: proyecto.id, success: true, data: data.datosActualizados });
+        }
+      } catch (errorFetch) {
+        resultados.push({ id: proyecto.id, success: false, error: "No se pudo comunicar con el endpoint de auditoría." });
+      }
     }
 
-    return { success: true, data: data.datosActualizados };
+    return { success: true, resultados };
+
   } catch (error: any) {
-    console.error('Error en el frontend al llamar al backend:', error.message);
+    console.error('Error general en el lote de auditorías:', error.message);
     return { success: false, error: error.message };
   }
 };

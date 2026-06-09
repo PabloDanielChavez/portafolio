@@ -1,114 +1,150 @@
 "use client";
 
-import style_trabajos from "@/styles/sections/trabajos.module.scss"
-import { FaArrowRight } from "react-icons/fa";
-import { IoIosRocket } from "react-icons/io";
+import { useState, useEffect } from "react";
+import style_trabajos from "@/styles/sections/trabajos.module.scss";
+import { IoIosRocket, IoMdArrowBack } from "react-icons/io";
 import { TrabajosType } from "@/types/trabajos";
 import SectionHeader from "../sub_components/SectionHeader";
-import { ImagenComponent } from "../sub_components/ImagenM";
 import Link from "next/link";
 import { ContadorAnimadoAuditoria } from "../sub_components/ContadorAnimado";
-import { BiCodeAlt, BiGlobe, BiLayer, BiTrophy } from "react-icons/bi";
-
-
+import { ImagenComponent } from "../sub_components/ImagenM";
+import { FaArrowRight } from "react-icons/fa";
 
 type Props = {
     trabajos: TrabajosType[];
-    showFooter?: boolean 
+    showFooter?: boolean;
 };
 
 export default function Trabajos({ trabajos, showFooter }: Props) {
+    const [estrategia, setEstrategia] = useState<"mobile" | "desktop" | null>(null);
+    const [idCargando, setIdCargando] = useState<number | null>(null);
+
+    useEffect(() => {setEstrategia("mobile")}, []);
+    const estrategiaActual = estrategia || "mobile";
+    const esActivo = (opcion: string) => estrategiaActual === opcion;
+
     return (
-        <article className={style_trabajos.trabajos}>
+        <section className={style_trabajos.trabajos}>
             <div className={style_trabajos.trabajos_layout}>
-                <article className={style_trabajos.trabajos_header}>
+                {!showFooter && (
+                    <Link 
+                        href="/" 
+                        className={style_trabajos.pagTrabajo_LINK} 
+                        aria-label="Volver a Inicio"
+                    >
+                        <IoMdArrowBack /> Volver al Portafolio
+                    </Link>
+                )}
+                <div className={style_trabajos.trabajos_header}>
                     <SectionHeader 
                         icon={<IoIosRocket />} 
                         title="Trabajos Realizados" 
-                        description="Descubre una colección de mis trabajos de diseño más innovadores y visualmente impactantes." 
+                        description="Descubre una colección de mis trabajos de diseño más innovadores." 
                     />
+                    
+                    {/* Selector de estrategia para toda la sección */}
+                    <div className={style_trabajos.pagTrabajo_tabs_container} style={{ marginBottom: '20px' }}>
+                        <button 
+                            type="button" // Siempre es recomendable añadir el type para botones
+                            onClick={() => setEstrategia("mobile")} 
+                            className={`${style_trabajos.pagTrabajo_tab_btn} ${
+                                estrategia === "mobile" 
+                                ? style_trabajos.pagTrabajo_tab_btn_activo 
+                                : style_trabajos.pagTrabajo_tab_btn_desactivado
+                            }`}>Telefono</button>
+                        <button 
+                            type="button" // Siempre es recomendable añadir el type para botones
+                            onClick={() => setEstrategia("desktop")} 
+                            className={`${style_trabajos.pagTrabajo_tab_btn} ${
+                                estrategia === "desktop" 
+                                ? style_trabajos.pagTrabajo_tab_btn_activo 
+                                : style_trabajos.pagTrabajo_tab_btn_desactivado
+                            }`}>Escritorio</button>
+                    </div>
+                    
                     <div className={style_trabajos.trabajos_contenido_box}>
                         <div className={style_trabajos.trabajos_contenido_box_layout}>
-                            {trabajos && (
-                                <>
-                                    {trabajos.slice(0, !showFooter ? trabajos.length : 2).map((tra) => (
-                                        <Link 
-                                            key={tra.id}
-                                            className={style_trabajos.trabajos_LINK} 
-                                            href={`/trabajos/${tra.id}`}
-                                            aria-label={`Ver detalles de ${tra?.nombre_trabajo}`}
-                                        >
-                                            <article key={tra.id} className={style_trabajos.trabajos_card}>
-                                                <div className={style_trabajos.trabajos_card_img}>
-                                                    <ImagenComponent 
-                                                        style={style_trabajos.ha}
-                                                        url={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`}
-                                                        alt={tra?.nombre_imagen}
-                                                        widthE={500}
-                                                        heightE={500}
-                                                        priority=""
-                                                    />
+                            {trabajos && trabajos.map((tra, index) => {
+                                const estaCargando = idCargando === tra.id;
+                                const esOculto = showFooter && index >= 2;
+
+                                // Lógica de métricas dinámica según estrategia
+                                const metricas = [
+                                    { valor: estrategia === "mobile" ? tra.performance_mobile : tra.performance_desktop, etiqueta: "Rendimiento" },
+                                    { valor: estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop, etiqueta: "Buenas Prácticas" },
+                                    { valor: estrategia === "mobile" ? tra.accessibility_mobile : tra.accessibility_desktop, etiqueta: "Accesibilidad" },
+                                    { valor: estrategia === "mobile" ? tra.seo_mobile : tra.seo_desktop, etiqueta: "SEO" },
+                                ];
+
+                                return (
+                                    <Link key={tra.id} className={`${style_trabajos.trabajos_LINK} ${esOculto ? style_trabajos.oculto : ''}`} href={`/trabajos/${tra.id}`}>
+                                        <article className={style_trabajos.trabajos_card}>
+                                            <div className={style_trabajos.trabajos_card_img}>
+                                                <ImagenComponent 
+                                                    style={style_trabajos.ha}
+                                                    url={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`}
+                                                    alt={tra?.nombre_imagen || "Imagen del proyecto"}
+                                                    widthE={500}
+                                                    heightE={500}
+                                                    priority=""
+                                                />
+                                            </div>
+                                            
+                                            <div className={style_trabajos.trabajos_card_info}>
+                                                <div className={style_trabajos.trabajos_card_header}>
+                                                    <h3>{tra?.nombre_trabajo}</h3>
+                                                    <div className={style_trabajos.trabajos_card_link}>
+                                                        {tra?.enlace_trabajoResumido}
+                                                    </div>
                                                 </div>
-                                                <div className={style_trabajos.trabajos_card_info}>
-                                                    <div className={style_trabajos.trabajos_card_header}>
-                                                        <h3>
-                                                            {tra?.nombre_trabajo}
-                                                        </h3>
-                                                        <div className={style_trabajos.trabajos_card_link}>
-                                                            {tra?.enlace_trabajoResumido}
+                                                
+                                                <div className={style_trabajos.trabajos_card_meta}>
+                                                    <span>{tra?.complejidad_trabajo}</span>
+                                                    <span>•</span>
+                                                    <span>{tra?.numero_pagina} Páginas</span>
+                                                    <span>•</span>
+                                                    <span>{tra?.tiempo_trabajo}</span>
+                                                </div>
+                                                
+                                                <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
+                                                <div className={style_trabajos.pagTrabajo_card_metrics}>
+                                                    {metricas.map((stat, idx) => (
+                                                        <div key={idx} className={style_trabajos.pagTrabajo_layout_metrics}>
+                                                            <ContadorAnimadoAuditoria 
+                                                                valorFinal={stat.valor || 0} 
+                                                                classNameBase={style_trabajos.pagTrabajo_card_metrics_puntaje}
+                                                                clasesColor={{ verde: style_trabajos.verde, amarillo: style_trabajos.amarillo, rojo: style_trabajos.rojo }}
+                                                                tiempo={1000}
+                                                            />
+                                                            <span className={style_trabajos.pagTrabajo_card_metrics_titulo}>{stat.etiqueta}</span>
                                                         </div>
-                                                    </div>
-                                                    <div className={style_trabajos.trabajos_card_meta}>
-                                                        <span>{tra?.complejidad_trabajo}</span>
-                                                        <span>•</span>
-                                                        <span>{tra?.numero_pagina} Paginas</span>
-                                                        <span>•</span>
-                                                        <span>{tra?.tiempo_trabajo}</span>
-                                                    </div>
-                                                    <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
-                                                    <div className={style_trabajos.pagTrabajo_card_metrics}>
-                                                        {[
-                                                            { valor: tra?.performance_desktop || 0, etiqueta: "Performance", icon: <BiCodeAlt /> },
-                                                            { valor: tra?.practices_desktop || 0, etiqueta: "Best Practices", icon: <BiTrophy /> },
-                                                            { valor: tra?.accessibility_desktop || 0, etiqueta: "Accessibility", icon: <BiLayer /> },
-                                                            { valor: tra?.seo_desktop || 0, etiqueta: "SEO", icon: <BiGlobe /> },
-                                                        ].map((stat, idx) => (
-                                                            <article key={idx} className={style_trabajos.pagTrabajo_layout_metrics}>
-                                                                <ContadorAnimadoAuditoria 
-                                                                    valorFinal={stat.valor} 
-                                                                    classNameBase={style_trabajos.pagTrabajo_card_metrics_puntaje}
-                                                                    clasesColor={{
-                                                                        verde: style_trabajos.verde,
-                                                                        amarillo: style_trabajos.amarillo,
-                                                                        rojo: style_trabajos.rojo
-                                                                    }}
-                                                                    tiempo={2000}
-                                                                />
-                                                                <span className={style_trabajos.pagTrabajo_card_metrics_titulo}>{stat.etiqueta}</span>
-                                                            </article>
-                                                        ))}
-                                                    </div>
+                                                    ))}
                                                 </div>
-                                            </article>
-                                        </Link>
-                                    ))}
-                                    {showFooter && (
-                                        <div className={style_trabajos.trabajos_card_footer}>
-                                            <Link 
-                                                href={`/trabajos`} 
-                                                className={style_trabajos.trabajos_card_btn}
-                                                aria-label="Ver todos los trabajos"
-                                            >
-                                                <button className={style_trabajos.trabajos_card_btn}>Más Proyectos <FaArrowRight /></button>
-                                            </Link>
-                                        </div>
-                                    )}
-                                </>
-                            )}
+                                            </div>
+                                        </article>
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
-                </article>
+                </div>
+                {showFooter && (
+                    <div className={style_trabajos.trabajos_card_footer}>
+                        <Link 
+                            href={`/trabajos`} 
+                            className={style_trabajos.trabajos_LINK}
+                            aria-label="Ver toda los trabajos"
+                        >
+                            <button 
+                                className={style_trabajos.trabajos_card_btn} 
+                                aria-label="Ver todas las experiencias"
+                            >
+                                Más Proyectos <FaArrowRight />
+                            </button>
+                        </Link>
+                    </div>
+                )}
             </div>
-        </article>
+        </section>
     );
 }

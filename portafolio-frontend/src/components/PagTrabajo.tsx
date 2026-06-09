@@ -24,9 +24,8 @@ const coloresTech: Record<string, string> = {
 };
 
 export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
-    
     const [estrategia, setEstrategia] = useState<"mobile" | "desktop">("mobile");
-
+    
     if (!tra) return <p>Cargando detalles...</p>;
 
     const registroTech = tra_tecnologia.find((t) => t.tra_id === tra.id);
@@ -46,17 +45,15 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
         React: <SiReact size={24} aria-label="React" style={{ color: coloresTech.React }} />,
     };
 
-    // Mapeo condicional seguro (usa el valor o cae a 0 si es null)
     const metricasActivas = [
-        { valor: (estrategia === "mobile" ? tra.performance_mobile : tra.performance_desktop) || 0, etiqueta: "Performance" },
-        { valor: (estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop) || 0, etiqueta: "Best Practices" },
-        { valor: (estrategia === "mobile" ? tra.accessibility_mobile : tra.accessibility_desktop) || 0, etiqueta: "Accessibility" },
+        { valor: (estrategia === "mobile" ? tra.performance_mobile : tra.performance_desktop) || 0, etiqueta: "Rendimiento" },
+        { valor: (estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop) || 0, etiqueta: "Buenas Prácticas" },
+        { valor: (estrategia === "mobile" ? tra.accessibility_mobile : tra.accessibility_desktop) || 0, etiqueta: "Accesibilidad" },
         { valor: (estrategia === "mobile" ? tra.seo_mobile : tra.seo_desktop) || 0, etiqueta: "SEO" },
     ];
 
     const enlaceAuditoriaActivo = estrategia === "mobile" ? tra.enlace_auditoria_mobile : tra.enlace_auditoria_desktop;
 
-    console.log(tra);
     return (
         <div className={style_trabajos.pagTrabajo_detalle_container}>
             <div className={style_trabajos.pagTrabajo_layout}>
@@ -71,7 +68,7 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                 <header className={style_trabajos.pagTrabajo_detalle_hero}>
                     <h1 className={style_trabajos.pagTrabajo_detalle_h1}>{tra.nombre_trabajo}</h1>
                     <Link 
-                        href={tra.enlace_trabajo || "#"} // CORRECCIÓN 2: Usamos enlace_trabajo de tu log
+                        href={tra.enlace_trabajo || "#"} 
                         target="_blank" 
                         rel="noreferrer" 
                         className={style_trabajos.pagTrabajo_detalle_link}
