@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import style_trabajos from "@/styles/sections/trabajos.module.scss";
-import { IoMdArrowBack } from "react-icons/io";
+import { IoMdArrowBack, IoMdOpen } from "react-icons/io";
 import Link from "next/link";
 import { ImagenComponent } from "./sub_components/ImagenM";
 import { TrabajosType } from "@/types/trabajos";
@@ -10,6 +10,8 @@ import { tra_tecnologiaType } from "@/types/tra_tecnologia";
 import { SiNextdotjs, SiNodedotjs, SiReact, SiSass } from "react-icons/si";
 import { IoAttachOutline } from "react-icons/io5";
 import { ContadorAnimadoAuditoria } from "./sub_components/ContadorAnimado";
+import { FaGithub, FaGithubSquare, FaGlobe, FaLink, FaLinkedin } from "react-icons/fa";
+import { FiExternalLink, FiGlobe } from "react-icons/fi";
 
 type Props = {
     tra: TrabajosType;
@@ -47,7 +49,7 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
 
     const metricasActivas = [
         { valor: (estrategia === "mobile" ? tra.performance_mobile : tra.performance_desktop) || 0, etiqueta: "Rendimiento" },
-        { valor: (estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop) || 0, etiqueta: "Buenas Prácticas" },
+        { valor: (estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop) || 0, etiqueta: "Prácticas" },
         { valor: (estrategia === "mobile" ? tra.accessibility_mobile : tra.accessibility_desktop) || 0, etiqueta: "Accesibilidad" },
         { valor: (estrategia === "mobile" ? tra.seo_mobile : tra.seo_desktop) || 0, etiqueta: "SEO" },
     ];
@@ -66,15 +68,26 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                 </Link>
                 <header className={style_trabajos.pagTrabajo_detalle_hero}>
                     <h1 className={style_trabajos.pagTrabajo_detalle_h1}>{tra.nombre_trabajo}</h1>
-                    <Link 
-                        href={tra.enlace_trabajo || "#"} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className={style_trabajos.pagTrabajo_detalle_link}
-                        aria-label={`Ir al trabajo: ${tra.enlace_trabajoResumido}`}
-                    >
-                        {tra.enlace_trabajoResumido}
-                    </Link>
+                    <div className={style_trabajos.pagTrabajo_flexRepo}>
+                        <Link 
+                            href={tra.enlace_repositorio || ""} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className={style_trabajos.pagTrabajo_detalle_link}
+                            aria-label={`Ir al trabajo: ${tra.enlace_repositorio}`}
+                        >
+                            <FaGithub size={28}/>
+                        </Link>
+                        <Link 
+                            href={tra.enlace_repositorio || ""} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className={style_trabajos.pagTrabajo_detalle_link}
+                            aria-label={`Ir al trabajo: ${tra.enlace_repositorio}`}
+                        >
+                            <FaLink size={28} />
+                        </Link>
+                    </div>
                 </header>
                 <div className={style_trabajos.pagTrabajo_grid}>
                     <aside>
@@ -131,7 +144,7 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                                 className={`${style_trabajos.pagTrabajo_LINK} ${style_trabajos.pagTrabajo_auditoria}`}
                             >
                                 <IoAttachOutline size={24} style={{ "transform": "rotate(25deg)"}}/>
-                                <span>Reporte Completo ({estrategia === "mobile" ? "Móvil" : "Escritorio"})</span>
+                                <span>Reporte Completo</span>
                             </Link>
                         )}
                     </aside>

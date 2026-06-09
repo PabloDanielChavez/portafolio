@@ -117,7 +117,7 @@
   }
 
   // REDUCCIÓN: MÓDULO DE MÉTRICAS HOME
-  &_card_metrics { display: flex; justify-content: center; gap: 10px;} 
+  &_card_metrics { display: flex; justify-content: center; gap: 8px;} 
   &_layout_metrics { @include m.flex-center-column(10px); }
   &_card_metrics_titulo { display: flex; align-items: center; font-size: 10px; color: #9ca3af;}
   &_card_metrics_puntaje { @include m.metric-badge(2px, 8px, inherit); gap: 4px; }
@@ -159,11 +159,23 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    flex-wrap: wrap;
     gap: 2rem;
   }
   
   &_detalle_h1 { font-size: 3rem; margin: 0; }
-  &_detalle_link { @extend %link-reset; text-transform: capitalize; }
+  &_detalle_link { 
+    @extend %link-reset; 
+    text-transform: capitalize; 
+    &:hover {
+      color: #c084fc;
+    }
+  }
+
+  &_flexRepo {
+    display: flex;
+    gap: .8rem;
+  }
 
   &_detalle_grid {
     display: grid;
@@ -198,7 +210,7 @@
   }
 
   // REDUCCIÓN: MÓDULO DE MÉTRICAS DETALLE
-  &_card_metrics { display: flex; justify-content: center; gap: 25px;} 
+  &_card_metrics { display: flex; justify-content: center; gap: 16px;} 
   &_layout_metrics { @include m.flex-center-column(8px); }
   &_card_metrics_titulo { font-size: 11px; color: #8b8b8b; text-transform: uppercase; }
   &_card_metrics_puntaje {
@@ -212,7 +224,12 @@
     padding: 0;
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
+    justify-content: center;
+    @include m.tabletXL {
+      justify-content: flex-start;
+    }
   }
   &_li { display: block; }
 

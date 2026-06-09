@@ -67,7 +67,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                 const esOculto = showFooter && index >= 2;
                                 const metricas = [
                                     { valor: estrategia === "mobile" ? tra.performance_mobile : tra.performance_desktop, etiqueta: "Rendimiento" },
-                                    { valor: estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop, etiqueta: "Buenas Prácticas" },
+                                    { valor: estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop, etiqueta: "Prácticas" },
                                     { valor: estrategia === "mobile" ? tra.accessibility_mobile : tra.accessibility_desktop, etiqueta: "Accesibilidad" },
                                     { valor: estrategia === "mobile" ? tra.seo_mobile : tra.seo_desktop, etiqueta: "SEO" },
                                 ];
