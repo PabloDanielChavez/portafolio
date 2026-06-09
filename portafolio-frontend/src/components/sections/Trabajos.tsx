@@ -7,6 +7,8 @@ import { TrabajosType } from "@/types/trabajos";
 import SectionHeader from "../sub_components/SectionHeader";
 import { ImagenComponent } from "../sub_components/ImagenM";
 import Link from "next/link";
+import { ContadorAnimadoAuditoria } from "../sub_components/ContadorAnimado";
+import { BiCodeAlt, BiGlobe, BiLayer, BiTrophy } from "react-icons/bi";
 
 
 
@@ -64,16 +66,26 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                         <span>{tra?.tiempo_trabajo}</span>
                                                     </div>
                                                     <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
-                                                    <div className={style_trabajos.trabajos_card_metrics}>
+                                                    <div className={style_trabajos.pagTrabajo_card_metrics}>
                                                         {[
-                                                            { valor: tra?.performance, etiqueta: "Performance" },
-                                                            { valor: tra?.practices, etiqueta: "Best Practiques" },
-                                                            { valor: tra?.accessibility, etiqueta: "Accessibility" },
-                                                            { valor: tra?.seo, etiqueta: "SEO" },
+                                                            { valor: tra?.performance || 0, etiqueta: "Performance", icon: <BiCodeAlt /> },
+                                                            { valor: tra?.practices || 0, etiqueta: "Best Practices", icon: <BiTrophy /> },
+                                                            { valor: tra?.accessibility || 0, etiqueta: "Accessibility", icon: <BiLayer /> },
+                                                            { valor: tra?.seo || 0, etiqueta: "SEO", icon: <BiGlobe /> },
                                                         ].map((stat, idx) => (
-                                                            <article key={idx} className={`${style_trabajos.trabajos_layout_metrics}`}> 
-                                                                <span className={`${style_trabajos.trabajos_card_metrics_puntaje} ${stat.valor >= 90 ? style_trabajos.verde : stat.valor >= 50 ? style_trabajos.amarillo : style_trabajos.rojo}`} title={stat.etiqueta}>{stat.valor}</span>
-                                                                <span className={style_trabajos.trabajos_card_metrics_titulo} title={stat.etiqueta}>{stat.etiqueta}</span>
+                                                            <article key={idx} className={style_trabajos.pagTrabajo_layout_metrics}>
+                                                                <ContadorAnimadoAuditoria 
+                                                                    valorFinal={stat.valor} 
+                                                                    classNameBase={style_trabajos.pagTrabajo_card_metrics_puntaje}
+                                                                    clasesColor={{
+                                                                        verde: style_trabajos.verde,
+                                                                        amarillo: style_trabajos.amarillo,
+                                                                        rojo: style_trabajos.rojo
+                                                                    }}
+                                                                    tiempo={2000}
+                                                                />
+                                                                
+                                                                <span className={style_trabajos.pagTrabajo_card_metrics_titulo}>{stat.etiqueta}</span>
                                                             </article>
                                                         ))}
                                                     </div>

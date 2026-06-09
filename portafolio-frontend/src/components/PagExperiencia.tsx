@@ -120,11 +120,11 @@ export default function PagExperienciaDetalle({ exp, exp_desafio, exp_tecnologia
                                                 <BiCodeAlt /> Tecnologías Aplicadas
                                             </h3>
                                             <div className={style_experiencia.experiencia_detalle_tech_badges}>
-                                                {tecnologiasFiltradas.map((tech) => (
-                                                    <span key={tech} className={style_experiencia.experiencia_detalle_tech_tag}>
+                                                {/* {tecnologiasFiltradas.map((tech) => (
+                                                    <span className={style_experiencia.experiencia_detalle_tech_tag}>
                                                         {tech}
                                                     </span>
-                                                ))}
+                                                ))} */}
                                             </div>
                                         </div>
                                     </article>

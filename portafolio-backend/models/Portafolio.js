@@ -63,9 +63,12 @@ export const exp_desafio = db.define('exp_desafio', {
 }, modelOptions('exp_desafio'));
 
 export const exp_tecnologia = db.define('exp_tecnologia', {
-    id: idField(),
-    exp_id: intField(),
-    exp_tecnologia: stringField()
+    id : idField(),
+    exp_id : intField(),
+    SASS : intField(),
+    Node : intField(),
+    Next : intField(),
+    React : intField()
 }, modelOptions('exp_tecnologia'));
 
 export const habilidades = db.define('habilidades', {
@@ -86,6 +89,8 @@ export const servicios = db.define('servicios', {
     reactIcon: stringField()
 }, modelOptions('servicios'));
 
+// Buscá esta parte dentro de models/Portafolio.js y dejala así:
+
 export const trabajos = db.define('trabajos', {
     id: idField(),
     nombre_trabajo: stringField(),
@@ -103,11 +108,31 @@ export const trabajos = db.define('trabajos', {
     nombre_archivo: stringField(),
     nombre_imagen: stringField(),
     formato_imagen: stringField(),
-    performance: intField(),
-    accessibility: intField(),
-    practices: intField(),
-    seo: intField()
+    performance_mobile: intField(),
+    accessibility_mobile: intField(),
+    practices_mobile: intField(),
+    seo_mobile: intField(),
+    enlace_auditoria_mobile: stringField(),
+    performance_desktop: intField(),
+    accessibility_desktop: intField(),
+    practices_desktop: intField(),
+    seo_desktop: intField(),
+    enlace_auditoria_desktop: stringField(),
+    destacado: intField(),
+    estado_proyecto: stringField(),
+    fecha_finalizacion: stringField(),
+    enlace_despliegue: stringField(),
+    enlace_repositorio: stringField()
 }, modelOptions('trabajos'));
+
+export const tra_tecnologia = db.define('tra_tecnologia', {
+    id: idField(),
+    tra_id: intField(),
+    SASS : intField(),
+    Node : intField(),
+    Next : intField(),
+    React : intField()
+}, modelOptions('tra_tecnologia'));
 
 export const clientes = db.define('clientes', {
     id: idField(),

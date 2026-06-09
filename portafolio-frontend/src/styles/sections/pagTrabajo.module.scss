@@ -30,17 +30,29 @@
   /* HERO SECTION */
   &_detalle_hero {
     margin-bottom: 50px;
-    h1 { font-size: 3rem; margin-bottom: 10px; }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+
+  }
+  
+  &_detalle_h1 {
+    font-size: 3rem;
+    margin: 0;
   }
 
   &_detalle_link {
-    color: #c084fc;
+    text-transform: capitalize;
     text-decoration: none;
-    font-size: 14px;
-    &:hover { text-decoration: underline; }
+    color: inherit; 
+    &:hover {
+      text-decoration: none;
+      color: inherit; 
+    }
   }
 
-  /* GRID PRINCIPAL */
   &_detalle_grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -113,7 +125,63 @@
     border: 1px solid rgba(255,255,255,0.05);
   }
 
-  .verde { background: rgba(34, 197, 94, 0.1); color: #00CC66; }
-  .amarillo { background: rgba(255, 170, 0, 0.1); color: #FFAA00; }
-  .rojo { background: rgba(255, 51, 51, 0.1); color: #FF3333; }
+  
+  &_ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+  }
+
+  &_li {
+      display: block;
+  }
+  &_span {
+      padding: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      
+      transition: color 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
+
+      svg {
+          transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      &:hover {
+          color: #ffffff;
+          transform: translateY(-2px);
+          filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.5));
+
+          &::before {
+              opacity: 1;
+              transform: scale(1);
+              background: rgba(192, 132, 252, 0.2);
+          }
+          svg {
+              transform: scale(1.08);
+          }
+      }
+      &:active {
+          transform: translateY(1px) scale(0.94); 
+          filter: drop-shadow(0 0 2px rgba(192, 132, 252, 0.3));
+          transition: transform 0.05s linear;
+
+          &::before {
+              background: rgba(192, 132, 252, 0.2);
+          }
+          
+          svg {
+              transform: scale(0.95);
+          }
+      }
+  }
 }
+
+.verde { background: rgba(34, 197, 94, 0.1); color: #00CC66; }
+.amarillo { background: rgba(255, 170, 0, 0.1); color: #FFAA00; }
+.rojo { background: rgba(255, 51, 51, 0.1); color: #FF3333; }

@@ -7,21 +7,20 @@ export async function getAllPortfolioData() {
     return null;
   }
 
-  const endpoints = ['perfil', 'habilidades', 'experiencia', 'exp_desafio', 'exp_tecnologia', 'servicios', 'trabajos', 'clientes', 'seccion'];
+  const endpoints = ['perfil', 'habilidades', 'experiencia', 'exp_desafio', 'exp_tecnologia', 'servicios', 'trabajos', 'tra_tecnologia', 'clientes', 'seccion'];
 
   try {
     const promesas = endpoints.map(endpoint => 
       fetch(`${urlBase}${endpoint}`, { 
-        next: { revalidate: 3600 } // 1 hora de caché en la CDN
-       })
+          next: { revalidate: 3600 } // 1 hora de caché en la CDN
+        })
         .then(res => res.ok ? res.json() : [])
         .catch(() => []) 
     );
 
     const resultados = await Promise.all(promesas);
 
-    // Creamos el objeto final mapeando los resultados
-    const dataFinal = {
+    return {
       Perfil: resultados[0],
       Habilidades: resultados[1],
       Experiencia: resultados[2],
@@ -29,20 +28,44 @@ export async function getAllPortfolioData() {
       ExpTecnologia: resultados[4],
       Servicios: resultados[5],
       Trabajos: resultados[6],
-      Clientes: resultados[7],
-      Seccion: resultados[8],
+      TraTecnologia: resultados[7],
+      Clientes: resultados[8],
+      Seccion: resultados[9],
     };
-
-    return dataFinal;
   } catch (error) {
     console.error("Error crítico al obtener datos:", error);
     return null;
   }
 }
 
-// ... (tu código anterior de getAllPortfolioData queda igual)
+export const dispararAuditoriaBackend = async (id: number, url: string) => {
+  if (!urlBase) {
+    console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
+    return { success: false, error: "URL del backend no configurada." };
+  }
 
-// Nueva función para enviar el formulario
+  try {
+    const respuesta = await fetch(`${urlBase}actualizar-auditoria`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id, url }),
+    });
+
+    const data = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(data.mensaje || 'Error al actualizar la auditoría');
+    }
+
+    return { success: true, data: data.datosActualizados };
+  } catch (error: any) {
+    console.error('Error en el frontend al llamar al backend:', error.message);
+    return { success: false, error: error.message };
+  }
+};
+
 export async function enviarMensajeContacto(datosDelFormulario: { 
     nombre: string, 
     correo: string, 

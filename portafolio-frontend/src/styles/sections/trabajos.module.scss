@@ -6,32 +6,15 @@
   background: #0d0d0d;
   color: #e5e5e5;
 
-  @include m.telefonoXL {
-    padding: 60px 20px;
-  }
-
-  &_layout {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
+  @include m.telefonoXL { padding: 60px 20px; }
+  &_layout { max-width: 1000px; margin: 0 auto; }
+  &_LINK { @extend %link-reset; }
 
   &_contenido_box_layout {
     display: flex;
     flex-direction: column;
     gap: 16px;
-
-    @include m.tablet {
-      gap: 20px;
-    }
-  }
-  
-  &_LINK {
-    text-decoration: none;
-    color: inherit; 
-    &:hover {
-      text-decoration: none;
-      color: inherit; 
-    }
+    @include m.tablet { gap: 20px; }
   }
 
   &_card {
@@ -49,7 +32,6 @@
       gap: 20px;
       padding: 16px;
     }
-
     &:hover {
       border-color: #2a2a2a;
       transform: translateY(-4px);
@@ -59,21 +41,12 @@
   &_card_img {
     width: 100%;
     height: 180px;
-
-    @include m.telefonoXL {
-      width: 45%;
-      height: 160px;
-    }
-
     border-radius: 12px;
     overflow: hidden;
     background: #0f0f0f;
+    @include m.telefonoXL { width: 45%; height: 160px; }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    img { width: 100%; height: 100%; object-fit: cover; }
   }
 
   &_card_info {
@@ -93,31 +66,20 @@
       font-size: 16px;
       font-weight: 600;
       margin: 0;
-
-      @include m.tablet {
-        font-size: 18px;
-      }
+      @include m.tablet { font-size: 18px; }
     }
   }
 
   &_card_link {
     font-size: 12px;
-
-    @include m.tablet {
-      font-size: 13px;
-    }
-
     color: #9ca3af;
-    text-decoration: none;
     background: #1a1a1a;
     padding: 6px 10px;
     border-radius: 8px;
     transition: 0.2s;
-
-    &:hover {
-      color: #fff;
-      background: #262626;
-    }
+    @extend %link-reset;
+    @include m.tablet { font-size: 13px; }
+    &:hover { color: #fff; background: #262626; }
   }
 
   &_card_meta {
@@ -126,38 +88,22 @@
     gap: 6px;
     font-size: 12px;
     color: #9ca3af;
-
-    @include m.tablet {
-      font-size: 13px;
-      gap: 8px;
-    }
+    @include m.tablet { font-size: 13px; gap: 8px; }
   }
 
   &_card_desc {
     font-size: 13px;
     color: #9ca3af;
     line-height: 1.6;
-
-    @include m.tablet {
-      font-size: 14px;
-    }
+    @include m.tablet { font-size: 14px; }
   }
 
-  /* BOTÓN */
-  &_card_footer {
-    margin-top: 10px;
-  }
+  &_card_footer { margin-top: 10px; }
 
   &_card_btn {
     width: 100%;
     padding: 12px;
     font-size: 12px;
-
-    @include m.tablet {
-      padding: 14px;
-      font-size: 13px;
-    }
-
     background: #111111;
     border: 1px solid #1f1f1f;
     border-radius: 12px;
@@ -166,75 +112,176 @@
     cursor: pointer;
     transition: 0.3s;
 
-    &:hover {
-      background: #1a1a1a;
-      border-color: #2a2a2a;
-    }
-  }
-  &_card_metrics {
-    display: flex;
-    gap: 10px;
-    margin:0 auto;
-  } 
-  &_layout_metrics {
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    gap: 10px;
-  }
-  &_card_metrics_titulo {
-      font-size: 10px;
-      color: #9ca3af;
-  }
-  &_card_metrics_puntaje {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 700;
-      border: 1px solid rgba(34, 197, 94, 0.2);
+    @include m.tablet { padding: 14px; font-size: 13px; }
+    &:hover { background: #1a1a1a; border-color: #2a2a2a; }
   }
 
+  // REDUCCIÓN: MÓDULO DE MÉTRICAS HOME
+  &_card_metrics { display: flex; justify-content: center; gap: 10px;} 
+  &_layout_metrics { @include m.flex-center-column(10px); }
+  &_card_metrics_titulo { display: flex; align-items: center; font-size: 10px; color: #9ca3af;}
+  &_card_metrics_puntaje { @include m.metric-badge(2px, 8px, inherit); gap: 4px; }
+}
+
+.pagTrabajo {
   &_detalle_container {
-      background: #0d0d0d; // Fondo uniforme para toda la página
-      min-height: 100vh;
-      padding: 60px 20px;
+    padding: 60px 20px;
+    background: #0b0b0b; 
+    color: #f5f5f5;
+    min-height: 100vh;
   }
+
+  &_layout { 
+    max-width: 1100px; 
+    margin: 0 auto;
+  }
+
+  &_LINK {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #8b8b8b;
+    margin-bottom: 40px;
+    transition: 0.25s;
+    @extend %link-reset;
+    &:hover { color: #c084fc; transform: translateX(-3px); cursor: pointer; }
+  }
+
+  &_auditoria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .6rem 0;
+  }
+
+  &_detalle_hero {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+  
+  &_detalle_h1 { font-size: 3rem; margin: 0; }
+  &_detalle_link { @extend %link-reset; text-transform: capitalize; }
 
   &_detalle_grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr; // Layout de dos columnas
-      gap: 40px;
-      margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    @include m.tablet { grid-template-columns: 1.2fr 0.8fr; }
   }
 
   &_detalle_img_main {
-      width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #1a1a1a;
+    margin-bottom: 2rem; 
+  }
+
+  &_detalle_contenido {
+    h3 { font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; }
+    p { line-height: 1.8; color: #a1a1aa; margin-bottom: 30px; }
   }
 
   &_detalle_specs {
-      display: flex;
-      gap: 20px;
-      background: #111111;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: #111111;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #1a1a1a;
+    span { color: #d4d4d8; font-size: 14px; }
   }
 
-  .verde {
-      background: rgba(34, 197, 94, 0.1); // Verde sutil
-      color: #00CC66;
+  // REDUCCIÓN: MÓDULO DE MÉTRICAS DETALLE
+  &_card_metrics { display: flex; justify-content: center; gap: 25px;} 
+  &_layout_metrics { @include m.flex-center-column(8px); }
+  &_card_metrics_titulo { font-size: 11px; color: #8b8b8b; text-transform: uppercase; }
+  &_card_metrics_puntaje {
+    @include m.metric-badge(8px, 16px, 1.2rem);
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
   }
-  .amarillo {
-      background: rgba(255, 170, 0, 0.1); // Verde sutil
-      color: #FFAA00;
+
+  // BADGES DE TECNOLOGÍAS
+  &_ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 12px;
   }
-  .rojo {
-      background: rgba(255, 51, 51, 0.1); // Verde sutil
-      color: #FF3333;
+  &_li { display: block; }
+
+  &_span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 8px;
+    padding: 8px 12px;
+    gap: 8px;
+    cursor: pointer;
+    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
+
+    svg { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+    &:hover {
+      color: #ffffff;
+      transform: translateY(-2px);
+      filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.5));
+      svg { transform: scale(1.08); }
+    }
+
+    &:active {
+      transform: translateY(1px) scale(0.94); 
+      filter: drop-shadow(0 0 2px rgba(192, 132, 252, 0.3));
+      transition: transform 0.05s linear;
+      svg { transform: scale(0.95); }
+    }
+  }
+  // Pegá esto dentro de .pagTrabajo { ... }
+
+  &_tabs_container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    background: #111111; // Mismo fondo que los specs cards
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid #1a1a1a;
+    margin-bottom: 2rem;
+  }
+
+  &_tab_btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: #8b8b8b;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    // Clase dinámica para cuando la pestaña esté activa
+    &_activo {
+      background: #1f1f1f; // Resalta sutilmente sobre el fondo negro
+      color: #c084fc; // Usa tu violeta corporativo de los hovers para el texto activo
+      border: 1px solid #2a2a2a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
   }
 }
 
+.verde    { background: rgba(34, 197, 94, 0.1); color: #00CC66; }
+.amarillo { background: rgba(255, 170, 0, 0.1); color: #FFAA00; }
+.rojo     { background: rgba(255, 51, 51, 0.1); color: #FF3333; }

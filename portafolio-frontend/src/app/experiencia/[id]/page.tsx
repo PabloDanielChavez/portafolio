@@ -8,7 +8,7 @@ type Props = {
   }>;
 };
 
-export default async function ExpDetailPage({ params }: Props) {
+export default async function ExpDetallePagina({ params }: Props) {
   const { id } = await params;
   const data = await getAllPortfolioData();
   if (!data || !data.Experiencia) {

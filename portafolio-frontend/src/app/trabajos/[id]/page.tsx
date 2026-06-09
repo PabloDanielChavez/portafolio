@@ -14,17 +14,14 @@ type Props = {
   }>;
 };
 
-export default async function ExpDetailPage({ params }: Props) {
+export default async function TraDetallePagina({ params }: Props) {
   // 1. Desenvolvemos la promesa de params usando await
   const { id } = await params;
-
   const data = await getAllPortfolioData();
-  
   if (!data || !data.Trabajos) {
     return <div style={{ color: '#e5e5e5', padding: '40px', textAlign: 'center' }}>Error al cargar los datos</div>;
   }
 
-  // 2. Ahora usamos la constante 'id' que ya fue obtenida de forma asíncrona
   const trabajoIndividual = data.Trabajos.find(
     (item: any) => item.id.toString() === id
   );
@@ -37,6 +34,7 @@ export default async function ExpDetailPage({ params }: Props) {
     <>
       <PagTrabajoDetalle 
         tra={trabajoIndividual} 
+        tra_tecnologia={data.TraTecnologia} 
       />
     </>
   );

@@ -190,3 +190,27 @@
     background-size: cover;
     background-position: center center;
 }
+
+@mixin flex-center-column($gap) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $gap;
+}
+
+@mixin metric-badge($padding-v: 2px, $padding-h: 8px, $font-size: 1rem) {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: $padding-v $padding-h;
+    font-size: $font-size;
+}
+
+%link-reset {
+    text-decoration: none;
+    color: inherit;
+    &:hover { text-decoration: none; color: inherit; }
+}

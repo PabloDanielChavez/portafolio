@@ -1,7 +1,10 @@
 export type ExpTecnologiaItem = {
-    id: number; // O number, según uses
+    id: number;
     exp_id: number;
-    exp_tecnologia: string;
+    SASS : number;
+    Node : number;
+    Next : number;
+    React : number;
 };
 
 export type exp_tecnologiaType = ExpTecnologiaItem[];
