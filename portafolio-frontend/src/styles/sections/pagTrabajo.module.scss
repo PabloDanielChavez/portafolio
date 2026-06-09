@@ -100,8 +100,11 @@
   /* MANTENEMOS TUS MÉTRICAS EXISTENTES PERO ADAPTADAS */
   &_card_metrics {
     display: flex;
-    gap: 25px;
-    margin-top: 2rem;
+    gap: 8px;
+    @include m.tablet {
+      gap: 25px;
+      margin-top: 2rem;
+    }
   } 
 
   &_layout_metrics {
