@@ -68,10 +68,10 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                     <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
                                                     <div className={style_trabajos.pagTrabajo_card_metrics}>
                                                         {[
-                                                            { valor: tra?.performance || 0, etiqueta: "Performance", icon: <BiCodeAlt /> },
-                                                            { valor: tra?.practices || 0, etiqueta: "Best Practices", icon: <BiTrophy /> },
-                                                            { valor: tra?.accessibility || 0, etiqueta: "Accessibility", icon: <BiLayer /> },
-                                                            { valor: tra?.seo || 0, etiqueta: "SEO", icon: <BiGlobe /> },
+                                                            { valor: tra?.performance_desktop || 0, etiqueta: "Performance", icon: <BiCodeAlt /> },
+                                                            { valor: tra?.practices_desktop || 0, etiqueta: "Best Practices", icon: <BiTrophy /> },
+                                                            { valor: tra?.accessibility_desktop || 0, etiqueta: "Accessibility", icon: <BiLayer /> },
+                                                            { valor: tra?.seo_desktop || 0, etiqueta: "SEO", icon: <BiGlobe /> },
                                                         ].map((stat, idx) => (
                                                             <article key={idx} className={style_trabajos.pagTrabajo_layout_metrics}>
                                                                 <ContadorAnimadoAuditoria 
@@ -84,7 +84,6 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                                     }}
                                                                     tiempo={2000}
                                                                 />
-                                                                
                                                                 <span className={style_trabajos.pagTrabajo_card_metrics_titulo}>{stat.etiqueta}</span>
                                                             </article>
                                                         ))}
