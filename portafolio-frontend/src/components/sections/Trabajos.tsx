@@ -41,11 +41,9 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                         title="Trabajos Realizados" 
                         description="Descubre una colección de mis trabajos de diseño más innovadores." 
                     />
-                    
-                    {/* Selector de estrategia para toda la sección */}
                     <div className={style_trabajos.pagTrabajo_tabs_container} style={{ marginBottom: '20px' }}>
                         <button 
-                            type="button" // Siempre es recomendable añadir el type para botones
+                            type="button"
                             onClick={() => setEstrategia("mobile")} 
                             className={`${style_trabajos.pagTrabajo_tab_btn} ${
                                 estrategia === "mobile" 
@@ -53,7 +51,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                 : style_trabajos.pagTrabajo_tab_btn_desactivado
                             }`}>Telefono</button>
                         <button 
-                            type="button" // Siempre es recomendable añadir el type para botones
+                            type="button"
                             onClick={() => setEstrategia("desktop")} 
                             className={`${style_trabajos.pagTrabajo_tab_btn} ${
                                 estrategia === "desktop" 
@@ -67,15 +65,12 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                             {trabajos && trabajos.map((tra, index) => {
                                 const estaCargando = idCargando === tra.id;
                                 const esOculto = showFooter && index >= 2;
-
-                                // Lógica de métricas dinámica según estrategia
                                 const metricas = [
                                     { valor: estrategia === "mobile" ? tra.performance_mobile : tra.performance_desktop, etiqueta: "Rendimiento" },
                                     { valor: estrategia === "mobile" ? tra.practices_mobile : tra.practices_desktop, etiqueta: "Buenas Prácticas" },
                                     { valor: estrategia === "mobile" ? tra.accessibility_mobile : tra.accessibility_desktop, etiqueta: "Accesibilidad" },
                                     { valor: estrategia === "mobile" ? tra.seo_mobile : tra.seo_desktop, etiqueta: "SEO" },
                                 ];
-
                                 return (
                                     <Link key={tra.id} className={`${style_trabajos.trabajos_LINK} ${esOculto ? style_trabajos.oculto : ''}`} href={`/trabajos/${tra.id}`}>
                                         <article className={style_trabajos.trabajos_card}>
@@ -89,7 +84,6 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                     priority=""
                                                 />
                                             </div>
-                                            
                                             <div className={style_trabajos.trabajos_card_info}>
                                                 <div className={style_trabajos.trabajos_card_header}>
                                                     <h3>{tra?.nombre_trabajo}</h3>
@@ -97,7 +91,6 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                         {tra?.enlace_trabajoResumido}
                                                     </div>
                                                 </div>
-                                                
                                                 <div className={style_trabajos.trabajos_card_meta}>
                                                     <span>{tra?.complejidad_trabajo}</span>
                                                     <span>•</span>
@@ -105,7 +98,6 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                     <span>•</span>
                                                     <span>{tra?.tiempo_trabajo}</span>
                                                 </div>
-                                                
                                                 <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
                                                 <div className={style_trabajos.pagTrabajo_card_metrics}>
                                                     {metricas.map((stat, idx) => (

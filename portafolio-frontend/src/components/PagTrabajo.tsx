@@ -64,7 +64,6 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                 >
                     <IoMdArrowBack /> Volver al Portafolio
                 </Link>
-                
                 <header className={style_trabajos.pagTrabajo_detalle_hero}>
                     <h1 className={style_trabajos.pagTrabajo_detalle_h1}>{tra.nombre_trabajo}</h1>
                     <Link 
@@ -77,7 +76,6 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                         {tra.enlace_trabajoResumido}
                     </Link>
                 </header>
-                
                 <div className={style_trabajos.pagTrabajo_grid}>
                     <aside>
                         <ImagenComponent 
@@ -89,24 +87,22 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                             priority=""
                         />
                         <div className={style_trabajos.pagTrabajo_tabs_container}>
-                            <button
+                            <button 
                                 type="button"
-                                onClick={() => setEstrategia("mobile")}
+                                onClick={() => setEstrategia("mobile")} 
                                 className={`${style_trabajos.pagTrabajo_tab_btn} ${
-                                    estrategia === "mobile" ? style_trabajos.pagTrabajo_tab_btn_activo : ""
-                                }`}
-                            >
-                                Celular (Mobile)
-                            </button>
-                            <button
+                                    estrategia === "mobile" 
+                                    ? style_trabajos.pagTrabajo_tab_btn_activo 
+                                    : style_trabajos.pagTrabajo_tab_btn_desactivado
+                                }`}>Telefono</button>
+                            <button 
                                 type="button"
-                                onClick={() => setEstrategia("desktop")}
+                                onClick={() => setEstrategia("desktop")} 
                                 className={`${style_trabajos.pagTrabajo_tab_btn} ${
-                                    estrategia === "desktop" ? style_trabajos.pagTrabajo_tab_btn_activo : ""
-                                }`}
-                            >
-                                Escritorio (Desktop)
-                            </button>
+                                    estrategia === "desktop" 
+                                    ? style_trabajos.pagTrabajo_tab_btn_activo 
+                                    : style_trabajos.pagTrabajo_tab_btn_desactivado
+                                }`}>Escritorio</button>
                         </div>
 
                         <div className={style_trabajos.pagTrabajo_card_metrics}>
