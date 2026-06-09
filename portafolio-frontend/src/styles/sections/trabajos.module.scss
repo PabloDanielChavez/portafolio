@@ -116,8 +116,7 @@
     &:hover { background: #1a1a1a; border-color: #2a2a2a; }
   }
 
-  // REDUCCIÓN: MÓDULO DE MÉTRICAS HOME
-  &_card_metrics { display: flex; justify-content: center; gap: 8px;} 
+  &_card_metrics { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;} 
   &_layout_metrics { @include m.flex-center-column(10px); }
   &_card_metrics_titulo { display: flex; align-items: center; font-size: 10px; color: #9ca3af;}
   &_card_metrics_puntaje { @include m.metric-badge(2px, 8px, inherit); gap: 4px; }
@@ -210,7 +209,16 @@
   }
 
   // REDUCCIÓN: MÓDULO DE MÉTRICAS DETALLE
-  &_card_metrics { display: flex; justify-content: center; gap: 16px;} 
+  &_card_metrics { 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center; 
+    gap: 16px;
+    @include m.tablet {
+      display: flex; 
+      flex-wrap: wrap; 
+    }
+  } 
   &_layout_metrics { @include m.flex-center-column(8px); }
   &_card_metrics_titulo { font-size: 11px; color: #8b8b8b; text-transform: uppercase; }
   &_card_metrics_puntaje {
