@@ -79,11 +79,11 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                             <FaGithub size={28}/>
                         </Link>
                         <Link 
-                            href={tra.enlace_repositorio || ""} 
+                            href={tra.enlace_trabajo || ""} 
                             target="_blank" 
                             rel="noreferrer" 
                             className={style_trabajos.pagTrabajo_detalle_link}
-                            aria-label={`Ir al trabajo: ${tra.enlace_repositorio}`}
+                            aria-label={`Ir al trabajo: ${tra.enlace_trabajo}`}
                         >
                             <FaLink size={28} />
                         </Link>
