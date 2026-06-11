@@ -4,6 +4,7 @@ import style_ventana from "@/styles/sections/ventana.module.scss";
 import style_global from "@/styles/base/global.module.scss";
 import { IconType } from "react-icons";
 import Link from "next/link";
+import { trackEvent } from "../utils/Analytics";
 
 interface SelectorItemProps {
     li: boolean;
@@ -31,6 +32,11 @@ export const SelectorItem = ({ li, href, Icon, label, lado = "der" }: SelectorIt
                     <Link 
                     href={href} className={`${style_ventana.ventana_header_link} ${style_global.animacion_btn}`}
                     aria-label={`Link a ${label}`}
+                    onClick={() => {
+                        trackEvent(`click_${label}`, {
+                            section: "ventana"
+                        })
+                    }}
                     >
                         <Icon 
                             className={style_ventana.ventana_header_link} 

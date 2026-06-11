@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ImagenComponent } from "../sub_components/ImagenM";
 
 import { BiBriefcase, FaArrowRight} from "@/components/utils/Iconos";
+import { trackEvent } from "../utils/Analytics";
 
 
 type Props = {
@@ -35,6 +36,11 @@ export default function Experiencia({ experiencia, showFooter }: Props) {
                                         className={style_experiencia.experiencia_LINK} 
                                         href={`/experiencia/${exp.id}`}
                                         aria-label={`Más sobre ${exp.nombre_empresa}`}
+                                        onClick={() => 
+                                            trackEvent(`click_experiencia_${exp.nombre_empresa}`, {
+                                                section: "Experiencia"
+                                            })
+                                        }
                                     >
                                         <article key={exp.id} className={style_experiencia.experiencia_contenido_article}>
                                             <div className={style_experiencia.experiencia_contenido_article_header_layout}>
@@ -85,6 +91,11 @@ export default function Experiencia({ experiencia, showFooter }: Props) {
                                     href={`/experiencia`} 
                                     className={style_experiencia.experiencia_card_link}
                                     aria-label="Ver toda la experiencia"
+                                    onClick={() => 
+                                        trackEvent(`click_experiencia_mas`, {
+                                            section: "experiencia"
+                                        })
+                                    }
                                 >
                                     <button 
                                         className={style_experiencia.experiencia_card_btn} 

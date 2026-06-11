@@ -23,7 +23,7 @@ export default async function Home() {
             <Experiencia experiencia={data.Experiencia} showFooter={true}/>
             <Habilidades habilidades={data.Habilidades} />
             <Contacto perfil={data.Perfil}/>
-            <Clientes clientes={data.Clientes} />
+            {/* <Clientes clientes={data.Clientes} /> */}
         </>
     );
 }

@@ -13,6 +13,7 @@ import { SiCodefactor } from "react-icons/si";
 import { SelectorItem } from "./sub_components/SelectorBtn";
 import { ImagenComponent } from "./sub_components/ImagenM";
 import Link from "next/link";
+import { trackEvent } from "./utils/Analytics";
 
 interface VentanaProps {
   children: ReactNode;
@@ -111,7 +112,16 @@ export default function Ventana({ children, perfil }: VentanaProps) {
       <nav className={style_ventana.ventana_layoutPrincipal}>
         <div ref={menuIzqRef} className={`${style_ventana.ventana_header_box_layout} ${claseMenuIzq}`}>
           <div id="articlePerfil" className={`${style_ventana.ventana_header_perfil}`}>
-            <Link href="/" className={`${style_ventana.ventana_header_link}`} aria-label="Ir al Inicio">
+            <Link 
+              href="/" 
+              className={`${style_ventana.ventana_header_link}`} 
+              aria-label="Ir al Inicio"
+              onClick={() => {
+                  trackEvent(`click_inicio`, {
+                      section: "Ventana"
+                  })
+              }}  
+            >
               <div className={`${style_ventana.ventana_header_box_imagen}`}>
                 <ImagenComponent 
                   style={`${style_ventana.ventana_header_imagen_perfil}`}
@@ -123,10 +133,10 @@ export default function Ventana({ children, perfil }: VentanaProps) {
           </div>
           <div id="articleSelector" className={`${style_ventana.ventana_header_selector}`}>
             <div className={`${style_ventana.ventana_header_navegador}`}>
-              <SelectorItem li={true} href="/" Icon={BsPersonCard} label="Perfil" lado="der"/>
-              <SelectorItem li={true} href="/trabajos" Icon={FaBriefcase} label="Trabajos" lado="der"/>
-              <SelectorItem li={true} href="/servicios" Icon={SiCodefactor} label="Servicios" lado="der"/>
-              <SelectorItem li={true} href="/contacto" Icon={FaEnvelope} label="Contacto" lado="der"/>
+              <SelectorItem li={true} href="/" Icon={BsPersonCard} label="Perfil" lado="der" />
+              <SelectorItem li={true} href="/trabajos" Icon={FaBriefcase} label="Trabajos" lado="der" />
+              <SelectorItem li={true} href="/servicios" Icon={SiCodefactor} label="Servicios" lado="der" />
+              <SelectorItem li={true} href="/contacto" Icon={FaEnvelope} label="Contacto" lado="der" />
             </div>
           </div>
           <div 

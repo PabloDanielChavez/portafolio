@@ -10,6 +10,7 @@ import Link from "next/link";
 import { ImagenComponent } from "./sub_components/ImagenM";
 import { exp_desafioType } from "@/types/exp_desafio";
 import { exp_tecnologiaType } from "@/types/exp_tecnologia";
+import { trackEvent } from "./utils/Analytics";
 
 type Props = {
     exp: ExperienciaType;
@@ -61,6 +62,11 @@ export default function PagExperienciaDetalle({ exp, exp_desafio, exp_tecnologia
                                                 target="_blank" 
                                                 rel="noreferrer"
                                                 aria-label={`Ir a ${exp?.nombre_empresa}`}
+                                                onClick={() => {
+                                                    trackEvent(`click_PagExperiencia_${exp?.nombre_empresa}`, {
+                                                        section: "PagExperiencia"
+                                                    })
+                                                }}
                                             >
                                                 {exp?.enlace_trabajoResumido}
                                             </Link>

@@ -9,6 +9,7 @@ import Link from "next/link";
 import { ContadorAnimadoAuditoria } from "../sub_components/ContadorAnimado";
 import { ImagenComponent } from "../sub_components/ImagenM";
 import { FaArrowRight } from "react-icons/fa";
+import { trackEvent } from "../utils/Analytics";
 
 type Props = {
     trabajos: TrabajosType[];
@@ -44,7 +45,12 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                     <div className={style_trabajos.pagTrabajo_tabs_container} style={{ marginBottom: '20px' }}>
                         <button 
                             type="button"
-                            onClick={() => setEstrategia("mobile")} 
+                            onClick={() => {
+                                setEstrategia("mobile")
+                                trackEvent(`click_Trabajos_MostrarAuditoria_mobile`, {
+                                    section: "Trabajos"
+                                })
+                            }}
                             className={`${style_trabajos.pagTrabajo_tab_btn} ${
                                 estrategia === "mobile" 
                                 ? style_trabajos.pagTrabajo_tab_btn_activo 
@@ -52,7 +58,12 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                             }`}>Telefono</button>
                         <button 
                             type="button"
-                            onClick={() => setEstrategia("desktop")} 
+                            onClick={() => {
+                                setEstrategia("desktop")
+                                trackEvent(`click_Trabajos_MostrarAuditoria_desktop`, {
+                                    section: "Trabajos"
+                                })
+                            }}
                             className={`${style_trabajos.pagTrabajo_tab_btn} ${
                                 estrategia === "desktop" 
                                 ? style_trabajos.pagTrabajo_tab_btn_activo 
@@ -72,7 +83,16 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                     { valor: estrategia === "mobile" ? tra.seo_mobile : tra.seo_desktop, etiqueta: "SEO" },
                                 ];
                                 return (
-                                    <Link key={tra.id} className={`${style_trabajos.trabajos_LINK} ${esOculto ? style_trabajos.oculto : ''}`} href={`/trabajos/${tra.id}`}>
+                                    <Link 
+                                        key={tra.id} 
+                                        className={`${style_trabajos.trabajos_LINK} ${esOculto ? style_trabajos.oculto : ''}`} 
+                                        href={`/trabajos/${tra.id}`}
+                                        onClick={() => 
+                                            trackEvent(`click_trabajo_${tra.nombre_trabajo}`, {
+                                                section: "Trabajos"
+                                            })
+                                        }
+                                    >
                                         <article className={style_trabajos.trabajos_card}>
                                             <div className={style_trabajos.trabajos_card_img}>
                                                 <ImagenComponent 
@@ -125,11 +145,16 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                         <Link 
                             href={`/trabajos`} 
                             className={style_trabajos.trabajos_LINK}
-                            aria-label="Ver toda los trabajos"
+                            aria-label="Ver todos los trabajos"
+                            onClick={() => 
+                                trackEvent(`click_trabajos_mas`, {
+                                    section: "Trabajos"
+                                })
+                            }
                         >
                             <button 
                                 className={style_trabajos.trabajos_card_btn} 
-                                aria-label="Ver todas las experiencias"
+                                aria-label="Ver todas las trabajos"
                             >
                                 Más Proyectos <FaArrowRight />
                             </button>

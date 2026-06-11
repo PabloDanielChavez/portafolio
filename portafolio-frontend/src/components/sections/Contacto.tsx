@@ -7,6 +7,7 @@ import { PerfilType } from "@/types/perfil";
 import { enviarMensajeContacto } from "@/services/fetchData";
 import Link from "next/link";
 import { FaArrowRight, FaGithubSquare, FaInstagram, FaLinkedin, FaMinus, FaPlus, FaWhatsapp, MdOutlineEmail, BsQuestionCircle } from "@/components/utils/Iconos";
+import { trackEvent } from "../utils/Analytics";
 
 interface Props {
     perfil: PerfilType[];
@@ -87,7 +88,12 @@ export default function Contacto({ perfil }: Props) {
             <article className={style.contacto_faq_article}>
                 <div 
                     className={style.contacto_faq_article_header} 
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={() => {
+                        setIsOpen(!isOpen)
+                        trackEvent(`click_WhatsApp`, {
+                            section: "contacto"
+                        })
+                    }}
                 >
                     <span className={style.contacto_faq_pregunta}>{pf.pregunta}</span>
                     <button aria-label="Alternar preguntas frecuentes" aria-describedby={`titulo-${pf.pregunta}`} type="button" className={style.contacto_faq_btn_toggle}>
@@ -121,6 +127,12 @@ export default function Contacto({ perfil }: Props) {
                                         required 
                                         value={nombre}
                                         onChange={(e) => setNombre(e.target.value)}
+                                        onClick={() => 
+                                            trackEvent(`click_formulario_nombre`, {
+                                                section: "contacto"
+                                            })
+                                        }
+                                        
                                     />
                                     <input 
                                         type="email" 
@@ -129,6 +141,11 @@ export default function Contacto({ perfil }: Props) {
                                         required 
                                         value={correo}
                                         onChange={(e) => setCorreo(e.target.value)}
+                                        onClick={() => 
+                                            trackEvent(`click_formulario_correo`, {
+                                                section: "contacto"
+                                            })
+                                        }
                                     />
                                 </div>
                                 <div className={style_contacto.contacto_form_group}>
@@ -139,6 +156,11 @@ export default function Contacto({ perfil }: Props) {
                                         required 
                                         value={mensaje} 
                                         onChange={(e) => setMensaje(e.target.value)}
+                                        onClick={() => 
+                                            trackEvent(`click_formulario_mensaje`, {
+                                                section: "contacto"
+                                            })
+                                        }
                                     />
                                 </div>
                                 <button type="submit" className={style_contacto.contacto_form_submit}>
@@ -149,6 +171,11 @@ export default function Contacto({ perfil }: Props) {
                                         href="mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto..." 
                                         className={style_contacto.contacto_btn_action} 
                                         aria-label="Enviar correo electrónico"
+                                        onClick={() => 
+                                            trackEvent(`click_correo`, {
+                                                section: "contacto"
+                                            })
+                                        }
                                     >
                                         <MdOutlineEmail size={18} />
                                         <span>CORREO</span>
@@ -157,6 +184,11 @@ export default function Contacto({ perfil }: Props) {
                                         href="https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." 
                                         className={style_contacto.contacto_btn_action} 
                                         aria-label="Chatear por WhatsApp"
+                                        onClick={() => 
+                                            trackEvent(`click_WhatsApp`, {
+                                                section: "contacto"
+                                            })
+                                        }
                                     >
                                         <FaWhatsapp size={18} />
                                         <span>WHATSAPP</span>
@@ -173,6 +205,11 @@ export default function Contacto({ perfil }: Props) {
                                         rel="noopener noreferrer"
                                         className={style_contacto.contacto_social_card}
                                         aria-label={`Síguenos en ${red.titulo}`}
+                                        onClick={() => 
+                                            trackEvent(`click_${red.name}`, {
+                                                section: "contacto"
+                                            })
+                                        }
                                     >
                                         <div className={style_contacto.contacto_social_card_left}>
                                             <div className={style_contacto.contacto_social_icon}>

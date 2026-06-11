@@ -12,6 +12,7 @@ import { IoAttachOutline } from "react-icons/io5";
 import { ContadorAnimadoAuditoria } from "./sub_components/ContadorAnimado";
 import { FaGithub, FaGithubSquare, FaGlobe, FaLink, FaLinkedin } from "react-icons/fa";
 import { FiExternalLink, FiGlobe } from "react-icons/fi";
+import { trackEvent } from "./utils/Analytics";
 
 type Props = {
     tra: TrabajosType;
@@ -63,6 +64,11 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                     href="/" 
                     className={style_trabajos.pagTrabajo_LINK} 
                     aria-label="Volver a Inicio"
+                    onClick={() => {
+                        trackEvent(`click_PagTrabajos_VolverPortafolio`, {
+                            section: "PagTrabajos"
+                        })
+                    }} 
                 >
                     <IoMdArrowBack /> Volver al Portafolio
                 </Link>
@@ -74,7 +80,12 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                             target="_blank" 
                             rel="noreferrer" 
                             className={style_trabajos.pagTrabajo_detalle_link}
-                            aria-label={`Ir al trabajo: ${tra.enlace_repositorio}`}
+                            aria-label={`Ir al trabajo: ${tra.enlace_repositorio}`}  
+                            onClick={() => {
+                                trackEvent(`click_PagTrabajos_enlace_github`, {
+                                    section: "PagTrabajos"
+                                })
+                            }} 
                         >
                             <FaGithub size={28}/>
                         </Link>
@@ -84,6 +95,11 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                             rel="noreferrer" 
                             className={style_trabajos.pagTrabajo_detalle_link}
                             aria-label={`Ir al trabajo: ${tra.enlace_trabajo}`}
+                            onClick={() => {
+                                trackEvent(`click_PagTrabajos_enlace_pagina`, {
+                                    section: "PagTrabajos"
+                                })
+                            }} 
                         >
                             <FaLink size={28} />
                         </Link>
@@ -102,7 +118,12 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                         <div className={style_trabajos.pagTrabajo_tabs_container}>
                             <button 
                                 type="button"
-                                onClick={() => setEstrategia("mobile")} 
+                                onClick={() => {
+                                    setEstrategia("mobile")
+                                    trackEvent(`click_Trabajos_MostrarAuditoria_mobile`, {
+                                        section: "PagTrabajos"
+                                    })
+                                }} 
                                 className={`${style_trabajos.pagTrabajo_tab_btn} ${
                                     estrategia === "mobile" 
                                     ? style_trabajos.pagTrabajo_tab_btn_activo 
@@ -110,7 +131,12 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                                 }`}>Telefono</button>
                             <button 
                                 type="button"
-                                onClick={() => setEstrategia("desktop")} 
+                                onClick={() => {
+                                    setEstrategia("desktop")
+                                    trackEvent(`click_Trabajos_MostrarAuditoria_desktop`, {
+                                        section: "PagTrabajos"
+                                    })
+                                }} 
                                 className={`${style_trabajos.pagTrabajo_tab_btn} ${
                                     estrategia === "desktop" 
                                     ? style_trabajos.pagTrabajo_tab_btn_activo 
@@ -120,7 +146,10 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
 
                         <div className={style_trabajos.pagTrabajo_card_metrics}>
                             {metricasActivas.map((stat, idx) => (
-                                <article key={idx} className={style_trabajos.pagTrabajo_layout_metrics}>
+                                <article 
+                                    key={idx} 
+                                    className={style_trabajos.pagTrabajo_layout_metrics}
+                                >
                                     <ContadorAnimadoAuditoria 
                                         valorFinal={stat.valor} 
                                         classNameBase={style_trabajos.pagTrabajo_card_metrics_puntaje}
@@ -142,6 +171,11 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                                 target="_blank" 
                                 rel="noreferrer"
                                 className={`${style_trabajos.pagTrabajo_LINK} ${style_trabajos.pagTrabajo_auditoria}`}
+                                onClick={() => {
+                                    trackEvent(`click_PagTrabajos_enlace_auditoria`, {
+                                        section: "PagTrabajos"
+                                    })
+                                }}  
                             >
                                 <IoAttachOutline size={24} style={{ "transform": "rotate(25deg)"}}/>
                                 <span>Reporte Completo</span>
@@ -156,7 +190,15 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                         <h3>Tecnologías</h3>
                         <ul className={style_trabajos.pagTrabajo_ul}>
                             {deconstruirTecnologias.map((tech) => (
-                                <li key={tech} className={style_trabajos.pagTrabajo_li}>
+                                <li 
+                                    key={tech} 
+                                    className={style_trabajos.pagTrabajo_li}
+                                    onClick={() => {
+                                        trackEvent(`click_PagTrabajos_enlace_auditoria`, {
+                                            section: "PagTrabajos"
+                                        })
+                                    }}  
+                                >
                                     <span className={style_trabajos.pagTrabajo_span}>
                                         {iconosTech[tech]}
                                         <strong style={{ color: coloresTech[tech], fontSize: '13px' }}>{tech}</strong>

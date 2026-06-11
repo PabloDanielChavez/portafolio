@@ -6,6 +6,7 @@ import style_bienvenida from "@/styles/sections/bienvenida.module.scss";
 import { FaInstagram, FaWhatsapp, FaLinkedin, FaGithubSquare, FaFacebookSquare, FaGithub} from "@/components/utils/Iconos";
 import Link from "next/link";
 import { ImagenComponent } from "../sub_components/ImagenM";
+import { trackEvent } from "../utils/Analytics";
 
 interface Props {
     perfil: PerfilType[];
@@ -36,7 +37,7 @@ export default function Bienvenida({ perfil }: Props) {
                             height={150}
                             priority
                             sizes="150px"
-                            fetchPriority="high" // 👈 ESTO le dice al navegador que es la imagen más importante
+                            fetchPriority="high"
                         />
                     </div>
                     <div className={style_bienvenida.bienvenida_header_box_informacion}>
@@ -55,6 +56,11 @@ export default function Bienvenida({ perfil }: Props) {
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://www.linkedin.com/in/${user?.nombre_linkedin}/`}
                                 aria-label={`Ir a mi LinkedIn ${user?.nombre_linkedin}`}
+                                onClick={() => 
+                                    trackEvent("menu_navigation", {
+                                        section: "bienvenida"
+                                    })
+                                }
                             > 
                                 <FaLinkedin size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Linkedin</span>
@@ -63,6 +69,11 @@ export default function Bienvenida({ perfil }: Props) {
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://github.com/${user?.nombre_github}`}
                                 aria-label={`Ir a mi GitHub  ${user?.nombre_github}`}
+                                onClick={() => 
+                                    trackEvent("click_github", {
+                                        section: "bienvenida"
+                                    })
+                                }
                             >
                                 <FaGithub size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>GitHub</span>
@@ -71,6 +82,11 @@ export default function Bienvenida({ perfil }: Props) {
                                 className={style_bienvenida.bienvenida_header_btn} 
                                 href={`https://wa.me/${user?.numero_whatsapp}`}
                                 aria-label={`Ir a mi Whatsapp ${user?.numero_whatsapp}`}
+                                onClick={() => 
+                                    trackEvent("click_whatsapp", {
+                                        section: "bienvenida"
+                                    })
+                                }
                             >
                                 <FaWhatsapp size={20} /> 
                                 <span className={style_bienvenida.bienvenida_header_btn_span}>Whatsapp</span>
@@ -88,6 +104,11 @@ export default function Bienvenida({ perfil }: Props) {
                                             href={red.url} 
                                             className={style_bienvenida.bienvenida_center_box_redsocial}
                                             aria-label={`Síguenos en ${red.name}`}
+                                            onClick={() => 
+                                                trackEvent(`click_${red.name}`, {
+                                                    section: "bienvenida"
+                                                })
+                                            }
                                         >
                                             {red.icon}
                                             <span className={style_bienvenida.bienvenida_center_redsocial_span}>{red.name}</span>
@@ -101,10 +122,10 @@ export default function Bienvenida({ perfil }: Props) {
                 <article className={style_bienvenida.bienvenida_footer}>
                     <div className={style_bienvenida.bienvenida_footer_layout}>
                         {[
-                            { valor: user?.clientes_felices, etiqueta: "Clientes felices" },
+                            // { valor: user?.clientes_felices, etiqueta: "Clientes felices" },
                             { valor: `${user?.tiempo_experiencia} año`, etiqueta: "De Experiencia" },
                             { valor: user?.trabajos_completos, etiqueta: "Trabajos completos" },
-                            { valor: user?.opiniones_recibidas, etiqueta: "Premios recibidos" },
+                            // { valor: user?.opiniones_recibidas, etiqueta: "Premios recibidos" },
                         ].map((stat, idx) => (
                             <article key={idx} className={style_bienvenida.bienvenida_footer_box}>
                                 <span className={style_bienvenida.bienvenida_footer_h3}>{stat.valor}</span>

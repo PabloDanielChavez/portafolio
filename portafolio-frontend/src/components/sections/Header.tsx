@@ -2,6 +2,7 @@
 import styles_header from '@/styles/sections/header.module.scss';
 import { BiMenu } from 'react-icons/bi';
 import { IoMdLink } from 'react-icons/io';
+import { trackEvent } from '../utils/Analytics';
 
 interface HeaderProps {
   expMenu: (lado: 'izq' | 'der') => void;
@@ -14,7 +15,12 @@ export default function Header({ expMenu }: HeaderProps) {
         <div className={styles_header.header_layout}>
           <div 
             className={`${styles_header.header_menu}`}
-            onClick={() => expMenu('izq')} 
+            onClick={() => {
+              expMenu('izq')
+              trackEvent(`click_Menu`, {
+                  section: "Header"
+              })
+            }}
             role="button"
             tabIndex={0}
           >
@@ -22,7 +28,12 @@ export default function Header({ expMenu }: HeaderProps) {
           </div>
           <div 
             className={`${styles_header.header_menu}`}
-            onClick={() => expMenu('der')} 
+            onClick={() => {
+              expMenu('der')
+              trackEvent(`click_Redes`, {
+                  section: "Header"
+              })
+            }} 
             role="button"
             tabIndex={0}
           >
