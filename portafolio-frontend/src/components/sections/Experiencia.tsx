@@ -24,7 +24,7 @@ export default function Experiencia({ experiencia, showFooter }: Props) {
                 <SectionHeader 
                     icon={<BiBriefcase />} 
                     title={"Experiencia"} 
-                    description={"Navega por entornos diversos con adaptabilidad y experiencia..."}
+                    description={"Hecha un vistazo a mi experiencia."}
                 />
                 <div className={style_experiencia.experiencia_contenido_box}>
                     <div className={style_experiencia.experiencia_contenido_box_layout}>
