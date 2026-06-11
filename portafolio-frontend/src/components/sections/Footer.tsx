@@ -57,8 +57,9 @@ export default function Footer() {
                       className={styles_footer.footer_a} 
                       aria-label={`Ir a ${link.name}`}
                       onClick={() => 
-                          trackEvent(`click_footer${link.name}`, {
-                              section: "Footer"
+                          trackEvent("social_click", {
+                              section: "Footer",
+                              network: `${link.name}`
                           })
                       }
                     >

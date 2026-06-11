@@ -172,8 +172,9 @@ export default function Contacto({ perfil }: Props) {
                                         className={style_contacto.contacto_btn_action} 
                                         aria-label="Enviar correo electrónico"
                                         onClick={() => 
-                                            trackEvent(`click_correo`, {
-                                                section: "contacto"
+                                            trackEvent("social_click", {
+                                                section: "contacto",
+                                                network: "correo"
                                             })
                                         }
                                     >
@@ -185,8 +186,9 @@ export default function Contacto({ perfil }: Props) {
                                         className={style_contacto.contacto_btn_action} 
                                         aria-label="Chatear por WhatsApp"
                                         onClick={() => 
-                                            trackEvent(`click_WhatsApp`, {
-                                                section: "contacto"
+                                            trackEvent("social_click", {
+                                                section: "contacto",
+                                                network: "whatsapp"
                                             })
                                         }
                                     >
@@ -206,8 +208,9 @@ export default function Contacto({ perfil }: Props) {
                                         className={style_contacto.contacto_social_card}
                                         aria-label={`Síguenos en ${red.titulo}`}
                                         onClick={() => 
-                                            trackEvent(`click_${red.name}`, {
-                                                section: "contacto"
+                                            trackEvent("social_click", {
+                                                section: "contacto",
+                                                network: `${red.name}`
                                             })
                                         }
                                     >

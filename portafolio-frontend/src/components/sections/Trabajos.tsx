@@ -47,7 +47,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                             type="button"
                             onClick={() => {
                                 setEstrategia("mobile")
-                                trackEvent(`click_Trabajos_MostrarAuditoria_mobile`, {
+                                trackEvent(`click_Trabajos_auditoria`, {
                                     section: "Trabajos"
                                 })
                             }}
@@ -60,7 +60,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                             type="button"
                             onClick={() => {
                                 setEstrategia("desktop")
-                                trackEvent(`click_Trabajos_MostrarAuditoria_desktop`, {
+                                trackEvent(`click_Trabajos_auditoria`, {
                                     section: "Trabajos"
                                 })
                             }}
@@ -88,8 +88,9 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                         className={`${style_trabajos.trabajos_LINK} ${esOculto ? style_trabajos.oculto : ''}`} 
                                         href={`/trabajos/${tra.id}`}
                                         onClick={() => 
-                                            trackEvent(`click_trabajo_${tra.nombre_trabajo}`, {
-                                                section: "Trabajos"
+                                            trackEvent(`click_trabajo`, {
+                                                section: "Trabajos",
+                                                network: `${tra.nombre_trabajo}`
                                             })
                                         }
                                     >
@@ -147,7 +148,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                             className={style_trabajos.trabajos_LINK}
                             aria-label="Ver todos los trabajos"
                             onClick={() => 
-                                trackEvent(`click_trabajos_mas`, {
+                                trackEvent(`click_trabajos`, {
                                     section: "Trabajos"
                                 })
                             }

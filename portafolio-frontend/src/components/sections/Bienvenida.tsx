@@ -57,8 +57,9 @@ export default function Bienvenida({ perfil }: Props) {
                                 href={`https://www.linkedin.com/in/${user?.nombre_linkedin}/`}
                                 aria-label={`Ir a mi LinkedIn ${user?.nombre_linkedin}`}
                                 onClick={() => 
-                                    trackEvent("menu_navigation", {
-                                        section: "bienvenida"
+                                    trackEvent("social_click", {
+                                        section: "bienvenida",
+                                        network: "linkedin"
                                     })
                                 }
                             > 
@@ -70,8 +71,9 @@ export default function Bienvenida({ perfil }: Props) {
                                 href={`https://github.com/${user?.nombre_github}`}
                                 aria-label={`Ir a mi GitHub  ${user?.nombre_github}`}
                                 onClick={() => 
-                                    trackEvent("click_github", {
-                                        section: "bienvenida"
+                                    trackEvent("social_click", {
+                                        section: "bienvenida",
+                                        network: "github"
                                     })
                                 }
                             >
@@ -83,8 +85,9 @@ export default function Bienvenida({ perfil }: Props) {
                                 href={`https://wa.me/${user?.numero_whatsapp}`}
                                 aria-label={`Ir a mi Whatsapp ${user?.numero_whatsapp}`}
                                 onClick={() => 
-                                    trackEvent("click_whatsapp", {
-                                        section: "bienvenida"
+                                    trackEvent("social_click", {
+                                        section: "bienvenida",
+                                        network: "whatsapp"
                                     })
                                 }
                             >
@@ -105,8 +108,9 @@ export default function Bienvenida({ perfil }: Props) {
                                             className={style_bienvenida.bienvenida_center_box_redsocial}
                                             aria-label={`Síguenos en ${red.name}`}
                                             onClick={() => 
-                                                trackEvent(`click_${red.name}`, {
-                                                    section: "bienvenida"
+                                                trackEvent("social_click", {
+                                                    section: "bienvenida",
+                                                    network:`${red.name}`
                                                 })
                                             }
                                         >
