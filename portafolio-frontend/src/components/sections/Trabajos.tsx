@@ -90,7 +90,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                         onClick={() => 
                                             trackEvent(`click_trabajo`, {
                                                 section: "Trabajos",
-                                                network: `${tra.nombre_trabajo}`
+                                                project_name: tra.nombre_trabajo
                                             })
                                         }
                                     >

@@ -1,0 +1,74 @@
+@use '../../base/variables.module.scss' as v;
+@use '../../base/mixins.module.scss' as m;
+
+.skeleton {
+    background: linear-gradient(90deg, #1a1a1a 0%, #252525 50%, #1a1a1a 100%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 8px; // Ajusta según necesites
+
+    &_bienvenida {
+        padding: 40px 16px;
+        @include m.telefonoXL { padding: 60px 20px; }
+    }
+
+    &_layout {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    &_header {
+        display: grid;
+        gap: 24px;
+        @include m.telefonoXXL { grid-template-columns: 1fr 1.5fr; align-items: center; }
+    }
+
+    &_imagen {
+        width: 100%;
+        max-width: 220px;
+        height: 250px; // Altura fija aproximada a tu imagen
+        margin: auto;
+        border-radius: 20px;
+    }
+
+    &_info {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &_soy { width: 120px; height: 20px; }
+    &_nombre { width: 80%; height: 40px; }
+    &_descripcion { width: 100%; height: 60px; }
+
+    &_botones {
+        display: flex;
+        gap: 10px;
+    }
+
+    &_btn { width: 100px; height: 35px; border-radius: 10px; }
+
+    &_social {
+        width: 90%;
+        height: 50px;
+        margin: 0 auto;
+        border-radius: 20px;
+    }
+
+    &_stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        @include m.tabletXL { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    &_stat { height: 80px; border-radius: 14px; }
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}

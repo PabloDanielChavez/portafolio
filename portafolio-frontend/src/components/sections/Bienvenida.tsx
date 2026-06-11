@@ -126,10 +126,10 @@ export default function Bienvenida({ perfil }: Props) {
                 <article className={style_bienvenida.bienvenida_footer}>
                     <div className={style_bienvenida.bienvenida_footer_layout}>
                         {[
-                            // { valor: user?.clientes_felices, etiqueta: "Clientes felices" },
+                            { valor: 4, etiqueta: "Proyectos desarrollados" },
                             { valor: `${user?.tiempo_experiencia} año`, etiqueta: "De Experiencia" },
                             { valor: user?.trabajos_completos, etiqueta: "Trabajos completos" },
-                            // { valor: user?.opiniones_recibidas, etiqueta: "Premios recibidos" },
+                            { valor: 4, etiqueta: "Tecnologías dominadas" },
                         ].map((stat, idx) => (
                             <article key={idx} className={style_bienvenida.bienvenida_footer_box}>
                                 <span className={style_bienvenida.bienvenida_footer_h3}>{stat.valor}</span>

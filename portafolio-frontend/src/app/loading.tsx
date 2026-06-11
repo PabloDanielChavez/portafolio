@@ -1,14 +1,15 @@
 "use client";
-import React from 'react';
-import styles from '@/styles/sections/loading.module.scss';
+
+import SkeletonBienvenida from '@/components/skeleton/Skeleton_bienvenida';
+import SkeletonServicios from '@/components/skeleton/Skeleton_servicios';
+import SkeletonTrabajos from '@/components/skeleton/Sleleton_trabajos';
 
 export default function Loading() {
   return (
-    <div className={styles.loading_container}>
-      <div className={styles.loading_box}>
-        <div className={styles.spinner}></div>
-        <p className={styles.loading_text}>Cargando Portafolio...</p>
-      </div>
-    </div>
+    <>
+      <SkeletonBienvenida />
+      <SkeletonTrabajos />
+      <SkeletonServicios />
+    </>
   );
 }

@@ -1,0 +1,35 @@
+.skeleton_pulse {
+    background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+
+    &_ventana { width: 100vw; height: 100vh; background: #0b0b0b; overflow: hidden; }
+
+    &_layout {
+        display: flex;
+        height: 100%;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    &_sidebar { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 40px; 
+        width: 250px; 
+        display: none; // Oculto en mobile por defecto
+        @media (min-width: 769px) { display: flex; }
+    }
+
+    &_central { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+
+    &_logo { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto; }
+    &_nav_item { height: 40px; border-radius: 8px; margin-bottom: 10px; }
+    &_header_fake { height: 60px; width: 100%; border-radius: 12px; }
+    &_content_fake { flex: 1; width: 100%; border-radius: 12px; }
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

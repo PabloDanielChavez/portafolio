@@ -1,0 +1,26 @@
+.skeleton {
+    background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+
+    &_contacto { padding: 40px 20px; background: #0d0d0d; }
+    &_layout { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px; }
+
+    // Header (Título)
+    &_header { width: 300px; height: 40px; border-radius: 8px; }
+
+    // Formulario y Redes
+    &_contenido_box { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    &_form { height: 450px; border-radius: 16px; }
+    &_social_grid { display: flex; flex-direction: column; gap: 16px; }
+    &_social_card { height: 85px; border-radius: 16px; }
+
+    // FAQs
+    &_faqs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    &_faq_item { height: 70px; border-radius: 16px; }
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
