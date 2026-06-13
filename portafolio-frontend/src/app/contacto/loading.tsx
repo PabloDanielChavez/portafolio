@@ -2,7 +2,7 @@
 
 import SkeletonContacto from '@/components/skeleton/Skeleton_contacto';
 
-export default function Loading() {
+export default function LoadingContacto() {
   return (
     <>
       <SkeletonContacto />

@@ -120,16 +120,16 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                                     <span>{tra?.tiempo_trabajo}</span>
                                                 </div>
                                                 <p className={style_trabajos.trabajos_card_desc}>{tra?.resumen_trabajo}</p>
-                                                <div className={style_trabajos.pagTrabajo_card_metrics}>
+                                                <div className={style_trabajos.trabajos_card_metrics}>
                                                     {metricas.map((stat, idx) => (
-                                                        <div key={idx} className={style_trabajos.pagTrabajo_layout_metrics}>
+                                                        <div key={idx} className={style_trabajos.trabajos_layout_metrics}>
                                                             <ContadorAnimadoAuditoria 
                                                                 valorFinal={stat.valor || 0} 
-                                                                classNameBase={style_trabajos.pagTrabajo_card_metrics_puntaje}
+                                                                classNameBase={style_trabajos.trabajos_card_metrics_puntaje}
                                                                 clasesColor={{ verde: style_trabajos.verde, amarillo: style_trabajos.amarillo, rojo: style_trabajos.rojo }}
                                                                 tiempo={1000}
                                                             />
-                                                            <span className={style_trabajos.pagTrabajo_card_metrics_titulo}>{stat.etiqueta}</span>
+                                                            <span className={style_trabajos.trabajos_card_metrics_titulo}>{stat.etiqueta}</span>
                                                         </div>
                                                     ))}
                                                 </div>

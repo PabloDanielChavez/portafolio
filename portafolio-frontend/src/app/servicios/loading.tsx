@@ -2,7 +2,7 @@
 
 import SkeletonServicios from '@/components/skeleton/Skeleton_servicios';
 
-export default function Loading() {
+export default function LoadingServicios() {
   return (
     <>
       <SkeletonServicios />

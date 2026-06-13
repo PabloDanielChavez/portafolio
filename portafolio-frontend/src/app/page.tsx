@@ -9,6 +9,9 @@ const Servicios = dynamic(() => import('@/components/sections/Servicios'), { loa
 const Trabajos = dynamic(() => import('@/components/sections/Trabajos'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
 const Clientes = dynamic(() => import('@/components/sections/Clientes'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
 const Contacto = dynamic(() => import('@/components/sections/Contacto'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
+// const Loading = dynamic(() => import('@/app/loading'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
+
+import Loading from '@/app/loading';
 
 export default async function Home() {
     const data = await getAllPortfolioData();
@@ -16,14 +19,12 @@ export default async function Home() {
 
     return (
         <>
-
             <Bienvenida perfil={data.Perfil} />
             <Trabajos trabajos={data.Trabajos} showFooter={true}/>
             <Servicios servicios={data.Servicios} />
             <Experiencia experiencia={data.Experiencia} showFooter={true}/>
             <Habilidades habilidades={data.Habilidades} />
-            <Contacto perfil={data.Perfil}/>
-            {/* <Clientes clientes={data.Clientes} /> */}
+            <Contacto perfil={data.Perfil}/> 
         </>
     );
 }

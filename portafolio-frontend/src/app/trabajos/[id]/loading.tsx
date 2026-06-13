@@ -2,7 +2,7 @@
 
 import SkeletonPagTrabajos from '@/components/skeleton/Skeleton_pagTrabajo';
 
-export default function Loading() {
+export default function LoadingTrabajosId() {
   return (
     <>
       <SkeletonPagTrabajos />

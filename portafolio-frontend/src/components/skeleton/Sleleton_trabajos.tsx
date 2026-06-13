@@ -4,7 +4,6 @@ export default function SkeletonTrabajos() {
   return (
     <section className={style_skeleton.skeleton_section}>
       <div className={style_skeleton.skeleton_layout}>
-        {/* Header y Tabs (Fake) */}
         <div className={style_skeleton.skeleton_header}>
             <div className={`${style_skeleton.skeleton_title} ${style_skeleton.skeleton}`} />
             <div className={style_skeleton.skeleton_tabs}>
@@ -13,7 +12,6 @@ export default function SkeletonTrabajos() {
             </div>
         </div>
 
-        {/* Lista de Tarjetas */}
         <div className={style_skeleton.skeleton_grid}>
           {[1, 2, 3].map((item) => (
             <div key={item} className={style_skeleton.skeleton_card}>
@@ -22,7 +20,9 @@ export default function SkeletonTrabajos() {
                 <div className={`${style_skeleton.skeleton_line} ${style_skeleton.skeleton}`} />
                 <div className={`${style_skeleton.skeleton_line_small} ${style_skeleton.skeleton}`} />
                 <div className={style_skeleton.skeleton_metrics}>
-                    {[1,2,3,4].map(i => <div key={i} className={`${style_skeleton.skeleton_metric} ${style_skeleton.skeleton}`} />)}
+                    {[1,2,3,4].map(i => (
+                        <div key={i} className={`${style_skeleton.skeleton_metric} ${style_skeleton.skeleton}`} />
+                    ))}
                 </div>
               </div>
             </div>

@@ -32,48 +32,50 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={styles_footer.footer_grid_principal}>
-      <div className={styles_footer.footer_box_logo}>
-        <ImagenComponent 
-            style={styles_footer.footer_imagen_logo}
-            url="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
-            alt={"LOGOTIPO"}
-            widthE={150}
-            heightE={150}
-            priority=""
-        />
-      </div>
-      <div className={styles_footer.footer_grid_enlaces}>
-        {secciones.map((seccion) => (
-          <div key={seccion.id} className={styles_footer.footer_box}>
-            <h2 className={styles_footer.footer_h2}>{seccion.titulo}</h2>
-            <ul className={styles_footer.footer_ul}>
-              {linksFooter
-                .filter((link) => link.seccion === seccion.id)
-                .map((link) => (
-                  <li key={link.id} className={styles_footer.footer_li}>
-                    <Link 
-                      href={link.url || "#"}
-                      className={styles_footer.footer_a} 
-                      aria-label={`Ir a ${link.name}`}
-                      onClick={() => 
-                          trackEvent("social_click", {
-                              section: "Footer",
-                              network: `${link.name}`
-                          })
-                      }
-                    >
-                      {link.icon}
-                      <span className={styles_footer.footer_span}>{link.name}</span>
-                    </Link>
-                  </li>
-                ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <div className={styles_footer.footer_box_copy}>
-        <p className={styles_footer.footer_copy_p}>©2026 Pablo Daniel Chavez. Todos los derechos reservados.</p>
+    <footer className={`${styles_footer.footer}`}>
+      <div className={`${styles_footer.footer_grid_principal}`}>
+        <div className={styles_footer.footer_box_logo}>
+          <ImagenComponent 
+              style={styles_footer.footer_imagen_logo}
+              url="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
+              alt={"LOGOTIPO"}
+              widthE={150}
+              heightE={150}
+              priority=""
+          />
+        </div>
+        <div className={styles_footer.footer_grid_enlaces}>
+          {secciones.map((seccion) => (
+            <div key={seccion.id} className={styles_footer.footer_box}>
+              <h2 className={styles_footer.footer_h2}>{seccion.titulo}</h2>
+              <ul className={styles_footer.footer_ul}>
+                {linksFooter
+                  .filter((link) => link.seccion === seccion.id)
+                  .map((link) => (
+                    <li key={link.id} className={styles_footer.footer_li}>
+                      <Link 
+                        href={link.url || "#"}
+                        className={styles_footer.footer_a} 
+                        aria-label={`Ir a ${link.name}`}
+                        onClick={() => 
+                            trackEvent("social_click", {
+                                section: "Footer",
+                                network: `${link.name}`
+                            })
+                        }
+                      >
+                        {link.icon}
+                        <span className={styles_footer.footer_span}>{link.name}</span>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className={styles_footer.footer_box_copy}>
+          <p className={styles_footer.footer_copy_p}>©2026 Pablo Daniel Chavez. Todos los derechos reservados.</p>
+        </div>
       </div>
     </footer>
   );

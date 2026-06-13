@@ -2,7 +2,7 @@
 
 import SkeletonExperiencia from '@/components/skeleton/Sleleton_trabajos';
 
-export default function Loading() {
+export default function LoadingExperiencia() {
   return (
     <>
       <SkeletonExperiencia />

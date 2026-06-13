@@ -1,11 +1,15 @@
 "use client";
 
 import SkeletonBienvenida from '@/components/skeleton/Skeleton_bienvenida';
+import SkeletonServicios from '@/components/skeleton/Skeleton_servicios';
+import SkeletonTrabajos from '@/components/skeleton/Sleleton_trabajos';
 
-export default function Loading() {
+export default function LoadingPerfil() {
   return (
     <>
       <SkeletonBienvenida />
+      <SkeletonTrabajos />
+      <SkeletonServicios />
     </>
   );
 }
