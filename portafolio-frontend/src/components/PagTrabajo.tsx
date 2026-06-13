@@ -190,11 +190,11 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
 
                         <h3>Detalle</h3>
                         <div className={style_trabajos.pagTrabajo_detalle_specs}>
-                            <span><strong>Páginas:</strong> {tra.numero_pagina}</span>
-                            <span><strong>Tiempo:</strong> {tra.tiempo_trabajo}</span>
-                            <span><strong>Complejidad:</strong> {tra.complejidad_trabajo}</span>
-                            <span><strong>Rol:</strong> {tra.rol}</span>
-                            <span><strong>Cliente:</strong> {tra.categoría_cliente}</span>
+                            <span className={style_trabajos.pagTrabajo_detalle_spanDe}><strong>Páginas:</strong> {tra.numero_pagina}</span>
+                            <span className={style_trabajos.pagTrabajo_detalle_spanDe}><strong>Tiempo:</strong> {tra.tiempo_trabajo}</span>
+                            <span className={style_trabajos.pagTrabajo_detalle_spanDe}><strong>Complejidad:</strong> {tra.complejidad_trabajo}</span>
+                            <span className={style_trabajos.pagTrabajo_detalle_spanDe}><strong>Rol:</strong> {tra.rol}</span>
+                            <span className={style_trabajos.pagTrabajo_detalle_spanDe}><strong>Cliente:</strong> {tra.categoría_cliente}</span>
                         </div>
                         {tra.reto_tecnico && (
                             <div className={style_trabajos.pagTrabajo_detalle_reto}>
