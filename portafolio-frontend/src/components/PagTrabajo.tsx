@@ -188,7 +188,7 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                             ))}
                         </ul>
 
-                        <h3>Rol y Responsabilidades</h3>
+                        <h3>Detalle</h3>
                         <div className={style_trabajos.pagTrabajo_detalle_specs}>
                             <span><strong>Páginas:</strong> {tra.numero_pagina}</span>
                             <span><strong>Tiempo:</strong> {tra.tiempo_trabajo}</span>
