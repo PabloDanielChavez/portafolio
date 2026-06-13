@@ -1,0 +1,55 @@
+@use '../../base/variables.module.scss' as v;
+@use '../../base/mixins.module.scss' as m;
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton {
+    &_base {
+        background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+    }
+
+    &_wrapper {
+        padding: 60px 20px;
+        background: #0d0d0d;
+    }
+
+    &_item {
+        @extend .skeleton_base;
+        border: 1px solid #1f1f1f;
+        border-radius: 16px;
+        padding: 20px;
+        height: 90px;
+        margin-bottom: 25px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 15px;
+        align-items: center;
+    }
+
+    &_icono {
+        @extend .skeleton_base;
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+    }
+
+    &_titulo {
+        @extend .skeleton_base;
+        height: 16px;
+        width: 120px;
+        border-radius: 4px;
+    }
+
+    &_subtitulo {
+        @extend .skeleton_base;
+        height: 12px;
+        width: 80px;
+        margin-top: 6px;
+        border-radius: 4px;
+    }
+}

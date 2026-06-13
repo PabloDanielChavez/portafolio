@@ -1,17 +1,18 @@
 import { getAllPortfolioData } from "@/services/fetchData";
 import dynamic from 'next/dynamic';
 
-// Las demás secciones se quedan igual usando dynamic normal
-const Bienvenida = dynamic(() => import('@/components/sections/Bienvenida'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Experiencia = dynamic(() => import('@/components/sections/Experiencia'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Habilidades = dynamic(() => import('@/components/sections/Habilidades'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Servicios = dynamic(() => import('@/components/sections/Servicios'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Trabajos = dynamic(() => import('@/components/sections/Trabajos'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Clientes = dynamic(() => import('@/components/sections/Clientes'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Contacto = dynamic(() => import('@/components/sections/Contacto'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-// const Loading = dynamic(() => import('@/app/loading'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
+import SkeletonExperiencia from "@/components/skeleton/Sleleton_trabajos"
+import SkeletonHabilidades from "@/components/skeleton/Skeleton_habilidades"
+import SkeletonServicio from "@/components/skeleton/Skeleton_servicios"
+import SkeletonContacto from "@/components/skeleton/Skeleton_contacto"
 
-import Loading from '@/app/loading';
+import Bienvenida from '@/components/sections/Bienvenida';
+import Trabajos from '@/components/sections/Trabajos';
+
+const Experiencia = dynamic(() => import('@/components/sections/Experiencia'), { loading: () => <SkeletonExperiencia />, ssr: true });
+const Habilidades = dynamic(() => import('@/components/sections/Habilidades'), { loading: () => <SkeletonHabilidades />, ssr: true, });
+const Servicios = dynamic(() => import('@/components/sections/Servicios'), { loading: () => <SkeletonServicio />, ssr: true });
+const Contacto = dynamic(() => import('@/components/sections/Contacto'), { loading: () => <SkeletonContacto />, ssr: true });
 
 export default async function Home() {
     const data = await getAllPortfolioData();
