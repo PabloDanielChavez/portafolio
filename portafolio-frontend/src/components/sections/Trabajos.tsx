@@ -97,7 +97,7 @@ export default function Trabajos({ trabajos, showFooter }: Props) {
                                         <article className={style_trabajos.trabajos_card}>
                                             <div className={style_trabajos.trabajos_card_img}>
                                                 <ImagenComponent 
-                                                    style={style_trabajos.ha}
+                                                    style={style_trabajos.trabajos_img}
                                                     url={`/img/Logotipo_Portafolio_PDC/${tra?.nombre_archivo}/${tra?.nombre_imagen}.${tra?.formato_imagen}`}
                                                     alt={tra?.nombre_imagen || "Imagen del proyecto"}
                                                     widthE={500}

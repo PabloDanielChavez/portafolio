@@ -8,6 +8,7 @@ const PagTrabajoDetalle = dynamic(() => import('@/components/PagTrabajo'), {
     ssr: true,
 });
       import SkeletonPagTrabajos from '@/components/skeleton/Skeleton_pagTrabajo';
+import { EstadoVacio } from '@/components/sub_components/EstadoVacio';
 
 type Props = {
   params: Promise<{
@@ -28,7 +29,9 @@ export default async function TraDetallePagina({ params }: Props) {
   );
 
   if (!trabajoIndividual) {
-    return <div style={{ color: '#e5e5e5', padding: '40px', textAlign: 'center' }}>Trabajo no encontrado</div>;
+    return <div style={{ color: '#e5e5e5', padding: '40px', textAlign: 'center' }}>
+      <EstadoVacio />
+    </div>
   }
 
   return (

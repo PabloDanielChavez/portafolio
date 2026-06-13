@@ -55,8 +55,6 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
         { valor: (estrategia === "mobile" ? tra.seo_mobile : tra.seo_desktop) || 0, etiqueta: "SEO" },
     ];
 
-    const enlaceAuditoriaActivo = estrategia === "mobile" ? tra.enlace_auditoria_mobile : tra.enlace_auditoria_desktop;
-
     return (
         <div className={style_trabajos.pagTrabajo_detalle_container}>
             <div className={style_trabajos.pagTrabajo_layout}>
@@ -164,23 +162,6 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                                 </article>
                             ))}
                         </div>
-                        
-                        {enlaceAuditoriaActivo && (
-                            <Link 
-                                href={enlaceAuditoriaActivo}
-                                target="_blank" 
-                                rel="noreferrer"
-                                className={`${style_trabajos.pagTrabajo_LINK} ${style_trabajos.pagTrabajo_auditoria}`}
-                                onClick={() => {
-                                    trackEvent(`click_PagTrabajos_enlace_auditoria`, {
-                                        section: "PagTrabajos"
-                                    })
-                                }}  
-                            >
-                                <IoAttachOutline size={24} style={{ "transform": "rotate(25deg)"}}/>
-                                <span>Reporte Completo</span>
-                            </Link>
-                        )}
                     </aside>
                     
                     <section className={style_trabajos.pagTrabajo_detalle_contenido}>
@@ -206,13 +187,23 @@ export default function PagTrabajoDetalle({ tra, tra_tecnologia }: Props) {
                                 </li>
                             ))}
                         </ul>
-                        
+
                         <h3>Rol y Responsabilidades</h3>
                         <div className={style_trabajos.pagTrabajo_detalle_specs}>
                             <span><strong>Páginas:</strong> {tra.numero_pagina}</span>
                             <span><strong>Tiempo:</strong> {tra.tiempo_trabajo}</span>
                             <span><strong>Complejidad:</strong> {tra.complejidad_trabajo}</span>
+                            <span><strong>Rol:</strong> {tra.rol}</span>
+                            <span><strong>Cliente:</strong> {tra.categoría_cliente}</span>
                         </div>
+                        {tra.reto_tecnico && (
+                            <div className={style_trabajos.pagTrabajo_detalle_reto}>
+                                <h4 className={style_trabajos.pagTrabajo_h4}>El Reto Técnico</h4>
+                                <p className={style_trabajos.pagTrabajo_parrafo}>
+                                    {tra.reto_tecnico}
+                                </p>
+                            </div>
+                        )}
                     </section>
                 </div>
             </div>

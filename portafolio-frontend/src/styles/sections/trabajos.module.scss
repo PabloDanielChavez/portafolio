@@ -44,10 +44,10 @@
     border-radius: 12px;
     overflow: hidden;
     background: #0f0f0f;
-    @include m.telefonoXL { width: 45%; height: 160px; }
-
-    img { width: 100%; height: 100%; object-fit: cover; }
+    @include m.telefonoXL { width: 45%; height: 200px; }
   }
+
+  &_img { width: 100%; height: 100%; object-fit: cover; }
 
   &_card_info {
     flex: 1;
@@ -117,7 +117,7 @@
   }
 
   &_card_metrics { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;} 
-  &_layout_metrics { background: #111; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid #1f1f1f; }
+  &_layout_metrics { background: #111; padding: 6px; border-radius: 12px; text-align: center; border: 1px solid #1f1f1f; }
   &_card_metrics_titulo { display: flex; align-items: center; justify-content: center; font-size: 10px; color: #9ca3af;}
   &_card_metrics_puntaje { 
     @include m.metric-badge(2px, 8px, inherit); 
@@ -178,6 +178,38 @@
     &_li { background: #1a1a1a; padding: 8px 15px; border-radius: 20px; border: 1px solid #2a2a2a; }
     &_span { display: flex; align-items: center; gap: 8px; }
     &_detalle_specs { display: flex; gap: 20px; margin-top: 20px; font-size: 0.9rem; color: #8b8b8b; }
+    
+    &_error_container {
+        animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 60vh;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    &_detalle_reto {
+        margin-top: 30px;
+        padding: 20px;
+        background: #111; // Un tono apenas más claro que el fondo general
+        border-left: 4px solid #c084fc; // Color de acento
+        border-radius: 4px;
+    }
+    &_h4 {
+        margin: 0 0 10px 0;
+        color: #c084fc; // Mismo color del borde para dar unidad
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    &_parrafo {
+        margin: 0;
+        line-height: 1.6;
+        color: #d1d1d1; // Un poco más brillante que el texto normal
+        font-size: 0.95rem;
+    }
 }
 
 @keyframes popIn {
@@ -197,4 +229,9 @@
 }
 .rojo     { 
   background: rgba(255, 51, 51, 0.1); color: #FF3333; 
+}
+
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }

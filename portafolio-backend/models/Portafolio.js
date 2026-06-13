@@ -95,7 +95,7 @@ export const trabajos = db.define('trabajos', {
     id: idField(),
     nombre_trabajo: stringField(),
     categoria_trabajo: stringField(),
-    numero_pagina: stringField(),
+    numero_pagina: intField(),
     style_trabajo: stringField(),
     complejidad_trabajo: stringField(),
     enlace_trabajo: stringField(),
@@ -112,17 +112,17 @@ export const trabajos = db.define('trabajos', {
     accessibility_mobile: intField(),
     practices_mobile: intField(),
     seo_mobile: intField(),
-    enlace_auditoria_mobile: stringField(),
-    performance_desktop: intField(),
-    accessibility_desktop: intField(),
-    practices_desktop: intField(),
-    seo_desktop: intField(),
-    enlace_auditoria_desktop: stringField(),
-    destacado: intField(),
     estado_proyecto: stringField(),
     fecha_finalizacion: stringField(),
-    enlace_despliegue: stringField(),
-    enlace_repositorio: stringField()
+    enlace_repositorio: stringField(),
+    performance_desktop: intField(),
+    practices_desktop: intField(),
+    accessibility_desktop: intField(),
+    seo_desktop: intField(),
+    rol: stringField(),
+    categoría_cliente: stringField(),
+    reto_tecnico: stringField(),
+    destacado: stringField()
 }, modelOptions('trabajos'));
 
 export const tra_tecnologia = db.define('tra_tecnologia', {

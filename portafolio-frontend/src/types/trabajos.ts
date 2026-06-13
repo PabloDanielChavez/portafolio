@@ -2,7 +2,7 @@ export type TrabajosType = {
     id: number;
     nombre_trabajo: string;
     categoria_trabajo: string;
-    numero_pagina: string; // Si en MySQL es INT, podés cambiarlo a number si preferís
+    numero_pagina: number;
     style_trabajo: string;
     complejidad_trabajo: string;
     enlace_trabajo: string;
@@ -15,24 +15,19 @@ export type TrabajosType = {
     nombre_archivo: string;
     nombre_imagen: string;
     formato_imagen: string;
-
-    // --- NUEVAS MÉTRICAS MOBILE EN EL FRONTEND ---
     performance_mobile: number;
     accessibility_mobile: number;
     practices_mobile: number;
     seo_mobile: number;
-    enlace_auditoria_mobile: string;
-
-    // --- NUEVAS MÉTRICAS DESKTOP EN EL FRONTEND ---
-    performance_desktop: number;
-    accessibility_desktop: number;
-    practices_desktop: number;
-    seo_desktop: number;
-    enlace_auditoria_desktop: string;
-
-    destacado: number; // Si en MySQL es TEXT, dejalo como string. Si es INT, number.
     estado_proyecto: string;
     fecha_finalizacion: string;
-    enlace_despliegue: string;
     enlace_repositorio: string;
+    performance_desktop: number;
+    practices_desktop: number;
+    accessibility_desktop: number;
+    seo_desktop: number;
+    rol: string;
+    categoría_cliente: string;
+    reto_tecnico: string;
+    destacado: string;
 };
