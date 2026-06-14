@@ -1,20 +1,15 @@
-"use client";
-
-import SkeletonBienvenida from '@/components/skeleton/Skeleton_bienvenida';
-import SkeletonContacto from '@/components/skeleton/Skeleton_contacto';
-import SkeletonServicios from '@/components/skeleton/Skeleton_servicios';
-import SkeletonpagTrabajo from '@/components/skeleton/Skeleton_pagTrabajo';
-import SkeletonTrabajos from '@/components/skeleton/Sleleton_trabajos';
-import SkeletonFooter from '@/components/skeleton/skeleton_footer';
 
 export default function Loading() {
   return (
-    <>
-      <p>cargando</p>
-      {/* <SkeletonBienvenida />
-      <SkeletonTrabajos />
-      <SkeletonServicios />
-      <SkeletonContacto /> */}
-    </>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      background: '#0d0d0d',
+      color: '#e5e5e5'
+    }}>
+      <h1>Cargando...</h1>
+    </div>
   );
 }

@@ -7,7 +7,6 @@ const PagTrabajoDetalle = dynamic(() => import('@/components/PagTrabajo'), {
     loading: () => <p>Cargando sección...</p>,
     ssr: true,
 });
-      import SkeletonPagTrabajos from '@/components/skeleton/Skeleton_pagTrabajo';
 import { EstadoVacio } from '@/components/sub_components/EstadoVacio';
 
 type Props = {
@@ -40,8 +39,6 @@ export default async function TraDetallePagina({ params }: Props) {
         tra={trabajoIndividual} 
         tra_tecnologia={data.TraTecnologia} 
       />
-
-      {/* <SkeletonPagTrabajos /> */}
     </>
   );
 }
