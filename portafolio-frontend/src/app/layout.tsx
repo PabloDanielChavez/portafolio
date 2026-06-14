@@ -1,19 +1,10 @@
-import type { Metadata } from "next";
-// import { Roboto } from "next/font/google";
 import Script from "next/script";
+import type { Metadata } from "next";
 import "material-symbols/outlined.css"; 
 import "@/styles/main.scss";
 
 import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
-
-
-
-// const roboto = Roboto({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "700"],
-//   display: "swap",
-// });
 
 export const metadata: Metadata = {
   title: "Portafolio PDC",
@@ -51,10 +42,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body /*className={`${roboto.className}`}*/ style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
         <Header />
-        <main style={{height:"100vh"}}>
+        <main style={{minHeight:"100vh"}}>
           {children}
         </main>
         <Footer />
+        <Script
+          strategy="lazyOnload" // <--- Esto es más agresivo que afterInteractive
+          src="https://www.googletagmanager.com/gtag/js?id=G-Z7439LP7QW"
+        />
+        <Script id="ga-config" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Z7439LP7QW');
+          `}
+        </Script>
       </body>
     </html>
   );

@@ -30,14 +30,14 @@ export default function Bienvenida({ perfil }: Props) {
                     <div className={style_bienvenida.bienvenida_header_box_imagen}>
                         <Image 
                             className={style_bienvenida.bienvenida_header_imagen_perfil}
-                            src={"/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"} 
+                            src={"/img/Logotipo_Portafolio_PDC/Persona/Pablo.avif"} 
                             alt={"LOGOTIPO"}
                             title={"LOGOTIPO"}
-                            width={150} 
-                            height={150}
+                            width={140} 
+                            height={140}
                             sizes="150px"
-                            // priority
-                            // fetchPriority="high"
+                            priority
+                            fetchPriority="high"
                         />
                     </div>
                     <div className={style_bienvenida.bienvenida_header_box_informacion}>
