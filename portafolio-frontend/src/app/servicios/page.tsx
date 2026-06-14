@@ -1,8 +1,9 @@
+import dynamic from 'next/dynamic';
 import { getAllPortfolioData } from "@/services/fetchData";
 
-import Servicios from '@/components/sections/Servicios';
-import Trabajos from '@/components/sections/Trabajos';
-import Clientes from '@/components/sections/Clientes';
+const Servicios = dynamic(() => import('@/components/sections/Servicios'));
+const Trabajos = dynamic(() => import('@/components/sections/Trabajos'));
+const Clientes = dynamic(() => import('@/components/sections/Clientes'));
 
 export default async function Ser() {
   const data = await getAllPortfolioData();

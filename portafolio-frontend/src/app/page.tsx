@@ -2,8 +2,9 @@ import { getAllPortfolioData } from "@/services/fetchData";
 import dynamic from 'next/dynamic';
 
 import Bienvenida from '@/components/sections/Bienvenida';
-import Trabajos from '@/components/sections/Trabajos';
 
+
+const Trabajos = dynamic(() => import('@/components/sections/Trabajos'));
 const Habilidades = dynamic(() => import('@/components/sections/Habilidades'), { loading: () => <p>Cargando...</p>, ssr: true, });
 const Servicios = dynamic(() => import('@/components/sections/Servicios'), { loading: () => <p>Cargando...</p>, ssr: true });
 const Contacto = dynamic(() => import('@/components/sections/Contacto'), { loading: () => <p>Cargando...</p>, ssr: true });

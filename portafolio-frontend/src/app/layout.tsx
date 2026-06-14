@@ -1,10 +1,11 @@
+import dynamic from 'next/dynamic';
 import Script from "next/script";
 import type { Metadata } from "next";
 import "material-symbols/outlined.css"; 
 import "@/styles/main.scss";
 
-import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
+const Footer = dynamic(() => import('@/components/sections/Footer'));
 
 export const metadata: Metadata = {
   title: "Portafolio PDC",
