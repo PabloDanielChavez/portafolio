@@ -36,7 +36,7 @@ export default function Habilidades({ habilidades }: Props) {
                                                 <div className={style_habilidades.habilidades_contenido_article_header_icono}>
                                                     <Image 
                                                         className={style_habilidades.ha}
-                                                        src={`/img/Logotipo_Portafolio_PDC/Logo/Logo_48x48px.avif`} 
+                                                        src={`/img/Logotipo_Portafolio_PDC/Logo/logo_PW_1.avif`} 
                                                         alt={"LOGOTIPO"}
                                                         title={"LOGOTIPO"}
                                                         width={50} 

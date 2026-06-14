@@ -6,6 +6,7 @@ import styles_header from '@/styles/sections/header.module.scss';
 import { BiBriefcase, BiCog, BiEnvelope, BiHomeAlt2, BiMenu, BiX } from 'react-icons/bi';
 import { MdConstruction, MdInfoOutline, MdLocationOn } from 'react-icons/md';
 import { usePathname } from 'next/navigation'; // Útil para verificar si estás en inicio o detalle
+import Image from 'next/image';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,8 +45,17 @@ export default function Header() {
         <header className={`${styles_header.header} ${isScrolled ? styles_header.header_scrolled : ''}`}>
             <div className={styles_header.header_container}>
                 <Link href="/" className={styles_header.header_logo} aria-label="Ir a inicio">
-                    <MdConstruction size={28} />
-                    <span>Plomada</span>
+                    <div className={styles_header.header_icono_box}>
+                      <Image 
+                          className={styles_header.header_icono_img}
+                          src={`/img/Logotipo_Portafolio_PDC/Logo/logo_PW_1.avif`} 
+                          alt={"LOGOTIPO"}
+                          title={"LOGOTIPO"}
+                          width={50} 
+                          height={50}
+                          sizes="50px"
+                      />
+                    </div> 
                 </Link>
                 
                 <button 
