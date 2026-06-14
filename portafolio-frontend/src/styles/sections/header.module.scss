@@ -2,14 +2,20 @@
 @use '../base/mixins.module.scss' as m;
 
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
     width: 100%;
-    padding: 16px 20px;
-    background: rgba(13, 13, 13, 0.8); // Fondo con transparencia para efecto glass
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid #1f1f1f;
-    z-index: 100;
+    padding: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: transparent;
+
+    &.header_scrolled {
+        background: rgba(13, 13, 13, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #1f1f1f;
+        padding: 15px 20px;
+    }
 
     &_container {
         max-width: 1000px;
@@ -20,29 +26,90 @@
     }
 
     &_logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: white;
+        text-decoration: none;
         font-weight: 700;
         font-size: 1.2rem;
-        color: #fff;
-        text-decoration: none;
     }
 
-    &_nav {
+    &_menuBtn {
+        background: #111;
+        border: 1px solid #1f1f1f;
+        color: white;
+        padding: 8px;
+        border-radius: 10px;
+        cursor: pointer;
         display: flex;
-        gap: 20px;
+        align-items: center;
+
+        @include m.tablet { display: none; }
+    }
+
+    // Navegación móvil
+    &_nav {
+        position: fixed;
+        top: 70px;
+        left: 20px;
+        right: 20px;
+        background: #111;
+        border: 1px solid #1f1f1f;
+        border-radius: 20px;
+        padding: 20px;
+        display: none;
         
+        &.header_activo { display: block; }
+
         @include m.tablet {
-        gap: 30px;
+        display: flex;
+        position: static;
+        background: transparent;
+        border: none;
+        padding: 0;
         }
     }
 
-    &_link {
-        color: #9ca3af;
-        text-decoration: none;
-        font-size: 14px;
-        transition: color 0.3s ease;
+    &_ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
 
-        &:hover, &.activo {
-        color: #fff;
+        @include m.tablet {
+        flex-direction: row;
+        gap: 10px;
         }
+    }
+
+    &_navLink {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: transparent;
+        border: none;
+        color: #9ca3af;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: 0.3s;
+
+        &:hover {
+        background: #1a1a1a;
+        color: white;
+        }
+
+        @include m.tablet {
+        padding: 8px 16px;
+        }
+    }
+
+    &_spanNav {
+        font-size: 14px;
+        font-weight: 500;
     }
 }
