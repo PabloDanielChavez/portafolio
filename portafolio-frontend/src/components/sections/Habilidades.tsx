@@ -34,14 +34,14 @@ export default function Habilidades({ habilidades }: Props) {
                                         <div className={style_habilidades.habilidades_contenido_article_header_layout}> 
                                             <div className={style_habilidades.habilidades_contenido_article_header_emp}> 
                                                 <div className={style_habilidades.habilidades_contenido_article_header_icono}>
-                                                    <ImagenComponent 
-                                                        style={style_habilidades.ha}
-                                                        // url={`/img/Logotipo_Portafolio_PDC/${hab?.nombre_archivo}/${hab?.nombre_imagen}.${hab?.formato_imagen}`}
-                                                        url={`/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png`}
-                                                        alt={hab?.nombre_habilidad}
-                                                        widthE={50}
-                                                        heightE={50}
-                                                        priority=""
+                                                    <Image 
+                                                        className={style_habilidades.ha}
+                                                        src={`/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png`} 
+                                                        alt={"LOGOTIPO"}
+                                                        title={"LOGOTIPO"}
+                                                        width={50} 
+                                                        height={50}
+                                                        sizes="50px"
                                                     />
                                                 </div> 
                                                 <div className={style_habilidades.habilidades_contenido_article_header_nombre}> 

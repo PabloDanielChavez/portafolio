@@ -25,9 +25,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="es">
-      <head>
-        {/* Google Analytics */}
-        {/* <Script
+      {/* <head>
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Z7439LP7QW"
           strategy="afterInteractive"
         />
@@ -38,8 +37,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             gtag('js', new Date());
             gtag('config', 'G-Z7439LP7QW');
           `}
-        </Script> */}
-      </head>
+        </Script>
+      </head> */}
       <body /*className={`${roboto.className}`}*/ style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
         <Header />
         <main style={{minHeight:"100vh"}}>
