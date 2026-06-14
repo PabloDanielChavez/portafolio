@@ -25,8 +25,7 @@ export default function Header() {
                       />
                     </div> 
                 </Link>
-                
-                <button className={styles_header.header_menuBtn}><BiX size={32} /> </button>
+                <BiX size={32} aria-label='Botoncito hermoso'/>
             </div>
         </header>
     );
