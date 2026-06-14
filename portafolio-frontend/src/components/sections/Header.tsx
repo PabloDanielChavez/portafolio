@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles_header from '@/styles/sections/header.module.scss';
-import { BiBriefcase, BiCog, BiEnvelope, BiHomeAlt2, BiMenu, BiX } from 'react-icons/bi';
-import { MdConstruction, MdInfoOutline, MdLocationOn } from 'react-icons/md';
+import { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, BiX } from 'react-icons/bi';
+import { MdInfoOutline  } from 'react-icons/md';
 import { usePathname } from 'next/navigation'; // Útil para verificar si estás en inicio o detalle
 import Image from 'next/image';
 
@@ -23,11 +23,10 @@ export default function Header() {
 
     // Mantenemos la lógica de navegación
     const menuItems = [
-        { id: 1, titulo: "Inicio", target: "inicio", icono: <BiHomeAlt2 size={24} /> },
-        { id: 2, titulo: "Servicio", target: "servicio", icono: <BiBriefcase size={24} /> },
-        { id: 3, titulo: "Proceso", target: "proceso", icono: <BiCog size={24} /> },
-        { id: 4, titulo: "Sobre", target: "sobre", icono: <MdInfoOutline size={24} /> },
-        { id: 5, titulo: "Apuntamos", target: "apuntamos", icono: <MdLocationOn size={24} /> },
+        { id: 1, titulo: "Inicio", url: "/", icono: <BiHomeAlt2 size={24} /> },
+        { id: 2, titulo: "Trabajos",  url: "/trabajos", icono: <BiBriefcase size={24} /> },
+        { id: 3, titulo: "Servicios",  url: "/servicios", icono: <BiCog size={24} /> },
+        { id: 4, titulo: "Contacto",  url: "/contacto", icono: <MdInfoOutline size={24} /> }
     ];
 
     const handleNavClick = (targetId: string) => {
@@ -70,15 +69,16 @@ export default function Header() {
             <nav className={`${styles_header.header_nav} ${isMenuOpen ? styles_header.header_activo : ''}`}>
                 <ul className={styles_header.header_ul}>
                     {menuItems.map((item) => (
+                      <Link href={`${item.url}`} className={styles_header.header_logo} aria-label="Ir a inicio">
                         <li key={item.id} className={styles_header.header_li}>
-                            <button 
-                                className={styles_header.header_navLink}
-                                onClick={() => handleNavClick(item.target)}
-                            >
-                                {item.icono}
-                                <span className={styles_header.header_spanNav}>{item.titulo}</span>
-                            </button>
-                        </li>
+                              <button 
+                                  className={styles_header.header_navLink}
+                              >
+                                  {item.icono}
+                                  <span className={styles_header.header_spanNav}>{item.titulo}</span>
+                              </button>
+                          </li>
+                        </Link>
                     ))}
                 </ul>
             </nav>
