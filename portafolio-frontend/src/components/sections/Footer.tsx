@@ -37,7 +37,7 @@ export default function Footer() {
         <div className={styles_footer.footer_box_logo}>
           <ImagenComponent 
               style={styles_footer.footer_imagen_logo}
-              url="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
+              url="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.avif"
               alt={"LOGOTIPO"}
               widthE={150}
               heightE={150}
