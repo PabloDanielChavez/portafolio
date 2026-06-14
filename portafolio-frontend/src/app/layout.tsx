@@ -3,6 +3,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import "material-symbols/outlined.css"; 
 import "@/styles/main.scss";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import Header from "@/components/sections/Header";
 const Footer = dynamic(() => import('@/components/sections/Footer'));
@@ -26,38 +27,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="es">
-      {/* <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-Z7439LP7QW"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-Z7439LP7QW');
-          `}
-        </Script>
-      </head> */}
-      <body /*className={`${roboto.className}`}*/ style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
+      <body style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
         <Header />
         <main style={{minHeight:"100vh"}}>
           {children}
+          <GoogleAnalytics gaId="G-Z7439LP7QW" />
         </main>
         <Footer />
-        <Script
-          strategy="lazyOnload" // <--- Esto es más agresivo que afterInteractive
-          src="https://www.googletagmanager.com/gtag/js?id=G-Z7439LP7QW"
-        />
-        <Script id="ga-config" strategy="lazyOnload">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-Z7439LP7QW');
-          `}
-        </Script>
       </body>
     </html>
   );
