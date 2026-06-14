@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import Ventana from "@/components/Ventana";
+// import { Roboto } from "next/font/google";
 import Script from "next/script";
 import "material-symbols/outlined.css"; 
+import "@/styles/main.scss";
 
-import { getAllPortfolioData } from "@/services/fetchData";
+import Footer from "@/components/sections/Footer";
+import Header from "@/components/sections/Header";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-});
+
+
+// const roboto = Roboto({
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "700"],
+//   display: "swap",
+// });
 
 export const metadata: Metadata = {
   title: "Portafolio PDC",
@@ -28,14 +31,12 @@ export const viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  
-  const data = await getAllPortfolioData();
 
   return (
     <html lang="es">
       <head>
         {/* Google Analytics */}
-        <Script
+        {/* <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-Z7439LP7QW"
           strategy="afterInteractive"
         />
@@ -46,12 +47,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             gtag('js', new Date());
             gtag('config', 'G-Z7439LP7QW');
           `}
-        </Script>
+        </Script> */}
       </head>
-      <body className={`${roboto.className}`} style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
-        <Ventana perfil={data?.Perfil}>
+      <body /*className={`${roboto.className}`}*/ style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
+        <Header />
+        <main style={{height:"100vh"}}>
           {children}
-        </Ventana>
+        </main>
+        <Footer />
       </body>
     </html>
   );

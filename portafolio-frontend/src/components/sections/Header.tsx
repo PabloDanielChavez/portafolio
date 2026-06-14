@@ -4,23 +4,24 @@ import { BiMenu } from 'react-icons/bi';
 import { IoMdLink } from 'react-icons/io';
 import { trackEvent } from '../utils/Analytics';
 
-interface HeaderProps {
-  expMenu: (lado: 'izq' | 'der') => void;
-}
+// interface HeaderProps {
+//   expMenu: (lado: 'izq' | 'der') => void;
+// }
 
-export default function Header({ expMenu }: HeaderProps) {
+// export default function Header({ expMenu }: HeaderProps) {
+export default function Header() {
   return (
     <header className={styles_header.header}>
       <div className={styles_header.header_box}>
         <div className={styles_header.header_layout}>
           <div 
             className={`${styles_header.header_menu}`}
-            onClick={() => {
-              expMenu('izq')
-              trackEvent(`click_Menu`, {
-                  section: "Header"
-              })
-            }}
+            // onClick={() => {
+            //   expMenu('izq')
+            //   trackEvent(`click_Menu`, {
+            //       section: "Header"
+            //   })
+            // }}
             role="button"
             tabIndex={0}
           >
@@ -28,12 +29,12 @@ export default function Header({ expMenu }: HeaderProps) {
           </div>
           <div 
             className={`${styles_header.header_menu}`}
-            onClick={() => {
-              expMenu('der')
-              trackEvent(`click_Redes`, {
-                  section: "Header"
-              })
-            }} 
+            // onClick={() => {
+            //   expMenu('der')
+            //   trackEvent(`click_Redes`, {
+            //       section: "Header"
+            //   })
+            // }} 
             role="button"
             tabIndex={0}
           >

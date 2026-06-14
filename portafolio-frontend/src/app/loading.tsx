@@ -10,10 +10,11 @@ import SkeletonFooter from '@/components/skeleton/skeleton_footer';
 export default function Loading() {
   return (
     <>
-      <SkeletonBienvenida />
+      <p>cargando</p>
+      {/* <SkeletonBienvenida />
       <SkeletonTrabajos />
       <SkeletonServicios />
-      <SkeletonContacto />
+      <SkeletonContacto /> */}
     </>
   );
 }
