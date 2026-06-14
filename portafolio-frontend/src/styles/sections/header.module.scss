@@ -2,74 +2,47 @@
 @use '../base/mixins.module.scss' as m;
 
 .header {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    width: 60%; 
-    left: 20%;
-    z-index: 6; 
-    background-color: transparent;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(13, 13, 13, 0.8); // Fondo con transparencia para efecto glass
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1f1f1f;
+    z-index: 100;
 
-    @include m.tablet {
-        display: none;
-        width: 100%;
-        left: 0;
-    }
-
-    &_box {
-        margin: 0 .4rem;
-    }
-    
-    &_layout {
-        width: auto;
+    &_container {
+        max-width: 1000px;
+        margin: 0 auto;
         display: flex;
-        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
-        justify-content: space-around; 
     }
 
-    &_menu {
-        margin-top: .4rem;
-        padding: .4rem;
-        border-radius: 25px;
-        color: #c084fc;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        cursor: pointer;
+    &_logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    &_nav {
+        display: flex;
+        gap: 20px;
         
-        transition: color 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
-
-        svg {
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        @include m.tablet {
+        gap: 30px;
         }
+    }
 
-        &:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-            filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.5));
+    &_link {
+        color: #9ca3af;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
 
-            &::before {
-                opacity: 1;
-                transform: scale(1);
-            }
-            svg {
-                transform: scale(1.08);
-            }
-        }
-        &:active {
-            transform: translateY(1px) scale(0.94); 
-            filter: drop-shadow(0 0 2px rgba(192, 132, 252, 0.3));
-            transition: transform 0.05s linear;
-
-            &::before {
-                background: rgba(192, 132, 252, 0.2);
-            }
-            
-            svg {
-                transform: scale(0.95);
-            }
+        &:hover, &.activo {
+        color: #fff;
         }
     }
 }
