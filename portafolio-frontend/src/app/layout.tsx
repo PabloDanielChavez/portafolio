@@ -3,7 +3,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import "material-symbols/outlined.css"; 
 import "@/styles/main.scss";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import GTMTracker from "@/components/sub_components/GTMTracker";
 
 import Header from "@/components/sections/Header";
 const Footer = dynamic(() => import('@/components/sections/Footer'));
@@ -31,9 +31,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Header />
         <main style={{minHeight:"100vh"}}>
           {children}
-          <GoogleAnalytics gaId="G-Z7439LP7QW" />
         </main>
         <Footer />
+        <GTMTracker />
       </body>
     </html>
   );
