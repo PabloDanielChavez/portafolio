@@ -69,16 +69,16 @@ export default function Header() {
             <nav className={`${styles_header.header_nav} ${isMenuOpen ? styles_header.header_activo : ''}`}>
                 <ul className={styles_header.header_ul}>
                     {menuItems.map((item) => (
-                      <Link href={`${item.url}`} className={styles_header.header_logo} aria-label="Ir a inicio">
-                        <li key={item.id} className={styles_header.header_li}>
-                              <button 
-                                  className={styles_header.header_navLink}
-                              >
-                                  {item.icono}
-                                  <span className={styles_header.header_spanNav}>{item.titulo}</span>
-                              </button>
-                          </li>
+                      <li key={item.id} className={styles_header.header_li}>
+                        <Link href={`${item.url}`} className={styles_header.header_logo} aria-label="Ir a inicio">
+                            <button 
+                                className={styles_header.header_navLink}
+                            >
+                                {item.icono}
+                                <span className={styles_header.header_spanNav}>{item.titulo}</span>
+                            </button>
                         </Link>
+                      </li>
                     ))}
                 </ul>
             </nav>
