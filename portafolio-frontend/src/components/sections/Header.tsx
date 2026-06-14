@@ -65,8 +65,7 @@ export default function Header() {
                     {isMenuOpen ? <BiX size={32} /> : <BiMenu size={32} />}
                 </button>
             </div>
-
-            <nav className={`${styles_header.header_nav} ${isMenuOpen ? styles_header.header_activo : ''}`}>
+            {/* <nav className={`${styles_header.header_nav} ${isMenuOpen ? styles_header.header_activo : ''}`}>
                 <ul className={styles_header.header_ul}>
                     {menuItems.map((item) => (
                       <li key={item.id} className={styles_header.header_li}>
@@ -81,7 +80,7 @@ export default function Header() {
                       </li>
                     ))}
                 </ul>
-            </nav>
+            </nav> */}
         </header>
     );
 }
