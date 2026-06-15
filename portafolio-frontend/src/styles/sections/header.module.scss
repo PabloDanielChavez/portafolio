@@ -10,9 +10,9 @@
     overflow: hidden;
     z-index: 3;
     &_scrolled {
-        padding: 0.5rem 0; // Padding reducido al hacer scroll
-        background: #1f1d1d; // Opcional: cambiar fondo
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1); // Opcional: añadir sombra
+        padding: 0.5rem 0;
+        background: #1f1d1d; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     &_container {
