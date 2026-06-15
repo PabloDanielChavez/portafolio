@@ -5,7 +5,6 @@ import { PerfilType } from "@/types/perfil";
 import style_bienvenida from "@/styles/sections/bienvenida.module.scss";
 import { FaInstagram, FaWhatsapp, FaLinkedin, FaGithubSquare, FaFacebookSquare, FaGithub} from "@/components/utils/Iconos";
 import Link from "next/link";
-import { ImagenComponent } from "../sub_components/ImagenM";
 import { trackEvent } from "../utils/Analytics";
 
 interface Props {

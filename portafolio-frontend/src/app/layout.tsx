@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import type { Metadata } from "next";
-import "material-symbols/outlined.css"; 
 import "@/styles/main.scss";
 import GTMTracker from "@/components/sub_components/GTMTracker";
 

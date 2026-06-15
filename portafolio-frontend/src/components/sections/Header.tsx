@@ -3,9 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles_header from '@/styles/sections/header.module.scss';
-import { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, BiX } from 'react-icons/bi';
 import Image from 'next/image';
-import { MdInfoOutline, MdLocationOn } from 'react-icons/md';
+import { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, MdInfoOutline, } from "@/components/utils/Iconos";
 
 export default function Header() {
     const menu = [

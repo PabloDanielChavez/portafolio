@@ -17,49 +17,6 @@ main {
     padding-top: 6rem;
 }
 
-h1 {
-    font-size: 2.9rem;
-        @include m.tabletXL {
-            font-size: 3.9rem;
-        }
-        @include m.desktop {
-            font-size: 4.5rem;
-        }
-        @include m.desktopXXL {
-            font-size: 5.1rem;
-        }
-
-}
-
-h3 {
-    font-family: v.$fuenteTituloProfesion;
-    font-size: 2rem;
-        @include m.tabletXL {
-            font-size: 2.2rem;
-        }
-        @include m.desktop {
-            font-size: 2.4rem;
-        }
-        @include m.desktopXXL {
-            font-size: 2.6rem;
-        }
-
-}
-
-p {
-    // font-family: v.$fuenteParrafo;
-    font-size: 1.6rem;
-        @include m.tabletXL {
-            font-size: 1.7rem;
-        }
-        @include m.desktop {
-            font-size: 1.8rem;
-        }
-        @include m.desktopXXL {
-            font-size: 1.9rem;
-        }
-}
-
 .animacion_btn {
     transition: color 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
     svg {

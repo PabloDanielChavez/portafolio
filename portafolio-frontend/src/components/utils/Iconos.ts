@@ -1,11 +1,11 @@
-export { BiBriefcase } from "react-icons/bi";
+export { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, BiX  } from "react-icons/bi";
 export { FaArrowRight, FaInstagram, FaWhatsapp, FaLinkedin, FaGithubSquare, FaFacebookSquare, FaGithub, FaPlus, FaDribbble,  FaMinus, FaBriefcase, FaEnvelope, } from "react-icons/fa";
 export { PiMicrosoftOutlookLogo, PiStack } from 'react-icons/pi';
 export { AiTwotoneSchedule } from "react-icons/ai";
 export { SiCodefactor } from 'react-icons/si';
 export { IoIosRocket } from 'react-icons/io';
 export { FaXTwitter } from "react-icons/fa6"; 
-export { MdOutlineEmail, MdCall, MdWeb } from "react-icons/md";
+export { MdOutlineEmail, MdCall, MdWeb,  MdInfoOutline, MdLocationOn} from "react-icons/md";
 export { MdOutlineWeb } from "react-icons/md";
 export { TbChartBarPopular, TbWorld } from "react-icons/tb";
 export { PiPaintBrushBold, PiPalette } from "react-icons/pi";
