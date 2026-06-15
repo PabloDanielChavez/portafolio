@@ -10,7 +10,7 @@
     overflow: hidden;
     z-index: 3;
     &_scrolled {
-        padding: 0.2rem 0; // Padding reducido al hacer scroll
+        padding: 0.5rem 0; // Padding reducido al hacer scroll
         background: #0d0d0d; // Opcional: cambiar fondo
         box-shadow: 0 2px 10px rgba(0,0,0,0.1); // Opcional: añadir sombra
     }
@@ -80,10 +80,6 @@
         }
     }
     &_nav {
-        display: flex;
-        justify-content: center;
-        background-color: #ffffff;
-        position: relative;
     }
     &_ul {
         display: flex;
@@ -94,7 +90,7 @@
         padding: 1rem;
         width: max-content;
         height: max-content;
-        background-color: #ffffff;
+        background-color: #1f1d1d;
         box-shadow: -2px 0 5px rgba(0,0,0,0.2);
         transition: right 0.3s ease-in-out;
         z-index: 2;
@@ -102,12 +98,18 @@
     &_li {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 3rem;
+        justify-content: space-between; 
+        gap: 1rem;
+        color: white;
         &:hover {
-        color: #c084fc;
-        cursor: pointer;
+            color: #c084fc;
+            cursor: pointer;
         }
+    }
+    &_LINK {
+        text-decoration: none;
+        font-style: none;
+        color: unset;
     }
     &_spanNav {
         font-weight: 500;
