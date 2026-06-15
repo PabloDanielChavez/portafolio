@@ -66,13 +66,24 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "name": "Pablo Daniel Chavez",
     "jobTitle": "Desarrollador Frontend",
     "url": "https://portafolio-pc.netlify.app",
+    "sameAs": [
+      "https://github.com/PabloDanielChavez",
+      "https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/",
+      "https://www.instagram.com/paginasweb.chavez/"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
+    }
   };
   return (
     <html lang="es">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body style={{ overflowX: "hidden" }}>
         <header>
           <Header />
