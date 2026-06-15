@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import Script from "next/script";
 import type { Metadata } from "next";
 import "material-symbols/outlined.css"; 
 import "@/styles/main.scss";
@@ -24,12 +23,11 @@ export const viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-
   return (
     <html lang="es">
-      <body style={{ overflowX: "hidden", padding: 0, margin: 0 }}>
+      <body style={{ overflowX: "hidden" }}>
         <Header />
-        <main style={{minHeight:"100vh"}}>
+        <main style={{ minHeight: "100vh" }}>
           {children}
         </main>
         <Footer />

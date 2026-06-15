@@ -14,15 +14,15 @@ export default function Header() {
             <div className={styles_header.header_container}>
                 <Link href="/" className={styles_header.header_logo} aria-label="Ir a inicio">
                     <div className={styles_header.header_icono_box}>
-                      <Image 
-                          className={styles_header.header_icono_img}
-                          src={`/img/Logotipo_Portafolio_PDC/Logo/logo_PW_1.avif`} 
-                          alt={"LOGOTIPO"}
-                          title={"LOGOTIPO"}
-                          width={50} 
-                          height={50}
-                          sizes="50px"
-                      />
+                        <Image 
+                            className={styles_header.header_icono_img}
+                            src={`/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png`} 
+                            alt={"LOGOTIPO"}
+                            title={"LOGOTIPO"}
+                            width={50} 
+                            height={50}
+                            sizes="50px"
+                        />
                     </div> 
                 </Link>
                 <BiX size={32} aria-label='Botoncito hermoso'/>

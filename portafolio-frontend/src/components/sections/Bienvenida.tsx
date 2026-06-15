@@ -30,7 +30,7 @@ export default function Bienvenida({ perfil }: Props) {
                     <div className={style_bienvenida.bienvenida_header_box_imagen}>
                         <Image 
                             className={style_bienvenida.bienvenida_header_imagen_perfil}
-                            src={"/img/Logotipo_Portafolio_PDC/Persona/Pablo.avif"} 
+                            src={"/img/Logotipo_Portafolio_PDC/Persona/Pablo.jpg"} 
                             alt={"LOGOTIPO"}
                             title={"LOGOTIPO"}
                             width={140} 
