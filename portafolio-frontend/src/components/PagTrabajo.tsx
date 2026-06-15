@@ -2,16 +2,17 @@
 
 import { useState } from "react";
 import style_trabajos from "@/styles/sections/trabajos.module.scss";
-import { IoMdArrowBack, IoMdOpen } from "react-icons/io";
+
 import Link from "next/link";
 import { ImagenComponent } from "./sub_components/ImagenM";
 import { TrabajosType } from "@/types/trabajos";
 import { tra_tecnologiaType } from "@/types/tra_tecnologia";
-import { SiNextdotjs, SiNodedotjs, SiReact, SiSass } from "react-icons/si";
-import { IoAttachOutline } from "react-icons/io5";
+import { FaGithub, FaLink, IoMdArrowBack, SiNextdotjs, SiNodedotjs, SiReact, SiSass } from "@/components/utils/Iconos";
+
+
 import { ContadorAnimadoAuditoria } from "./sub_components/ContadorAnimado";
-import { FaGithub, FaGithubSquare, FaGlobe, FaLink, FaLinkedin } from "react-icons/fa";
-import { FiExternalLink, FiGlobe } from "react-icons/fi";
+
+
 import { trackEvent } from "./utils/Analytics";
 
 type Props = {

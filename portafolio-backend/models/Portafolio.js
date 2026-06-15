@@ -74,12 +74,7 @@ export const exp_tecnologia = db.define('exp_tecnologia', {
 export const habilidades = db.define('habilidades', {
     id: idField(),
     nombre_habilidad: stringField(),
-    categoria_habilidad: stringField(),
-    tiempo_habilidad: stringField(),
-    experiencia_habilidad: intField(),
-    nombre_archivo: stringField(),
-    nombre_imagen: stringField(),
-    formato_imagen: stringField()
+    categoria_habilidad: stringField()
 }, modelOptions('habilidades'));
 
 export const servicios = db.define('servicios', {
