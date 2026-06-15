@@ -11,7 +11,6 @@ export default function Footer() {
 
   const secciones = [
     { id: 'navegacion', titulo: 'Navegación' },
-    { id: 'secciones', titulo: 'Secciones' },
     { id: 'contacto', titulo: 'Contacto' }
   ];
 
