@@ -20,15 +20,10 @@ export default function Footer() {
     { id:"2", seccion:"navegacion" , name: "Trabajos", icon: <FaBriefcase aria-hidden="true" size={18} />, url: `/trabajos` },
     { id:"3", seccion:"navegacion" , name: "Servicios", icon: <SiCodefactor aria-hidden="true" size={18} />, url: `/servicios` },
     { id:"4", seccion:"navegacion" , name: "Contacto", icon: <FaEnvelope aria-hidden="true" size={18} />, url: `/contacto` },
-    { id:"5", seccion:"secciones" , name: "Clientes", icon: <AiTwotoneSchedule aria-hidden="true" size={18} />, url: `` },
-    { id:"6", seccion:"secciones" , name: "Trabajos", icon: <BiBriefcase aria-hidden="true" size={18} />, url: `` },
-    { id:"7", seccion:"secciones" , name: "Habilidades", icon: <PiStack aria-hidden="true" size={18} />, url: `` },
-    { id:"8", seccion:"secciones" , name: "Servicios", icon: <AiTwotoneSchedule aria-hidden="true" size={18} />, url: `` },
-    { id:"9", seccion:"secciones" , name: "Trabajos", icon: <IoIosRocket aria-hidden="true" size={18} />, url: `` },
-    { id:"10", seccion:"contacto" , name: "Linkedin", icon: <LiaLinkedin aria-hidden="true" size={28} />, url: `https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/` },
-    { id:"11", seccion:"contacto" , name: "GitHub", icon: <FaGithub aria-hidden="true" size={28} />, url: `https://github.com/PabloDanielChavez/portafolio` },
-    { id:"12", seccion:"contacto" , name: "Whatsapp", icon: <FaWhatsapp aria-hidden="true" size={28} />, url: `https://wa.me/5491164095914?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto...` },
-    { id:"13", seccion:"contacto" , name: "Outlook", icon: <PiMicrosoftOutlookLogo aria-hidden="true" size={28} />, url: `mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto...` },
+    { id:"5", seccion:"contacto" , name: "Linkedin", icon: <LiaLinkedin aria-hidden="true" size={28} />, url: `https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/` },
+    { id:"6", seccion:"contacto" , name: "GitHub", icon: <FaGithub aria-hidden="true" size={28} />, url: `https://github.com/PabloDanielChavez/portafolio` },
+    { id:"7", seccion:"contacto" , name: "Whatsapp", icon: <FaWhatsapp aria-hidden="true" size={28} />, url: `https://wa.me/5491164095914?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto...` },
+    { id:"8", seccion:"contacto" , name: "Outlook", icon: <PiMicrosoftOutlookLogo aria-hidden="true" size={28} />, url: `mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto...` },
   ];
 
   return (
