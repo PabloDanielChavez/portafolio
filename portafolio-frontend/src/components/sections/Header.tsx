@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styles_header from '@/styles/sections/header.module.scss';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import styles_header from '@/styles/sections/header.module.scss';
 import { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, MdInfoOutline, } from "@/components/utils/Iconos";
 
 export default function Header() {
