@@ -2,155 +2,192 @@
 @use '../base/mixins.module.scss' as m;
 
 .clientes {
-  padding: 40px 16px;
-  background: #0d0d0d;
-  color: #e5e5e5;
-
-  @include m.telefonoXL {
-    padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+  padding: 2rem;
+  border-radius: 24px;
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(14px);
+  box-shadow:0 10px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s ease,border-color .45s ease;
+  animation: cardReveal .7s ease both;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: -120px;
+    right: -120px;
+    background:radial-gradient(circle,rgba(192,132,252,.18),transparent 70%);
+    filter: blur(40px);
+    opacity: 0;
+    transition: .5s ease;
+    animation: glowFloat 12s ease-in-out infinite;
   }
 
+
   &_layout {
-    max-width: 1000px;
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
-  // GRID (mobile-first)
-  &_contenido_box_layout {
+  &_box_layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 1.75rem;
 
     @include m.telefonoXL {
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     @include m.tabletXL {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
   }
-
   &_card {
-    background: #111111;
-    border: 1px solid #1f1f1f;
-    border-radius: 16px;
-    padding: 16px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    transition: all 0.3s ease;
-
-    @include m.tablet {
-      padding: 18px;
-      gap: 15px;
-    }
-
+    gap: 1.5rem;
+    height: 100%;
+    padding: 2rem;
+    border-radius: 24px;
+    background: linear-gradient( 180deg, rgba(255,255,255,.04), rgba(255,255,255,.01) );
+    border: 1px solid rgba(255,255,255,.08);
+    backdrop-filter: blur(14px);
+    transition: all .4s ease-in-out;
+    
     &:hover {
-      border-color: #2a2a2a;
-      transform: translateY(-3px);
+      transform: translateY(-8px) scale(1.01);
+      border-color: rgba(192,132,252,.25);
+      box-shadow: 0 25px 60px rgba(0,0,0,.45), 0 0 25px rgba(192,132,252,.12);
+      &::before {
+        opacity: 1;
+      }
+      .avatar_img {
+        transform: scale(1.08);
+      }
+      .clientes_btn {
+        background: v.$color-border;
+        color: v.$color-primary;
+      }
     }
   }
 
-  /* HEADER */
-  &_card_header {
+  &_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
   }
 
-  &_card_user {
+  &_user {
     display: flex;
     align-items: center;
-    gap: 10px;
-
-    @include m.tablet {
-      gap: 12px;
-    }
+    gap: 1rem;
+    min-width: 0;
   }
 
-  /* AVATAR */
-  &_card_avatar {
-    width: 40px;
-    height: 40px;
-
-    @include m.tablet {
-      width: 45px;
-      height: 45px;
-    }
-
-    border-radius: 10px;
+  &_avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
     overflow: hidden;
-    background: #1a1a1a;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.03);
   }
 
-  /* INFO USUARIO */
-  &_card_info {
+  &_info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-
-    h3 {
-      font-size: 14px;
-      font-weight: 600;
-      margin: 0;
-
-      @include m.tablet {
-        font-size: 15px;
-      }
-    }
-
-    span {
-      font-size: 11px;
-      color: #9ca3af;
-
-      @include m.tablet {
-        font-size: 12px;
-      }
-    }
+    gap: .25rem;
   }
 
-  &_card_btn {
-    width: 32px;
-    height: 32px;
+  &_h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: v.$color-white;
+    line-height: 1.2;
+  }
 
-    @include m.tablet {
-      width: 35px;
-      height: 35px;
-    }
+  &_span {
+    font-size: .85rem;
+    color: rgba(255,255,255,.55);
+  }
 
-    border-radius: 10px;
-    border: 1px solid #1f1f1f;
-    background: #0f0f0f;
-    color: #9ca3af;
+  &_btn {
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: 0.2s;
-
-    &:hover {
-      color: #fff;
-      border-color: #2a2a2a;
-      background: #1a1a1a;
+    border-radius: 12px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    color: v.$color-primary;
+    transition: .35s ease;
+    flex-shrink: 0;
+    svg {
+      font-size: 1.15rem;
     }
   }
 
-  &_card_body {
-    p {
-      font-size: 13px;
-      color: #9ca3af;
-      line-height: 1.6;
-
-      @include m.tablet {
-        font-size: 14px;
-      }
+  &_parrafo {
+    margin: 0;
+    font-size: .95rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,.78);
+    position: relative;
+    &::before {
+      content: '"';
+      position: absolute;
+      left: -10px;
+      top: -15px;
+      font-size: 4rem;
+      color: rgba(192,132,252,.15);
+      font-family: serif;
+      pointer-events: none;
     }
+  }
+}
+
+.avatar_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all .5s ease;
+  filter: grayscale(.15);
+}
+
+
+
+@keyframes glowFloat {
+  0%,100% {
+    transform: translate(0,0);
+  }
+
+  50% {
+    transform: translate(25px,-25px);
+  }
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,10 +1,11 @@
 import { getAllPortfolioData } from "@/services/fetchData";
 import dynamic from 'next/dynamic';
 
-import Bienvenida from '@/components/sections/Bienvenida';
 
 
-const Trabajos = dynamic(() => import('@/components/sections/Trabajos'));
+import Hero from '@/components/sections/Hero';
+const Perfil = dynamic(() => import('@/components/sections/Perfil'), { loading: () => <p>Cargando...</p>, ssr: true, });
+const Trabajos = dynamic(() => import('@/components/sections/Trabajos'), { loading: () => <p>Cargando...</p>, ssr: true, });
 const Habilidades = dynamic(() => import('@/components/sections/Habilidades'), { loading: () => <p>Cargando...</p>, ssr: true, });
 const Servicios = dynamic(() => import('@/components/sections/Servicios'), { loading: () => <p>Cargando...</p>, ssr: true });
 const Contacto = dynamic(() => import('@/components/sections/Contacto'), { loading: () => <p>Cargando...</p>, ssr: true });
@@ -15,11 +16,13 @@ export default async function Home() {
 
     return (
         <>
-            <Bienvenida perfil={data.Perfil} />
-            <Trabajos trabajos={data.Trabajos} showFooter={true}/>
-            <Servicios servicios={data.Servicios} />
-            <Habilidades habilidades={data.Habilidades} />
-            <Contacto perfil={data.Perfil}/> 
+            <div id="hero"><Hero perfil={data.Perfil}/></div>
+            {/* <Perfil perfil={data.Perfil} /> */}
+            <div id="trabajos"><Trabajos trabajos={data.Trabajos} showFooter={true}/></div>
+            <div id="servicios"><Servicios servicios={data.Servicios} /></div>
+            <div id="Habilidades"><Habilidades habilidades={data.Habilidades} /></div>
+            <div id="Contacto"><Contacto perfil={data.Perfil}/> </div>
+            {/* <div><BtnWSP /></div> */}
         </>
     );
 }

@@ -44,7 +44,7 @@ export default function Habilidades({ habilidades }: Props) {
                 <div className={style_habilidades.habilidades_contenido_box}>
                     {Object.entries(habilidadesPorCategoria).map(([categoria, lista]) => (
                         <div key={categoria} className={style_habilidades.habilidades_categoria_box}>
-                            <h4 style={{ color: "#888", marginBottom: "10px" }}>{categoria}</h4>
+                            <h4 className={style_habilidades.habilidades_categoria_titulo}>{categoria}</h4>
                             <ul className={style_habilidades.habilidades_ul}>
                                 {lista.map((tech) => {
                                     const key = tech.nombre_habilidad.replace(/\s+/g, '');
@@ -52,7 +52,12 @@ export default function Habilidades({ habilidades }: Props) {
                                         <li key={tech.id} className={style_habilidades.habilidades_li}>
                                             <span className={style_habilidades.habilidades_span}>
                                                 {iconosTech[key]}
-                                                <strong style={{ color: coloresTech[key] || "#fff", fontSize: '13px' }}>
+                                                <strong
+                                                    className={style_habilidades.habilidades_nombre}
+                                                    style={{
+                                                        color: coloresTech[key] || "#fff"
+                                                    }}
+                                                >
                                                     {tech.nombre_habilidad}
                                                 </strong>
                                             </span>

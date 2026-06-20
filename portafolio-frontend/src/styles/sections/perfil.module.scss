@@ -1,0 +1,249 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.perfil {
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 2rem;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(192, 132, 252, .08),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(164, 79, 250, .05),
+            transparent 40%
+        ),
+        linear-gradient(
+            180deg,
+            #0d0d0d,
+            #080808
+        );
+
+    &_layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8rem;
+    }
+
+    // ======================================================
+    // HEADER
+    // ======================================================
+
+    &_header {
+        display: grid;
+        gap: 3rem;
+        align-items: center;
+        @include m.tablet {
+            grid-template-columns: 280px 1fr;
+        }
+        &_box_imagen {
+            display: flex;
+            justify-content: center;
+        }
+        &_imagen_perfil {
+            border-radius: 50%;
+            object-fit: cover;
+                border: 3px solid rgba(192,132,252,.25);
+                box-shadow:
+                0 0 40px rgba(192,132,252,.15);
+        }
+        &_box_informacion {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        &_span_tag {
+            width: fit-content;
+                padding: .6rem 1rem;
+                border-radius: 999px;
+                background: rgba(192,132,252,.08);
+                border: 1px solid rgba(192,132,252,.15);
+                color: v.$color-primary;
+                font-size: 1.3rem;
+            font-weight: 600;
+        }
+        &_h1_nombre {
+            font-size: clamp(3rem, 5vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+                color: #fff;
+        }
+        &_p_descripcion {
+            max-width: 650px;
+            font-size: 1.6rem;
+            line-height: 1.8;
+                color: #b8b8b8;
+        }
+        &_btn_layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        &_btn {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            padding: 1rem 1.6rem;
+            border-radius: 1.2rem;
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.06);
+            color: #fff;
+            transition: .3s ease;
+            @extend %link-reset;
+            &:hover {
+            transform: translateY(-3px);
+                    border-color: rgba(192,132,252,.3);
+                    box-shadow:
+                0 10px 30px rgba(192,132,252,.08);
+            }
+        }
+    }
+
+    &_historia,
+    &_tecnologias,
+    &_filosofia,
+    &_redes,
+    &_contacto {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &_historia_h2,
+    &_tecnologias_h2,
+    &_filosofia_h2,
+    &_redes_h2,
+    &_contacto_h2 {
+        font-size: clamp(2.4rem, 4vw, 3.6rem);
+        font-weight: 700;
+        color: #fff;
+    }
+
+    &_historia_p,
+    &_filosofia_p,
+    &_contacto_p {
+        max-width: 850px;
+        font-size: 1.7rem;
+        line-height: 1.9;
+        color: #b8b8b8;
+    }
+
+    &_tecnologias {
+      &_layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        &_item {
+            padding: 1rem 1.6rem;
+                border-radius: 999px;
+                background: rgba(255,255,255,.03);
+                border: 1px solid rgba(255,255,255,.06);
+                color: #fff;
+                transition: .3s ease;
+                &:hover {
+                border-color: rgba(192,132,252,.3);
+                        transform: translateY(-2px);
+            }
+        }
+    }
+
+    &_metricas {
+      &_layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+                @include m.tablet {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        &_box {
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+                padding: 2rem;
+                border-radius: 2rem;
+                background: rgba(255,255,255,.03);
+                border: 1px solid rgba(255,255,255,.05);
+                text-align: center;
+        }
+        &_numero {
+            font-size: 2.6rem;
+            font-weight: 800;
+                color: v.$color-primary;
+        }
+        &_texto {
+            color: #b8b8b8;
+            line-height: 1.5;
+        }
+    }
+
+    &_redes {
+      &_layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        &_item {
+            @extend %link-reset;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+                padding: 1.2rem 1.8rem;
+                border-radius: 1.2rem;
+                background: rgba(255,255,255,.03);
+                border: 1px solid rgba(255,255,255,.05);
+                color: #fff;
+                transition: .3s ease;
+                &:hover {
+                transform: translateY(-3px);
+                border-color: rgba(192,132,252,.25);
+                box-shadow: 0 8px 25px rgba(192,132,252,.08);
+            }
+        }
+    }
+
+    &_contacto {
+      padding: 4rem;
+      border-radius: 2.4rem;
+      background:
+            linear-gradient(
+                180deg,
+                rgba(192,132,252,.06),
+                rgba(255,255,255,.02)
+            );
+            border: 1px solid rgba(192,132,252,.12);
+            &_btn {
+            width: fit-content;
+            padding: 1.2rem 2.4rem;
+            border-radius: 1.2rem;
+            background: v.$color-primary;
+            color: #fff;
+            font-weight: 700;
+            transition: .3s ease;
+            @extend %link-reset;
+            &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(192,132,252,.25);
+          }
+        }
+    }
+  .destacadoPrimary {
+    color: v.$color-primary;
+    font-weight: 700;
+    letter-spacing: 0.5px; // Un poco de espacio lo hace ver más profesional
+    text-shadow: 0px 0px 8px rgba(161, 35, 245, 0.3); // Un sutil resplandor
+  }
+  .destacadoDorado {
+    color: v.$color-oro;
+    font-weight: 700; // Asegúrate de que tenga buen grosor
+    letter-spacing: 0.5px; // Un poco de espacio lo hace ver más profesional
+    text-shadow: 0px 0px 8px rgba(245, 166, 35, 0.3); // Un sutil resplandor
+  }
+}

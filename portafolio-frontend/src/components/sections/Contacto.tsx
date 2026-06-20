@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useState } from "react"; // <-- Agregamos useState
-import style_contacto from "@/styles/sections/contacto.module.scss";
+import style from "@/styles/sections/contacto.module.scss";
 import SectionHeader from "../sub_components/SectionHeader";
 import { PerfilType } from "@/types/perfil";
 import { enviarMensajeContacto } from "@/services/fetchData";
@@ -87,7 +87,7 @@ export default function Contacto({ perfil }: Props) {
         return (
             <article className={style.contacto_faq_article}>
                 <div 
-                    className={style.contacto_faq_article_header} 
+                    className={style.contacto_faq_header} 
                     onClick={() => {
                         setIsOpen(!isOpen)
                         trackEvent(`click_WhatsApp`, {
@@ -100,7 +100,12 @@ export default function Contacto({ perfil }: Props) {
                         {isOpen ? <FaMinus size={22} /> : <FaPlus size={22} />}
                     </button>
                 </div>
-                <div className={`${style.contacto_faq_article_footer} ${isOpen ? style.abierto : ''}`}>
+                <div
+                    className={`
+                        ${style.contacto_faq_article_footer}
+                        ${isOpen ? style.contacto_faq_abierto : ""}
+                    `}
+                >
                     <p className={style.contacto_faq_parrafo}>{pf.respuesta}</p>
                 </div>
             </article>
@@ -108,22 +113,22 @@ export default function Contacto({ perfil }: Props) {
     };
 
     return (
-        <section className={style_contacto.contacto}>
-            <div className={style_contacto.contacto_layout}>
-                <article className={style_contacto.contacto_header}>
+        <section className={style.contacto}>
+            <div className={style.contacto_layout}>
+                <article className={style.contacto_header}>
                     <SectionHeader 
                         icon={<MdOutlineEmail />} 
                         title="Contacto" 
                         description="Conéctate conmigo hoy. ¡Creemos algo asombroso juntos!" 
                     />
-                    <div className={style_contacto.contacto_contenido_box}>
-                        <div className={style_contacto.contacto_contenido_box_layout}>
-                            <form className={style_contacto.contacto_form} onSubmit={manejarEnvio}>
-                                <div className={style_contacto.contacto_form_group_row}>
+                    <div className={style.contacto_contenido_box}>
+                        <div className={style.contacto_contenido_box_layout}>
+                            <form className={style.contacto_form} onSubmit={manejarEnvio}>
+                                <div className={style.contacto_form_group_row}>
                                     <input 
                                         type="text" 
                                         placeholder="Nombre" 
-                                        className={style_contacto.contacto_form_input} 
+                                        className={style.contacto_form_input} 
                                         required 
                                         value={nombre}
                                         onChange={(e) => setNombre(e.target.value)}
@@ -137,7 +142,7 @@ export default function Contacto({ perfil }: Props) {
                                     <input 
                                         type="email" 
                                         placeholder="Correo electrónico" 
-                                        className={style_contacto.contacto_form_input} 
+                                        className={style.contacto_form_input} 
                                         required 
                                         value={correo}
                                         onChange={(e) => setCorreo(e.target.value)}
@@ -148,10 +153,10 @@ export default function Contacto({ perfil }: Props) {
                                         }
                                     />
                                 </div>
-                                <div className={style_contacto.contacto_form_group}>
+                                <div className={style.contacto_form_group}>
                                     <textarea 
                                         placeholder="Mensaje" 
-                                        className={style_contacto.contacto_form_textarea} 
+                                        className={style.contacto_form_textarea} 
                                         rows={6}
                                         required 
                                         value={mensaje} 
@@ -163,13 +168,13 @@ export default function Contacto({ perfil }: Props) {
                                         }
                                     />
                                 </div>
-                                <button type="submit" className={style_contacto.contacto_form_submit}>
+                                <button type="submit" className={style.contacto_form_submit}>
                                     Enviar tu Mensaje
                                 </button>
-                                <div className={style_contacto.contacto_action_buttons}>
+                                <div className={style.contacto_action_buttons}>
                                     <Link 
                                         href="mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto..." 
-                                        className={style_contacto.contacto_btn_action} 
+                                        className={style.contacto_btn_action} 
                                         aria-label="Enviar correo electrónico"
                                         onClick={() => 
                                             trackEvent("social_click", {
@@ -183,7 +188,7 @@ export default function Contacto({ perfil }: Props) {
                                     </Link>
                                     <Link 
                                         href="https://wa.me/5491164095414?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto..." 
-                                        className={style_contacto.contacto_btn_action} 
+                                        className={style.contacto_btn_action} 
                                         aria-label="Chatear por WhatsApp"
                                         onClick={() => 
                                             trackEvent("social_click", {
@@ -196,16 +201,16 @@ export default function Contacto({ perfil }: Props) {
                                         <span>WHATSAPP</span>
                                     </Link>
                                 </div>
-                                <p className={style_contacto.contacto_form_parrafo}>Para asegurar un funcionamiento óptimo y proteger la integridad de este sitio, se procesan datos técnicos básicos (dispositivo, navegador y momento del envío) durante el contacto.</p>
+                                <p className={style.contacto_form_parrafo}>Para asegurar un funcionamiento óptimo y proteger la integridad de este sitio, se procesan datos técnicos básicos (dispositivo, navegador y momento del envío) durante el contacto.</p>
                             </form>
-                            <div className={style_contacto.contacto_social_grid}>
+                            <div className={style.contacto_social_grid}>
                                 {redesSociales && redesSociales.map((red) => (
                                     <Link 
                                         key={red.name} 
                                         href={red.url} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className={style_contacto.contacto_social_card}
+                                        className={style.contacto_social_card}
                                         aria-label={`Síguenos en ${red.titulo}`}
                                         onClick={() => 
                                             trackEvent("social_click", {
@@ -214,15 +219,15 @@ export default function Contacto({ perfil }: Props) {
                                             })
                                         }
                                     >
-                                        <div className={style_contacto.contacto_social_card_left}>
-                                            <div className={style_contacto.contacto_social_icon}>
+                                        <div className={style.contacto_social_card_left}>
+                                            <div className={style.contacto_social_icon}>
                                                 {red.icon}
                                             </div>
-                                            <div className={style_contacto.contacto_social_info}>
-                                                <span className={style_contacto.contacto_social_count}>{red.dato}</span>
+                                            <div className={style.contacto_social_info}>
+                                                <span className={style.contacto_social_count}>{red.dato}</span>
                                             </div>
                                         </div>
-                                        <div className={style_contacto.contacto_social_arrow}>
+                                        <div className={style.contacto_social_arrow}>
                                             <FaArrowRight />
                                         </div>
                                     </Link>
@@ -232,23 +237,23 @@ export default function Contacto({ perfil }: Props) {
                         </div>
                     </div>
                 </article>
-                <hr className={style_contacto.contacto_divider} />
-                <article className={style_contacto.contacto_faqs_section}>
+                <hr className={style.contacto_divider} />
+                <article className={style.contacto_faqs_section}>
                     <SectionHeader 
                         icon={<BsQuestionCircle />} 
                         title="Consultas comunes" 
                         description="Obtenga respuestas a consultas comunes." 
                     />
 
-                    <div className={style_contacto.contacto_faqs_layout}>
-                        <div className={style_contacto.contacto_faqs_columna}>
+                    <div className={style.contacto_faqs_layout}>
+                        <div className={style.contacto_faqs_columna}>
                             {col1.map((pf) => (
-                                <FaqItem key={pf.id} pf={pf} style={style_contacto} />
+                                <FaqItem key={pf.id} pf={pf} style={style} />
                             ))}
                         </div>
-                        <div className={style_contacto.contacto_faqs_columna}>
+                        <div className={style.contacto_faqs_columna}>
                             {col2.map((pf) => (
-                                <FaqItem key={pf.id} pf={pf} style={style_contacto} />
+                                <FaqItem key={pf.id} pf={pf} style={style} />
                             ))}
                         </div>
                     </div>

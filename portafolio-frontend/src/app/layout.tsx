@@ -10,13 +10,22 @@ const Footer = dynamic(() => import('@/components/sections/Footer'));
 export const metadata: Metadata = {
   metadataBase: new URL('https://portafolio-pc.netlify.app'),
   title: {
-    default: "Portafolio PDC | Pablo Daniel Chavez - Desarrollador Frontend",
+    default: "PaginasWebChavez | Desarrollador Web Full Stack",
     template: "%s | Pablo Daniel Chavez"
   },
-  description: "Portafolio profesional de Pablo Daniel Chavez. Especialista en desarrollo Frontend con React y Next.js. Descubre mis proyectos, habilidades y trayectoria.",
+  description: "Desarrollador Web especializado en crear soluciones digitales, sitios rápidos y optimizados para SEO. Ayudo a negocios a crecer mediante tecnología. ¡Contactame!",
   
   authors: [{ name: "Pablo Daniel Chavez" }],
-  keywords: ["Desarrollador Frontend", "React", "Next.js", "Portafolio", "Web Developer"],
+  keywords: [
+    "Desarrollador Web", 
+    "Landing Page", 
+    "Buenos Aires", 
+    "SEO", 
+    "Optimización Web", 
+    "Diseño de Paginas Web", 
+    "Tienda Online", 
+    "PaginasWebChavez"
+],
   robots: {
     index: true,
     follow: true,
@@ -27,10 +36,10 @@ export const metadata: Metadata = {
   },
   
   openGraph: {
-    title: "Portafolio PDC | Pablo Daniel Chavez",
-    description: "Explora los proyectos de desarrollo web de Pablo Daniel Chavez.",
+    title: "PaginasWebChavez | Desarrollo Web y SEO",
+    description: "Desarrollador Web especializado en sitios rápidos y optimizados para resultados reales.",
     url: "https://portafolio-pc.netlify.app",
-    siteName: "Portafolio PDC",
+    siteName: "PaginasWebChavez", // Coherencia con el nuevo nombre
     images: [
       {
         url: "/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png",

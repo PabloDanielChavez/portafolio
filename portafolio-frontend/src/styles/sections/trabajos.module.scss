@@ -3,8 +3,19 @@
 
 .trabajos {
   padding: 40px 16px;
-  background: #0d0d0d;
+  position: relative;
+  overflow: hidden;
   color: #e5e5e5;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      pointer-events: none;
+      filter: blur(80px);
+      animation: floatingGlow 10s ease-in-out infinite;
+  }
 
   @include m.telefonoXL { padding: 60px 20px; }
   &_layout { max-width: 1000px; margin: 0 auto; }
@@ -21,11 +32,18 @@
     display: flex;
     flex-direction: column;
     gap: 14px;
-    background: #111111;
-    border: 1px solid #1f1f1f;
     border-radius: 16px;
     padding: 14px;
     transition: all 0.3s ease;
+    background: rgba(255,255,255,.02);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,.06);
+    box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    transition: all .4s ease-in-out;
+    opacity: 0;
+    transform: translateY(40px) scale(.96);
+    position: relative;
+    overflow: hidden;
 
     @include m.telefonoXL {
       flex-direction: row;
@@ -33,9 +51,29 @@
       padding: 16px;
     }
     &:hover {
-      border-color: #2a2a2a;
-      transform: translateY(-4px);
+        transform: translateY(-8px) scale(1.02);
+        border-color: rgba(192,132,252,.25);
+        box-shadow: 0 20px 50px rgba(192,132,252,.15);
+        background: linear-gradient( 90deg, transparent, rgba(255,255,255,.08), transparent);
+        &::before {
+            left: 150%;
+        }
     }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient( 90deg, transparent, rgba(255,255,255,.05), transparent );
+      transition: .8s;
+    }
+  }
+
+  & .view {
+      opacity: 1;
+      transform: translateY(0) scale(1);
   }
 
   &_card_img {
@@ -44,10 +82,18 @@
     border-radius: 12px;
     overflow: hidden;
     background: #0f0f0f;
-    @include m.telefonoXL { width: 45%; height: 200px; }
+    transition: transform .8s ease;
+    @include m.telefonoXL { 
+      width: 45%; 
+      height: 200px; 
+    }
   }
 
-  &_img { width: 100%; height: 100%; object-fit: cover; }
+  &_img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+  }
 
   &_card_info {
     flex: 1;
@@ -116,8 +162,22 @@
     &:hover { background: #1a1a1a; border-color: #2a2a2a; }
   }
 
-  &_card_metrics { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;} 
-  &_layout_metrics { background: #111; padding: 6px; border-radius: 12px; text-align: center; border: 1px solid #1f1f1f; }
+  &_card_metrics { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 8px;
+  } 
+  &_layout_metrics { 
+    padding: 6px; 
+    text-align: center; 
+    min-width: 85px;
+    background:
+        rgba(255,255,255,.03);
+    color: white;
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 14px;
+  }
   &_card_metrics_titulo { display: flex; align-items: center; justify-content: center; font-size: 10px; color: #9ca3af;}
   &_card_metrics_puntaje { 
     @include m.metric-badge(2px, 8px, inherit); 
@@ -131,7 +191,29 @@
 }
 
 .pagTrabajo {
-    &_detalle_container { padding: 40px 20px; background: #0d0d0d; color: #e5e5e5; min-height: 100vh; }
+    &_detalle_container {
+      min-height: 100vh;
+      padding: 80px 20px;
+
+      background:
+          radial-gradient(
+              circle at top left,
+              rgba(192,132,252,.08),
+              transparent 35%
+          ),
+          radial-gradient(
+              circle at bottom right,
+              rgba(164,79,250,.06),
+              transparent 35%
+          ),
+          linear-gradient(
+              180deg,
+              #0d0d0d,
+              #080808
+          );
+
+      color: #e5e5e5;
+  }
     &_layout { max-width: 1000px; margin: 0 auto; }
     
     &_LINK { 
@@ -140,25 +222,42 @@
         &:hover { color: #fff; transform: translateX(-5px); }
     }
 
-    &_detalle_hero { 
-      display: flex; 
-      flex-direction: column; // Apilado por defecto para móviles
-      align-items: flex-start;
-      gap: 15px;
-      margin-bottom: 30px; 
+    &_detalle_hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1rem 2rem;
+      margin-bottom: 1rem;
+      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 24px;
+      backdrop-filter: blur(20px);
+      box-shadow:
+          0 20px 60px rgba(0,0,0,.25);
 
-      @include m.tablet { 
-          flex-direction: row; // Pasa a horizontal en tablets/desktop
-          justify-content: space-between; 
-          align-items: center; 
+      @include m.tablet {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
       }
     }
-    &_detalle_h1 { 
-      font-size: 1.8rem; // Un poco más pequeño en móviloverflow-wrap: break-word;
-      word-wrap: break-word;
-      word-break: break-word;
+    &_detalle_h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
       max-width: 100%;
-      @include m.tablet { font-size: 2.5rem; }
+      word-break: break-word;
+      background:
+          linear-gradient(
+              135deg,
+              #ffffff,
+              rgba(255,255,255,.75)
+          );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      @include m.tablet {
+          max-width: 70%;
+      }
     }
     &_flexRepo { display: flex; gap: 15px; }
     &_detalle_link { color: #a1a1aa; transition: 0.3s; &:hover { color: #c084fc; } }
@@ -174,7 +273,24 @@
     } 
 
     // Sidebar (Imagen y Métricas)
-    &_detalle_img_main { width: 100%; height: auto; border-radius: 16px; border: 1px solid #1f1f1f; margin-bottom: 20px; }
+    &_detalle_img_main {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      transition:
+          transform .6s ease,
+          box-shadow .6s ease;
+      box-shadow:
+          0 20px 50px rgba(0,0,0,.25);
+      margin-bottom: 20px;
+      &:hover {
+          transform: scale(1.02);
+          box-shadow:
+              0 30px 80px rgba(0,0,0,.35);
+        }
+    }
     
     &_tabs_container { display: flex; gap: 10px; margin-bottom: 20px; }
     &_tab_btn { 
@@ -184,7 +300,20 @@
     }
 
     &_card_metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
-    &_layout_metrics { background: #111; padding: 15px; border-radius: 12px; text-align: center; border: 1px solid #1f1f1f; }
+    &_layout_metrics {
+      padding: 15px;
+      text-align: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      transition: .3s;
+      &:hover {
+          transform: translateY(-4px);
+          border-color: rgba(192,132,252,.25);
+          box-shadow: 0 10px 30px rgba(192,132,252,.12);
+        }
+    }
     &_card_metrics_puntaje { 
       font-size: 1.5rem; 
       font-weight: 700; 
@@ -199,26 +328,53 @@
 
     // Contenido
     &_detalle_contenido {
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      word-break: break-word;
-      max-width: 100%;
-      h3 { font-size: 1.5rem; margin: 30px 0 15px; color: #fff; } 
-      p { line-height: 1.7; color: #a1a1aa; }
-    
+      h3 {
+          position: relative;
+          padding-left: 1rem;
+          font-size: 1.8rem;
+          margin: 3rem 0 1rem;
+          color: white;
+          &::before { 
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient( 180deg, v.$color-primary, v.$color-secundary );
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient( 90deg, v.$color-primary, v.$color-secundary );
+            transition: .4s;
+        }
+      }
+
+      p {
+          line-height: 1.8;
+          color: #b5b5b5;
+      }
     }
     &_ul { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; }
-    &_li { 
-      background: #1a1a1a;
-      padding: 8px 15px;
-      border-radius: 20px;
-      border: 1px solid #2a2a2a;
-      transition: all 0.3s ease;
+    &_li {
+      background: rgba(255,255,255,.03);
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      transition: .3s;
       &:hover {
-        background: #252525;
-        border-color: #404040;
-        cursor: default;
-      }
+        transform: translateY(-3px);
+        border-color:
+            rgba(192,132,252,.25);
+        box-shadow:
+            0 8px 20px rgba(192,132,252,.12);
+        }
     }
     &_span { display: flex; align-items: center; gap: 8px; }
     &_detalle_specs {
@@ -262,11 +418,23 @@
         text-align: center;
     }
     &_detalle_reto {
-        margin-top: 30px;
-        padding: 20px;
-        background: #111; // Un tono apenas más claro que el fondo general
-        border-left: 4px solid #c084fc; // Color de acento
-        border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+      padding: 24px;
+      border-radius: 20px;
+      background: linear-gradient( 135deg, rgba(192,132,252,.05), rgba(192,132,252,.01) );
+      border: 1px solid rgba(192,132,252,.15);
+      &::before {
+          content: "";
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          top: -150px;
+          right: -150px;
+          background: radial-gradient( circle, rgba(192,132,252,.15), transparent );
+          pointer-events: none;
+        }
     }
     &_h4 {
         margin: 0 0 10px 0;
@@ -306,4 +474,16 @@
 @keyframes slideUpFade {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatingGlow {
+    0%,100% {
+        transform:
+            translate(0,0);
+    }
+
+    50% {
+        transform:
+            translate(50px,-30px);
+    }
 }

@@ -2,11 +2,21 @@
 @use '../base/mixins.module.scss' as m;
 
 .footer {
-    width: 100%;
-    background: #0d0d0d;
-    color: #e5e5e5;
-    border-top: 1px solid #1f1f1f;
-    margin-top: auto; // Empuja el footer hacia abajo si el padre es flex
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient( 180deg, #080808, #050505 );
+    border-top: 1px solid rgba(255,255,255,.06);
+    &::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        bottom: -300px;
+        right: -250px;
+        background: radial-gradient( circle, rgba(192,132,252,.08), transparent ); 
+        filter: blur(80px);
+        animation: floatingGlow 12s ease-in-out infinite;
+    }
 
     &_grid_principal {
         padding: 40px 16px;
@@ -30,17 +40,17 @@
     }
 
     &_imagen_logo {
-        width: 80px; // Asegúrate de definir un tamaño fijo o responsivo
-        height: 80px;
-        border-radius: 50%; 
-        border: 1px solid #1f1f1f;
-        background: #111111;
-        object-fit: cover;
-        transition: transform 0.4s ease, border-color 0.4s ease;
-
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        padding: 4px;
+        background: linear-gradient( 135deg, rgba(192,132,252,.6), rgba(164,79,250,.2) );
+        transition: transform .4s ease, box-shadow .4s ease;
+        box-shadow:  0 0 25px rgba(192,132,252,.15); 
         &:hover {
-            transform: scale(1.05);
-            border-color: #2a2a2a;
+            transform: scale(1.08) rotate(2deg); 
+            box-shadow: 0 0 40px rgba(192,132,252,.3);
+            cursor: pointer;
         }
     }
 
@@ -52,20 +62,22 @@
         
         @include m.tablet {
             display: grid;
+            align-items: flex-start;
             grid-template-columns: repeat(2, 1fr);
         }
         
         @include m.tabletXL {
+            align-items: flex-start;
             grid-template-columns: repeat(3, 1fr);
         }
     }
 
     &_box {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        gap: 16px;
-        @include m.tablet { text-align: start; }
+        position: relative; 
+        padding: 20px; 
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
     }
 
     &_h2 {
@@ -73,6 +85,7 @@
         font-weight: 700;
         color: #ffffff;
         margin: 0;
+        margin-bottom: 1.6rem;
         text-transform: uppercase;
         letter-spacing: 1.5px;
     }
@@ -86,7 +99,7 @@
         gap: 12px;
     }
 
-    &_a {
+    &_LINK {
         display: inline-flex;
         align-items: center;
         justify-content: center; // Centrado para mobile
@@ -95,6 +108,9 @@
         font-size: 14px;
         text-decoration: none;
         transition: all 0.25s ease;
+        position: relative;
+        width: fit-content;
+        margin-bottom: .4rem;
 
         @include m.tablet { justify-content: flex-start; }
 
@@ -102,24 +118,53 @@
             color: #c084fc;
             transition: all 0.25s ease;
         }
-
         &:hover {
             color: #ffffff;
-            transform: translateX(4px);
+            transform: translateX(2px);
             svg { color: #ffffff; transform: scale(1.1); }
+            &::after {
+                width: 100%;
+            }
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: #c084fc;
+            transition: width .3s ease;
         }
     }
 
     &_box_copy {
         grid-column: 1 / -1;
-        border-top: 1px solid #1f1f1f;
-        padding-top: 24px;
-        text-align: center;
-        margin-top: 20px;
+        position: relative;
+        width: max-content;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255,255,255,.05);
+        margin: 5rem auto;
     }
 
     &_copy_p {
-        font-size: 12px;
-        color: #e0e0e0;
+        color: #7f7f7f;
+        font-size: .85rem;
+        letter-spacing: .5px;
+    }
+
+    
+    .destacadoDorado {
+        color: v.$color-oro;
+        font-weight: 700; // Asegúrate de que tenga buen grosor
+        letter-spacing: 0.5px; // Un poco de espacio lo hace ver más profesional
+        text-shadow: 0px 0px 8px rgba(245, 166, 35, 0.3); // Un sutil resplandor
+    }
+    
+    .destacadoPrimary {
+        color: v.$color-primary;
+        font-weight: 700;
+        letter-spacing: 0.5px; // Un poco de espacio lo hace ver más profesional
+        text-shadow: 0px 0px 8px rgba(161, 35, 245, 0.3); // Un sutil resplandor
     }
 }

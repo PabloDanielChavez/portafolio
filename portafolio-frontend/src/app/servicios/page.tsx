@@ -13,7 +13,7 @@ export default async function Ser() {
     <>
       <Servicios servicios={data.Servicios} />
       <Trabajos trabajos={data.Trabajos} showFooter={true}/>
-      <Clientes clientes={data.Clientes} />
+      {/* <Clientes clientes={data.Clientes} /> */}
     </>
   );
 }
