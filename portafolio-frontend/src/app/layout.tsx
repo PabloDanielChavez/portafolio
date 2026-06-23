@@ -8,7 +8,7 @@ import Header from "@/components/sections/Header";
 const Footer = dynamic(() => import('@/components/sections/Footer'));
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://portafolio-pc.netlify.app'),
+  metadataBase: new URL('https://paginaswebchavez.netlify.app'),
   title: {
     default: "PaginasWebChavez | Desarrollador Web Full Stack",
     template: "%s | Pablo Daniel Chavez"
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PaginasWebChavez | Desarrollo Web y SEO",
     description: "Desarrollador Web especializado en sitios rápidos y optimizados para resultados reales.",
-    url: "https://portafolio-pc.netlify.app",
+    url: "https://paginaswebchavez.netlify.app",
     siteName: "PaginasWebChavez", // Coherencia con el nuevo nombre
     images: [
       {
@@ -74,7 +74,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "@type": "Person",
     "name": "Pablo Daniel Chavez",
     "jobTitle": "Desarrollador Frontend",
-    "url": "https://portafolio-pc.netlify.app",
+    "url": "https://paginaswebchavez.netlify.app",
     "sameAs": [
       "https://github.com/PabloDanielChavez",
       "https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/",

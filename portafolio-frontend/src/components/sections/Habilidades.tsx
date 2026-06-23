@@ -10,17 +10,17 @@ const coloresTech: Record<string, string> = {
 };
 
 const iconosTech: Record<string, React.ReactNode> = {
-    HTML: <SiHtml5 size={24} style={{ color: coloresTech.HTML }} />,
-    CSS: <FaCss3Alt size={24} style={{ color: coloresTech.CSS }} />,
-    SASS: <SiSass size={24} style={{ color: coloresTech.SASS }} />,
-    REACT: <SiReact size={24} style={{ color: coloresTech.REACT }} />,
-    NEXT: <SiNextdotjs size={24} style={{ color: coloresTech.Next }} />,
-    NODE: <SiNodedotjs size={24} style={{ color: coloresTech.Node }} />,
-    SEQUELIZE: <SiSequelize size={24} style={{ color: coloresTech.Sequelize }} />,
-    MySQL: <SiMysql size={24} style={{ color: coloresTech.MySQL }} />,
-    PHOTOSHOP: <TbBrandAdobePhotoshop size={24} style={{ color: coloresTech.Photoshop }} />,
-    PREMIEREPRO: <TbBrandAdobePremier size={24} style={{ color: coloresTech.PremierePro }} />,
-    CANVA: <SiCanva size={24} style={{ color: coloresTech.Canva }} />,
+    HTML: <SiHtml5 size={24} aria-label="HTML" style={{ color: coloresTech.HTML }} />,
+    CSS: <FaCss3Alt size={24} aria-label="CSS" style={{ color: coloresTech.CSS }} />,
+    SASS: <SiSass size={24} aria-label="SASS" style={{ color: coloresTech.SASS }} />,
+    REACT: <SiReact size={24} aria-label="REACT" style={{ color: coloresTech.REACT }} />,
+    NEXT: <SiNextdotjs size={24} aria-label="NEXT" style={{ color: coloresTech.Next }} />,
+    NODE: <SiNodedotjs size={24} aria-label="NODE" style={{ color: coloresTech.Node }} />,
+    SEQUELIZE: <SiSequelize size={24} aria-label="SEQUELIZE" style={{ color: coloresTech.Sequelize }} />,
+    MySQL: <SiMysql size={24} aria-label="MySQL" style={{ color: coloresTech.MySQL }} />,
+    PHOTOSHOP: <TbBrandAdobePhotoshop size={24} aria-label="PHOTOSHOP" style={{ color: coloresTech.Photoshop }} />,
+    PREMIEREPRO: <TbBrandAdobePremier size={24} aria-label="PREMIEREPRO" style={{ color: coloresTech.PremierePro }} />,
+    CANVA: <SiCanva size={24} aria-label="CANVA" style={{ color: coloresTech.Canva }} />,
 };
 
 type Props = {
