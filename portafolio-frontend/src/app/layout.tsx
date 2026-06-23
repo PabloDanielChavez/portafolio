@@ -32,7 +32,8 @@ export const metadata: Metadata = {
   },
   
   verification: {
-    google: 'google4a94501184fa92ba',
+    google: '4yIUAbvNIcrI3UhHJW9vszJTkYpBcBoyjlRtCzn7mUc',
+
   },
   
   openGraph: {
@@ -116,3 +117,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
+
+
+
+
