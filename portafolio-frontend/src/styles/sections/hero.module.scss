@@ -52,13 +52,13 @@
     &_contenedor {
         position: relative;
         width: 100%;
-        min-height: 100svh;
     }
 
     &_layout {
-        position: absolute;
+        position: relative;
         inset: 0;
         z-index: 2;
+        min-height: 100svh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -139,7 +139,7 @@
 
     &_h1 {
         &_titulo {
-            max-width: 740px;
+            max-width: 1040px;
             margin: 0 0 1.15rem;
             color: #fff;
             font-size: clamp(2.45rem, 10.5vw, 5.65rem);
@@ -176,7 +176,7 @@
 
     &_p {
         &_descripcion {
-            max-width: 680px;
+            max-width: 940px;
             margin: 0 0 2rem;
             color: rgba(242, 239, 233, .86);
             font-size: clamp(1.03rem, 2.4vw, 1.28rem);
@@ -200,7 +200,7 @@
         display: flex;
         flex-direction: column;
         gap: .85rem;
-        width: min(100%, 520px);
+        width: min(100%, 620px);
         animation-delay: .5s;
 
         @include m.telefono {
@@ -528,8 +528,12 @@
 }
 
 .scrollIndicator {
-    position: absolute;
-    bottom: 1.2rem;
+    position: relative;
+    margin: 2rem auto 1rem;
+    @include m.tabletXL {
+        position: absolute;
+        bottom: 1.2rem;
+    }
     left: 50%;
     z-index: 4;
     display: none;
