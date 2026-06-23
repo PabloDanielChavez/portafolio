@@ -9,7 +9,7 @@ export default function Loading() {
       background: '#0d0d0d',
       color: '#e5e5e5'
     }}>
-      <h1>Cargando...</h1>
+      <span>Cargando...</span>
     </div>
   );
 }

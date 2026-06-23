@@ -10,9 +10,9 @@ export default function Header() {
     const menu = [
         { id: 1, titulo: "Inicio", target: "/", icono: <BiHomeAlt2 size={20} />},
         { id: 2, titulo: "Perfil", target: "/perfil", icono: <IoIosPerson size={20} />},
-        { id: 2, titulo: "Trabajos", target: "/trabajos", icono: <BiBriefcase size={20} />},
-        { id: 3, titulo: "Servicios", target: "/servicios", icono: <BiCog size={20} />},
-        { id: 4, titulo: "Contacto", target: "/contacto", icono: <MdInfoOutline size={20} />},
+        { id: 3, titulo: "Trabajos", target: "/trabajos", icono: <BiBriefcase size={20} />},
+        { id: 4, titulo: "Servicios", target: "/servicios", icono: <BiCog size={20} />},
+        { id: 5, titulo: "Contacto", target: "/contacto", icono: <MdInfoOutline size={20} />},
     ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
