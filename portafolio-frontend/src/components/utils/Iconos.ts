@@ -6,10 +6,11 @@ export { SiCodefactor, SiNextdotjs, SiNodedotjs, SiReact, SiSass, SiHtml5, SiCan
 export { IoIosRocket, IoMdArrowBack, IoIosPerson } from 'react-icons/io';
 export { FaXTwitter, FaCss3Alt } from "react-icons/fa6"; 
 export { MdWaterDrop, MdWaterDamage, MdLocalFireDepartment, MdPool, MdCleaningServices, MdOutlineWeb, MdBuild, MdOutlineEmail, MdCall, MdWeb,  MdInfoOutline, MdLocationOn } from 'react-icons/md';
-export { TbChartBarPopular, TbWorld, TbBrandAdobePhotoshop, TbBrandAdobePremier} from "react-icons/tb";
-export { LuMonitorSmartphone } from "react-icons/lu";
+export { TbChartBarPopular, TbWorld, TbBrandAdobePhotoshop, TbBrandAdobePremier, TbPlugConnected} from "react-icons/tb";
+export { LuMonitorSmartphone, LuGauge, LuCircleGauge } from "react-icons/lu";
 export { HiOutlineCodeBracket } from "react-icons/hi2";
 export { FiDatabase, FiExternalLink } from "react-icons/fi";
 export { BsQuestionCircle, BsFillPersonVcardFill } from "react-icons/bs";
 export { GiGardeningShears,  GiTreeGrowth, GiWateringCan, GiBroom} from "react-icons/gi";
 export { FaArrowDown, FaCheck } from "react-icons/fa";
+

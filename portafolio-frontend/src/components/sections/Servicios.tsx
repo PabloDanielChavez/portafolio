@@ -1,14 +1,7 @@
 "use client";
 
 import styles from "@/styles/sections/servicios.module.scss";
-import {
-    AiTwotoneSchedule,
-    FiDatabase,
-    HiOutlineCodeBracket,
-    LuMonitorSmartphone,
-    PiPalette,
-    TbChartBarPopular
-} from "@/components/utils/Iconos";
+import { AiTwotoneSchedule, FiDatabase, HiOutlineCodeBracket, LuCircleGauge, LuMonitorSmartphone, TbChartBarPopular, TbPlugConnected } from "@/components/utils/Iconos";
 
 import { ServiciosType } from "@/types/servicios";
 import SectionHeader from "../sub_components/SectionHeader";
@@ -23,9 +16,9 @@ export default function Servicios({ servicios }: Props) {
     const renderIcono = (nombreString: string) => {
         if (nombreString === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
         if (nombreString === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
-        if (nombreString === "PiPalette") return <PiPalette />;
-        if (nombreString === "TbChartBarPopular") return <TbChartBarPopular />;
-        if (nombreString === "FiDatabase") return <FiDatabase />;
+        if (nombreString === "LuGauge") return <LuCircleGauge />;
+        if (nombreString === "FiTool") return <TbChartBarPopular />;
+        if (nombreString === "TbPlugConnected") return <TbPlugConnected />;
 
         return <FiDatabase />;
     };
