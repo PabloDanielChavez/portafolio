@@ -8,6 +8,21 @@ export const mensajePresupuesto = encodeURIComponent(
     "Hola Pablo, ¿cómo estás? Estoy interesado en recibir un presupuesto para mi web. Me gustaría coordinar una llamada."
 );
 
+export const mensajePresupuestoPlanUno = encodeURIComponent(
+    "*Solicitud de Presupuesto - PaginasWebChavez*\n\n" +
+    "Hola Pablo, ¿cómo estás? Estoy interesado en recibir un presupuesto para mi web. Me gustaría coordinar una llamada."
+);
+
+export const mensajePresupuestoPlanDos = encodeURIComponent(
+    "*Solicitud de Presupuesto - PaginasWebChavez*\n\n" +
+    "Hola Pablo, ¿cómo estás? Estoy interesado en recibir un presupuesto para mi web. Me gustaría coordinar una llamada."
+);
+
+export const mensajePresupuestoPlanTres = encodeURIComponent(
+    "*Solicitud de Presupuesto - PaginasWebChavez*\n\n" +
+    "Hola Pablo, ¿cómo estás? Estoy interesado en recibir un presupuesto para mi web. Me gustaría coordinar una llamada."
+);
+
 export const mensajeAsesoramiento = encodeURIComponent(
     "*Consulta de Asesoramiento - PaginasWebChavez*\n\n" +
     "Hola Pablo, estuve viendo la web y tengo algunas dudas sobre el servicio que ofreces. ¿Podrías asesorarme mejor?"

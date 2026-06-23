@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import { getAllPortfolioData } from "@/services/fetchData";
 
 const Servicios = dynamic(() => import('@/components/sections/Servicios'));
-const Trabajos = dynamic(() => import('@/components/sections/Trabajos'));
+// const Planes = dynamic(() => import('@/components/sections/Planes'));
 const Clientes = dynamic(() => import('@/components/sections/Clientes'));
 
 export default async function Ser() {
@@ -12,8 +12,7 @@ export default async function Ser() {
   return (
     <>
       <Servicios servicios={data.Servicios} />
-      <Trabajos trabajos={data.Trabajos} showFooter={true}/>
-      {/* <Clientes clientes={data.Clientes} /> */}
+      {/* <Planes /> */}
     </>
   );
 }

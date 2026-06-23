@@ -43,7 +43,7 @@ export default function Hero({ perfil }: Props) {
                                 Solicitar presupuesto
                             </Link>
                         </div>
-                        <ul className={styles.hero_ul} aria-label="Beneficios principales">
+                        {/* <ul className={styles.hero_ul} aria-label="Beneficios principales">
                             <li className={styles.hero_li}>
                                 <FaCheck className={styles.hero_icon_check} />
                                 <span className={styles.hero_span_check}>Diseño orientado a ventas</span>
@@ -56,7 +56,7 @@ export default function Hero({ perfil }: Props) {
                                 <FaCheck className={styles.hero_icon_check} />
                                 <span className={styles.hero_span_check}>Entrega clara y acompañamiento</span>
                             </li>
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
                 <div className={styles.scrollIndicator}>
