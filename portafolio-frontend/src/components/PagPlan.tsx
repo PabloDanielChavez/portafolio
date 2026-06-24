@@ -12,8 +12,8 @@ const planes = [
     {
         id: 1,
         destacado: true,
-        tag: "Landing Page Profesional",
-        titulo: "Landing Page",
+        tag: "landing_page",
+        titulo: "Landing Page Profesional",
         ideal: "Profesionales independientes, emprendedores y pequeños negocios que necesitan una presencia digital profesional para captar nuevos clientes.",
         objetivo: "Presentar tu servicio de forma clara, transmitir confianza y convertir visitas en consultas o ventas.Empresas, estudios profesionales, consultoras, restaurantes, constructoras, clínicas y negocios que buscan consolidar una presencia digital sólida.",
         descripcion:
