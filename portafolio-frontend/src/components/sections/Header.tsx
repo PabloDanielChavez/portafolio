@@ -4,15 +4,15 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import styles from '@/styles/sections/header.module.scss';
-import { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, IoIosPerson, MdInfoOutline, } from "@/components/utils/Iconos";
+import { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, IoIosPerson, MdInfoOutline, SiCodefactor, } from "@/components/utils/Iconos";
 
 export default function Header() {
     const menu = [
-        { id: 1, titulo: "Inicio", target: "/", icono: <BiHomeAlt2 size={20} />},
-        { id: 2, titulo: "Perfil", target: "/perfil", icono: <IoIosPerson size={20} />},
-        { id: 3, titulo: "Trabajos", target: "/trabajos", icono: <BiBriefcase size={20} />},
-        { id: 4, titulo: "Servicios", target: "/servicios", icono: <BiCog size={20} />},
-        { id: 5, titulo: "Contacto", target: "/contacto", icono: <MdInfoOutline size={20} />},
+        { id: 1, titulo: "Inicio", target: "/", icono: <BiHomeAlt2 aria-label='btn inicio' size={20} />},
+        { id: 2, titulo: "Perfil", target: "/perfil", icono: <IoIosPerson aria-label='btn perfil' size={20} />},
+        { id: 3, titulo: "Trabajos", target: "/trabajos", icono: <BiBriefcase aria-label='btn trabajos' size={20} />},
+        { id: 4, titulo: "Servicios", target: "/servicios", icono: <SiCodefactor aria-label='btn servicios' size={20} />},
+        { id: 5, titulo: "Contacto", target: "/contacto", icono: <MdInfoOutline aria-label='btn contacto' size={20} />},
     ];
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);

@@ -8,23 +8,23 @@
     color: v.$color-crema;
     isolation: isolate;
 
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        background:
-            radial-gradient(820px circle at 12% 10%, rgba(v.$color-accent, .10), transparent 62%),
-            radial-gradient(760px circle at 88% 86%, rgba(v.$color-primary, .11), transparent 62%),
-            linear-gradient(180deg, #0b0d11, #07080b);
-        pointer-events: none;
-    }
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     inset: 0;
+    //     z-index: -1;
+    //     background:
+    //         radial-gradient(820px circle at 12% 10%, rgba(v.$color-accent, .10), transparent 62%),
+    //         radial-gradient(760px circle at 88% 86%, rgba(v.$color-primary, .11), transparent 62%),
+    //         linear-gradient(180deg, #0b0d11, #07080b);
+    //     pointer-events: none;
+    // }
 
     &_layout {
         display: flex;
         flex-direction: column;
         gap: clamp(4rem, 7vw, 6rem);
-        max-width: 1120px;
+        @include m.widTamaño;
         margin: 0 auto;
     }
 

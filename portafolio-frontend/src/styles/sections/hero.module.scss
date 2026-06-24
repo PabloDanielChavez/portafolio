@@ -2,14 +2,9 @@
 @use '../base/mixins.module.scss' as m;
 
 .hero {
-    --hero-bg: #090b10;
-    --hero-panel: rgba(11, 13, 18, .72);
-    --hero-line: rgba(255, 255, 255, .12);
-    --hero-soft-line: rgba(255, 255, 255, .07);
-    --hero-glow: rgba(6, 182, 212, .24);
 
     position: relative;
-    min-height: 100svh;
+    min-height: 92svh;
     overflow: hidden;
     isolation: isolate;
     display: flex;
@@ -17,8 +12,7 @@
     justify-content: center;
     color: v.$color-crema;
     background:
-        linear-gradient(115deg, rgba(9, 11, 16, .98) 0%, rgba(11, 13, 18, .94) 42%, rgba(18, 14, 28, .98) 100%),
-        var(--hero-bg);
+        linear-gradient(115deg, rgba(9, 11, 16, .98) 0%, rgba(11, 13, 18, .94) 42%, rgba(18, 14, 28, .98) 100%), v.$hero-bg;
 
     &::before,
     &::after {

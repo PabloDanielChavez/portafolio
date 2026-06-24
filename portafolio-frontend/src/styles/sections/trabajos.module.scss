@@ -8,23 +8,23 @@
     color: v.$color-crema;
     isolation: isolate;
 
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        pointer-events: none;
-        background:
-            radial-gradient(780px circle at 8% 8%, rgba(v.$color-accent, .11), transparent 62%),
-            radial-gradient(700px circle at 88% 72%, rgba(v.$color-primary, .11), transparent 60%),
-            linear-gradient(180deg, rgba(255, 255, 255, .018), transparent 34%);
-    }
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     inset: 0;
+    //     z-index: -1;
+    //     pointer-events: none;
+    //     background:
+    //         radial-gradient(780px circle at 8% 8%, rgba(v.$color-accent, .11), transparent 62%),
+    //         radial-gradient(700px circle at 88% 72%, rgba(v.$color-primary, .11), transparent 60%),
+    //         linear-gradient(180deg, rgba(255, 255, 255, .018), transparent 34%);
+    // }
 
     &_layout {
         position: relative;
         z-index: 2;
-        max-width: 1120px;
         margin: 0 auto;
+        @include m.widTamaño;
     }
 
     &_LINK {
@@ -158,10 +158,16 @@
 
     &_card_header {
         display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         gap: 1rem;
-
+        
+        @include m.telefonoXL {
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
         h3 {
             margin: 0;
             color: #fff;
@@ -197,10 +203,14 @@
     &_card_meta {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: .45rem .6rem;
         color: rgba(242, 239, 233, .58);
         font-size: .84rem;
         font-weight: 650;
+        @include m.telefonoXL {
+            justify-content: space-between;
+        }
     }
 
     &_card_desc {
@@ -227,8 +237,7 @@
         padding: .9rem 1.2rem;
         border: 1px solid rgba(v.$color-accent, .34);
         border-radius: 999px;
-        background:
-            linear-gradient(135deg, #effcff, #67e8f9 35%, v.$color-accent 78%);
+        background: linear-gradient(135deg, #effcff, #67e8f9 35%, v.$color-accent 78%);
         color: #071015;
         cursor: pointer;
         font: inherit;
@@ -253,11 +262,11 @@
 
     &_card_metrics {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, .5fr);
         gap: .55rem;
 
-        @include m.tablet {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+        @include m.tabletXL {
+            grid-template-columns: repeat(4, 1fr);
         }
     }
 

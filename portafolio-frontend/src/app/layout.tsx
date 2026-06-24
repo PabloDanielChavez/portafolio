@@ -10,21 +10,28 @@ const Footer = dynamic(() => import('@/components/sections/Footer'));
 export const metadata: Metadata = {
   metadataBase: new URL('https://paginaswebchavez.netlify.app'),
   title: {
-    default: "PaginasWebChavez | Desarrollador Web Full Stack",
-    template: "%s | Pablo Daniel Chavez"
+    default: "Diseño y Desarrollo de Páginas Web Profesionales | PaginasWebChavez",
+    template: "%s | PaginasWebChavez"
   },
-  description: "Desarrollador Web especializado en crear soluciones digitales, sitios rápidos y optimizados para SEO. Ayudo a negocios a crecer mediante tecnología. ¡Contactame!",
+  description:"Diseño y desarrollo de páginas web profesionales para empresas, negocios y emprendedores. Landing Pages, sitios web corporativos, SEO y desarrollo web a medida optimizados para generar clientes.",
   
   authors: [{ name: "Pablo Daniel Chavez" }],
   keywords: [
-    "Desarrollador Web", 
-    "Landing Page", 
-    "Buenos Aires", 
-    "SEO", 
-    "Optimización Web", 
-    "Diseño de Paginas Web", 
-    "Tienda Online", 
-    "PaginasWebChavez"
+  "paginas web",
+  "diseño de paginas web",
+  "creacion de paginas web",
+  "desarrollo web",
+  "sitios web profesionales",
+  "paginas web para empresas",
+  "paginas web para negocios",
+  "paginas web para emprendedores",
+  "landing page profesional",
+  "desarrollo web a medida",
+  "seo",
+  "posicionamiento en google",
+  "optimizacion web",
+  "desarrollador web argentina",
+  "diseño web argentina"
 ],
   robots: {
     index: true,
@@ -37,8 +44,8 @@ export const metadata: Metadata = {
   },
   
   openGraph: {
-    title: "PaginasWebChavez | Desarrollo Web y SEO",
-    description: "Desarrollador Web especializado en sitios rápidos y optimizados para resultados reales.",
+    title:"Diseño y Desarrollo de Páginas Web Profesionales",
+    description:"Landing Pages, sitios web corporativos y desarrollo web a medida para empresas, negocios y emprendedores.",
     url: "https://paginaswebchavez.netlify.app",
     siteName: "PaginasWebChavez", // Coherencia con el nuevo nombre
     images: [
@@ -54,8 +61,8 @@ export const metadata: Metadata = {
   
   twitter: {
     card: "summary_large_image",
-    title: "Portafolio PDC | Pablo Daniel Chavez",
-    description: "Portafolio profesional de desarrollo Frontend.",
+    title:"Portafolio PDC | Pablo Daniel Chavez",
+    description:"Creación de páginas web optimizadas para Google y enfocadas en conseguir clientes.",
     images: ["/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"],
   },
   
@@ -72,20 +79,24 @@ export const viewport = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Pablo Daniel Chavez",
-    "jobTitle": "Desarrollador Frontend",
+    "@type": "ProfessionalService",
+    "name": "PaginasWebChavez",
     "url": "https://paginaswebchavez.netlify.app",
-    "sameAs": [
-      "https://github.com/PabloDanielChavez",
-      "https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/",
-      "https://www.instagram.com/paginasweb.chavez/"
+    "description": "Diseño y desarrollo de páginas web profesionales para empresas y emprendedores.",
+    "serviceType": [
+      "Diseño de Páginas Web",
+      "Desarrollo Web",
+      "Landing Pages",
+      "SEO",
+      "Desarrollo Web a Medida"
     ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Freelance"
-    }
-  };
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Buenos Aires"
+      }
+    ]
+  }
   return (
     <html lang="es">
       <head>
@@ -119,7 +130,3 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     </html>
   );
 }
-
-
-
-

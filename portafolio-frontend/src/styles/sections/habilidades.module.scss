@@ -8,22 +8,22 @@
     color: v.$color-crema;
     isolation: isolate;
 
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        pointer-events: none;
-        background:
-            linear-gradient(180deg, rgba(255, 255, 255, .018), rgba(255, 255, 255, 0) 36%),
-            radial-gradient(700px circle at 20% 0%, rgba(v.$color-primary, .10), transparent 62%),
-            radial-gradient(640px circle at 82% 86%, rgba(v.$color-accent, .09), transparent 60%);
-    }
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     inset: 0;
+    //     z-index: -1;
+    //     pointer-events: none;
+    //     background:
+    //         linear-gradient(180deg, rgba(255, 255, 255, .018), rgba(255, 255, 255, 0) 36%),
+    //         radial-gradient(700px circle at 20% 0%, rgba(v.$color-primary, .10), transparent 62%),
+    //         radial-gradient(640px circle at 82% 86%, rgba(v.$color-accent, .09), transparent 60%);
+    // }
 
     &_layout {
         position: relative;
         z-index: 2;
-        max-width: 1120px;
+        @include m.widTamaño;
         margin: 0 auto;
     }
 

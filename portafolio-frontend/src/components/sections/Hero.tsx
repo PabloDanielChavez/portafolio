@@ -26,21 +26,19 @@ export default function Hero({ perfil }: Props) {
                 <div className={styles.hero_layout}>
                     <div className={styles.hero_box}>
                         <span className={styles.hero_span_tag}>Argentina</span>
-                        <h1 className={styles.hero_h1_titulo}>
-                            Potencia tus ventas con un <strong className={styles.hero_h1_resaltado}>Sitio Web Profesional</strong> diseñado a medida<strong className={styles.hero_h1_resaltado}>.</strong>
-                        </h1>
-                        <p className={styles.hero_p_descripcion}>Ayudo a negocios y profesionales a tener una presencia digital, <strong className={styles.hero_p_resaltado}>destacando</strong> en Google, <strong className={styles.hero_p_resaltado}></strong>transmitiendo <strong className={styles.hero_p_resaltado}>profesionalismo</strong> y <strong className={styles.hero_p_resaltado}>convertir</strong> visitantes en <strong className={styles.hero_p_resaltado}>potenciales clientes</strong>.</p>
+                        <h1 className={styles.hero_h1_titulo}> Diseño y Desarrollo de <strong className={styles.hero_h1_resaltado}> Páginas Web Profesionales </strong> para Empresas, Negocios y Emprendedores </h1>
+                        <h2 className={styles.hero_p_descripcion}> Creo <strong className={styles.hero_p_resaltado}>páginas web modernas</strong>, optimizadas para <strong className={styles.hero_p_resaltado}>Google</strong>, enfocadas en generar <strong className={styles.hero_p_resaltado}>más consultas</strong>, transmitir <strong className={styles.hero_p_resaltado}>confianza</strong> y convertir visitantes en <strong className={styles.hero_p_resaltado}>clientes</strong>. </h2>
                         <div className={styles.hero_box_btn}>
                             <button 
-                                onClick={() => scrollToSection("trabajos")}  
+                                onClick={() => scrollToSection("proyectos")}  
                                 className={styles.hero_btn}
                             >
-                                Ver trabajos
+                                Ver Web
                                 <FaArrowDown className={`${styles.hero_icono_secun}`}/>
                             </button>
                             <Link href={`https://wa.me/${perfil[0]?.numero_whatsapp}?text=${mensajePresupuesto}`} className={`${styles.hero_btn} ${styles.hero_btn_alt}`}>
                                 <FaWhatsapp  className={`${styles.hero_icono}`}/>
-                                Solicitar presupuesto
+                                Contactar
                             </Link>
                         </div>
                         {/* <ul className={styles.hero_ul} aria-label="Beneficios principales">

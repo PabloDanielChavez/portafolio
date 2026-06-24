@@ -1,11 +1,12 @@
 "use client";
 
 import styles from "@/styles/sections/servicios.module.scss";
-import { AiTwotoneSchedule, FiDatabase, HiOutlineCodeBracket, LuCircleGauge, LuMonitorSmartphone, TbChartBarPopular, TbPlugConnected } from "@/components/utils/Iconos";
+import { AiTwotoneSchedule, FiDatabase, FiTool, HiOutlineCodeBracket, IoMdArrowBack, LuCircleGauge, LuGauge, LuMonitorSmartphone} from "@/components/utils/Iconos";
 
 import { ServiciosType } from "@/types/servicios";
 import SectionHeader from "../sub_components/SectionHeader";
 import ServicioCard from "../sub_components/ServicioCard";
+import Link from "next/link";
 
 type Props = {
     servicios: ServiciosType[];
@@ -16,9 +17,9 @@ export default function Servicios({ servicios }: Props) {
     const renderIcono = (nombreString: string) => {
         if (nombreString === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
         if (nombreString === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
-        if (nombreString === "LuGauge") return <LuCircleGauge />;
-        if (nombreString === "FiTool") return <TbChartBarPopular />;
-        if (nombreString === "TbPlugConnected") return <TbPlugConnected />;
+        if (nombreString === "LuGauge") return <LuGauge />;
+        if (nombreString === "FiTool") return <FiTool />;
+        if (nombreString === "TbPlugConnected") return <LuCircleGauge />;
 
         return <FiDatabase />;
     };
@@ -26,6 +27,14 @@ export default function Servicios({ servicios }: Props) {
     return (
         <section className={styles.servicios}>
             <div className={styles.servicios_layout}>
+                <Link
+                    href="/"
+                    className={styles.servicios_LINK}
+                    aria-label="Volver a Inicio"
+                >
+                    <IoMdArrowBack />
+                    Volver al Portafolio
+                </Link>
                 <div className={styles.servicios_header}>
                     <SectionHeader
                         icon={<AiTwotoneSchedule />}

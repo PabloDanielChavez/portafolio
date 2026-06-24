@@ -16,12 +16,12 @@
         z-index: -1;
     }
 
-    &::before {
-        inset: 0;
-        background:
-            radial-gradient(720px circle at 12% 18%, rgba(v.$color-primary, .10), transparent 64%),
-            radial-gradient(680px circle at 88% 82%, rgba(v.$color-accent, .10), transparent 62%);
-    }
+    // &::before {
+    //     inset: 0;
+    //     background:
+    //         radial-gradient(720px circle at 12% 18%, rgba(v.$color-primary, .10), transparent 64%),
+    //         radial-gradient(680px circle at 88% 82%, rgba(v.$color-accent, .10), transparent 62%);
+    // }
 
     &::after {
         width: 520px;
@@ -37,7 +37,7 @@
     &_layout {
         position: relative;
         z-index: 2;
-        max-width: 1120px;
+        @include m.widTamaño;
         margin: 0 auto;
     }
 

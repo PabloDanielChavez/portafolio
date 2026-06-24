@@ -95,3 +95,34 @@
     color: inherit;
     &:hover { text-decoration: none; color: inherit; }
 }
+
+@mixin widTamaño {
+    @media (min-width: v.$telefono) {
+        max-width: 400px;
+    }
+    @media (min-width: v.$telefonoXL) {
+        max-width: 600px;
+        }
+    @media (min-width: v.$telefonoXXL) {
+        max-width: 800px;
+        }
+    @media (min-width: v.$tablet) {
+        max-width: 900px;
+        }
+    @media (min-width: v.$tabletXL) {
+        max-width: 1100px;
+        }
+    @media (min-width: v.$tabletXXL) {
+        max-width: 1400px;
+        }
+    @media (min-width: v.$desktop) {
+        max-width: 1500px;
+        }
+    @media (min-width: v.$desktopXL) {
+        max-width: 1700px;
+        }
+    @media (min-width: v.$desktopXXL) {
+        max-width: 1800px;
+        }
+
+}

@@ -1,16 +1,16 @@
-export { BiBriefcase, BiCog, BiHomeAlt2, BiMenu, BiX, BiEnvelope, BiHelpCircle, BiTargetLock, BiUser   } from "react-icons/bi";
+export { BiHomeAlt2, BiMenu, BiX, BiEnvelope, BiHelpCircle, BiTargetLock, BiUser , BiBarChart, BiBriefcase, BiCalendarCheck, BiCloud, BiCodeCurly, BiCog, BiGitBranch, BiGridAlt, BiLayer, BiLinkExternal, BiListUl, BiLock, BiMessageSquare, BiNews, BiPalette, BiRefresh, BiSearch, BiServer, BiShield, BiUserPin   } from "react-icons/bi";
 export { FaArrowRight, FaInstagram, FaWhatsapp, FaLinkedin, FaGithubSquare, FaFacebookSquare, FaGithub, FaPlus, FaDribbble,  FaMinus, FaBriefcase, FaEnvelope, FaGlobe, FaLink } from "react-icons/fa";
 export { PiMicrosoftOutlookLogo, PiStack, PiPaintBrushBold, PiPalette, PiPlantFill } from 'react-icons/pi';
 export { AiTwotoneSchedule } from "react-icons/ai";
 export { SiCodefactor, SiNextdotjs, SiNodedotjs, SiReact, SiSass, SiHtml5, SiCanva, SiMysql, SiSequelize  } from 'react-icons/si';
 export { IoIosRocket, IoMdArrowBack, IoIosPerson } from 'react-icons/io';
-export { FaXTwitter, FaCss3Alt } from "react-icons/fa6"; 
+export { FaXTwitter, FaCss3Alt, FaGauge } from "react-icons/fa6"; 
 export { MdWaterDrop, MdWaterDamage, MdLocalFireDepartment, MdPool, MdCleaningServices, MdOutlineWeb, MdBuild, MdOutlineEmail, MdCall, MdWeb,  MdInfoOutline, MdLocationOn } from 'react-icons/md';
-export { TbChartBarPopular, TbWorld, TbBrandAdobePhotoshop, TbBrandAdobePremier, TbPlugConnected} from "react-icons/tb";
+export { TbChartBarPopular, TbWorld, TbBrandAdobePhotoshop, TbBrandAdobePremier, TbPlugConnected, TbPlugConnectedX} from "react-icons/tb";
 export { LuMonitorSmartphone, LuGauge, LuCircleGauge } from "react-icons/lu";
 export { HiOutlineCodeBracket } from "react-icons/hi2";
-export { FiDatabase, FiExternalLink } from "react-icons/fi";
+export { FiDatabase, FiExternalLink, FiZap, FiTool } from "react-icons/fi";
 export { BsQuestionCircle, BsFillPersonVcardFill } from "react-icons/bs";
 export { GiGardeningShears,  GiTreeGrowth, GiWateringCan, GiBroom} from "react-icons/gi";
 export { FaArrowDown, FaCheck } from "react-icons/fa";
-
+export { CgSmartphone } from "react-icons/cg";
