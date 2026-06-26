@@ -87,12 +87,44 @@ export const dispararAuditoriaMultipleBackend = async (proyectos: ProyectoAudito
   }
 };
 
-export async function enviarMensajeContacto(datosDelFormulario: { 
-    nombre: string, 
-    correo: string, 
-    mensaje: string,
-    origen_url: string
-}) {
+export type TipoProyectoContacto =
+  | "Landing Page"
+  | "Sitio Web Profesional"
+  | "Tienda Online"
+  | "Desarrollo a medida"
+  | "Otro";
+
+export type PresupuestoContacto =
+  | "Necesito orientación"
+  | "Hasta USD 500"
+  | "USD 500 a 1.000"
+  | "USD 1.000 a 2.500"
+  | "Más de USD 2.500";
+
+export type PlazoContacto =
+  | "Lo antes posible"
+  | "Durante el próximo mes"
+  | "En 1 a 3 meses"
+  | "Todavía no lo definí";
+
+export type PreferenciaContacto = "email" | "whatsapp";
+
+export type ContactPayload = {
+    nombre: string;
+    correo: string;
+    mensaje: string;
+    origen_url: string;
+    tipoProyecto?: TipoProyectoContacto;
+    presupuesto?: PresupuestoContacto;
+    plazo?: PlazoContacto;
+    preferenciaContacto?: PreferenciaContacto;
+    telefono?: string;
+    website?: string;
+};
+
+export async function enviarMensajeContacto(
+  datosDelFormulario: ContactPayload
+) {
   if (!urlBase) {
     console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
     return { ok: false, mensaje: "Error interno: URL no configurada" };

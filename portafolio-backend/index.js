@@ -1,39 +1,67 @@
-import express from 'express';
-import cors from 'cors'; 
-import router from './routes/api.js';
-
+import app from './app.js';
 import db from './config/db.js';
+import { env } from './config/env.js';
 
-const app = express();
+let server;
+let isShuttingDown = false;
 
+const logError = (message, error) => {
+    if (env.isProduction) {
+        console.error(`${message}: ${error.name}`);
+        return;
+    }
 
-//  Permitir CORS desde localhost:3000 (React)
-app.use(cors({
-    origin: [
-        'http://localhost:3000',
-        'https://portafolio-ajb1.onrender.com',
-        'https://portafolio-6jlx.onrender.com',
-        'https://paginaswebchavez.netlify.app'
-    ], // React
-    methods: ['GET', 'POST'],
-    credentials: true
-}));
+    console.error(message, error);
+};
 
-// Base de datos
-db.authenticate()
-    .then(() => console.log('Base de datos conectada'))
-    .catch(error => console.log(error));
+const startServer = async () => {
+    try {
+        await db.authenticate();
+        console.info('Conexión a la base de datos verificada.');
 
-// Middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static('public'));
+        server = app.listen(env.port, () => {
+            console.info(`Servidor iniciado en el puerto ${env.port}.`);
+        });
+    } catch (error) {
+        logError('No se pudo iniciar el servidor', error);
+        await db.close().catch(() => {});
+        process.exitCode = 1;
+    }
+};
 
-app.use('/', router);
+const shutdown = async (signal) => {
+    if (isShuttingDown) return;
 
-// Puerto
-const port = process.env.PORT || 4000;
-app.listen(port, () => {
-    console.log(`El servidor está funcionando en http://localhost:${port}`);
-});
+    isShuttingDown = true;
+    console.info(`Señal ${signal} recibida. Cerrando el servidor...`);
 
+    const forceShutdownTimer = setTimeout(() => {
+        console.error('El cierre ordenado superó el tiempo permitido.');
+        process.exit(1);
+    }, 10_000);
+    forceShutdownTimer.unref();
+
+    try {
+        if (server) {
+            await new Promise((resolve, reject) => {
+                server.close((error) => {
+                    if (error) reject(error);
+                    else resolve();
+                });
+            });
+        }
+
+        await db.close();
+        clearTimeout(forceShutdownTimer);
+        process.exit(0);
+    } catch (error) {
+        logError('Error durante el cierre', error);
+        clearTimeout(forceShutdownTimer);
+        process.exit(1);
+    }
+};
+
+process.once('SIGINT', () => shutdown('SIGINT'));
+process.once('SIGTERM', () => shutdown('SIGTERM'));
+
+startServer();

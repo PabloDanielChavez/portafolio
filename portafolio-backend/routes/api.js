@@ -1,28 +1,68 @@
 import express from 'express';
-import rateLimit from 'express-rate-limit';
 
-import { obtenerPerfil, obtenerHabilidades, obtenerExperiencia, obtenerExpDesafio, obtenerExpTecnologia, obtenerServicios, obtenerClientes, obtenerTrabajos, obtenerTraTecnologia, guardarMensaje, actualizarAuditoriaPageSpeed }from '../controllers/apiController.js';
+import {
+    actualizarAuditoriaPageSpeed,
+    guardarMensaje,
+    obtenerClientes,
+    obtenerExpDesafio,
+    obtenerExperiencia,
+    obtenerExpTecnologia,
+    obtenerHabilidades,
+    obtenerPerfil,
+    obtenerSalud,
+    obtenerServicios,
+    obtenerTrabajos,
+    obtenerTraTecnologia
+} from '../controllers/apiController.js';
+import { asyncHandler } from '../middleware/asyncHandler.js';
+import {
+    auditRateLimiter,
+    contactRateLimiter,
+    handleContactHoneypot,
+    requireAllowedContactOrigin
+} from '../middleware/security.js';
+import { validateRequest } from '../middleware/validateRequest.js';
+import {
+    auditBodySchema,
+    contactBodySchema
+} from '../validation/schemas.js';
+
 const router = express.Router();
-const auditoriaLimiter = rateLimit({
-    windowMs: 60 * 60 * 1000, // 1 hora en milisegundos
-    max: 2, // Límite de intentos
-    message: { 
-        mensaje: 'Tranquilo, fiera. Ya auditaste hace poco. Intentá de nuevo en una hora.' 
-    },
-    standardHeaders: true, // Devuelve información de límite en los headers `RateLimit-*`
-    legacyHeaders: false, // Desactiva los headers viejos `X-RateLimit-*`
+
+router.get('/api/health', asyncHandler(obtenerSalud));
+router.get('/api/perfil', asyncHandler(obtenerPerfil));
+router.get('/api/habilidades', asyncHandler(obtenerHabilidades));
+router.get('/api/experiencia', asyncHandler(obtenerExperiencia));
+router.get('/api/exp_desafio', asyncHandler(obtenerExpDesafio));
+router.get('/api/exp_tecnologia', asyncHandler(obtenerExpTecnologia));
+router.get('/api/servicios', asyncHandler(obtenerServicios));
+router.get('/api/trabajos', asyncHandler(obtenerTrabajos));
+router.get('/api/tra_tecnologia', asyncHandler(obtenerTraTecnologia));
+router.get('/api/clientes', asyncHandler(obtenerClientes));
+
+router.post(
+    '/api/contacto',
+    contactRateLimiter,
+    requireAllowedContactOrigin,
+    handleContactHoneypot,
+    validateRequest(contactBodySchema),
+    asyncHandler(guardarMensaje)
+);
+router.all('/api/contacto', (req, res) => {
+    const message = 'Método no permitido.';
+
+    res.set('Allow', 'POST, OPTIONS').status(405).json({
+        success: false,
+        message,
+        mensaje: message
+    });
 });
 
-    router.get("/api/perfil", obtenerPerfil);
-    router.get("/api/habilidades", obtenerHabilidades);
-    router.get("/api/experiencia", obtenerExperiencia);
-    router.get("/api/exp_desafio", obtenerExpDesafio);
-    router.get("/api/exp_tecnologia", obtenerExpTecnologia);
-    router.get("/api/servicios", obtenerServicios);
-    router.get("/api/trabajos", obtenerTrabajos);
-    router.get("/api/tra_tecnologia", obtenerTraTecnologia);
-    router.get("/api/clientes", obtenerClientes);
-    router.post("/api/contacto", guardarMensaje);
-    router.post("/api/actualizar-auditoria", auditoriaLimiter, actualizarAuditoriaPageSpeed);
+router.post(
+    '/api/actualizar-auditoria',
+    auditRateLimiter,
+    validateRequest(auditBodySchema),
+    asyncHandler(actualizarAuditoriaPageSpeed)
+);
 
 export default router;

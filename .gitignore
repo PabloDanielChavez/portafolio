@@ -68,11 +68,7 @@ docker-compose.override.yml
 # ==================================================
 portafolio-backend/public/
 portafolio-frontend/public/StylePrueba
-<<<<<<< HEAD
 # portafolio-backend/config/db.js
-=======
-#portafolio-backend/config/db.js
->>>>>>> 29d35a6171943eb889ffaee7d64f7290e387b43d
 
 # ==================================================
 # 📦 ARCHIVOS EMPAQUETADOS

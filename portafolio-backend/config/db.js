@@ -1,26 +1,34 @@
-import Sequelize from 'sequelize';
-import dotenv from 'dotenv';
-// Esto es vital solo en el backend
-dotenv.config({ path: '.env.development' }); 
+import { Sequelize } from 'sequelize';
 
-const db = new Sequelize(
-    process.env.BD_NAME, 
-    process.env.BD_USER, 
-    process.env.BD_PASS, 
-    {
-        host: process.env.BD_HOST,
-        port: process.env.BD_PORT,
-        dialect: 'mysql',
-        define: {
-            timestamps: false
-        },
-        pool: {
-            max: 5,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        },
-    }
-);
+import { env } from './env.js';
+
+const db = new Sequelize(env.db.name, env.db.user, env.db.password, {
+    host: env.db.host,
+    port: env.db.port,
+    dialect: 'mysql',
+    logging:
+        !env.isProduction && env.db.logging
+            ? (message) => console.debug(message)
+            : false,
+    define: {
+        timestamps: false
+    },
+    pool: {
+        max: 10,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+    },
+    ...(env.db.ssl
+        ? {
+              dialectOptions: {
+                  ssl: {
+                      require: true,
+                      rejectUnauthorized: env.db.sslRejectUnauthorized
+                  }
+              }
+          }
+        : {})
+});
 
 export default db;

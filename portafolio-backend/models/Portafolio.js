@@ -1,5 +1,11 @@
 import { DataTypes } from 'sequelize';
 import db from '../config/db.js';
+import {
+    CONTACT_BUDGET_RANGES,
+    CONTACT_PREFERENCES,
+    CONTACT_PROJECT_TYPES,
+    CONTACT_TIMELINES
+} from '../constants/contactOptions.js';
 
 const modelOptions = (name) => ({
     timestamps: false,
@@ -7,11 +13,10 @@ const modelOptions = (name) => ({
     tableName: name
 });
 
-// En lugar de una constante, usamos una función (flecha)
 const stringField = () => ({ type: DataTypes.TEXT, allowNull: false });
 const intField = () => ({ type: DataTypes.INTEGER, allowNull: false });
 const idField = () => ({ type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true });
-const jsonField = () => ({ type: DataTypes.JSON, allowNull: true });
+const validContactPhone = /^[+\d\s().-]+$/;
 
 export const perfil = db.define('perfil', {
     id: idField(),
@@ -84,8 +89,6 @@ export const servicios = db.define('servicios', {
     reactIcon: stringField()
 }, modelOptions('servicios'));
 
-// Buscá esta parte dentro de models/Portafolio.js y dejala así:
-
 export const trabajos = db.define('trabajos', {
     id: idField(),
     nombre_trabajo: stringField(),
@@ -149,16 +152,87 @@ export const clientes = db.define('clientes', {
     formato_imagen: stringField()
 }, modelOptions('clientes'));
 
-// Al final de models/Portafolio.js
-
 export const mensajes = db.define('mensajes', {
     id: idField(),
-    nombre: stringField(),
-    correo: stringField(),
-    mensaje: stringField(),
-    fecha: stringField(),
-    navegador: stringField(),
-    sistema_operativo: stringField(),
-    dispositivo: stringField(),
-    origen_url: stringField()
+    nombre: {
+        type: DataTypes.STRING(80),
+        allowNull: false,
+        validate: {
+            len: [2, 80]
+        }
+    },
+    correo: {
+        type: DataTypes.STRING(120),
+        allowNull: false,
+        validate: {
+            isEmail: true,
+            len: [3, 120]
+        }
+    },
+    mensaje: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+            len: [10, 3000]
+        }
+    },
+    tipo_proyecto: {
+        type: DataTypes.STRING(40),
+        allowNull: true,
+        validate: {
+            isIn: [CONTACT_PROJECT_TYPES]
+        }
+    },
+    presupuesto: {
+        type: DataTypes.STRING(40),
+        allowNull: true,
+        validate: {
+            isIn: [CONTACT_BUDGET_RANGES]
+        }
+    },
+    plazo: {
+        type: DataTypes.STRING(40),
+        allowNull: true,
+        validate: {
+            isIn: [CONTACT_TIMELINES]
+        }
+    },
+    preferencia_contacto: {
+        type: DataTypes.STRING(10),
+        allowNull: true,
+        validate: {
+            isIn: [CONTACT_PREFERENCES]
+        }
+    },
+    telefono: {
+        type: DataTypes.STRING(30),
+        allowNull: true,
+        validate: {
+            len: [8, 30],
+            is: validContactPhone
+        }
+    },
+    fecha: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        validate: {
+            isDate: true
+        }
+    },
+    navegador: {
+        type: DataTypes.STRING(512),
+        allowNull: true
+    },
+    sistema_operativo: {
+        type: DataTypes.STRING(30),
+        allowNull: true
+    },
+    dispositivo: {
+        type: DataTypes.STRING(30),
+        allowNull: true
+    },
+    origen_url: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    }
 }, modelOptions('mensajes'));

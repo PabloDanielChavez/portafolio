@@ -22,7 +22,13 @@ import {
     FaWhatsapp,
     MdOutlineEmail
 } from "@/components/utils/Iconos";
-import { enviarMensajeContacto } from "@/services/fetchData";
+import {
+    enviarMensajeContacto,
+    type PlazoContacto,
+    type PreferenciaContacto,
+    type PresupuestoContacto,
+    type TipoProyectoContacto
+} from "@/services/fetchData";
 import style from "@/styles/sections/contacto.module.scss";
 import type { PerfilType } from "@/types/perfil";
 
@@ -33,14 +39,12 @@ interface Props {
     perfil: PerfilType[];
 }
 
-type PreferenciaContacto = "email" | "whatsapp";
-
 type ContactForm = {
     nombre: string;
     correo: string;
-    tipoProyecto: string;
-    presupuesto: string;
-    plazo: string;
+    tipoProyecto: TipoProyectoContacto | "";
+    presupuesto: PresupuestoContacto | "";
+    plazo: PlazoContacto | "";
     preferenciaContacto: PreferenciaContacto;
     telefono: string;
     mensaje: string;
@@ -88,7 +92,7 @@ const INITIAL_STATUS: FormStatus = {
     message: ""
 };
 
-const tiposProyecto = [
+const tiposProyecto: readonly TipoProyectoContacto[] = [
     "Landing Page",
     "Sitio Web Profesional",
     "Tienda Online",
@@ -96,7 +100,7 @@ const tiposProyecto = [
     "Otro"
 ];
 
-const rangosPresupuesto = [
+const rangosPresupuesto: readonly PresupuestoContacto[] = [
     "Necesito orientación",
     "Hasta USD 500",
     "USD 500 a 1.000",
@@ -104,7 +108,7 @@ const rangosPresupuesto = [
     "Más de USD 2.500"
 ];
 
-const plazosProyecto = [
+const plazosProyecto: readonly PlazoContacto[] = [
     "Lo antes posible",
     "Durante el próximo mes",
     "En 1 a 3 meses",
@@ -174,6 +178,9 @@ const normalizeMultiline = (value: string) =>
         .replace(/\n{3,}/g, "\n\n")
         .trim();
 
+const normalizeOption = <T extends string>(value: T | "") =>
+    normalizeSingleLine(value) as T | "";
+
 const hasSuspiciousContent = (value: string) => {
     const unsafeMarkup =
         /<\/?(?:script|iframe|object|embed|style)|javascript:|data:text\/html|on\w+\s*=/i;
@@ -190,9 +197,9 @@ const hasSuspiciousContent = (value: string) => {
 const normalizeForm = (form: ContactForm): ContactForm => ({
     nombre: normalizeSingleLine(form.nombre),
     correo: normalizeSingleLine(form.correo).toLowerCase(),
-    tipoProyecto: normalizeSingleLine(form.tipoProyecto),
-    presupuesto: normalizeSingleLine(form.presupuesto),
-    plazo: normalizeSingleLine(form.plazo),
+    tipoProyecto: normalizeOption(form.tipoProyecto),
+    presupuesto: normalizeOption(form.presupuesto),
+    plazo: normalizeOption(form.plazo),
     preferenciaContacto: form.preferenciaContacto,
     telefono: normalizeSingleLine(form.telefono),
     mensaje: normalizeMultiline(form.mensaje),
@@ -214,15 +221,18 @@ const validateForm = (form: ContactForm): FormErrors => {
         errors.nombre = "Revisá el nombre ingresado.";
     }
 
-    if (form.correo.length > 254) {
-        errors.correo = "El correo no puede superar los 254 caracteres.";
+    if (form.correo.length > 120) {
+        errors.correo = "El correo no puede superar los 120 caracteres.";
     } else if (!validEmail.test(form.correo)) {
         errors.correo = "Ingresá un correo electrónico válido.";
     } else if (hasSuspiciousContent(form.correo)) {
         errors.correo = "Revisá el correo ingresado.";
     }
 
-    if (!tiposProyecto.includes(form.tipoProyecto)) {
+    if (
+        !form.tipoProyecto ||
+        !tiposProyecto.includes(form.tipoProyecto)
+    ) {
         errors.tipoProyecto = "Seleccioná el tipo de proyecto.";
     }
 
@@ -630,31 +640,21 @@ export default function Contacto({ perfil }: Props) {
         setErrors({});
         setStatus(INITIAL_STATUS);
 
-        const projectSummary = [
-            `Tipo de proyecto: ${normalizedForm.tipoProyecto}`,
-            `Presupuesto estimado: ${
-                normalizedForm.presupuesto || "Sin definir"
-            }`,
-            `Plazo aproximado: ${normalizedForm.plazo || "Sin definir"}`,
-            `Preferencia de contacto: ${
-                normalizedForm.preferenciaContacto === "whatsapp"
-                    ? "WhatsApp"
-                    : "Email"
-            }`,
-            ...(normalizedForm.preferenciaContacto === "whatsapp"
-                ? [`Teléfono: ${normalizedForm.telefono}`]
-                : []),
-            "",
-            "Mensaje:",
-            normalizedForm.mensaje
-        ].join("\n");
-
         try {
             const response = await enviarMensajeContacto({
                 nombre: normalizedForm.nombre,
                 correo: normalizedForm.correo,
-                mensaje: projectSummary,
-                origen_url: window.location.href
+                mensaje: normalizedForm.mensaje,
+                origen_url: window.location.href,
+                tipoProyecto: normalizedForm.tipoProyecto || undefined,
+                presupuesto: normalizedForm.presupuesto || undefined,
+                plazo: normalizedForm.plazo || undefined,
+                preferenciaContacto: normalizedForm.preferenciaContacto,
+                telefono:
+                    normalizedForm.preferenciaContacto === "whatsapp"
+                        ? normalizedForm.telefono
+                        : undefined,
+                website: normalizedForm.website
             });
 
             if (!response.ok) {
@@ -828,7 +828,7 @@ export default function Contacto({ perfil }: Props) {
                                     name="correo"
                                     type="email"
                                     value={form.correo}
-                                    maxLength={254}
+                                    maxLength={120}
                                     inputMode="email"
                                     autoComplete="email"
                                     placeholder="nombre@empresa.com"
