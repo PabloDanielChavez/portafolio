@@ -8,13 +8,6 @@ interface Props {
     perfil: PerfilType[];
 }
 
-const beneficiosHero = [
-    "Diseño de páginas web profesionales",
-    "Sitios web optimizados para Google",
-    "Landing pages para captar clientes",
-    "Páginas rápidas y responsive",
-];
-
 const metricasHero = [
     { valor: "SEO", etiqueta: "Estructura preparada para posicionamiento en Google" },
     { valor: "LCP", etiqueta: "Primer render cuidado para cargar rápido" },
@@ -49,16 +42,6 @@ export default function Hero({ perfil }: Props) {
                             y páginas rápidas con diseño responsive para empresas, marcas y
                             emprendedores que necesitan presencia digital confiable.
                         </p>
-
-                        <ul className={styles.hero_ul} aria-label="Beneficios principales">
-                            {beneficiosHero.map((beneficio) => (
-                                <li className={styles.hero_li} key={beneficio}>
-                                    <FaCheck className={styles.hero_icon_check} aria-hidden="true" />
-                                    <span className={styles.hero_span_check}>{beneficio}</span>
-                                </li>
-                            ))}
-                        </ul>
-
                         <div className={styles.hero_box_btn}>
                             <Link
                                 href={whatsappHref}
