@@ -5,6 +5,11 @@ export type TraTecnologiaItem = {
     Node : number;
     Next : number;
     React : number;
+    GoogleTagManager: number;
+    GoogleAnalytics: number;
+    Sequelize: number;
+    MySQL: number;
+    Express: number;    
 };
 
 export type tra_tecnologiaType = TraTecnologiaItem[];

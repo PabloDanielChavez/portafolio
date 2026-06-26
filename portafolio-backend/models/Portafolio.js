@@ -130,7 +130,12 @@ export const tra_tecnologia = db.define('tra_tecnologia', {
     SASS : intField(),
     Node : intField(),
     Next : intField(),
-    React : intField()
+    React : intField(),
+    GoogleTagManager: intField(),
+    GoogleAnalytics: intField(),
+    Sequelize: intField(),
+    MySQL: intField(),
+    Express: intField()
 }, modelOptions('tra_tecnologia'));
 
 export const clientes = db.define('clientes', {

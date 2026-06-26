@@ -2,7 +2,7 @@ export { BiHomeAlt2, BiMenu, BiX, BiEnvelope, BiHelpCircle, BiTargetLock, BiUser
 export { FaArrowRight, FaInstagram, FaWhatsapp, FaLinkedin, FaGithubSquare, FaFacebookSquare, FaGithub, FaPlus, FaDribbble,  FaMinus, FaBriefcase, FaEnvelope, FaGlobe, FaLink } from "react-icons/fa";
 export { PiMicrosoftOutlookLogo, PiStack, PiPaintBrushBold, PiPalette, PiPlantFill } from 'react-icons/pi';
 export { AiTwotoneSchedule } from "react-icons/ai";
-export { SiCodefactor, SiNextdotjs, SiNodedotjs, SiReact, SiSass, SiHtml5, SiCanva, SiMysql, SiSequelize  } from 'react-icons/si';
+export { SiCodefactor, SiNextdotjs, SiNodedotjs, SiReact, SiSass, SiHtml5, SiCanva, SiMysql, SiSequelize, SiExpress, SiGoogleanalytics, SiGoogletagmanager  } from 'react-icons/si';
 export { IoIosRocket, IoMdArrowBack, IoIosPerson } from 'react-icons/io';
 export { FaXTwitter, FaCss3Alt, FaGauge } from "react-icons/fa6"; 
 export { MdWaterDrop, MdWaterDamage, MdLocalFireDepartment, MdPool, MdCleaningServices, MdOutlineWeb, MdBuild, MdOutlineEmail, MdCall, MdWeb,  MdInfoOutline, MdLocationOn } from 'react-icons/md';

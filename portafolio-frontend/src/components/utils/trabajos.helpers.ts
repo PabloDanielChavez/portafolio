@@ -12,7 +12,7 @@ export type MetricaAuditoria = {
     valor: number;
 };
 
-export type TecnologiaNombre = "SASS" | "Node" | "Next" | "React";
+export type TecnologiaNombre = "SASS" | "Node" | "Next" | "React" | "Sequelize" | "MySQL" | "Express" | "GoogleTagManager" | "GoogleAnalytics";
 
 type AuditoriaTab = {
     id: AuditoriaDispositivo;
