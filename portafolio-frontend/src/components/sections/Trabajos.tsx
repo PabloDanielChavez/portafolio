@@ -1,16 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import style_trabajos from "@/styles/sections/trabajos.module.scss";
-import { IoIosRocket, IoMdArrowBack } from "react-icons/io";
-import { TrabajosType } from "@/types/trabajos";
-import SectionHeader from "../sub_components/SectionHeader";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import { trackEvent } from "../utils/Analytics";
-import TrabajoCard from "../sub_components/TrabajoCard";
+import { IoIosRocket, IoMdArrowBack } from "react-icons/io";
 
-type Props = {
+import style_trabajos from "@/styles/sections/trabajos.module.scss";
+import type { TrabajosType } from "@/types/trabajos";
+
+import SectionHeader from "../sub_components/SectionHeader";
+import TrabajoCard from "../sub_components/TrabajoCard";
+import { trackEvent } from "../utils/Analytics";
+
+import {
+    auditoriaTabs,
+    ordenarTrabajos,
+    type AuditoriaDispositivo
+} from "../utils/trabajos.helpers";
+
+type TrabajosProps = {
     trabajos: TrabajosType[];
     showFooter?: boolean;
 };
@@ -18,104 +26,121 @@ type Props = {
 export default function Trabajos({
     trabajos,
     showFooter = false
-}: Props) {
+}: TrabajosProps) {
+    const [dispositivo, setDispositivo] = useState<AuditoriaDispositivo>("mobile");
 
-    const [estrategia, setEstrategia] = useState<"mobile" | "desktop">("mobile");
+    const trabajosOrdenados = useMemo(() => {
+        const ordenados = ordenarTrabajos(trabajos);
+
+        return showFooter ? ordenados.slice(0, 2) : ordenados;
+    }, [trabajos, showFooter]);
+
+    const handleChangeDispositivo = (nuevoDispositivo: AuditoriaDispositivo) => {
+        setDispositivo(nuevoDispositivo);
+
+        trackEvent("click_Trabajos_auditoria", {
+            section: "Trabajos",
+            device: nuevoDispositivo
+        });
+    };
 
     return (
-        <section className={style_trabajos.trabajos}>
+        <section
+            className={style_trabajos.trabajos}
+            id="trabajos"
+            aria-label="Proyectos web realizados"
+        >
             <div className={style_trabajos.trabajos_layout}>
                 {!showFooter && (
                     <Link
                         href="/"
                         className={style_trabajos.pagTrabajo_LINK}
-                        aria-label="Volver a Inicio"
+                        aria-label="Volver al inicio del portafolio"
                     >
-                        <IoMdArrowBack />
+                        <IoMdArrowBack aria-hidden="true" />
                         Volver al Portafolio
                     </Link>
                 )}
-                <div className={style_trabajos.trabajos_header}>
+
+                <header className={style_trabajos.trabajos_header}>
                     <SectionHeader
                         icon={<IoIosRocket />}
-                        title="Trabajos Realizados"
-                        description="Descubre una colección de mis trabajos de diseño más innovadores."
+                        title="Proyectos web realizados"
+                        description="Una selección de páginas y soluciones digitales desarrolladas con foco en rendimiento, diseño responsive, SEO técnico y experiencia de usuario."
                     />
-                    <div
-                        className={style_trabajos.pagTrabajo_tabs_container}
-                        style={{ marginBottom: "20px" }}
-                    >
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setEstrategia("mobile");
-                                trackEvent("click_Trabajos_auditoria", {
-                                    section: "Trabajos"
-                                });
-                            }}
-                            className={`${style_trabajos.pagTrabajo_tab_btn}
-                            ${
-                                estrategia === "mobile"
-                                    ? style_trabajos.pagTrabajo_tab_btn_activo
-                                    : style_trabajos.pagTrabajo_tab_btn_desactivado
-                            }`}
-                        >
-                            Teléfono
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setEstrategia("desktop");
-                                trackEvent("click_Trabajos_auditoria", {
-                                    section: "Trabajos"
-                                });
-                            }}
-                            className={`${style_trabajos.pagTrabajo_tab_btn}
-                            ${
-                                estrategia === "desktop"
-                                    ? style_trabajos.pagTrabajo_tab_btn_activo
-                                    : style_trabajos.pagTrabajo_tab_btn_desactivado
-                            }`}
-                        >
-                            Escritorio
-                        </button>
-                    </div>
 
-                    <div className={style_trabajos.trabajos_contenido_box}>
-                        <div className={style_trabajos.trabajos_contenido_box_layout}>
-                            {trabajos.map((trabajo, index) => (
-                                <TrabajoCard
-                                    key={trabajo.id}
-                                    trabajo={trabajo}
-                                    estrategia={estrategia}
-                                    esOculto={showFooter && index >= 2}
-                                    index={index}
-                                />
-                            ))}
+                    <div className={style_trabajos.trabajos_auditoria}>
+                        <div className={style_trabajos.trabajos_auditoria_info}>
+                            <span className={style_trabajos.trabajos_auditoria_label}>
+                                Métricas Lighthouse
+                            </span>
+
+                            <p className={style_trabajos.trabajos_auditoria_texto}>
+                                Cambiá entre auditoría móvil y escritorio para ver el rendimiento de cada proyecto.
+                            </p>
+                        </div>
+
+                        <div
+                            className={style_trabajos.pagTrabajo_tabs_container}
+                            role="tablist"
+                            aria-label="Seleccionar tipo de auditoría"
+                        >
+                            {auditoriaTabs.map((tab) => {
+                                const isActive = dispositivo === tab.id;
+
+                                return (
+                                    <button
+                                        key={tab.id}
+                                        type="button"
+                                        role="tab"
+                                        aria-selected={isActive}
+                                        aria-pressed={isActive}
+                                        title={tab.description}
+                                        onClick={() => handleChangeDispositivo(tab.id)}
+                                        className={`${style_trabajos.pagTrabajo_tab_btn} ${
+                                            isActive
+                                                ? style_trabajos.pagTrabajo_tab_btn_activo
+                                                : style_trabajos.pagTrabajo_tab_btn_desactivado
+                                        }`}
+                                    >
+                                        {tab.label}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
+                </header>
+
+                <div className={style_trabajos.trabajos_contenido_box}>
+                    <div className={style_trabajos.trabajos_contenido_box_layout}>
+                        {trabajosOrdenados.map((trabajo, index) => (
+                            <TrabajoCard
+                                key={trabajo.id}
+                                trabajo={trabajo}
+                                dispositivo={dispositivo}
+                                index={index}
+                                modoResumen={showFooter}
+                            />
+                        ))}
+                    </div>
                 </div>
+
                 {showFooter && (
-                    <div className={style_trabajos.trabajos_card_footer}>
+                    <footer className={style_trabajos.trabajos_card_footer}>
                         <Link
                             href="/trabajos"
-                            className={style_trabajos.trabajos_LINK}
-                            aria-label="Ver todos los trabajos"
+                            className={style_trabajos.trabajos_card_btn}
+                            aria-label="Ver todos los proyectos realizados"
                             onClick={() =>
                                 trackEvent("click_trabajos", {
                                     section: "Trabajos"
                                 })
                             }
                         >
-                            <button
-                                className={style_trabajos.trabajos_card_btn}
-                                aria-label="Ver todos los trabajos"
-                            >
-                                Más Proyectos
-                                <FaArrowRight />
-                            </button>
+                            Más proyectos
+                            <FaArrowRight aria-hidden="true" />
                         </Link>
-                    </div>
+                    </footer>
                 )}
             </div>
         </section>

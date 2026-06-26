@@ -27,7 +27,7 @@ export type TrabajosType = {
     accessibility_desktop: number;
     seo_desktop: number;
     rol: string;
-    categoría_cliente: string;
+    categoria_cliente: string;
     reto_tecnico: string;
-    destacado: string;
+    destacado: string | null;
 };

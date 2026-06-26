@@ -1,380 +1,858 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
+%planes-link-reset {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+%planes-card-surface {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(v.$color-white, .08);
+    border-radius: 24px;
+    background:
+        radial-gradient(circle at top left, rgba(v.$color-accent, .10), transparent 42%),
+        linear-gradient(145deg, rgba(v.$color-white, .07), rgba(v.$color-white, .025) 58%),
+        rgba(10, 12, 18, .82);
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, .32),
+        inset 0 1px 0 rgba(v.$color-white, .06);
+    backdrop-filter: blur(16px);
+}
+
+%planes-card-hover {
+    transition:
+        transform .35s cubic-bezier(.16, 1, .3, 1),
+        border-color .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(v.$color-white, .08),
+            transparent
+        );
+        transform: translateX(-55%);
+        transition:
+            opacity .3s ease,
+            transform .8s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    &:hover {
+        transform: translateY(-6px);
+        border-color: rgba(v.$color-accent, .28);
+        box-shadow:
+            0 34px 80px rgba(0, 0, 0, .42),
+            0 0 42px rgba(v.$color-accent, .11);
+    }
+
+    &:hover::before {
+        opacity: 1;
+        transform: translateX(55%);
+    }
+}
+
+/* =========================================================
+   SECCIÓN GENERAL DE PLANES
+   ========================================================= */
+
 .planes {
     position: relative;
     overflow: hidden;
-    padding: clamp(4.5rem, 8vw, 7rem) 1rem;
     isolation: isolate;
+    padding: clamp(4.5rem, 8vw, 7rem) 1rem;
     color: v.$color-crema;
+    background:
+        radial-gradient(circle at 12% 10%, rgba(v.$color-primary, .14), transparent 32rem),
+        radial-gradient(circle at 88% 18%, rgba(v.$color-accent, .12), transparent 28rem),
+        linear-gradient(180deg, v.$hero-bg 0%, v.$color-negro-fondo 100%);
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(14px);
+        opacity: .55;
+        pointer-events: none;
+    }
+
+    &::before {
+        top: 12%;
+        left: -8rem;
+        width: 18rem;
+        height: 18rem;
+        background: rgba(v.$color-primary, .14);
+    }
+
+    &::after {
+        right: -10rem;
+        bottom: 10%;
+        width: 22rem;
+        height: 22rem;
+        background: rgba(v.$color-accent, .11);
+    }
+
     &_layout {
         @include m.widTamaño;
+
+        position: relative;
+        z-index: 1;
+        width: 100%;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 6rem;
+        gap: clamp(3rem, 6vw, 5.5rem);
     }
+
+    &_content,
+    &_contenido_box {
+        width: 100%;
+    }
+
+    &_grid,
     &_contenido_box_layout {
         display: grid;
-        gap: 1.5rem;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        align-items: stretch;
+
         @include m.tablet {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
         @include m.tabletXL {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
+
     &_LINK {
-        @extend %link-reset;
+        @extend %planes-link-reset;
+
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        margin-bottom: 30px;
-        color: rgba(242, 239, 233, .68);
-        text-decoration: none;
-        transition: color .3s ease, transform .3s ease;
+        gap: .5rem;
+        width: fit-content;
+        margin-bottom: 2rem;
+        color: rgba(v.$color-crema, .72);
+        font-weight: 700;
+        transition:
+            color .25s ease,
+            transform .25s ease;
 
         &:hover {
-            color: #fff;
-            transform: translateX(-5px);
+            color: v.$color-white;
+            transform: translateX(-4px);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(v.$color-accent, .6);
+            outline-offset: 5px;
+            border-radius: 999px;
         }
     }
+
     &_card {
-        position: relative;
-        overflow: hidden;
+        @extend %planes-card-surface;
+        @extend %planes-card-hover;
+
         display: flex;
         flex-direction: column;
-        padding: clamp(1.5rem, 3vw, 2rem);
-        border-radius: 24px;
-        border: 1px solid rgba(255,255,255,.08);
-        background: linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02) 55%,rgba(v.$color-accent,.03)),rgba(10,12,18,.78);
-        box-shadow: 0 24px 64px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06);
-        backdrop-filter: blur(16px);
-        transition: transform .45s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease;
-        &:hover {
-            transform: translateY(-8px);
-            border-color: rgba(v.$color-accent,.25);
-            box-shadow: 0 35px 80px rgba(0,0,0,.40), 0 0 40px rgba(v.$color-accent,.10);
-        }
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            background: linear-gradient( 90deg, transparent, rgba(255,255,255,.08), transparent );
-            transform: translateX(-50%);
-            transition: opacity .3s ease, transform .8s cubic-bezier(.16,1,.3,1);
-        }
-
-        &:hover::before {
-            opacity: 1;
-            transform: translateX(50%);
-        }
+        min-height: 100%;
+        color: v.$color-crema;
     }
 
     &_card_destacado {
-        border: 1px solid rgba(v.$color-oro,.35);
-        box-shadow: 0 25px 60px rgba(0,0,0,.35), 0 0 50px rgba(v.$color-oro,.12); 
-        @include m.tablet {
-            // transform: scale(1.03);
+        border-color: rgba(v.$color-oro, .38);
+        background:
+            radial-gradient(circle at top left, rgba(v.$color-oro, .16), transparent 38%),
+            radial-gradient(circle at bottom right, rgba(v.$color-accent, .09), transparent 45%),
+            linear-gradient(145deg, rgba(v.$color-white, .08), rgba(v.$color-white, .025)),
+            rgba(12, 11, 18, .88);
+        box-shadow:
+            0 28px 70px rgba(0, 0, 0, .42),
+            0 0 52px rgba(v.$color-oro, .12),
+            inset 0 1px 0 rgba(v.$color-white, .07);
+    }
+
+    &_card_link {
+        @extend %planes-link-reset;
+
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        padding: clamp(1.4rem, 3vw, 2rem);
+
+        &:focus-visible {
+            outline: 3px solid rgba(v.$color-accent, .65);
+            outline-offset: -8px;
+            border-radius: 22px;
         }
     }
 
     &_card_badge {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        padding: .45rem .9rem;
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        margin-bottom: 1.25rem;
+        padding: .45rem .85rem;
+        border: 1px solid rgba(v.$color-oro, .28);
         border-radius: 999px;
-        background: linear-gradient( 135deg, v.$color-oro, v.$color-oro-dos );
+        background: linear-gradient(135deg, v.$color-oro, v.$color-oro-dos);
         color: #111;
         font-size: .75rem;
-        font-weight: 800;
+        font-weight: 900;
+        letter-spacing: .02em;
     }
 
     &_card_titulo {
-        margin-bottom: .75rem;
+        margin: 0 0 .8rem;
         color: v.$color-crema;
-        font-size: clamp(1.4rem, 3vw, 1.9rem);
-        font-weight: 800;
+        font-size: clamp(1.35rem, 3vw, 1.85rem);
+        line-height: 1.08;
+        font-weight: 900;
+        letter-spacing: -.03em;
     }
 
     &_card_descripcion {
-        margin-bottom: 1.5rem;
-        color: rgba(v.$color-crema,.72);
-        line-height: 1.7;
-        font-size: .95rem;
+        margin: 0 0 1.5rem;
+        color: rgba(v.$color-crema, .74);
+        font-size: .96rem;
+        line-height: 1.75;
     }
 
     &_card_lista {
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: .85rem;
+        gap: .82rem;
         margin: 0;
         padding: 0;
         list-style: none;
     }
+
     &_card_item {
         position: relative;
-        padding-left: 1.6rem;
-        color: rgba(v.$color-crema,.92);
-        line-height: 1.5;
+        padding-left: 1.55rem;
+        color: rgba(v.$color-crema, .9);
+        font-size: .95rem;
+        line-height: 1.55;
+
         &::before {
             content: "";
             position: absolute;
+            top: .58rem;
             left: 0;
-            top: .55rem;
-            width: 8px;
-            height: 8px;
+            width: .48rem;
+            height: .48rem;
             border-radius: 50%;
             background: v.$color-accent;
-            box-shadow: 0 0 12px rgba(v.$color-accent,.7);
-        }
-    }
-    
-    &_h1 {
-        max-width: 900px;
-        font-size: clamp(3rem, 8vw, 6rem);
-        line-height: 1;
-        font-weight: 900;
-        color: v.$color-crema;
-    }
-
-    &_stats {
-        display: grid;
-        gap: .75rem;
-        @include m.tablet {
-            grid-template-columns: repeat(3,1fr);
-        }
-        span {
-            padding: 1rem;
-            border-radius: 16px;
-            background:rgba(255,255,255,.04);
-            border: 1px solid rgba(255,255,255,.08);
-            font-weight: 700;
-            transition: .3s ease;
-            &:hover {
-                transform: translateY(-4px);
-                border-color: rgba(v.$color-accent,.25);
-                background:rgba(v.$color-accent,.05);
-            }
+            box-shadow: 0 0 14px rgba(v.$color-accent, .7);
         }
     }
 
-    &_beneficios {
-        display: grid;
-        gap: 2rem;
-        @include m.tablet {
-            grid-template-columns: repeat(2,1fr);
-        }
-        .planes_card {
-            min-height: 260px;
-            justify-content: center;
-            padding: 3rem;
-        }
-    }
-
-    &_mockup {
-        display: flex;
-        justify-content: center;
-    }
-
-    &_mockup_container {
-        overflow: hidden;
-        width: 100%;
-        max-width: 1200px;
-        min-height: 650px;
-        border-radius: 28px;
-        border: 1px solid rgba(255,255,255,.08);
-        background:rgba(10,12,18,.8);
-        box-shadow: 0 30px 80px rgba(0,0,0,.35);
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .8s cubic-bezier(.16,1,.3,1);
-        }
-        &:hover img {
-            transform: scale(1.03);
-        }
+    &_card_texto {
+        display: inline-block;
     }
 
     &_boton {
-        margin-top: 2rem;
-        width: 100%;
         display: inline-flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        gap: .55rem;
         min-height: 54px;
-        border: none;
+        width: 100%;
+        margin-top: 2rem;
+        padding: .85rem 1.25rem;
+        border: 0;
         border-radius: 999px;
-        cursor: pointer;
-        background: linear-gradient( 135deg, #effcff, #6ee7f3, v.$color-accent );
+        background: linear-gradient(135deg, #effcff, #6ee7f3, v.$color-accent);
         color: #071015;
         font-size: .95rem;
-        font-weight: 800;
-        box-shadow:
-            0 18px 45px rgba(6,182,212,.22);
+        font-weight: 900;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 18px 45px rgba(v.$color-accent, .22);
         transition:
-            transform .3s ease,
-            box-shadow .3s ease;
+            transform .25s ease,
+            box-shadow .25s ease,
+            filter .25s ease;
+
+        svg {
+            flex: 0 0 auto;
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+
         &:hover {
             transform: translateY(-3px);
-            box-shadow:
-                0 25px 60px rgba(6,182,212,.35);
+            box-shadow: 0 25px 60px rgba(v.$color-accent, .35);
+            filter: saturate(1.04);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(v.$color-white, .75);
+            outline-offset: 4px;
         }
     }
-    &_header {
-        position: relative;
-        padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 4vw, 3rem);
-        border-radius: 32px;
-        border: 1px solid rgba(255,255,255,.08);
-        background: radial-gradient( circle at top left, rgba(v.$color-accent,.12), transparent 45% ), linear-gradient( 145deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-        box-shadow: 0 30px 80px rgba(0,0,0,.35);
-        text-align: center;
+}
+
+/* =========================================================
+   PÁGINA DETALLE DEL PLAN
+   ========================================================= */
+
+.planes_detalle {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    min-height: 100dvh;
+    color: v.$color-crema;
+    background:
+        radial-gradient(circle at 10% 5%, rgba(v.$color-primary, .16), transparent 32rem),
+        radial-gradient(circle at 90% 8%, rgba(v.$color-accent, .13), transparent 30rem),
+        linear-gradient(180deg, v.$hero-bg 0%, v.$color-negro-fondo 45%, #080a0f 100%);
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: .34;
+        background-image:
+            linear-gradient(rgba(v.$color-white, .035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(v.$color-white, .035) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, .85), transparent 70%);
     }
+
+    &_layout {
+        @include m.widTamaño;
+
+        width: 100%;
+        margin: 0 auto;
+        padding-inline: 1rem;
+    }
+
+    &_hero {
+        position: relative;
+        padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(3.5rem, 7vw, 6rem);
+    }
+
+    &_hero_content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &_hero .planes_detalle_layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+
+        @include m.tabletXL {
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+            gap: clamp(2rem, 5vw, 5rem);
+        }
+    }
+
     &_badge {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: .5rem 1rem;
+        width: fit-content;
+        margin-bottom: 1.25rem;
+        padding: .52rem .95rem;
+        border: 1px solid rgba(v.$color-accent, .24);
         border-radius: 999px;
-        background: linear-gradient(135deg,rgba(v.$color-accent,.55),rgba(v.$color-primary,.55));
-        border: 1px solid rgba(v.$color-accent,.2);
-        font-size: .8rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
+        background:
+            linear-gradient(135deg, rgba(v.$color-accent, .18), rgba(v.$color-primary, .16));
+        color: rgba(v.$color-crema, .9);
+        font-size: .78rem;
+        font-weight: 900;
+        letter-spacing: .04em;
+        text-transform: uppercase;
     }
 
     &_h1 {
-        margin-bottom: 1rem;
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
-        font-weight: 900;
+        max-width: 880px;
+        margin: 0;
         color: v.$color-crema;
+        font-size: clamp(2.6rem, 8vw, 5.6rem);
+        line-height: .95;
+        font-weight: 950;
+        letter-spacing: -.065em;
     }
 
-    &_parrafo {
-        max-width: 800px;
-        margin: 0 auto;
+    &_intro {
+        max-width: 760px;
+        margin: 1.25rem 0 0;
+        color: v.$color-white;
+        font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+        line-height: 1.45;
+        font-weight: 750;
+        letter-spacing: -.025em;
+    }
+
+    &_description {
+        max-width: 760px;
+        margin: 1rem 0 0;
         color: rgba(v.$color-crema, .75);
-        line-height: 1.8;
         font-size: 1rem;
+        line-height: 1.85;
+
+        @include m.tablet {
+            font-size: 1.06rem;
+        }
     }
 
-    &_btn {
-        width: 70px;
-        height: 70px;
-        margin: 2rem auto 0;
+    &_actions {
         display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: .9rem;
+        width: 100%;
+        margin-top: 2rem;
+
+        @include m.telefonoXL {
+            flex-direction: row;
+            align-items: center;
+        }
+    }
+
+    &_button {
+        @extend %planes-link-reset;
+
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        cursor: pointer;
-        background: linear-gradient( 135deg,#25D366,#128C7E);
-        font-size: 2rem;
-        color: white;
-        transition: .3s ease;
+        gap: .6rem;
+        width: 100%;
+        min-height: 56px;
+        padding: .95rem 1.3rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #effcff, #6ee7f3, v.$color-accent);
+        color: #071015;
+        font-size: .96rem;
+        font-weight: 900;
+        box-shadow:
+            0 18px 45px rgba(v.$color-accent, .24),
+            inset 0 1px 0 rgba(v.$color-white, .6);
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease,
+            filter .25s ease;
+
+        @include m.telefonoXL {
+            width: fit-content;
+            min-width: 250px;
+        }
+
+        svg {
+            width: 1.15rem;
+            height: 1.15rem;
+        }
+
         &:hover {
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-3px);
+            box-shadow:
+                0 26px 64px rgba(v.$color-accent, .35),
+                inset 0 1px 0 rgba(v.$color-white, .65);
+            filter: saturate(1.04);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba(v.$color-white, .75);
+            outline-offset: 4px;
+        }
+    }
+
+    &_note {
+        color: rgba(v.$color-crema, .62);
+        font-size: .9rem;
+        line-height: 1.5;
+    }
+
+    &_summary {
+        @extend %planes-card-surface;
+
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 1.15rem;
+        padding: clamp(1.4rem, 3vw, 2rem);
+        border-color: rgba(v.$color-accent, .16);
+
+        @include m.tabletXL {
+            position: sticky;
+            top: 2rem;
+        }
+    }
+
+    &_summary_badge {
+        display: inline-flex;
+        width: fit-content;
+        padding: .45rem .8rem;
+        border-radius: 999px;
+        background: linear-gradient(135deg, v.$color-oro, v.$color-oro-dos);
+        color: #111;
+        font-size: .74rem;
+        font-weight: 950;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+    }
+
+    &_summary_title {
+        margin: 0;
+        color: v.$color-crema;
+        font-size: 1.15rem;
+        font-weight: 900;
+    }
+
+    &_price {
+        color: v.$color-white;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1;
+        font-weight: 950;
+        letter-spacing: -.05em;
+    }
+
+    &_deadline {
+        margin: 0;
+        color: rgba(v.$color-crema, .68);
+        line-height: 1.6;
+    }
+
+    &_highlights {
+        display: grid;
+        gap: .75rem;
+        margin: .25rem 0 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            position: relative;
+            padding: .9rem 1rem .9rem 2.25rem;
+            border: 1px solid rgba(v.$color-white, .07);
+            border-radius: 16px;
+            background: rgba(v.$color-white, .04);
+            color: rgba(v.$color-crema, .88);
+            font-size: .94rem;
+            font-weight: 750;
+
+            &::before {
+                content: "✓";
+                position: absolute;
+                top: 50%;
+                left: .9rem;
+                color: v.$color-accent;
+                font-weight: 950;
+                transform: translateY(-50%);
+            }
         }
     }
 
     &_section {
+        padding: clamp(3.5rem, 7vw, 6rem) 0;
+    }
+
+    &_section_header {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        align-items: center;
+        max-width: 780px;
+        margin: 0 auto clamp(2rem, 4vw, 3rem);
+        text-align: center;
+
+        .planes_detalle_badge {
+            margin-bottom: 1rem;
+        }
+
+        .planes_detalle_text {
+            margin-top: .9rem;
+        }
+    }
+
+    &_info_grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+
+        @include m.tablet {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    &_benefits {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+
+        @include m.tablet {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    &_card {
+        @extend %planes-card-surface;
+
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        padding: clamp(1.35rem, 3vw, 2rem);
+        transition:
+            transform .3s ease,
+            border-color .3s ease,
+            box-shadow .3s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            border-color: rgba(v.$color-accent, .22);
+            box-shadow:
+                0 28px 68px rgba(0, 0, 0, .38),
+                0 0 34px rgba(v.$color-accent, .08);
+        }
+    }
+
+    &_card_label {
+        display: inline-flex;
+        width: fit-content;
+        margin-bottom: 1rem;
+        padding: .42rem .75rem;
+        border: 1px solid rgba(v.$color-accent, .16);
+        border-radius: 999px;
+        background: rgba(v.$color-accent, .07);
+        color: rgba(v.$color-accent-dos, .95);
+        font-size: .75rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: .05em;
     }
 
     &_h2 {
-        margin-bottom: 1.5rem;
-        text-align: center;
-        font-size: clamp(1.8rem, 4vw, 3rem);
+        margin: 0;
         color: v.$color-crema;
-        font-weight: 800;
-    }
-    &_grid {
-        display: grid;
-        gap: 1.5rem;
-        @include m.desktop {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        align-items: stretch;
-        .planes_card {
-            cursor: pointer;
-        }
-    }
-    &_card {
-        @extend .planes_card;
-        justify-content: center;
-        min-height: 100%;
-        color: v.$color-crema;
-        font-weight: 600;
+        font-size: clamp(1.75rem, 4vw, 3.1rem);
+        line-height: 1.05;
+        font-weight: 930;
+        letter-spacing: -.045em;
     }
 
-    &_proceso {
+    &_h3 {
+        margin: 0;
+        color: v.$color-crema;
+        font-size: clamp(1.05rem, 2vw, 1.28rem);
+        line-height: 1.25;
+        font-weight: 850;
+        letter-spacing: -.025em;
+    }
+
+    &_text {
+        margin: .85rem 0 0;
+        color: rgba(v.$color-crema, .72);
+        font-size: .98rem;
+        line-height: 1.75;
+    }
+
+    &_includes {
         display: grid;
-        gap: 1.5rem;
+        grid-template-columns: 1fr;
+        gap: .9rem;
+
         @include m.tablet {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-        @include m.desktop {
-            grid-template-columns: repeat(4, 1fr);
-        }
-        .planes_card {
-            cursor: default;
-            text-align: center;
+
+        @include m.tabletXL {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
     }
 
-    &_proceso_box {
-        @extend .planes_card;
-
-        align-items: center;
-        text-align: center;
-        padding: 2rem 1.5rem;
-    }
-
-    &_proceso_numero {
-        width: 55px;
-        height: 55px;
+    &_include {
         display: flex;
+        align-items: flex-start;
+        gap: .75rem;
+        min-height: 100%;
+        padding: 1rem;
+        border: 1px solid rgba(v.$color-white, .075);
+        border-radius: 18px;
+        background: rgba(v.$color-white, .04);
+        transition:
+            transform .25s ease,
+            border-color .25s ease,
+            background .25s ease;
+
+        span {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.45rem;
+            height: 1.45rem;
+            border-radius: 50%;
+            background: rgba(v.$color-accent, .13);
+            color: v.$color-accent;
+            font-size: .85rem;
+            font-weight: 950;
+            box-shadow: 0 0 18px rgba(v.$color-accent, .12);
+        }
+
+        p {
+            margin: 0;
+            color: rgba(v.$color-crema, .88);
+            font-size: .95rem;
+            line-height: 1.55;
+            font-weight: 650;
+        }
+
+        &:hover {
+            transform: translateY(-3px);
+            border-color: rgba(v.$color-accent, .2);
+            background: rgba(v.$color-accent, .055);
+        }
+    }
+
+    &_process {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+
+        @include m.tablet {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @include m.desktop {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    &_process_card {
+        @extend %planes-card-surface;
+
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        padding: 1.5rem;
+        text-align: left;
+
+        @include m.tablet {
+            padding: 1.7rem;
+        }
+    }
+
+    &_process_number {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        background: linear-gradient( 135deg,v.$color-accent,v.$color-primary);
-        color: white;
-        font-size: 1.3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        width: 3.2rem;
+        height: 3.2rem;
+        margin-bottom: 1.2rem;
+        border: 1px solid rgba(v.$color-accent, .22);
+        border-radius: 18px;
+        background:
+            radial-gradient(circle at top, rgba(v.$color-accent, .25), transparent 70%),
+            rgba(v.$color-white, .045);
+        color: v.$color-accent-dos;
+        font-size: 1.05rem;
+        font-weight: 950;
+        box-shadow: 0 0 28px rgba(v.$color-accent, .08);
     }
 
-    &_proceso_titulo {
-        margin-bottom: .75rem;
-        color: v.$color-crema;
-        font-size: 1.1rem;
-        font-weight: 700;
+    &_faq {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 980px;
+        margin: 0 auto;
     }
 
-    &_proceso_parrafo {
-        color: rgba(v.$color-crema,.7);
-        line-height: 1.6;
-        font-size: .95rem;
+    &_faq_item {
+        padding: clamp(1.2rem, 3vw, 1.7rem);
+        border: 1px solid rgba(v.$color-white, .075);
+        border-radius: 22px;
+        background:
+            linear-gradient(145deg, rgba(v.$color-white, .055), rgba(v.$color-white, .018)),
+            rgba(10, 12, 18, .72);
+        box-shadow: 0 18px 46px rgba(0, 0, 0, .22);
     }
 
     &_cta {
+        padding: clamp(3rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 7rem);
+    }
+
+    &_cta_box {
         position: relative;
         overflow: hidden;
-        padding: 5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: clamp(2rem, 6vw, 4.5rem) clamp(1.2rem, 4vw, 3rem);
+        border: 1px solid rgba(v.$color-accent, .2);
         border-radius: 32px;
-        background: radial-gradient( circle at top, rgba(v.$color-accent,.18), transparent 60% ), linear-gradient( 145deg, rgba(v.$color-accent,.08), rgba(v.$color-primary,.08) );
-        border: 1px solid rgba(v.$color-accent,.18);
-        box-shadow: 0 35px 90px rgba(0,0,0,.35);
+        background:
+            radial-gradient(circle at 50% 0%, rgba(v.$color-accent, .22), transparent 58%),
+            linear-gradient(145deg, rgba(v.$color-accent, .09), rgba(v.$color-primary, .08)),
+            rgba(10, 12, 18, .78);
+        box-shadow:
+            0 34px 90px rgba(0, 0, 0, .36),
+            inset 0 1px 0 rgba(v.$color-white, .07);
         text-align: center;
-        .planes_boton {
-            min-width: 280px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            pointer-events: none;
+            opacity: .55;
+            background:
+                linear-gradient(90deg, transparent, rgba(v.$color-white, .1), transparent);
+            transform: translateX(-70%);
         }
+
+        .planes_detalle_text {
+            max-width: 680px;
+            margin-bottom: 1.8rem;
+        }
+
+        .planes_detalle_button {
+            @include m.telefonoXL {
+                min-width: 280px;
+            }
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .planes *,
+    .planes *::before,
+    .planes *::after,
+    .planes_detalle *,
+    .planes_detalle *::before,
+    .planes_detalle *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }

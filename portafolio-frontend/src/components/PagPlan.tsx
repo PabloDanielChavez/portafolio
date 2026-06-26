@@ -1,180 +1,312 @@
-"use client";
-
-
 import styles from "@/styles/sections/planes.module.scss";
 import { FaWhatsapp } from "react-icons/fa";
+import { notFound } from "next/navigation";
 
-type Props = {
+import {
+    getPlanByTag,
+    getWhatsappHref,
+    procesoPlan
+} from "@/components/utils/planes.data";
+
+type PlanDetalleProps = {
     plan: string;
 };
 
-const planes = [
-    {
-        id: 1,
-        destacado: true,
-        tag: "landing_page",
-        titulo: "Landing Page Profesional",
-        ideal: "Profesionales independientes, emprendedores y pequeños negocios que necesitan una presencia digital profesional para captar nuevos clientes.",
-        objetivo: "Presentar tu servicio de forma clara, transmitir confianza y convertir visitas en consultas o ventas.Empresas, estudios profesionales, consultoras, restaurantes, constructoras, clínicas y negocios que buscan consolidar una presencia digital sólida.",
-        descripcion:
-            "Ideal para promocionar un servicio, campaña o producto específico y convertir visitantes en clientes.",
-        items: [
-            "Diseño moderno",
-            "Optimización conversión",
-            "Diseño responsive",
-            "Integración con WhatsApp",
-            "SEO técnico",
-            "Google Analytics",
-            "Alto rendimiento",
-            "Dominio y hosting"
-        ],
-        precioDesde: "$80.000",
-        precioHasta: "$80.000" 
-    },
-    {
-        id: 2,
-        destacado: false,
-        tag: "sitio_web",
-        titulo: "Sitio Web Profesional",
-        ideal: "Empresas, estudios profesionales, consultoras, restaurantes, constructoras, clínicas y negocios que buscan consolidar una presencia digital sólida.",
-        objetivo: "Mostrar tu empresa con una imagen profesional, generar confianza y facilitar que nuevos clientes conozcan tus servicios.",
-        descripcion:
-            "Ideal para empresas y marcas que necesitan una presencia digital sólida y transmitir confianza.",
-        items: [
-            "Diseño personalizado.",
-            "Sitio web multipágina.",
-            "Secciones adaptadas a las necesidades de tu negocio.",
-            "Formularios avanzados.",
-            "Integración con WhatsApp",
-            "Optimización SEO técnica.",
-            "Google Analytics y Search Console.",
-            "Blog (opcional).",
-            "Panel básico de administración.",
-            "Alto rendimiento y experiencia de usuario optimizada."
-        ],
-        precioDesde: "$80.000",
-        precioHasta: "$80.000" 
-    },
-    {
-        id: 3,
-        destacado: false,
-        tag: "desarrollo_web",
-        titulo: "Desarrollo Web a Medida",
-        ideal: "Empresas y negocios que necesitan funcionalidades específicas o procesos personalizados que una página web tradicional no puede ofrecer.",
-        objetivo: "Automatizar tareas, optimizar procesos internos y desarrollar soluciones adaptadas completamente a las necesidades de tu negocio.",
-        descripcion:
-            "Vendé productos o servicios las 24 horas desde una plataforma moderna y segura.",
-        items: [
-            "Desarrollo completamente personalizado.",
-            "Paneles de administración.",
-            "Sistemas de reservas y turnos.",
-            "Gestión de clientes.",
-            "Dashboards y paneles de control.",
-            "Integración con APIs y servicios externos.",
-            "Automatización de procesos.",
-            "Bases de datos seguras.",
-            "Arquitectura escalable para futuras funcionalidades."
-        ],
-        precioDesde: "$80.000",
-        precioHasta: "$80.000" 
-    }
-];
-
-const proceso = [
-    {
-        numero: "01",
-        titulo: "Reunión",
-        descripcion: "Analizamos objetivos y necesidades."
-    },
-    {
-        numero: "02",
-        titulo: "Diseño",
-        descripcion: "Creamos una propuesta visual."
-    },
-    {
-        numero: "03",
-        titulo: "Desarrollo",
-        descripcion: "Construimos tu proyecto."
-    },
-    {
-        numero: "04",
-        titulo: "Entrega",
-        descripcion: "Publicamos y dejamos todo listo."
-    }
-];
-
-export default function PlanDetalle({ plan }: Props) {
-    const planSeleccionado = planes.find(
-        (p) => p.tag === plan
-    );
-
+export default function PlanDetalle({ plan }: PlanDetalleProps) {
+    const planSeleccionado = getPlanByTag(plan);
     if (!planSeleccionado) {
-        return (
-            <p className={styles.planes_parrafo}>
-                Plan no encontrado
-            </p>
-        );
+        notFound();
     }
-
+    const whatsappHref = getWhatsappHref(planSeleccionado.whatsappMensaje);
     return (
-        <section className={styles.planes}>
-            <div className={styles.planes_layout}>
-                <header className={styles.planes_header}>
-                    <span className={styles.planes_badge}>Servicio Profesional</span>
-                    <h1 className={styles.planes_h1}>{planSeleccionado.titulo}</h1>
-                    <p className={styles.planes_parrafo}>{planSeleccionado.descripcion}</p>
-                    <div className={styles.planes_stats}>
-                        <span>SEO Optimizado</span>
-                        <span>Responsive</span>
-                        <span>Alta Velocidad</span>
+        <main className={styles.planes_detalle}>
+            <section
+                className={styles.planes_detalle_hero}
+                aria-labelledby="plan-title"
+            >
+                <div className={styles.planes_detalle_layout}>
+                    <div className={styles.planes_detalle_hero_content}>
+                        <span className={styles.planes_detalle_badge}>
+                            Servicio profesional
+                        </span>
+                        <h1 id="plan-title" className={styles.planes_detalle_h1}>
+                            {planSeleccionado.titulo}
+                        </h1>
+                        <p className={styles.planes_detalle_intro}> {planSeleccionado.subtitulo}</p>
+                        <p className={styles.planes_detalle_description}>
+                            {planSeleccionado.descripcion}
+                        </p>
+
+                        <div className={styles.planes_detalle_actions}>
+                            <a
+                                href={whatsappHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.planes_detalle_button}
+                                aria-label={`Solicitar presupuesto para ${planSeleccionado.titulo} por WhatsApp`}
+                            >
+                                <FaWhatsapp aria-hidden="true" />
+                                Solicitar presupuesto
+                            </a>
+
+                            <span className={styles.planes_detalle_note}>
+                                Te respondo con una propuesta adaptada a tu negocio.
+                            </span>
+                        </div>
                     </div>
-                    <button type="button" className={styles.planes_boton}>
-                        <FaWhatsapp />
-                        Solicitar Presupuesto
-                    </button>
-                </header>
-                <section className={styles.planes_beneficios}>
-                    <article className={styles.planes_card}>
-                        <h2 className={styles.planes_h2}>Ideal Para</h2>
-                        <p className={styles.planes_parrafo}>{planSeleccionado.ideal}</p>
-                    </article>
-                    <article className={styles.planes_card}>
-                        <h2 className={styles.planes_h2}>Objetivo</h2>
-                        <p className={styles.planes_parrafo}>{planSeleccionado.objetivo}</p>
-                    </article>
-                </section>
-                {/* <section className={styles.planes_mockup}>
-                    <div className={styles.planes_mockup_container}>Imagen del Proyecto</div>
-                </section> */}
-                <section className={styles.planes_section}>
-                    <h2 className={styles.planes_h2}>Todo lo que incluye</h2>
-                    <div className={styles.planes_grid}>
-                        {planSeleccionado.items.map(
-                            (item) => (
-                            <article key={item} className={styles.planes_card}>
-                                {item}
-                            </article>)
+
+                    <aside
+                        className={styles.planes_detalle_summary}
+                        aria-label="Resumen del plan"
+                    >
+                        {planSeleccionado.destacado && (
+                            <span className={styles.planes_detalle_summary_badge}>
+                                {planSeleccionado.etiqueta ?? "Más elegido"}
+                            </span>
                         )}
+
+                        <h2 className={styles.planes_detalle_summary_title}>
+                            Resumen del plan
+                        </h2>
+
+                        <div className={styles.planes_detalle_price}>
+                            {planSeleccionado.precio}
+                        </div>
+
+                        <p className={styles.planes_detalle_deadline}>
+                            {planSeleccionado.plazo}
+                        </p>
+
+                        <ul className={styles.planes_detalle_highlights}>
+                            {planSeleccionado.destacados.map((item) => (
+                                <li key={item}>{item}</li>
+                            ))}
+                        </ul>
+                    </aside>
+                </div>
+            </section>
+
+            <section className={styles.planes_detalle_section}>
+                <div className={styles.planes_detalle_layout}>
+                    <div className={styles.planes_detalle_info_grid}>
+                        <article className={styles.planes_detalle_card}>
+                            <span className={styles.planes_detalle_card_label}>
+                                Para quién es
+                            </span>
+
+                            <h2 className={styles.planes_detalle_h2}>
+                                Ideal para este tipo de negocio
+                            </h2>
+
+                            <p className={styles.planes_detalle_text}>
+                                {planSeleccionado.ideal}
+                            </p>
+                        </article>
+
+                        <article className={styles.planes_detalle_card}>
+                            <span className={styles.planes_detalle_card_label}>
+                                Objetivo
+                            </span>
+
+                            <h2 className={styles.planes_detalle_h2}>
+                                Qué busca lograr este plan
+                            </h2>
+
+                            <p className={styles.planes_detalle_text}>
+                                {planSeleccionado.objetivo}
+                            </p>
+                        </article>
                     </div>
-                </section>
-                <section className={styles.planes_section}>
-                    <h2 className={styles.planes_h2}>¿Cómo trabajamos?</h2>
-                    <div className={styles.planes_proceso}>
-                        {proceso.map((item) => (
-                            <article key={item.numero}className={styles.planes_card}>
-                                <span className={styles.planes_proceso_numero}>{item.numero}</span>
-                                <h3 className={ styles.planes_proceso_titulo}>{item.titulo}</h3>
-                                <p className={styles.planes_proceso_parrafo}>{item.descripcion}</p>
+                </div>
+            </section>
+
+            <section
+                className={styles.planes_detalle_section}
+                aria-labelledby="beneficios-title"
+            >
+                <div className={styles.planes_detalle_layout}>
+                    <header className={styles.planes_detalle_section_header}>
+                        <span className={styles.planes_detalle_badge}>
+                            Beneficios
+                        </span>
+
+                        <h2
+                            id="beneficios-title"
+                            className={styles.planes_detalle_h2}
+                        >
+                            Qué puede aportar a tu negocio
+                        </h2>
+
+                        <p className={styles.planes_detalle_text}>
+                            El objetivo no es solamente tener una página web, sino
+                            construir una herramienta clara para generar confianza y
+                            facilitar el contacto con nuevos clientes.
+                        </p>
+                    </header>
+
+                    <div className={styles.planes_detalle_benefits}>
+                        {planSeleccionado.beneficios.map((beneficio) => (
+                            <article
+                                key={beneficio.titulo}
+                                className={styles.planes_detalle_card}
+                            >
+                                <h3 className={styles.planes_detalle_h3}>
+                                    {beneficio.titulo}
+                                </h3>
+
+                                <p className={styles.planes_detalle_text}>
+                                    {beneficio.descripcion}
+                                </p>
                             </article>
                         ))}
                     </div>
-                </section>
-                <section className={styles.planes_cta}>
-                    <h2 className={styles.planes_h2}>¿Listo para impulsar tu negocio?</h2>
-                    <p className={styles.planes_parrafo} > Solicita un presupuesto personalizado y te responderé a la brevedad.</p>
-                    <button type="button" className={styles.planes_boton}><FaWhatsapp />Solicitar Presupuesto</button>
-                </section>
-            </div>
-        </section>
+                </div>
+            </section>
+
+            <section
+                className={styles.planes_detalle_section}
+                aria-labelledby="incluye-title"
+            >
+                <div className={styles.planes_detalle_layout}>
+                    <header className={styles.planes_detalle_section_header}>
+                        <span className={styles.planes_detalle_badge}>
+                            Incluye
+                        </span>
+
+                        <h2
+                            id="incluye-title"
+                            className={styles.planes_detalle_h2}
+                        >
+                            Todo lo que incluye el plan
+                        </h2>
+                    </header>
+
+                    <div className={styles.planes_detalle_includes}>
+                        {planSeleccionado.items.map((item) => (
+                            <article
+                                key={item}
+                                className={styles.planes_detalle_include}
+                            >
+                                <span aria-hidden="true">✓</span>
+                                <p>{item}</p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section
+                className={styles.planes_detalle_section}
+                aria-labelledby="proceso-title"
+            >
+                <div className={styles.planes_detalle_layout}>
+                    <header className={styles.planes_detalle_section_header}>
+                        <span className={styles.planes_detalle_badge}>
+                            Proceso
+                        </span>
+
+                        <h2
+                            id="proceso-title"
+                            className={styles.planes_detalle_h2}
+                        >
+                            Cómo vamos a trabajar
+                        </h2>
+
+                        <p className={styles.planes_detalle_text}>
+                            Un proceso simple, ordenado y pensado para que sepas
+                            en qué etapa está tu proyecto.
+                        </p>
+                    </header>
+
+                    <div className={styles.planes_detalle_process}>
+                        {procesoPlan.map((item) => (
+                            <article
+                                key={item.numero}
+                                className={styles.planes_detalle_process_card}
+                            >
+                                <span className={styles.planes_detalle_process_number}>
+                                    {item.numero}
+                                </span>
+
+                                <h3 className={styles.planes_detalle_h3}>
+                                    {item.titulo}
+                                </h3>
+
+                                <p className={styles.planes_detalle_text}>
+                                    {item.descripcion}
+                                </p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section
+                className={styles.planes_detalle_section}
+                aria-labelledby="faq-title"
+            >
+                <div className={styles.planes_detalle_layout}>
+                    <header className={styles.planes_detalle_section_header}>
+                        <span className={styles.planes_detalle_badge}>
+                            Dudas frecuentes
+                        </span>
+
+                        <h2
+                            id="faq-title"
+                            className={styles.planes_detalle_h2}
+                        >
+                            Preguntas antes de solicitar presupuesto
+                        </h2>
+                    </header>
+
+                    <div className={styles.planes_detalle_faq}>
+                        {planSeleccionado.preguntas.map((item) => (
+                            <article
+                                key={item.pregunta}
+                                className={styles.planes_detalle_faq_item}
+                            >
+                                <h3 className={styles.planes_detalle_h3}>
+                                    {item.pregunta}
+                                </h3>
+
+                                <p className={styles.planes_detalle_text}>
+                                    {item.respuesta}
+                                </p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className={styles.planes_detalle_cta}>
+                <div className={styles.planes_detalle_layout}>
+                    <div className={styles.planes_detalle_cta_box}>
+                        <span className={styles.planes_detalle_badge}>
+                            Próximo paso
+                        </span>
+
+                        <h2 className={styles.planes_detalle_h2}>
+                            ¿Querés saber cuánto costaría tu proyecto?
+                        </h2>
+
+                        <p className={styles.planes_detalle_text}>
+                            Contame qué necesitás y te respondo con una propuesta
+                            adaptada a tu negocio.
+                        </p>
+
+                        <a
+                            href={whatsappHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.planes_detalle_button}
+                            aria-label={`Consultar por ${planSeleccionado.titulo} en WhatsApp`}
+                        >
+                            <FaWhatsapp aria-hidden="true" />
+                            Consultar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
     );
 }
