@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -12,6 +16,16 @@ body {
     overflow-x: hidden;
     background: radial-gradient( circle at top left, rgba(192,132,252,.08), transparent 35% ), radial-gradient( circle at bottom right, rgba(164,79,250,.05), transparent 40% ), #080808;
     background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+.app-body {
+    min-width: 320px;
+    background-color: #0d0d0d;
+}
+
+.app-main {
+    min-height: 100vh;
 }
 
 main {
