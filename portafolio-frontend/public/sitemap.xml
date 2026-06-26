@@ -4,8 +4,8 @@
       xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-      xmlns:fo="http://www.w3.org/1999/XSL/Format"
-      xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
@@ -13,53 +13,58 @@
 
 <url>
   <loc>https://paginaswebchavez.netlify.app/</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://paginaswebchavez.netlify.app/perfil</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://paginaswebchavez.netlify.app/trabajos</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://paginaswebchavez.netlify.app/servicios</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://paginaswebchavez.netlify.app/contacto</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://paginaswebchavez.netlify.app/trabajos/3</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <loc>https://paginaswebchavez.netlify.app/servicios/planes/landing_page</loc>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://paginaswebchavez.netlify.app/trabajos/4</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <loc>https://paginaswebchavez.netlify.app/servicios/planes/sitio_web</loc>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://paginaswebchavez.netlify.app/trabajos/5</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://paginaswebchavez.netlify.app/trabajos/2</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <loc>https://paginaswebchavez.netlify.app/servicios/planes/desarrollo_web</loc>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://paginaswebchavez.netlify.app/trabajos/1</loc>
-  <lastmod>2026-06-23T16:32:43+00:00</lastmod>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
   <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://paginaswebchavez.netlify.app/trabajos/3</loc>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://paginaswebchavez.netlify.app/trabajos/2</loc>
+  <lastmod>2026-06-26T18:33:13+00:00</lastmod>
+  <priority>0.64</priority>
 </url>
 
 </urlset>
