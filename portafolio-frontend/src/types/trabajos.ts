@@ -29,5 +29,5 @@ export type TrabajosType = {
     rol: string;
     categoria_cliente: string;
     reto_tecnico: string;
-    destacado: string | null;
+    destacado: string | number | boolean | null;
 };

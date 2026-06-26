@@ -125,10 +125,24 @@ export const getImagenTrabajo = (trabajo: TrabajosType): string => {
 };
 
 export const esTrabajoDestacado = (trabajo: TrabajosType): boolean => {
-    return (
-        trabajo.destacado === "1" ||
-        trabajo.destacado?.toLowerCase() === "true"
-    );
+    const destacado = trabajo.destacado;
+
+    if (typeof destacado === "boolean") return destacado;
+    if (typeof destacado === "number") return destacado === 1;
+
+    if (typeof destacado === "string") {
+        const destacadoNormalizado = destacado.toLowerCase().trim();
+
+        return (
+            destacadoNormalizado === "1" ||
+            destacadoNormalizado === "true" ||
+            destacadoNormalizado === "si" ||
+            destacadoNormalizado === "sí" ||
+            destacadoNormalizado === "destacado"
+        );
+    }
+
+    return false;
 };
 
 export const ordenarTrabajos = (

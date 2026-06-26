@@ -115,9 +115,13 @@ export const trabajos = db.define('trabajos', {
     accessibility_desktop: intField(),
     seo_desktop: intField(),
     rol: stringField(),
-    categoría_cliente: stringField(),
+    categoria_cliente: stringField(),
     reto_tecnico: stringField(),
-    destacado: stringField()
+    destacado: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    }
 }, modelOptions('trabajos'));
 
 export const tra_tecnologia = db.define('tra_tecnologia', {
