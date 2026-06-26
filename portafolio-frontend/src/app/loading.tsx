@@ -1,15 +1,27 @@
+import styles from "@/styles/sections/loading.module.scss";
 
 export default function Loading() {
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      minHeight: '100vh',
-      background: '#0d0d0d',
-      color: '#e5e5e5'
-    }}>
-      <span>Cargando...</span>
-    </div>
+    <section
+      className={styles.loading}
+      role="status"
+      aria-live="polite"
+      aria-busy="true"
+    >
+      <div className={styles.loading_card}>
+        <div className={styles.loading_spinner} aria-hidden="true" />
+
+        <div className={styles.loading_content}>
+          <p className={styles.loading_label}>PaginasWebChavez</p>
+          <h2 className={styles.loading_title}>Cargando experiencia web</h2>
+          <span className={styles.loading_text}>
+            Preparando contenido optimizado
+          </span>
+        </div>
+        <div className={styles.loading_bar} aria-hidden="true">
+          <span />
+        </div>
+      </div>
+    </section>
   );
 }
