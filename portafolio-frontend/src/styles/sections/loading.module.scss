@@ -29,7 +29,7 @@
     height: 3.25rem;
     border-radius: 50%;
     border: 3px solid rgba(242, 239, 233, 0.14);
-    border-top-color: v.$color-primario;
+    border-top-color: v.$color-primary;
     animation: loadingSpin 0.85s linear infinite;
     }
 
@@ -44,7 +44,7 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: v.$color-primario;
+    color: v.$color-primary;
     }
 
     &_title {
@@ -76,7 +76,7 @@
         background: linear-gradient(
         90deg,
         rgba(192, 132, 252, 0.25),
-        v.$color-primario,
+        v.$color-primary,
         rgba(192, 132, 252, 0.25)
         );
         animation: loadingBar 1.2s ease-in-out infinite;
