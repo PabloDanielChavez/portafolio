@@ -1,7 +1,6 @@
 import style_trabajos from "@/styles/sections/trabajos.module.scss";
 import type { TrabajosType } from "@/types/trabajos";
 import type { tra_tecnologiaType } from "@/types/tra_tecnologia";
-import { ImagenComponent } from "./sub_components/ImagenM";
 import TrabajoAuditoria from "./sub_components/TrabajoAuditoria";
 import TrabajoDetalleActions from "./sub_components/TrabajoDetalleActions";
 
