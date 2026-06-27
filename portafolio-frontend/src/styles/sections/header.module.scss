@@ -3,214 +3,172 @@
 
 .header {
     position: fixed;
-    top: 0;
+    inset: 0 0 auto;
     z-index: 100;
-    width: 100%;
-    padding: .85rem 0;
+    min-height: 72px;
     border-bottom: 1px solid transparent;
-    background: linear-gradient(180deg, rgba(7, 8, 11, .82), rgba(7, 8, 11, .42));
-    backdrop-filter: blur(14px) saturate(125%);
-    -webkit-backdrop-filter: blur(14px) saturate(125%);
-    transition: padding .34s ease, background .34s ease, border-color .34s ease, box-shadow .34s ease;
+    background: rgba(v.$background-main, .82);
+    backdrop-filter: blur(14px);
+    transition:
+        min-height .25s ease,
+        border-color .25s ease,
+        background .25s ease;
+}
 
-    &_scrolled {
-        padding: .55rem 0;
-        border-bottom-color: rgba(255, 255, 255, .08);
-        background: rgba(7, 8, 11, .86);
-        box-shadow: 0 16px 46px rgba(0, 0, 0, .26);
+.header_scrolled {
+    min-height: 64px;
+    border-bottom-color: v.$border-card;
+    background: rgba(v.$background-main, .95);
+}
 
-        & img {
-            transform: scale(.82);
-        }
-    }
+.header_container {
+    @include m.container;
 
-    &_container {
-        display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: inherit;
+}
+
+.header_logo {
+    @extend %link-reset;
+    display: inline-flex;
+    flex: 0 0 auto;
+}
+
+.header_logo_box {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border: 1px solid rgba(v.$violet-soft, .2);
+    border-radius: 50%;
+    background: v.$background-card;
+}
+
+.header_logo_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header_nav {
+    margin-left: auto;
+}
+
+.header_ul {
+    position: fixed;
+    top: 66px;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    width: min(310px, calc(100vw - 2rem));
+    margin: 0;
+    padding: .6rem;
+    border: 1px solid v.$border-card;
+    border-radius: v.$radius-base;
+    background: rgba(v.$background-section, .98);
+    box-shadow: v.$shadow-card;
+    list-style: none;
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+
+    @include m.tablet {
+        position: static;
+        flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1rem;
-
-        @include m.tablet {
-            padding: 0 2rem;
-        }
-    }
-
-    &_logo {
-        @extend %link-reset;
-        display: inline-flex;
-    }
-
-    &_logo_box {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        width: 54px;
-        height: 54px;
-        border: 1px solid rgba(v.$color-accent, .22);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, .04);
-        box-shadow: 0 16px 36px rgba(6, 182, 212, .09);
-        transition: transform .34s ease, border-color .34s ease, box-shadow .34s ease;
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: -35%;
-            background: conic-gradient(from 120deg, transparent, rgba(v.$color-accent, .42), transparent 34%);
-            opacity: .45;
-            animation: logoOrbit 7s linear infinite;
-        }
-
-        &:hover {
-            transform: translateY(-2px);
-            border-color: rgba(v.$color-accent, .42);
-            box-shadow: 0 20px 46px rgba(6, 182, 212, .14);
-        }
-    }
-
-    &_logo_img {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        border-radius: 999px;
-        object-fit: cover;
-        transition: transform .34s cubic-bezier(.16, 1, .3, 1);
-    }
-
-    &_menuBtn {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 46px;
-        height: 46px;
-        border: 1px solid rgba(255, 255, 255, .09);
-        border-radius: 14px;
-        background: rgba(255, 255, 255, .045);
-        color: v.$color-accent;
-        cursor: pointer;
-        transition: transform .28s ease, color .28s ease, border-color .28s ease, background .28s ease, box-shadow .28s ease;
-
-        &:hover,
-        &:focus-visible {
-            transform: translateY(-2px);
-            border-color: rgba(v.$color-accent, .30);
-            background: rgba(6, 182, 212, .08);
-            color: #fff;
-            box-shadow: 0 14px 34px rgba(6, 182, 212, .10);
-            outline: none;
-        }
-
-        &:active {
-            transform: translateY(0) scale(.97);
-        }
-    }
-
-    &_ul {
-        position: fixed;
-        top: 78px;
-        right: 1rem;
-        z-index: 110;
-        display: flex;
-        flex-direction: column;
-        gap: .45rem;
-        width: min(320px, calc(100vw - 2rem));
-        margin: 0;
-        padding: .65rem;
-        border: 1px solid rgba(255, 255, 255, .09);
-        border-radius: 18px;
-        background:
-            linear-gradient(150deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)),
-            rgba(8, 10, 14, .92);
-        box-shadow: 0 24px 70px rgba(0, 0, 0, .42);
-        backdrop-filter: blur(18px) saturate(125%);
-        -webkit-backdrop-filter: blur(18px) saturate(125%);
-        list-style: none;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-8px) scale(.97);
-        transition: opacity .28s ease, transform .28s cubic-bezier(.16, 1, .3, 1);
-    }
-
-    &_li {
-        display: flex;
-        width: 100%;
-    }
-
-    &_LINK {
-        @extend %link-reset;
-        display: flex;
-        align-items: center;
-        gap: .75rem;
-        width: 100%;
-        min-height: 46px;
-        padding: .75rem .85rem;
-        border-radius: 13px;
-        color: rgba(242, 239, 233, .76);
-        font-weight: 850;
-        transition: transform .25s ease, color .25s ease, background .25s ease;
-
-        svg {
-            color: v.$color-accent;
-            transition: transform .25s ease, color .25s ease;
-        }
-
-        &:hover,
-        &:focus-visible {
-            transform: translateX(3px);
-            background: rgba(6, 182, 212, .075);
-            color: #fff;
-            outline: none;
-
-            svg {
-                transform: scale(1.08);
-                color: #fff;
-            }
-        }
-    }
-
-    &_spanNav {
-        font-size: 1rem;
-        line-height: 1;
-    }
-
-    &_activo {
+        gap: .35rem;
+        width: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
         opacity: 1;
         pointer-events: auto;
-        transform: translateY(0) scale(1);
-    }
-
-    &_desactivado {
-        opacity: 0;
-        pointer-events: none;
+        transform: none;
     }
 }
 
-.scrollProgress {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, v.$color-accent, v.$color-primary);
-    transform-origin: left;
+.header_activo {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
-@keyframes logoOrbit {
-    to {
-        transform: rotate(360deg);
+.header_desactivado {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+
+    @include m.tablet {
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+    }
+}
+
+.header_li {
+    display: flex;
+}
+
+.header_LINK {
+    @extend %link-reset;
+
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    min-height: 44px;
+    padding: .65rem .8rem;
+    border-radius: 10px;
+    color: v.$text-secondary;
+    font-family: v.$font-display;
+    font-size: .9rem;
+    font-weight: 700;
+    transition:
+        color .2s ease,
+        background .2s ease;
+
+    &:hover,
+    &:focus-visible {
+        background: rgba(v.$violet-primary, .08);
+        color: v.$text-primary;
+    }
+}
+
+.header_icon {
+    display: inline-flex;
+    color: v.$violet-soft;
+
+    @include m.tablet {
+        display: none;
+    }
+}
+
+.header_menuBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-left: .75rem;
+    padding: 0;
+    border: 1px solid v.$border-card;
+    border-radius: 12px;
+    background: v.$background-card;
+    color: v.$violet-soft;
+    cursor: pointer;
+
+    @include m.tablet {
+        display: none;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .header,
     .header * {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
     }
 }

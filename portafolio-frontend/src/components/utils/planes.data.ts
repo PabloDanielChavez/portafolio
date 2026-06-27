@@ -7,8 +7,7 @@ export const planes: Plan[] = [
     {
         id: "landing-page-profesional",
         tag: "landing_page",
-        destacado: true,
-        etiqueta: "Más elegido",
+        destacado: false,
         titulo: "Landing Page Profesional",
         subtitulo: "Una página estratégica para presentar tu servicio y generar consultas.",
         ideal:
@@ -77,7 +76,8 @@ export const planes: Plan[] = [
     {
         id: "sitio-web-profesional",
         tag: "sitio_web",
-        destacado: false,
+        destacado: true,
+        etiqueta: "Más elegido",
         titulo: "Sitio Web Profesional",
         subtitulo: "Un sitio completo para empresas que necesitan transmitir confianza.",
         ideal:

@@ -8,30 +8,51 @@ $desktop: 1624px;
 $desktopXL: 1827px;
 $desktopXXL: 3000px;
 
-$color-primary: #c084fc;
-$color-secundary: #a44ffa;
+// Sistema visual base
+$background-main: #08080c;
+$background-section: #0d0c13;
+$background-card: #15121d;
+$border-card: rgba(196, 166, 255, .16);
+$text-primary: #f5f0e8;
+$text-secondary: #b8b1c3;
+$violet-primary: #9b6cff;
+$violet-soft: #c4a6ff;
+$cream: #f5f0e8;
+$gold: #d5b36b;
+$radius-base: 16px;
+$radius-large: 24px;
+$shadow-card: 0 20px 55px rgba(0, 0, 0, .28);
+$section-padding: clamp(4.25rem, 8vw, 6.5rem);
+$container-max: 1240px;
+$font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+$font-display: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+$font-size-caption: .86rem;
+$font-size-small: .92rem;
+$font-size-copy: clamp(1rem, .35vw + .94rem, 1.08rem);
+$font-size-card: clamp(.96rem, .25vw + .92rem, 1.02rem);
+$line-height-copy: 1.72;
+
+// Alias heredados para conservar compatibilidad con páginas internas
+$color-primary: $violet-primary;
+$color-secundary: #7548d8;
 $color-white: #fff;
-$color-dark: #333;
-$hero-bg: #090b10;
-
-$color-accent: #06b6d4;
-$color-accent-dos: #36bdd4;
-
-$color-negro-fondo: #0d0f0c;
-$color-card: #171423;
-
-$color-crema: #f2efe9;
-$color-oro-mate: #b89b6f;
-$color-oro: #ffb347;
-$color-oro-dos: #f5a623;
-$color-oro-tres: #ffc125;
-
-$color-text: #333333;
-$color-gray: #6b7280;
-$color-gray-light: #9ca3af;
+$color-dark: #292531;
+$hero-bg: #0a0910;
+$color-accent: $violet-primary;
+$color-accent-dos: $violet-soft;
+$color-negro-fondo: $background-main;
+$color-card: $background-card;
+$color-crema: $cream;
+$color-oro-mate: #b79a62;
+$color-oro: $gold;
+$color-oro-dos: #c89d4e;
+$color-oro-tres: #e4c47e;
+$color-text: $text-primary;
+$color-gray: #7e7789;
+$color-gray-light: $text-secondary;
 
 $color-success: #22c55e;
 $color-error: #ef4444;
 
-$color-border: rgba(192, 132, 252, 0.2);
-$spacing-section: 80px;
+$color-border: $border-card;
+$spacing-section: $section-padding;

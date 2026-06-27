@@ -1,77 +1,102 @@
 "use client";
-import Link from 'next/link';
-import { LiaLinkedin } from 'react-icons/lia';
-import styles_footer from '@/styles/sections/footer.module.scss';
 
-import { BiBriefcase, AiTwotoneSchedule, BsFillPersonVcardFill, FaBriefcase, SiCodefactor, FaEnvelope, PiStack, IoIosRocket, FaGithub, FaWhatsapp, PiMicrosoftOutlookLogo, BiHomeAlt2} from "@/components/utils/Iconos";
-import { ImagenComponent } from '../sub_components/ImagenM';
-import { trackEvent } from '../utils/Analytics';
+import Image from "next/image";
+import Link from "next/link";
+import { LiaLinkedin } from "react-icons/lia";
+
+import {
+    FaGithub,
+    FaWhatsapp,
+    PiMicrosoftOutlookLogo
+} from "@/components/utils/Iconos";
+import styles from "@/styles/sections/footer.module.scss";
+
+import { trackEvent } from "../utils/Analytics";
+
+const navigation = [
+    { name: "Inicio", url: "/" },
+    { name: "Trabajos", url: "/trabajos" },
+    { name: "Servicios", url: "/servicios" },
+    { name: "Planes", url: "/#planes" },
+    { name: "Perfil", url: "/perfil" },
+    { name: "Contacto", url: "/contacto" }
+];
+
+const contact = [
+    {
+        name: "LinkedIn",
+        icon: <LiaLinkedin aria-hidden="true" />,
+        url: "https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/"
+    },
+    {
+        name: "GitHub",
+        icon: <FaGithub aria-hidden="true" />,
+        url: "https://github.com/PabloDanielChavez/portafolio"
+    },
+    {
+        name: "WhatsApp",
+        icon: <FaWhatsapp aria-hidden="true" />,
+        url: "https://wa.me/5491164095914?text=Hola%20Pablo%2C%20vi%20tu%20portafolio%20y%20quiero%20consultarte%20por%20un%20proyecto."
+    },
+    {
+        name: "Email",
+        icon: <PiMicrosoftOutlookLogo aria-hidden="true" />,
+        url: "mailto:pablo_daniel_chavez@outlook.es?subject=Consulta%20desde%20el%20portafolio"
+    }
+];
 
 export default function Footer() {
+    return (
+        <div className={styles.footer}>
+            <div className={styles.footer_layout}>
+                <div className={styles.footer_brand}>
+                    <Link href="/" aria-label="Ir al inicio">
+                        <Image
+                            src="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
+                            alt="PaginasWeb Chavez"
+                            width={56}
+                            height={56}
+                            sizes="56px"
+                        />
+                    </Link>
+                    <div>
+                        <strong>PaginasWeb Chavez</strong>
+                        <p>Diseño y desarrollo web profesional.</p>
+                    </div>
+                </div>
 
-  const secciones = [
-    { id: 'navegacion', titulo: 'Navegación' },
-    { id: 'contacto', titulo: 'Contacto' }
-  ];
+                <nav className={styles.footer_nav} aria-label="Navegación del pie">
+                    {navigation.map((item) => (
+                        <Link key={item.url + item.name} href={item.url}>
+                            {item.name}
+                        </Link>
+                    ))}
+                </nav>
 
-  const linksFooter = [
-    { id:"1", seccion:"navegacion" , name: "Inicio", icon: <BiHomeAlt2 aria-hidden="true" size={18} />, url: `/` },
-    { id:"2", seccion:"navegacion" , name: "Perfil", icon: <BsFillPersonVcardFill aria-hidden="true" size={18} />, url: `/perfil` },
-    { id:"3", seccion:"navegacion" , name: "Trabajos", icon: <FaBriefcase aria-hidden="true" size={18} />, url: `/trabajos` },
-    { id:"4", seccion:"navegacion" , name: "Servicios", icon: <SiCodefactor aria-hidden="true" size={18} />, url: `/servicios` },
-    { id:"5", seccion:"navegacion" , name: "Contacto", icon: <FaEnvelope aria-hidden="true" size={18} />, url: `/contacto` },
-    { id:"6", seccion:"contacto" , name: "Linkedin", icon: <LiaLinkedin aria-hidden="true" size={28} />, url: `https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/` },
-    { id:"7", seccion:"contacto" , name: "GitHub", icon: <FaGithub aria-hidden="true" size={28} />, url: `https://github.com/PabloDanielChavez/portafolio` },
-    { id:"8", seccion:"contacto" , name: "Whatsapp", icon: <FaWhatsapp aria-hidden="true" size={28} />, url: `https://wa.me/5491164095914?text=*Contacto%20desde%20el%20Portafolio*%0A%0AHola%20Pablo%2C%0A%0AVi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20que%20hablemos%20sobre%20un%20proyecto...` },
-    { id:"9", seccion:"contacto" , name: "Outlook", icon: <PiMicrosoftOutlookLogo aria-hidden="true" size={28} />, url: `mailto:pablo_daniel_chavez@outlook.es?subject=Contacto%20desde%20el%20Portafolio&body=Hola%20Pablo,%0A%0AVi%20tu%20portafolio%20y%20me%20gustaría%20que%20hablemos%20sobre%20un%20proyecto...` },
-  ];
+                <div className={styles.footer_social} aria-label="Canales de contacto">
+                    {contact.map((item) => (
+                        <Link
+                            key={item.name}
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={item.name}
+                            onClick={() =>
+                                trackEvent("social_click", {
+                                    section: "Footer",
+                                    network: item.name
+                                })
+                            }
+                        >
+                            {item.icon}
+                        </Link>
+                    ))}
+                </div>
 
-  return (
-    <footer className={`${styles_footer.footer}`}>
-      <div className={`${styles_footer.footer_grid_principal}`}>
-        <div className={styles_footer.footer_box_logo}>
-          <ImagenComponent 
-              style={styles_footer.footer_imagen_logo}
-              url="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
-              alt={"LOGOTIPO"}
-              widthE={150}
-              heightE={150}
-              priority=""
-          />
-        </div>
-        <div className={styles_footer.footer_grid_enlaces}>
-          {secciones.map((seccion) => (
-            <div key={seccion.id} className={styles_footer.footer_box}>
-              <h2 className={styles_footer.footer_h2}>{seccion.titulo}</h2>
-              <ul className={styles_footer.footer_ul}>
-                {linksFooter
-                  .filter((link) => link.seccion === seccion.id)
-                  .map((link) => (
-                    <li key={link.id} className={styles_footer.footer_li}>
-                      <Link 
-                        href={link.url || "#"}
-                        className={styles_footer.footer_LINK} 
-                        aria-label={`Ir a ${link.name}`}
-                        onClick={() => 
-                            trackEvent("social_click", {
-                                section: "Footer",
-                                network: `${link.name}`
-                            })
-                        }
-                      >
-                        {link.icon}
-                        <span className={styles_footer.footer_span}>{link.name}</span>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
+                <p className={styles.footer_copy}>
+                    © 2026 PaginasWeb Chavez · Pablo Daniel Chavez
+                </p>
             </div>
-          ))}
         </div>
-        <div className={styles_footer.footer_box_copy}>
-          <p className={styles_footer.footer_copy_p}>©2026 copyright<strong className={styles_footer.destacadoPrimary}> PaginasWeb Chavez </strong><strong className={styles_footer.destacadoDorado}>|</strong>  Todos los derechos reservados <strong className={styles_footer.destacadoDorado}>|</strong><strong className={styles_footer.destacadoPrimary}> Pablo Daniel Chavez</strong></p>
-        </div>
-      </div>
-    </footer>
-  );
+    );
 }

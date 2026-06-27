@@ -7,21 +7,24 @@
 
 html {
     scroll-behavior: smooth;
+    color-scheme: dark;
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: monospace, sans-serif, system-ui;
+    font-family: v.$font-body;
     overflow-x: hidden;
-    background: radial-gradient( circle at top left, rgba(192,132,252,.08), transparent 35% ), radial-gradient( circle at bottom right, rgba(164,79,250,.05), transparent 40% ), #080808;
-    background-attachment: fixed;
-    overflow-x: hidden;
+    background: v.$background-main;
+    color: v.$text-primary;
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
 }
 
 .app-body {
     min-width: 320px;
-    background-color: #0d0d0d;
+    background-color: v.$background-main;
 }
 
 .app-main {
@@ -29,48 +32,38 @@ body {
 }
 
 main {
-    padding-top: 3rem;
-    background: #080808;
+    background: v.$background-main;
     position: relative;
-    &::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: radial-gradient( 800px circle at left 15%, rgba(192,132,252,.12), transparent 60% ), radial-gradient( 700px circle at right 75%, rgba(164,79,250,.08), transparent 60% );
-        pointer-events: none;
+}
+
+h1,
+h2,
+h3,
+button,
+.animacion_btn {
+    font-family: v.$font-display;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus-visible {
+        @include m.focus-ring;
     }
 }
 
-.animacion_btn {
-    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
-    svg {
-        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
+::selection {
+    background: rgba(v.$violet-primary, .38);
+    color: v.$cream;
+}
 
-    &:hover {
-        color: #ffffff;
-        transform: translateY(-2px);
-        filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.5));
-
-        &::before {
-            opacity: 1;
-            transform: scale(1);
-        }
-        svg {
-            transform: scale(1.08);
-        }
-    }
-    &:active {
-        transform: translateY(1px) scale(0.94); 
-        filter: drop-shadow(0 0 2px rgba(192, 132, 252, 0.3));
-        transition: transform 0.05s linear;
-
-        &::before {
-            background: rgba(192, 132, 252, 0.2);
-        }
-        
-        svg {
-            transform: scale(0.95);
-        }
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 }

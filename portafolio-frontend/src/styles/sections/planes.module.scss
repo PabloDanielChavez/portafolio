@@ -284,7 +284,7 @@
         padding: .85rem 1.25rem;
         border: 0;
         border-radius: 999px;
-        background: linear-gradient(135deg, #effcff, #6ee7f3, v.$color-accent);
+        background: linear-gradient(135deg, v.$cream, v.$violet-soft, v.$violet-primary);
         color: #071015;
         font-size: .95rem;
         font-weight: 900;
@@ -450,7 +450,7 @@
         min-height: 56px;
         padding: .95rem 1.3rem;
         border-radius: 999px;
-        background: linear-gradient(135deg, #effcff, #6ee7f3, v.$color-accent);
+        background: linear-gradient(135deg, v.$cream, v.$violet-soft, v.$violet-primary);
         color: #071015;
         font-size: .96rem;
         font-weight: 900;
@@ -854,5 +854,92 @@
         transition-duration: .01ms !important;
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
+    }
+}
+
+/* Consolidación visual de la grilla comercial */
+.planes {
+    @include m.section-shell(v.$background-main);
+
+    background: v.$background-main;
+
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    &_layout {
+        @include m.container;
+
+        max-width: none;
+        gap: 0;
+    }
+
+    &_grid {
+        gap: 1rem;
+    }
+
+    &_card {
+        @include m.card-base;
+
+        border-radius: v.$radius-large;
+        background: v.$background-card;
+        box-shadow: v.$shadow-card;
+    }
+
+    &_card_destacado {
+        @include m.card-featured;
+    }
+
+    &_card_link {
+        padding: clamp(1.3rem, 3vw, 1.7rem);
+    }
+
+    &_card_badge {
+        margin-bottom: 1rem;
+        background: v.$gold;
+        color: #17110a;
+    }
+
+    &_card_descripcion {
+        margin-bottom: .75rem;
+        color: v.$text-secondary;
+        line-height: 1.6;
+    }
+
+    &_card_precio {
+        margin: 0 0 1.1rem;
+        color: v.$cream;
+        font-family: v.$font-display;
+        font-size: clamp(1.4rem, 2vw, 1.65rem);
+        font-weight: 800;
+    }
+
+    &_card_lista {
+        gap: .6rem;
+    }
+
+    &_card_item {
+        color: v.$text-secondary;
+        font-size: .96rem;
+        line-height: 1.62;
+
+        &::before {
+            background: v.$violet-soft;
+            box-shadow: none;
+        }
+    }
+
+    &_boton {
+        min-height: 48px;
+        margin-top: 1.4rem;
+        background: v.$violet-primary;
+        color: #0b0712;
+        box-shadow: 0 12px 30px rgba(v.$violet-primary, .16);
+        font-family: v.$font-display;
+
+        &:hover {
+            box-shadow: 0 16px 36px rgba(v.$violet-primary, .23);
+        }
     }
 }

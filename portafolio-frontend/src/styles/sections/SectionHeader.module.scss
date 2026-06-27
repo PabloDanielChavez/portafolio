@@ -1,103 +1,83 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
-.header {
-    &_box {
-        position: relative;
-        max-width: 1200px;
-        margin-bottom: 32px;
-        opacity: 0;
-        animation: sectionHeaderIn .7s cubic-bezier(.16, 1, .3, 1) forwards;
+.header_box {
+    max-width: 760px;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
 
-        @include m.tablet {
-            margin-bottom: 44px;
-        }
-    }
+.header_title_group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
 
-    &_title_group {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
+    @include m.tablet {
+        justify-content: flex-start;
+    }
+}
 
-        @include m.tabletXL {
-            justify-content: flex-start;
-            gap: 12px;
-        }
-    }
+.header_icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid rgba(v.$violet-soft, .24);
+    border-radius: 12px;
+    background: rgba(v.$violet-primary, .08);
+    color: v.$violet-soft;
+    font-size: 1.15rem;
+}
 
-    &_header_icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 38px;
-        height: 38px;
-        border: 1px solid rgba(v.$color-accent, .24);
-        border-radius: 12px;
-        background:
-            linear-gradient(135deg, rgba(v.$color-accent, .14), rgba(v.$color-primary, .08)),
-            rgba(255, 255, 255, .035);
-        color: v.$color-accent;
-        font-size: 18px;
-        box-shadow: 0 14px 34px rgba(6, 182, 212, .09);
+.header_title {
+    margin: 0;
+    color: v.$text-primary;
+    font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -.045em;
+    line-height: 1.08;
+    text-align: center;
+    text-wrap: balance;
 
-        @include m.tablet {
-            width: 42px;
-            height: 42px;
-            font-size: 20px;
-        }
+    @include m.tablet {
+        text-align: left;
     }
-    &_header_title {
-        margin: 0;
-        color: #fff;
-        font-size: clamp(1.8rem, 5vw, 3rem);
-        font-weight: 850;
-        line-height: 1.02;
-        text-align: center;
-        text-wrap: balance;
-        @include m.telefonoXL {
-            text-align: start;
-        }
+}
+
+.header_description {
+    display: flex;
+    justify-content: center;
+    margin-top: .85rem;
+
+    @include m.tablet {
+        justify-content: flex-start;
     }
-    &_description {
-        display: flex;
-        justify-content: center;
-        margin-top: 14px;
-        @include m.tabletXL {
-            justify-content: flex-start;
-        }
+}
+
+.header_description_p {
+    margin: 0;
+    color: v.$text-secondary;
+    font-size: clamp(1.02rem, 2vw, 1.12rem);
+    line-height: 1.75;
+    text-align: center;
+    text-wrap: pretty;
+
+    @include m.tablet {
+        text-align: left;
     }
-    &_description_p {
-        max-width: 1200px;
-        margin: 0;
-        color: rgba(242, 239, 233, .68);
-        font-size: clamp(.96rem, 2vw, 1.08rem);
-        line-height: 1.75;
-        text-align: center;
-        text-wrap: pretty;
-        @include m.tabletXL {
-            text-align: start;
-        }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .header_box {
+        animation: sectionHeaderIn .55s ease both;
     }
 }
 
 @keyframes sectionHeaderIn {
     from {
         opacity: 0;
-        transform: translateY(22px);
-        filter: blur(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .header_box {
-        animation-duration: .01ms !important;
+        transform: translateY(14px);
     }
 }

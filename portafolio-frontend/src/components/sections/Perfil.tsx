@@ -78,14 +78,14 @@ export default function Perfil() {
                     </div>
                     <div className={styles.perfil_header_box_informacion}>
                         <span className={styles.perfil_header_span_tag}>
-                            Buenos Aires <strong className={styles.destacadoPrimary}>-</strong> Argentina 
+                            Buenos Aires - Argentina
                         </span>
                         <h1 className={styles.perfil_header_h1_nombre}>
                             Pablo Daniel Chavez
                         </h1>
                         <p className={styles.perfil_header_p_descripcion}>
-                            Desarrollador Web Full Stack de Buenos Aires, Argentina. <strong className={styles.destacadoPrimary}>Especialista</strong> en creación de <strong className={styles.destacadoPrimary}>Paginas web</strong> a medida, 
-                            optimizados para <strong className={styles.destacadoPrimary}>alto rendimiento</strong> <strong className={styles.destacadoPrimary}>(</strong>Web Performance<strong className={styles.destacadoPrimary}>)</strong> y posicionamiento <strong className={styles.destacadoPrimary}>SEO</strong>, enfocados 
+                            Desarrollador Web Full Stack de Buenos Aires, Argentina. Especialista en creación de <strong className={styles.destacadoPrimary}>páginas web</strong> a medida, 
+                            optimizadas para <strong className={styles.destacadoPrimary}>alto rendimiento</strong> y posicionamiento <strong className={styles.destacadoPrimary}>SEO</strong>, enfocadas 
                             en <strong className={styles.destacadoPrimary}>resultados para negocios</strong>.
                         </p>
                         <div className={styles.perfil_header_btn_layout}>
@@ -122,13 +122,13 @@ export default function Perfil() {
                     <p className={styles.perfil_historia_p}>
                         Mi pasión por la tecnología nació de la curiosidad técnica. Todo comenzó siendo chico, 
                         fascinado por los videojuegos, lo que me llevó en 2018 a dar mis primeros pasos 
-                        <strong className={styles.destacadoPrimary}> administrando</strong> y <strong className={styles.destacadoPrimary}>desarrollando</strong> un servidor en <strong className={styles.destacadoPrimary}>SAMP</strong>.
+                        administrando y desarrollando un servidor en SAMP.
                     </p>
                     <p className={styles.perfil_historia_p}>
-                        Esa <strong className={styles.destacadoPrimary}>experiencia</strong> inicial fue la puerta de entrada a al mundo de la <strong className={styles.destacadoPrimary}>programacion</strong>. 
-                        En 2024 formalicé mi camino hacia el <strong className={styles.destacadoPrimary}>Desarrollo web</strong>, donde descubrí 
-                        que mi verdadera <strong className={styles.destacadoPrimary}>motivación</strong> no es solo escribir código, sino <strong className={styles.destacadoPrimary}>crear</strong> soluciones 
-                        funcionales que ayuden a <strong className={styles.destacadoPrimary}>Profesionales</strong> y <strong className={styles.destacadoPrimary}>Negocios</strong> a <strong className={styles.destacadoPrimary}>crecer</strong> y <strong className={styles.destacadoPrimary}>digitalizarse</strong>.
+                        Esa experiencia inicial fue la puerta de entrada al mundo de la programación. 
+                        En 2024 formalicé mi camino hacia el desarrollo web, donde descubrí 
+                        que mi verdadera motivación no es sólo escribir código, sino crear soluciones 
+                        funcionales que ayuden a profesionales y negocios a crecer y digitalizarse.
                     </p>
                 </section>
                 <section className={styles.perfil_tecnologias}>
@@ -151,14 +151,13 @@ export default function Perfil() {
                         Mi Filosofía de Trabajo
                     </h2>
                     <p className={styles.perfil_filosofia_p}>
-                        Mi trabajo integra <strong className={styles.destacadoPrimary}>Desarrollo Web Full Stack</strong>, <strong className={styles.destacadoPrimary}>Optimización de sitios</strong>, <strong className={styles.destacadoPrimary}>Experiencia de Usuario (UX)</strong> 
-                        y <strong className={styles.destacadoPrimary}>Performance Web</strong>. Desarrollo bajo las mejores <strong className={styles.destacadoPrimary}>prácticas de rendimiento y posicionamiento</strong>, 
-                        buscando siempre un <strong className={styles.destacadoPrimary}>impacto tangible en el negocio</strong>.
+                        Mi trabajo integra desarrollo web Full Stack, optimización de sitios, experiencia de usuario y performance web. Desarrollo con foco en <strong className={styles.destacadoPrimary}>alto rendimiento</strong>, 
+                        buscando siempre resultados concretos para el negocio.
                     </p>
                     <p className={styles.perfil_filosofia_p}>
-                        Para lograrlo, integro herramientas esenciales como <strong className={styles.destacadoPrimary}>Google Analytics</strong>, <strong className={styles.destacadoPrimary}>Tag Manager</strong> y estrategias 
-                        de <strong className={styles.destacadoPrimary}>SEO</strong>, asegurando que cada sitio no solo sea <strong className={styles.destacadoPrimary}>visualmente atractivo</strong>, sino también <strong className={styles.destacadoPrimary}>eficiente</strong>, 
-                        medible y optimizado para <strong className={styles.destacadoPrimary}>destacar en los resultados de búsqueda</strong>.
+                        Para lograrlo, integro herramientas como Google Analytics, Tag Manager y estrategias 
+                        de <strong className={styles.destacadoPrimary}>SEO</strong>, asegurando que cada sitio sea atractivo, eficiente, 
+                        medible y preparado para destacar en los resultados de búsqueda.
                     </p>
                 </section>
                 <section className={styles.perfil_metricas}>
@@ -206,8 +205,8 @@ export default function Perfil() {
                         ¿Tienes una idea en mente?
                     </h2>
                     <p className={styles.perfil_contacto_p}>
-                        Estoy disponible para colaborar en nuevos proyectos y transformar tus <strong className={styles.destacadoPrimary}>ideas</strong> en <strong className={styles.destacadoPrimary}>realidades 
-                        digitales de alto impacto</strong>. Te invito a explorar mis trabajos previos para conocer lo que 
+                        Estoy disponible para colaborar en nuevos proyectos y transformar tus ideas en realidades 
+                        digitales de alto impacto. Te invito a explorar mis trabajos previos para conocer lo que 
                         puedo hacer.
                     </p>
                     <p className={styles.perfil_contacto_p}>

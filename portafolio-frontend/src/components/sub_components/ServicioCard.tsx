@@ -1,66 +1,51 @@
 "use client";
 
-import { useEffect, useRef, useState, ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+
 import styles from "@/styles/sections/servicios.module.scss";
-import { ServiciosType } from "@/types/servicios";
-import { FaArrowRight } from "react-icons/fa6";
-import { trackEvent } from "../utils/Analytics";
+import type { ServiciosType } from "@/types/servicios";
 
 type Props = {
     servicio: ServiciosType;
     icono: ReactNode;
 };
 
-export default function ServicioCard({ servicio, icono }: Props) { 
+export default function ServicioCard({ servicio, icono }: Props) {
     const [visible, setVisible] = useState(false);
     const ref = useRef<HTMLElement>(null);
+
     useEffect(() => {
+        const card = ref.current;
+
+        if (!card || typeof IntersectionObserver === "undefined") {
+            setVisible(true);
+            return;
+        }
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setVisible(true);
-                    observer.unobserve(entry.target);
+                    observer.disconnect();
                 }
-            }, { threshold: 0.15 }
+            },
+            { threshold: 0.12 }
         );
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
+
+        observer.observe(card);
         return () => observer.disconnect();
     }, []);
+
     return (
         <article
             ref={ref}
-            className={` ${styles.servicios_contenido_article} ${ visible ? styles.servicios_contenido_article_visible : "" } `}
-            onClick={() =>
-                trackEvent("click_servicio", {
-                    section: "Servicios",
-                    servicio: servicio.nombre_servicio
-                })
-            }
+            className={`${styles.servicios_card} ${visible ? styles.servicios_card_visible : ""}`}
         >
-            <div className={styles.servicios_contenido_article_header_layout}>
-                <div className={styles.servicios_contenido_article_header_emp}>
-                    <div className={styles.servicios_contenido_article_header_icono}>
-                        {icono}
-                    </div>
-                    <div className={styles.servicios_contenido_article_header_nombre}>
-                        <h3 className={ styles.servicios_contenido_article_header_nombre_h3 }>
-                            {servicio.nombre_servicio}
-                        </h3>
-                    </div>
-                </div>
-                <div className={styles.servicios_contenido_article_header_flecha}>
-                    <p className={ styles.servicios_contenido_article_header_flecha_p } >
-                        <FaArrowRight />
-                    </p>
-                </div>
-            </div>
-            <div className={ styles.servicios_contenido_article_contenido_layout } >
-                <p className={ styles.servicios_contenido_article_contenido_puesto_p_informacion } >
-                    {servicio.informacion_servicio} 
-                </p>
-            </div>
+            <span className={styles.servicios_card_icon} aria-hidden="true">
+                {icono}
+            </span>
+            <h3>{servicio.nombre_servicio}</h3>
+            <p>{servicio.informacion_servicio}</p>
         </article>
     );
 }

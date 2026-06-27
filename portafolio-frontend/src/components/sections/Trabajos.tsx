@@ -32,7 +32,26 @@ export default function Trabajos({
     const trabajosOrdenados = useMemo(() => {
         const ordenados = ordenarTrabajos(trabajos);
 
-        return showFooter ? ordenados.slice(0, 2) : ordenados;
+        if (!showFooter) return ordenados;
+
+        const prioridadComercial = (nombre: string) => {
+            const normalizado = nombre
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase();
+
+            if (normalizado.includes("jardineria montanez")) return 2;
+            if (normalizado.includes("plomada")) return 1;
+            return 0;
+        };
+
+        return [...ordenados]
+            .sort(
+                (a, b) =>
+                    prioridadComercial(b.nombre_trabajo) -
+                    prioridadComercial(a.nombre_trabajo)
+            )
+            .slice(0, 5);
     }, [trabajos, showFooter]);
 
     const handleChangeDispositivo = (nuevoDispositivo: AuditoriaDispositivo) => {
@@ -46,7 +65,9 @@ export default function Trabajos({
 
     return (
         <section
-            className={style_trabajos.trabajos}
+            className={`${style_trabajos.trabajos} ${
+                showFooter ? style_trabajos.trabajos_resumen : ""
+            }`}
             id="trabajos"
             aria-label="Proyectos web realizados"
         >
@@ -65,11 +86,11 @@ export default function Trabajos({
                 <header className={style_trabajos.trabajos_header}>
                     <SectionHeader
                         icon={<IoIosRocket />}
-                        title="Proyectos web realizados"
-                        description="Una selección de páginas y soluciones digitales desarrolladas con foco en rendimiento, diseño responsive, SEO técnico y experiencia de usuario."
+                        title="Trabajos que convierten ideas en presencia digital"
+                        description="Una selección de proyectos reales, resueltos con foco en claridad, rendimiento y experiencia de usuario."
                     />
 
-                    <div className={style_trabajos.trabajos_auditoria}>
+                    {!showFooter && <div className={style_trabajos.trabajos_auditoria}>
                         <div className={style_trabajos.trabajos_auditoria_info}>
                             <span className={style_trabajos.trabajos_auditoria_label}>
                                 Métricas Lighthouse
@@ -108,7 +129,7 @@ export default function Trabajos({
                                 );
                             })}
                         </div>
-                    </div>
+                    </div>}
                 </header>
 
                 <div className={style_trabajos.trabajos_contenido_box}>

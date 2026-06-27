@@ -6,7 +6,6 @@ import Link from "next/link";
 import styles from "@/styles/sections/trabajos.module.scss";
 import type { TrabajosType } from "@/types/trabajos";
 
-import { ImagenComponent } from "./ImagenM";
 import { ContadorAnimadoAuditoria } from "./ContadorAnimado";
 import { trackEvent } from "../utils/Analytics";
 
@@ -75,6 +74,61 @@ export default function TrabajoCard({
         });
     };
 
+    if (modoResumen) {
+        return (
+            <article
+                ref={cardRef}
+                className={`${styles.trabajos_card_resumen} ${
+                    index === 0 ? styles.trabajos_card_principal : ""
+                } ${visible ? styles.view : ""}`}
+                style={{ transitionDelay: `${index * 90}ms` }}
+            >
+                <Link
+                    href={`/trabajos/${trabajo.id}`}
+                    className={styles.trabajos_card_resumen_link}
+                    aria-label={`Ver proyecto ${trabajo.nombre_trabajo}`}
+                    onClick={handleClickTrabajo}
+                >
+                    <Image
+                        className={styles.trabajos_card_resumen_img}
+                        src={imagenUrl}
+                        alt={`Vista previa del proyecto ${trabajo.nombre_trabajo}`}
+                        fill
+                        priority={index === 0}
+                        sizes={index === 0
+                            ? "(min-width: 974px) 1180px, 100vw"
+                            : "(min-width: 974px) 33vw, (min-width: 696px) 50vw, 100vw"}
+                    />
+
+                    <div className={styles.trabajos_card_resumen_badges}>
+                        {index === 0 && (
+                            <span className={styles.trabajos_card_badge}>Destacado</span>
+                        )}
+                        <span className={styles.trabajos_card_estado}>{estado}</span>
+                    </div>
+
+                    <div className={styles.trabajos_card_overlay}>
+                        <div>
+                            <span className={styles.trabajos_card_categoria}>
+                                {trabajo.categoria_trabajo}
+                            </span>
+                            <h3>{trabajo.nombre_trabajo}</h3>
+                        </div>
+
+                        <div className={styles.trabajos_card_resumen_meta}>
+                            <span><strong>{promedio}</strong> Lighthouse</span>
+                            <span>{trabajo.rol}</span>
+                        </div>
+
+                        <span className={styles.trabajos_card_resumen_cta}>
+                            Ver proyecto
+                        </span>
+                    </div>
+                </Link>
+            </article>
+        );
+    }
+
     return (
         <article
             ref={cardRef}
@@ -98,7 +152,8 @@ export default function TrabajoCard({
                         alt={`Vista previa del proyecto ${trabajo.nombre_trabajo}`}
                         width={700}
                         height={520}
-                        priority
+                        priority={index === 0}
+                        sizes="(min-width: 1218px) 520px, (min-width: 696px) 42vw, 100vw"
                     ></Image>
 
                     <div className={styles.trabajos_card_media_badges}>

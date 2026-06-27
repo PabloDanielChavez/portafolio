@@ -1,58 +1,62 @@
 "use client";
 
-import styles from "@/styles/sections/servicios.module.scss";
-import { AiTwotoneSchedule, FiDatabase, FiTool, HiOutlineCodeBracket, IoMdArrowBack, LuCircleGauge, LuGauge, LuMonitorSmartphone} from "@/components/utils/Iconos";
+import Link from "next/link";
 
-import { ServiciosType } from "@/types/servicios";
+import {
+    AiTwotoneSchedule,
+    FiDatabase,
+    FiTool,
+    HiOutlineCodeBracket,
+    IoMdArrowBack,
+    LuCircleGauge,
+    LuGauge,
+    LuMonitorSmartphone
+} from "@/components/utils/Iconos";
+import styles from "@/styles/sections/servicios.module.scss";
+import type { ServiciosType } from "@/types/servicios";
+
 import SectionHeader from "../sub_components/SectionHeader";
 import ServicioCard from "../sub_components/ServicioCard";
-import Link from "next/link";
 
 type Props = {
     servicios: ServiciosType[];
+    showBackLink?: boolean;
 };
 
-export default function Servicios({ servicios }: Props) {
-
-    const renderIcono = (nombreString: string) => {
-        if (nombreString === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
-        if (nombreString === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
-        if (nombreString === "LuGauge") return <LuGauge />;
-        if (nombreString === "FiTool") return <FiTool />;
-        if (nombreString === "TbPlugConnected") return <LuCircleGauge />;
-
+export default function Servicios({ servicios, showBackLink = true }: Props) {
+    const renderIcono = (nombre: string) => {
+        if (nombre === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
+        if (nombre === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
+        if (nombre === "LuGauge") return <LuGauge />;
+        if (nombre === "FiTool") return <FiTool />;
+        if (nombre === "TbPlugConnected") return <LuCircleGauge />;
         return <FiDatabase />;
     };
 
     return (
-        <section className={styles.servicios}>
+        <section className={styles.servicios} id="servicios">
             <div className={styles.servicios_layout}>
-                <Link
-                    href="/"
-                    className={styles.servicios_LINK}
-                    aria-label="Volver a Inicio"
-                >
-                    <IoMdArrowBack />
-                    Volver al Portafolio
-                </Link>
-                <div className={styles.servicios_header}>
-                    <SectionHeader
-                        icon={<AiTwotoneSchedule />}
-                        title="Mis Servicios"
-                        description="Formular estrategias integrales para alcanzar sus objetivos de diseño y superar las expectativas."
-                    />
+                {showBackLink && (
+                    <Link href="/" className={styles.servicios_LINK}>
+                        <IoMdArrowBack aria-hidden="true" />
+                        Volver al portafolio
+                    </Link>
+                )}
 
-                    <div className={styles.servicios_contenido_box}>
-                        <div className={styles.servicios_contenido_box_layout}>
-                            {servicios?.map((servicio) => (
-                                <ServicioCard
-                                    key={servicio.id}
-                                    servicio={servicio}
-                                    icono={renderIcono(servicio.reactIcon)}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                <SectionHeader
+                    icon={<AiTwotoneSchedule />}
+                    title="Servicios web para hacer crecer tu negocio"
+                    description="Soluciones concretas, explicadas sin tecnicismos y enfocadas en que tu presencia digital sea clara, rápida y confiable."
+                />
+
+                <div className={styles.servicios_contenido_box_layout}>
+                    {servicios?.map((servicio) => (
+                        <ServicioCard
+                            key={servicio.id}
+                            servicio={servicio}
+                            icono={renderIcono(servicio.reactIcon)}
+                        />
+                    ))}
                 </div>
             </div>
         </section>

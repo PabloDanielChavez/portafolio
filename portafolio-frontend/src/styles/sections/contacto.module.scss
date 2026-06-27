@@ -103,7 +103,7 @@
 
             svg {
                 flex: 0 0 auto;
-                color: #67e8f9;
+                color: v.$violet-soft;
             }
         }
 
@@ -171,7 +171,7 @@
         display: inline-flex;
         align-items: center;
         width: fit-content;
-        color: #67e8f9;
+        color: v.$violet-soft;
         font-size: .7rem;
         font-weight: 900;
         line-height: 1.2;
@@ -425,7 +425,7 @@
         padding: .9rem 1.2rem;
         border: 0;
         border-radius: 999px;
-        background: linear-gradient(135deg, #effcff, #67e8f9 38%, v.$color-accent 82%);
+        background: linear-gradient(135deg, v.$cream, v.$violet-soft 38%, v.$violet-primary 82%);
         color: #061015;
         cursor: pointer;
         font: inherit;
@@ -543,7 +543,7 @@
         svg {
             flex: 0 0 auto;
             margin-top: .15rem;
-            color: #67e8f9;
+            color: v.$violet-soft;
         }
 
         @include m.telefono {
@@ -613,7 +613,7 @@
             box-shadow: 0 14px 34px rgba(v.$color-accent, .07);
 
             .contacto_social_arrow {
-                color: #67e8f9;
+                color: v.$violet-soft;
                 transform: translateX(4px);
             }
         }
@@ -632,7 +632,7 @@
         border: 1px solid rgba(v.$color-accent, .18);
         border-radius: 13px;
         background: rgba(v.$color-accent, .07);
-        color: #67e8f9;
+        color: v.$violet-soft;
 
         svg {
             width: 1.2rem;
@@ -762,7 +762,7 @@
         border: 1px solid rgba(v.$color-accent, .16);
         border-radius: 10px;
         background: rgba(v.$color-accent, .06);
-        color: #67e8f9;
+        color: v.$violet-soft;
 
         svg {
             width: .85rem;
@@ -820,4 +820,116 @@
         opacity: 1;
         transform: none;
     }
+}
+
+/* El formulario conserva su lógica; estas reglas lo alinean al sistema común. */
+.contacto {
+    @include m.section-shell(v.$background-main);
+
+    padding-inline: 0;
+    background: v.$background-main;
+
+    &::before {
+        display: none;
+    }
+}
+
+.contacto_layout {
+    @include m.container;
+
+    max-width: none;
+}
+
+.contacto_form,
+.contacto_trust_panel,
+.contacto_channels_panel {
+    @include m.card-base;
+
+    border-radius: v.$radius-large;
+    background: v.$background-card;
+    box-shadow: v.$shadow-card;
+}
+
+.contacto_value_bar {
+    @include m.card-metric;
+
+    border-radius: v.$radius-base;
+    background: rgba(v.$violet-primary, .055);
+
+    span svg {
+        color: v.$violet-soft;
+    }
+}
+
+.contacto_eyebrow {
+    color: v.$violet-soft;
+    font-family: v.$font-display;
+}
+
+.contacto_submit {
+    background: v.$violet-primary;
+    color: #0b0712;
+    box-shadow: 0 12px 30px rgba(v.$violet-primary, .18);
+    font-family: v.$font-display;
+}
+
+.contacto_faq_article {
+    @include m.card-compact;
+
+    border-radius: v.$radius-base;
+    background: v.$background-card;
+    box-shadow: none;
+}
+
+.contacto_value_bar span {
+    font-size: .86rem;
+    line-height: 1.55;
+}
+
+.contacto_form_header p {
+    font-size: 1rem;
+}
+
+.contacto_field {
+    label {
+        font-size: .86rem;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: .98rem;
+        line-height: 1.6;
+    }
+}
+
+.contacto_field_help,
+.contacto_field_meta,
+.contacto_privacy,
+.contacto_response_note {
+    font-size: .8rem;
+}
+
+.contacto_trust_grid {
+    font-size: .86rem;
+}
+
+.contacto_social_info {
+    strong {
+        font-size: .9rem;
+    }
+
+    span {
+        font-size: .76rem;
+    }
+}
+
+.contacto_faq_button {
+    font-size: .95rem;
+    line-height: 1.6;
+}
+
+.contacto_faq_answer div p {
+    font-size: .92rem;
+    line-height: 1.76;
 }

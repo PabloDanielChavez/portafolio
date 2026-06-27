@@ -21,8 +21,9 @@ export default function PlanCard({ planes }: PlanCardProps) {
                 )}
                 <h3 className={styles.planes_card_titulo}>{planes.titulo}</h3>
                 <p className={styles.planes_card_descripcion}>{planes.descripcion}</p>
+                <p className={styles.planes_card_precio}>{planes.precio}</p>
                 <ul className={styles.planes_card_lista}>
-                    {planes.items.map((item) => (
+                    {planes.items.slice(0, 5).map((item) => (
                         <li key={`${planes.id}-${item}`} className={styles.planes_card_item}>
                             <span className={styles.planes_card_texto}>
                                 {item}
@@ -31,7 +32,7 @@ export default function PlanCard({ planes }: PlanCardProps) {
                     ))}
                 </ul>
                 <span className={styles.planes_boton}>
-                    Solicitar presupuesto
+                    Ver plan
                 </span>
             </Link>
         </article>

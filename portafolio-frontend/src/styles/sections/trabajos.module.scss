@@ -33,7 +33,7 @@
     border-radius: 999px;
     background: rgba(v.$color-accent, .08);
     color: rgba(v.$color-accent-dos, .96);
-    font-size: .72rem;
+    font-size: .78rem;
     font-weight: 900;
     line-height: 1;
     letter-spacing: .05em;
@@ -51,7 +51,7 @@
     padding: .9rem 1.25rem;
     border: 0;
     border-radius: 999px;
-    background: linear-gradient(135deg, #effcff, #67e8f9 38%, v.$color-accent 82%);
+    background: linear-gradient(135deg, v.$cream, v.$violet-soft 38%, v.$violet-primary 82%);
     color: #071015;
     cursor: pointer;
     font: inherit;
@@ -425,7 +425,7 @@
         flex-wrap: wrap;
         gap: .45rem .6rem;
         color: rgba(v.$color-crema, .58);
-        font-size: .84rem;
+        font-size: .9rem;
         font-weight: 650;
         line-height: 1.5;
     }
@@ -433,8 +433,8 @@
     &_card_desc {
         margin: 0;
         color: rgba(v.$color-crema, .74);
-        font-size: .96rem;
-        line-height: 1.75;
+        font-size: v.$font-size-copy;
+        line-height: v.$line-height-copy;
         text-wrap: pretty;
     }
 
@@ -1086,7 +1086,7 @@
         }
 
         &_activo {
-            background: linear-gradient(135deg, #effcff, v.$color-accent);
+            background: linear-gradient(135deg, v.$cream, v.$violet-primary);
             color: #061015;
             box-shadow: 0 14px 30px rgba(v.$color-accent, .2);
         }
@@ -1231,5 +1231,193 @@
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
+    }
+}
+
+/* Home: proyecto principal + grilla visual compacta */
+.trabajos_resumen {
+    @include m.section-shell(v.$background-section);
+
+    padding-inline: 0;
+    background: v.$background-section;
+
+    &::before {
+        display: none;
+    }
+
+    .trabajos_layout {
+        @include m.container;
+
+        max-width: none;
+    }
+
+    .trabajos_header {
+        gap: 0;
+        margin-bottom: 0;
+    }
+
+    .trabajos_contenido_box_layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+
+        @include m.telefonoXL {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        @include m.tabletXL {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+}
+
+.trabajos_card_resumen {
+    @include m.card-base;
+
+    position: relative;
+    min-height: 320px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity .55s ease,
+        transform .55s ease,
+        border-color .2s ease;
+
+    &:hover,
+    &:focus-within {
+        border-color: rgba(v.$violet-soft, .35);
+    }
+}
+
+.trabajos_card_resumen.view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.trabajos_card_principal {
+    min-height: clamp(360px, 50vw, 500px);
+
+    @include m.telefonoXL {
+        grid-column: 1 / -1;
+    }
+}
+
+.trabajos_card_resumen_link {
+    @extend %trabajos-link-reset;
+
+    position: absolute;
+    inset: 0;
+    display: block;
+
+    &:focus-visible {
+        @include m.focus-ring;
+        outline-offset: -6px;
+    }
+}
+
+.trabajos_card_resumen_img {
+    object-fit: cover;
+    filter: brightness(1.08) saturate(1.03);
+    transition:
+        transform .45s ease,
+        filter .3s ease;
+}
+
+.trabajos_card_resumen_badges {
+    position: absolute;
+    inset: .85rem .85rem auto;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+}
+
+.trabajos_card_overlay {
+    position: absolute;
+    inset: auto 0 0;
+    z-index: 1;
+    display: grid;
+    gap: .8rem;
+    padding: clamp(4.5rem, 12vw, 7rem) 1.1rem 1.1rem;
+    background: linear-gradient(180deg, transparent, rgba(7, 6, 10, .84) 56%);
+
+    h3 {
+        margin: .55rem 0 0;
+        color: v.$text-primary;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        line-height: 1.1;
+        letter-spacing: -.035em;
+    }
+}
+
+.trabajos_card_resumen_meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    color: v.$text-secondary;
+    font-size: .86rem;
+
+    span {
+        @include m.card-metric;
+        padding: .42rem .6rem;
+    }
+
+    strong {
+        color: v.$cream;
+    }
+}
+
+.trabajos_card_resumen_cta {
+    display: inline-flex;
+    width: fit-content;
+    color: v.$violet-soft;
+    font-family: v.$font-display;
+    font-size: .9rem;
+    font-weight: 800;
+}
+
+.trabajos_resumen .trabajos_card_footer {
+    margin-top: 1.5rem;
+}
+
+.trabajos_resumen .trabajos_card_btn {
+    @include m.button-primary;
+
+    width: auto;
+    min-width: 200px;
+    border: 1px solid rgba(v.$violet-soft, .48);
+    background: v.$violet-primary;
+    color: #0b0712;
+    box-shadow: 0 12px 30px rgba(v.$violet-primary, .18);
+}
+
+@include m.tablet {
+    .trabajos_card_overlay {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+            opacity .25s ease,
+            transform .25s ease;
+    }
+
+    .trabajos_card_resumen:hover .trabajos_card_overlay,
+    .trabajos_card_resumen:focus-within .trabajos_card_overlay {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .trabajos_card_resumen:hover .trabajos_card_resumen_img,
+    .trabajos_card_resumen:focus-within .trabajos_card_resumen_img {
+        transform: scale(1.025);
+        filter: brightness(.68) saturate(1.02);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trabajos_card_resumen {
+        opacity: 1;
+        transform: none;
     }
 }

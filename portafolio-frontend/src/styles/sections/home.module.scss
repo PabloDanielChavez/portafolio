@@ -1,0 +1,232 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.trust {
+    position: relative;
+    z-index: 2;
+    border-block: 1px solid v.$border-card;
+    background: v.$background-section;
+}
+
+.trust_grid {
+    @include m.container;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @include m.tablet {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.trust_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 104px;
+    padding: 1rem;
+    border-right: 1px solid v.$border-card;
+
+    &:nth-child(2n) {
+        border-right: 0;
+    }
+
+    @include m.tablet {
+        &:nth-child(2n) {
+            border-right: 1px solid v.$border-card;
+        }
+
+        &:last-child {
+            border-right: 0;
+        }
+    }
+
+    strong {
+        color: v.$violet-soft;
+        font-family: v.$font-display;
+        font-size: clamp(1.1rem, 3vw, 1.4rem);
+    }
+
+    span {
+        color: v.$text-secondary;
+        font-size: v.$font-size-small;
+        line-height: 1.45;
+    }
+}
+
+.process {
+    @include m.section-shell(v.$background-section);
+}
+
+.process_layout {
+    @include m.container;
+}
+
+.process_header {
+    max-width: 700px;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    > span,
+    h2 {
+        font-family: v.$font-display;
+    }
+
+    > span {
+        color: v.$violet-soft;
+        font-size: .75rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        margin: .65rem 0 0;
+        font-size: clamp(1.8rem, 4.5vw, 2.75rem);
+        letter-spacing: -.045em;
+        line-height: 1.08;
+    }
+
+    p {
+        margin: .85rem 0 0;
+        color: v.$text-secondary;
+        line-height: 1.7;
+    }
+}
+
+.process_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include m.telefonoXL {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include m.tabletXL {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+.process_card {
+    @include m.card-compact;
+
+    position: relative;
+    padding: 1.25rem;
+
+    h3 {
+        margin: .8rem 0 .45rem;
+        font-size: 1.06rem;
+        line-height: 1.2;
+    }
+
+    p {
+        margin: 0;
+        color: v.$text-secondary;
+        font-size: v.$font-size-small;
+        line-height: 1.62;
+    }
+}
+
+.process_number {
+    display: inline-flex;
+    color: v.$gold;
+    font-family: v.$font-display;
+    font-size: .78rem;
+    font-weight: 800;
+}
+
+.cta {
+    @include m.section-shell(v.$background-main);
+}
+
+.cta_card {
+    @include m.container;
+    @include m.card-featured;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: clamp(1.5rem, 5vw, 3rem);
+
+    @include m.tablet {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    h2 {
+        max-width: 780px;
+        margin: .65rem 0 0;
+        font-size: clamp(1.8rem, 4.5vw, 3rem);
+        letter-spacing: -.05em;
+        line-height: 1.08;
+        text-wrap: balance;
+    }
+
+    p {
+        max-width: 680px;
+        margin: 1rem 0 0;
+        color: v.$text-secondary;
+        line-height: 1.7;
+    }
+}
+
+.cta_label {
+    color: v.$gold;
+    font-family: v.$font-display;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.cta_checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem 1rem;
+    margin-top: 1rem;
+    color: v.$text-secondary;
+    font-size: v.$font-size-small;
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+    }
+
+    svg {
+        color: v.$violet-soft;
+    }
+}
+
+.cta_actions {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    min-width: min(100%, 240px);
+}
+
+.cta_primary {
+    @include m.button-primary;
+}
+
+.cta_secondary {
+    @extend %link-reset;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 46px;
+    padding: .75rem 1rem;
+    color: v.$text-secondary;
+    font-family: v.$font-display;
+    font-size: v.$font-size-small;
+    font-weight: 750;
+
+    &:hover {
+        color: v.$text-primary;
+    }
+}
