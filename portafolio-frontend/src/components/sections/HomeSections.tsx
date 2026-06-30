@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { FaArrowRight, FaCheck, FaWhatsapp } from "@/components/utils/Iconos";
 import { mensajePresupuesto } from "@/components/utils/variables";
+import { homeContent } from "@/content/home.content";
 import styles from "@/styles/sections/home.module.scss";
 import type { PerfilType } from "@/types/perfil";
 
@@ -9,24 +10,23 @@ type TrustBarProps = {
     projectCount: number;
 };
 
-const proceso = [
-    { numero: "01", titulo: "Análisis", texto: "Entendemos el negocio y el objetivo." },
-    { numero: "02", titulo: "Propuesta", texto: "Definimos alcance, estructura y tiempos." },
-    { numero: "03", titulo: "Desarrollo", texto: "Construyo y revisamos avances claros." },
-    { numero: "04", titulo: "Entrega", texto: "Publicamos y dejamos todo preparado." },
-    { numero: "05", titulo: "Acompañamiento", texto: "Seguimos en contacto después del lanzamiento." }
-];
-
 export function TrustBar({ projectCount }: TrustBarProps) {
     const indicadores = [
-        { valor: `${projectCount}+`, etiqueta: "proyectos publicados" },
-        { valor: "SEO", etiqueta: "técnico incluido" },
-        { valor: "100%", etiqueta: "diseño responsive" },
-        { valor: "WhatsApp", etiqueta: "contacto directo" }
+        {
+            valor: `${projectCount}${homeContent.trust.projects.valueSuffix}`,
+            etiqueta: homeContent.trust.projects.label
+        },
+        ...homeContent.trust.indicators.map((indicator) => ({
+            valor: indicator.value,
+            etiqueta: indicator.label
+        }))
     ];
 
     return (
-        <section className={styles.trust} aria-label="Indicadores de confianza">
+        <section
+            className={styles.trust}
+            aria-label={homeContent.trust.ariaLabel}
+        >
             <div className={styles.trust_grid}>
                 {indicadores.map((indicador) => (
                     <div className={styles.trust_item} key={indicador.etiqueta}>
@@ -44,20 +44,17 @@ export function Proceso() {
         <section className={styles.process} id="proceso" aria-labelledby="proceso-title">
             <div className={styles.process_layout}>
                 <header className={styles.process_header}>
-                    <span>Cómo trabajamos</span>
-                    <h2 id="proceso-title">Un proceso simple, con avances claros</h2>
-                    <p>
-                        Cada etapa tiene un objetivo concreto para que sepas qué estamos
-                        resolviendo y qué sigue.
-                    </p>
+                    <span>{homeContent.process.eyebrow}</span>
+                    <h2 id="proceso-title">{homeContent.process.title}</h2>
+                    <p>{homeContent.process.description}</p>
                 </header>
 
                 <ol className={styles.process_grid}>
-                    {proceso.map((paso) => (
-                        <li className={styles.process_card} key={paso.numero}>
-                            <span className={styles.process_number}>{paso.numero}</span>
-                            <h3>{paso.titulo}</h3>
-                            <p>{paso.texto}</p>
+                    {homeContent.process.steps.map((paso) => (
+                        <li className={styles.process_card} key={paso.number}>
+                            <span className={styles.process_number}>{paso.number}</span>
+                            <h3>{paso.title}</h3>
+                            <p>{paso.description}</p>
                         </li>
                     ))}
                 </ol>
@@ -76,15 +73,17 @@ export function FinalCta({ perfil }: { perfil: PerfilType[] }) {
         <section className={styles.cta} id="contacto" aria-labelledby="cta-title">
             <div className={styles.cta_card}>
                 <div>
-                    <span className={styles.cta_label}>Tu próximo proyecto</span>
-                    <h2 id="cta-title">Hagamos que tu negocio se vea tan profesional como es.</h2>
-                    <p>
-                        Contame qué necesitás y te respondo con una propuesta clara,
-                        sin vueltas ni paquetes inflados.
-                    </p>
+                    <span className={styles.cta_label}>
+                        {homeContent.finalCta.label}
+                    </span>
+                    <h2 id="cta-title">{homeContent.finalCta.title}</h2>
+                    <p>{homeContent.finalCta.description}</p>
                     <div className={styles.cta_checks}>
-                        <span><FaCheck aria-hidden="true" /> Respuesta personalizada</span>
-                        <span><FaCheck aria-hidden="true" /> Presupuesto sin compromiso</span>
+                        {homeContent.finalCta.checks.map((check) => (
+                            <span key={check}>
+                                <FaCheck aria-hidden="true" /> {check}
+                            </span>
+                        ))}
                     </div>
                 </div>
 
@@ -96,10 +95,10 @@ export function FinalCta({ perfil }: { perfil: PerfilType[] }) {
                         rel={whatsapp ? "noopener noreferrer" : undefined}
                     >
                         <FaWhatsapp aria-hidden="true" />
-                        Solicitar presupuesto
+                        {homeContent.finalCta.primaryAction}
                     </Link>
                     <Link href="/contacto" className={styles.cta_secondary}>
-                        Ver formulario
+                        {homeContent.finalCta.secondaryAction}
                         <FaArrowRight aria-hidden="true" />
                     </Link>
                 </div>

@@ -59,7 +59,7 @@ con el payload anterior; el frontend actual exige `tipoProyecto`:
 
 - `tipoProyecto`: `Landing Page`, `Sitio Web Profesional`, `Tienda Online`,
   `Desarrollo a medida` u `Otro`.
-- `presupuesto`: `Necesito orientación`, `Hasta USD 500`, `USD 500 a 1.000`,
+- `presupuesto`: `Necesito orientación`, `Hasta USD 200`, `USD 200 a 1.000`,
   `USD 1.000 a 2.500` o `Más de USD 2.500`.
 - `plazo`: `Lo antes posible`, `Durante el próximo mes`, `En 1 a 3 meses` o
   `Todavía no lo definí`.

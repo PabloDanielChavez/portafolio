@@ -15,22 +15,22 @@ export default function Perfil() {
         {
             name: "Whatsapp",
             icon: <FaWhatsapp />,
-            url: "https://wa.me/TUNUMERO"
+            url: `https://wa.me/5491164095914?text=${mensajeWSP}`
         },
         {
             name: "LinkedIn",
             icon: <FaLinkedin />,
-            url: "https://linkedin.com/in/TUUSUARIO"
+            url: "https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/"
         },
         {
             name: "GitHub",
             icon: <FaGithubSquare />,
-            url: "https://github.com/TUUSUARIO"
+            url: "https://github.com/PabloDanielChavez"
         },
         {
             name: "Instagram",
             icon: <FaInstagram />,
-            url: "https://instagram.com/TUUSUARIO"
+            url: "https://www.instagram.com/paginasweb.chavez/"
         }
     ];
 

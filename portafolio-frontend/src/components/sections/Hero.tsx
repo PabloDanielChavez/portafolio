@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FaArrowDown, FaCheck, FaWhatsapp } from "@/components/utils/Iconos";
+import { heroContent } from "@/content/hero.content";
 import type { PerfilType } from "@/types/perfil";
 import styles from "@/styles/sections/hero.module.scss";
 
@@ -9,13 +10,6 @@ import { mensajePresupuesto } from "../utils/variables";
 interface Props {
     perfil: PerfilType[];
 }
-
-const beneficios = [
-    "SEO técnico",
-    "Diseño responsive",
-    "WhatsApp integrado",
-    "Carga rápida"
-];
 
 export default function Hero({ perfil }: Props) {
     const whatsapp = String(perfil[0]?.numero_whatsapp ?? "").replace(/\D/g, "");
@@ -28,18 +22,17 @@ export default function Hero({ perfil }: Props) {
             <div className={styles.hero_layout}>
                 <div className={styles.hero_content}>
                     <span className={styles.hero_eyebrow}>
-                        Diseño y desarrollo web
+                        {heroContent.eyebrow}
                     </span>
 
                     <h1 id="hero-title" className={styles.hero_title}>
-                        Páginas web que transmiten{" "}
-                        <strong>confianza</strong> y generan consultas
+                        {heroContent.title.beforeHighlight}{" "}
+                        <strong>{heroContent.title.highlight}</strong>{" "}
+                        {heroContent.title.afterHighlight}
                     </h1>
 
                     <p className={styles.hero_description}>
-                        Creo sitios web rápidos, modernos y optimizados para Google,
-                        pensados para que tu negocio se vea profesional y convierta
-                        visitas en clientes.
+                        {heroContent.description}
                     </p>
 
                     <div className={styles.hero_actions}>
@@ -50,26 +43,31 @@ export default function Hero({ perfil }: Props) {
                             rel={whatsapp ? "noopener noreferrer" : undefined}
                         >
                             <FaWhatsapp aria-hidden="true" />
-                            Solicitar presupuesto
+                            {heroContent.actions.primary}
                         </Link>
 
                         <Link href="#trabajos" className={styles.hero_secondary}>
-                            Ver trabajos
+                            {heroContent.actions.secondary}
                             <FaArrowDown aria-hidden="true" />
                         </Link>
                     </div>
 
                     <p className={styles.hero_note}>
-                        Propuesta clara, trato directo y acompañamiento después de publicar.
+                        {heroContent.note}
                     </p>
                 </div>
 
-                <aside className={styles.hero_panel} aria-label="Qué incluye cada proyecto">
-                    <span className={styles.hero_panel_label}>Una base sólida para crecer</span>
-                    <h2>Tu web lista para verse bien y trabajar para tu negocio.</h2>
+                <aside
+                    className={styles.hero_panel}
+                    aria-label={heroContent.panel.ariaLabel}
+                >
+                    <span className={styles.hero_panel_label}>
+                        {heroContent.panel.label}
+                    </span>
+                    <h2>{heroContent.panel.title}</h2>
 
                     <ul className={styles.hero_benefits}>
-                        {beneficios.map((beneficio) => (
+                        {heroContent.panel.benefits.map((beneficio) => (
                             <li key={beneficio}>
                                 <span aria-hidden="true"><FaCheck /></span>
                                 {beneficio}
@@ -78,8 +76,8 @@ export default function Hero({ perfil }: Props) {
                     </ul>
 
                     <div className={styles.hero_panel_footer}>
-                        <span>Enfoque</span>
-                        <strong>Claridad · rendimiento · conversión</strong>
+                        <span>{heroContent.panel.footerLabel}</span>
+                        <strong>{heroContent.panel.footerValue}</strong>
                     </div>
                 </aside>
             </div>

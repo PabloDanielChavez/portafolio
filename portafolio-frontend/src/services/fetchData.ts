@@ -85,8 +85,8 @@ export type TipoProyectoContacto =
 
 export type PresupuestoContacto =
   | "Necesito orientación"
-  | "Hasta USD 500"
-  | "USD 500 a 1.000"
+  | "Hasta USD 200"
+  | "USD 200 a 1.000"
   | "USD 1.000 a 2.500"
   | "Más de USD 2.500";
 
