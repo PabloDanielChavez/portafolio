@@ -62,6 +62,8 @@ const environmentSchema = z.object({
     CONTACT_RATE_LIMIT_MAX: z.coerce.number().int().min(1).default(5),
     CONTACT_RATE_LIMIT_WINDOW_MINUTES: z.coerce.number().int().min(1).default(15),
     AUDIT_RATE_LIMIT_MAX: z.coerce.number().int().min(1).default(2),
+    AUDIT_API_TOKEN: z.string().min(32).max(512).optional(),
+    AUDIT_ALLOWED_HOSTS: z.string().optional(),
     PAGESPEED_API_KEY: z.string().trim().optional()
 });
 
@@ -78,6 +80,44 @@ if (!parsedEnvironment.success) {
 }
 
 const values = parsedEnvironment.data;
+const auditAllowedHosts = (values.AUDIT_ALLOWED_HOSTS ?? '')
+    .split(',')
+    .map((hostname) => hostname.trim().toLowerCase().replace(/\.$/, ''))
+    .filter(Boolean);
+
+for (const hostname of auditAllowedHosts) {
+    let parsedHostname;
+
+    try {
+        parsedHostname = new URL(`https://${hostname}`);
+    } catch {
+        throw new Error(
+            `AUDIT_ALLOWED_HOSTS contiene un hostname inválido: ${hostname}`
+        );
+    }
+
+    if (
+        parsedHostname.hostname !== hostname ||
+        parsedHostname.pathname !== '/' ||
+        parsedHostname.search ||
+        parsedHostname.hash ||
+        parsedHostname.port
+    ) {
+        throw new Error(
+            `AUDIT_ALLOWED_HOSTS debe contener hostnames exactos: ${hostname}`
+        );
+    }
+}
+
+if (
+    values.NODE_ENV === 'production' &&
+    (!values.AUDIT_API_TOKEN || auditAllowedHosts.length === 0)
+) {
+    throw new Error(
+        'Configuración de entorno inválida. Definí AUDIT_API_TOKEN y AUDIT_ALLOWED_HOSTS en producción.'
+    );
+}
+
 const rawCorsOrigins =
     values.CORS_ORIGINS ?? values.CORS_ORIGIN ?? values.FRONTEND_URL ?? '';
 const corsOrigins = rawCorsOrigins
@@ -156,5 +196,7 @@ export const env = Object.freeze({
     contactRateLimitMax: values.CONTACT_RATE_LIMIT_MAX,
     contactRateLimitWindowMinutes: values.CONTACT_RATE_LIMIT_WINDOW_MINUTES,
     auditRateLimitMax: values.AUDIT_RATE_LIMIT_MAX,
+    auditApiToken: values.AUDIT_API_TOKEN,
+    auditAllowedHosts: Object.freeze([...new Set(auditAllowedHosts)]),
     pageSpeedApiKey: values.PAGESPEED_API_KEY
 });

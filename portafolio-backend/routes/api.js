@@ -19,6 +19,7 @@ import {
     auditRateLimiter,
     contactRateLimiter,
     handleContactHoneypot,
+    requireAuditToken,
     requireAllowedContactOrigin
 } from '../middleware/security.js';
 import { validateRequest } from '../middleware/validateRequest.js';
@@ -60,6 +61,7 @@ router.all('/api/contacto', (req, res) => {
 
 router.post(
     '/api/actualizar-auditoria',
+    requireAuditToken,
     auditRateLimiter,
     validateRequest(auditBodySchema),
     asyncHandler(actualizarAuditoriaPageSpeed)

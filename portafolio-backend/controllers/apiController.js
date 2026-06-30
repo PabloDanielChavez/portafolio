@@ -13,6 +13,7 @@ import {
     tra_tecnologia,
     trabajos
 } from '../models/Portafolio.js';
+import { validateProjectAuditUrl } from '../services/auditSecurityService.js';
 import { saveContact } from '../services/contactService.js';
 
 const createGetAllController = (model) => async (req, res) => {
@@ -121,20 +122,45 @@ const getAuditMetrics = (data, url, strategy) => {
     };
 };
 
-export const actualizarAuditoriaPageSpeed = async (req, res) => {
-    if (!env.pageSpeedApiKey) {
+export const createActualizarAuditoriaPageSpeed = ({
+    projectModel = trabajos,
+    pageSpeedFetcher = fetchPageSpeed,
+    pageSpeedApiKey = env.pageSpeedApiKey,
+    allowedHosts = env.auditAllowedHosts,
+    isProduction = env.isProduction
+} = {}) => async (req, res) => {
+    const { id, url } = req.validated.body;
+    const project = await projectModel.findByPk(id, {
+        attributes: [
+            'id',
+            'enlace_trabajo',
+            'enlace_trabajoResumido'
+        ]
+    });
+
+    if (!project) {
+        throw new HttpError(404, 'El proyecto solicitado no existe.');
+    }
+
+    const validatedUrl = validateProjectAuditUrl({
+        requestedUrl: url,
+        project,
+        allowedHosts,
+        isProduction
+    });
+
+    if (!pageSpeedApiKey) {
         throw new HttpError(503, 'El servicio de auditoría no está disponible.');
     }
 
-    const { id, url } = req.validated.body;
     const [mobileData, desktopData] = await Promise.all([
-        fetchPageSpeed(url, 'mobile'),
-        fetchPageSpeed(url, 'desktop')
+        pageSpeedFetcher(validatedUrl, 'mobile'),
+        pageSpeedFetcher(validatedUrl, 'desktop')
     ]);
-    const mobile = getAuditMetrics(mobileData, url, 'mobile');
-    const desktop = getAuditMetrics(desktopData, url, 'desktop');
+    const mobile = getAuditMetrics(mobileData, validatedUrl, 'mobile');
+    const desktop = getAuditMetrics(desktopData, validatedUrl, 'desktop');
 
-    await trabajos.update(
+    const [affectedRows] = await projectModel.update(
         {
             performance_mobile: mobile.performance,
             accessibility_mobile: mobile.accessibility,
@@ -149,6 +175,13 @@ export const actualizarAuditoriaPageSpeed = async (req, res) => {
             where: { id }
         }
     );
+
+    if (!Number.isInteger(affectedRows) || affectedRows < 1) {
+        throw new HttpError(
+            409,
+            'No se pudo actualizar la auditoría del proyecto.'
+        );
+    }
 
     res.json({
         success: true,
@@ -172,3 +205,6 @@ export const actualizarAuditoriaPageSpeed = async (req, res) => {
         }
     });
 };
+
+export const actualizarAuditoriaPageSpeed =
+    createActualizarAuditoriaPageSpeed();

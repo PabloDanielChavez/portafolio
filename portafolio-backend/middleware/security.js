@@ -1,3 +1,5 @@
+import { createHash, timingSafeEqual } from 'node:crypto';
+
 import rateLimit from 'express-rate-limit';
 
 import { env } from '../config/env.js';
@@ -37,6 +39,59 @@ export const auditRateLimiter = createRateLimiter({
     limit: env.auditRateLimitMax,
     message: 'La auditoría fue solicitada recientemente. Intentá más tarde.'
 });
+
+const secureTokenEquals = (receivedToken, expectedToken) => {
+    const receivedDigest = createHash('sha256')
+        .update(receivedToken, 'utf8')
+        .digest();
+    const expectedDigest = createHash('sha256')
+        .update(expectedToken, 'utf8')
+        .digest();
+
+    return timingSafeEqual(receivedDigest, expectedDigest);
+};
+
+export const createRequireAuditToken =
+    (expectedToken) => (req, res, next) => {
+        if (!expectedToken) {
+            return next(
+                new HttpError(
+                    503,
+                    'El servicio de auditoría no está disponible.'
+                )
+            );
+        }
+
+        const authorization = req.get('authorization');
+
+        if (!authorization) {
+            res.set('WWW-Authenticate', 'Bearer');
+
+            return next(
+                new HttpError(401, 'Se requiere autenticación para auditar.')
+            );
+        }
+
+        const match = authorization.match(/^Bearer ([^\s]+)$/);
+
+        if (!match) {
+            res.set('WWW-Authenticate', 'Bearer');
+
+            return next(
+                new HttpError(401, 'El encabezado de autenticación no es válido.')
+            );
+        }
+
+        if (!secureTokenEquals(match[1], expectedToken)) {
+            return next(
+                new HttpError(403, 'Las credenciales de auditoría no son válidas.')
+            );
+        }
+
+        return next();
+    };
+
+export const requireAuditToken = createRequireAuditToken(env.auditApiToken);
 
 const getRequestOrigin = (req) => {
     const origin = req.get('origin');
