@@ -23,13 +23,21 @@ import {
     MdOutlineEmail
 } from "@/components/utils/Iconos";
 import {
-    enviarMensajeContacto,
-    type PlazoContacto,
-    type PreferenciaContacto,
-    type PresupuestoContacto,
-    type TipoProyectoContacto
-} from "@/services/fetchData";
+    CONTACT_BUDGET_OPTIONS,
+    CONTACT_DEADLINE_OPTIONS,
+    CONTACT_INITIAL_FORM,
+    CONTACT_INITIAL_STATUS,
+    CONTACT_MINIMUM_SUBMIT_TIME_MS,
+    CONTACT_PREFERENCES,
+    CONTACT_PROJECT_OPTIONS
+} from "@/constants/contacto.constants";
+import { enviarMensajeContacto } from "@/services/fetchData";
 import style from "@/styles/sections/contacto.module.scss";
+import type {
+    ContactFieldErrors,
+    ContactFormValues,
+    ContactSubmitStatus
+} from "@/types/contacto";
 import type { PerfilType } from "@/types/perfil";
 
 import SectionHeader from "../sub_components/SectionHeader";
@@ -38,25 +46,6 @@ import { trackEvent } from "../utils/Analytics";
 interface Props {
     perfil: PerfilType[];
 }
-
-type ContactForm = {
-    nombre: string;
-    correo: string;
-    tipoProyecto: TipoProyectoContacto | "";
-    presupuesto: PresupuestoContacto | "";
-    plazo: PlazoContacto | "";
-    preferenciaContacto: PreferenciaContacto;
-    telefono: string;
-    mensaje: string;
-    website: string;
-};
-
-type FormErrors = Partial<Record<keyof ContactForm, string>>;
-
-type FormStatus = {
-    type: "idle" | "success" | "error";
-    message: string;
-};
 
 type Faq = {
     id: string;
@@ -73,47 +62,6 @@ type SocialLink = {
 };
 
 const CONTACT_EMAIL = "pablo_daniel_chavez@outlook.es";
-const MINIMUM_SUBMIT_TIME_MS = 2500;
-
-const INITIAL_FORM: ContactForm = {
-    nombre: "",
-    correo: "",
-    tipoProyecto: "",
-    presupuesto: "",
-    plazo: "",
-    preferenciaContacto: "email",
-    telefono: "",
-    mensaje: "",
-    website: ""
-};
-
-const INITIAL_STATUS: FormStatus = {
-    type: "idle",
-    message: ""
-};
-
-const tiposProyecto: readonly TipoProyectoContacto[] = [
-    "Landing Page",
-    "Sitio Web Profesional",
-    "Tienda Online",
-    "Desarrollo a medida",
-    "Otro"
-];
-
-const rangosPresupuesto: readonly PresupuestoContacto[] = [
-    "Necesito orientación",
-    "Hasta USD 200",
-    "USD 200 a 1.000",
-    "USD 1.000 a 2.500",
-    "Más de USD 2.500"
-];
-
-const plazosProyecto: readonly PlazoContacto[] = [
-    "Lo antes posible",
-    "Durante el próximo mes",
-    "En 1 a 3 meses",
-    "Todavía no lo definí"
-];
 
 const indicadoresConfianza = [
     "Respuesta clara y personalizada",
@@ -194,7 +142,7 @@ const hasSuspiciousContent = (value: string) => {
     );
 };
 
-const normalizeForm = (form: ContactForm): ContactForm => ({
+const normalizeForm = (form: ContactFormValues): ContactFormValues => ({
     nombre: normalizeSingleLine(form.nombre),
     correo: normalizeSingleLine(form.correo).toLowerCase(),
     tipoProyecto: normalizeOption(form.tipoProyecto),
@@ -206,8 +154,8 @@ const normalizeForm = (form: ContactForm): ContactForm => ({
     website: normalizeSingleLine(form.website)
 });
 
-const validateForm = (form: ContactForm): FormErrors => {
-    const errors: FormErrors = {};
+const validateForm = (form: ContactFormValues): ContactFieldErrors => {
+    const errors: ContactFieldErrors = {};
     const validName = /^[\p{L}\p{M}][\p{L}\p{M}\s.'-]*$/u;
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -231,12 +179,12 @@ const validateForm = (form: ContactForm): FormErrors => {
 
     if (
         !form.tipoProyecto ||
-        !tiposProyecto.includes(form.tipoProyecto)
+        !CONTACT_PROJECT_OPTIONS.includes(form.tipoProyecto)
     ) {
         errors.tipoProyecto = "Seleccioná el tipo de proyecto.";
     }
 
-    if (form.preferenciaContacto === "whatsapp") {
+    if (form.preferenciaContacto === CONTACT_PREFERENCES.whatsapp) {
         const phoneDigits = form.telefono.replace(/\D/g, "");
         const validPhoneCharacters = /^[+\d\s().-]+$/;
 
@@ -373,9 +321,10 @@ function FaqItem({ item }: { item: Faq }) {
 }
 
 export default function Contacto({ perfil }: Props) {
-    const [form, setForm] = useState<ContactForm>(INITIAL_FORM);
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [status, setStatus] = useState<FormStatus>(INITIAL_STATUS);
+    const [form, setForm] = useState<ContactFormValues>(CONTACT_INITIAL_FORM);
+    const [errors, setErrors] = useState<ContactFieldErrors>({});
+    const [status, setStatus] =
+        useState<ContactSubmitStatus>(CONTACT_INITIAL_STATUS);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -516,7 +465,7 @@ export default function Contacto({ perfil }: Props) {
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
     ) => {
-        const field = event.target.name as keyof ContactForm;
+        const field = event.target.name as keyof ContactFormValues;
         const value = event.target.value;
 
         setForm((current) => ({
@@ -526,13 +475,13 @@ export default function Contacto({ perfil }: Props) {
         setErrors((current) => ({
             ...current,
             [field]: undefined,
-            ...(field === "preferenciaContacto" && value === "email"
+            ...(field === "preferenciaContacto" && value === CONTACT_PREFERENCES.email
                 ? { telefono: undefined }
                 : {})
         }));
 
         if (status.type !== "idle") {
-            setStatus(INITIAL_STATUS);
+            setStatus(CONTACT_INITIAL_STATUS);
         }
     };
 
@@ -621,7 +570,7 @@ export default function Contacto({ perfil }: Props) {
 
         if (
             formStartedAtRef.current === 0 ||
-            elapsedTime < MINIMUM_SUBMIT_TIME_MS
+            elapsedTime < CONTACT_MINIMUM_SUBMIT_TIME_MS
         ) {
             setStatus({
                 type: "error",
@@ -638,7 +587,7 @@ export default function Contacto({ perfil }: Props) {
         submissionLockRef.current = true;
         setIsSubmitting(true);
         setErrors({});
-        setStatus(INITIAL_STATUS);
+        setStatus(CONTACT_INITIAL_STATUS);
 
         try {
             const response = await enviarMensajeContacto({
@@ -651,7 +600,8 @@ export default function Contacto({ perfil }: Props) {
                 plazo: normalizedForm.plazo || undefined,
                 preferenciaContacto: normalizedForm.preferenciaContacto,
                 telefono:
-                    normalizedForm.preferenciaContacto === "whatsapp"
+                    normalizedForm.preferenciaContacto ===
+                    CONTACT_PREFERENCES.whatsapp
                         ? normalizedForm.telefono
                         : undefined,
                 website: normalizedForm.website
@@ -671,7 +621,7 @@ export default function Contacto({ perfil }: Props) {
                 return;
             }
 
-            setForm(INITIAL_FORM);
+            setForm(CONTACT_INITIAL_FORM);
             setStatus({
                 type: "success",
                 message:
@@ -882,7 +832,7 @@ export default function Contacto({ perfil }: Props) {
                                     onChange={handleChange}
                                 >
                                     <option value="">Seleccioná una opción</option>
-                                    {tiposProyecto.map((tipo) => (
+                                    {CONTACT_PROJECT_OPTIONS.map((tipo) => (
                                         <option key={tipo} value={tipo}>
                                             {tipo}
                                         </option>
@@ -910,7 +860,7 @@ export default function Contacto({ perfil }: Props) {
                                     onChange={handleChange}
                                 >
                                     <option value="">Sin definir</option>
-                                    {rangosPresupuesto.map((rango) => (
+                                    {CONTACT_BUDGET_OPTIONS.map((rango) => (
                                         <option key={rango} value={rango}>
                                             {rango}
                                         </option>
@@ -932,7 +882,7 @@ export default function Contacto({ perfil }: Props) {
                                     onChange={handleChange}
                                 >
                                     <option value="">Sin definir</option>
-                                    {plazosProyecto.map((plazo) => (
+                                    {CONTACT_DEADLINE_OPTIONS.map((plazo) => (
                                         <option key={plazo} value={plazo}>
                                             {plazo}
                                         </option>
@@ -949,10 +899,10 @@ export default function Contacto({ perfil }: Props) {
                                         <input
                                             name="preferenciaContacto"
                                             type="radio"
-                                            value="email"
+                                            value={CONTACT_PREFERENCES.email}
                                             checked={
                                                 form.preferenciaContacto ===
-                                                "email"
+                                                CONTACT_PREFERENCES.email
                                             }
                                             onChange={handleChange}
                                         />
@@ -962,10 +912,12 @@ export default function Contacto({ perfil }: Props) {
                                         <input
                                             name="preferenciaContacto"
                                             type="radio"
-                                            value="whatsapp"
+                                            value={
+                                                CONTACT_PREFERENCES.whatsapp
+                                            }
                                             checked={
                                                 form.preferenciaContacto ===
-                                                "whatsapp"
+                                                CONTACT_PREFERENCES.whatsapp
                                             }
                                             onChange={handleChange}
                                         />
@@ -975,7 +927,7 @@ export default function Contacto({ perfil }: Props) {
                             </fieldset>
                         </div>
 
-                        {form.preferenciaContacto === "whatsapp" && (
+                        {form.preferenciaContacto === CONTACT_PREFERENCES.whatsapp && (
                             <div className={style.contacto_field}>
                                 <label htmlFor="contact-telefono">
                                     Tu número de WhatsApp

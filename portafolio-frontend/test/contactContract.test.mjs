@@ -10,6 +10,14 @@ const fetchDataSource = await readFile(
     new URL("../src/services/fetchData.ts", import.meta.url),
     "utf8"
 );
+const contactConstantsSource = await readFile(
+    new URL("../src/constants/contacto.constants.ts", import.meta.url),
+    "utf8"
+);
+const contactTypesSource = await readFile(
+    new URL("../src/types/contacto.ts", import.meta.url),
+    "utf8"
+);
 
 const assertIncludesAll = (source, expectedValues) => {
     for (const expectedValue of expectedValues) {
@@ -39,9 +47,9 @@ test("Contacto conserva los campos principales y el honeypot", () => {
     );
 
     assertIncludesAll(
-        contactoSource,
+        contactConstantsSource,
         [
-            'preferenciaContacto: "email"',
+            "preferenciaContacto: CONTACT_PREFERENCES.email",
             'tipoProyecto: ""',
             'presupuesto: ""',
             'plazo: ""',
@@ -53,7 +61,7 @@ test("Contacto conserva los campos principales y el honeypot", () => {
 
 test("Contacto conserva las opciones cerradas vigentes", () => {
     assertIncludesAll(
-        contactoSource,
+        contactConstantsSource,
         [
             '"Landing Page"',
             '"Sitio Web Profesional"',
@@ -69,13 +77,53 @@ test("Contacto conserva las opciones cerradas vigentes", () => {
             '"Durante el próximo mes"',
             '"En 1 a 3 meses"',
             '"Todavía no lo definí"',
-            'value="email"',
-            'value="whatsapp"'
+            'email: "email"',
+            'whatsapp: "whatsapp"'
         ]
     );
 
-    assert.equal(contactoSource.includes('"Hasta USD 500"'), false);
-    assert.equal(contactoSource.includes('"USD 500 a 1.000"'), false);
+    assertIncludesAll(
+        contactoSource,
+        [
+            "CONTACT_PROJECT_OPTIONS.map",
+            "CONTACT_BUDGET_OPTIONS.map",
+            "CONTACT_DEADLINE_OPTIONS.map",
+            "CONTACT_PREFERENCES.email",
+            "CONTACT_PREFERENCES.whatsapp"
+        ]
+    );
+
+    assert.equal(contactConstantsSource.includes('"Hasta USD 500"'), false);
+    assert.equal(contactConstantsSource.includes('"USD 500 a 1.000"'), false);
+});
+
+test("los tipos de Contacto están separados del servicio de fetch", () => {
+    assertIncludesAll(
+        contactTypesSource,
+        [
+            "export type TipoProyectoContacto",
+            "export type PresupuestoContacto",
+            "export type PlazoContacto",
+            "export type PreferenciaContacto",
+            "export type ContactFormValues",
+            "export type ContactFieldErrors",
+            "export type ContactSubmitStatus",
+            "export type ContactPayload"
+        ]
+    );
+
+    assertIncludesAll(
+        fetchDataSource,
+        [
+            'import type { ContactPayload } from "@/types/contacto";',
+            "datosDelFormulario: ContactPayload"
+        ]
+    );
+
+    assert.equal(
+        fetchDataSource.includes("export type TipoProyectoContacto"),
+        false
+    );
 });
 
 test("Contacto conserva el payload enviado al servicio", () => {
@@ -103,7 +151,7 @@ test("Contacto conserva el payload enviado al servicio", () => {
             "presupuesto: normalizedForm.presupuesto || undefined",
             "plazo: normalizedForm.plazo || undefined",
             "preferenciaContacto: normalizedForm.preferenciaContacto",
-            'normalizedForm.preferenciaContacto === "whatsapp"',
+            "CONTACT_PREFERENCES.whatsapp",
             "telefono",
             "website: normalizedForm.website"
         ]
@@ -122,12 +170,20 @@ test("Contacto conserva el payload enviado al servicio", () => {
 
 test("Contacto conserva éxito, errores y barreras anti-spam", () => {
     assertIncludesAll(
+        contactConstantsSource,
+        [
+            "CONTACT_MINIMUM_SUBMIT_TIME_MS = 2500",
+            "CONTACT_INITIAL_FORM",
+            "CONTACT_INITIAL_STATUS"
+        ]
+    );
+
+    assertIncludesAll(
         contactoSource,
         [
-            "const MINIMUM_SUBMIT_TIME_MS = 2500",
             "submissionLockRef.current || isSubmitting",
             "if (normalizedForm.website)",
-            "elapsedTime < MINIMUM_SUBMIT_TIME_MS",
+            "elapsedTime < CONTACT_MINIMUM_SUBMIT_TIME_MS",
             "Hay algunos datos para revisar antes de enviar la consulta.",
             "Esperá unos segundos y volvé a enviar la consulta.",
             "No se pudo enviar la consulta. Probá nuevamente o usá uno de los canales directos.",

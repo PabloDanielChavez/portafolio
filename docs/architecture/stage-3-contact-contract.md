@@ -19,6 +19,19 @@ La caracterización protege:
 
 No se modifica el diseño, el JSX, las clases, los endpoints ni Analytics/GTM.
 
+## Ubicación del contrato desde 3.3.1
+
+- `src/types/contacto.ts`: tipos del formulario, payload y estado.
+- `src/constants/contacto.constants.ts`: opciones permitidas, preferencia,
+  valores iniciales y espera mínima.
+- `src/services/fetchData.ts`: transporte HTTP; ya no define tipos de Contacto.
+- `src/components/sections/Contacto.tsx`: validación, estado, interacción y
+  render hasta las siguientes subfases.
+
+Las opciones se ubican en `constants` porque son valores cerrados del contrato,
+no copy comercial. El backend seguirá siendo su autoridad futura cuando exista
+un mecanismo para administrarlas y entregarlas al frontend.
+
 ## Estado y valores iniciales
 
 El formulario mantiene cuatro estados principales:

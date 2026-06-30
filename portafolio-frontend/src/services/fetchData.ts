@@ -1,4 +1,5 @@
 // services/fetchData.ts
+import type { ContactPayload } from "@/types/contacto";
 import type { TrabajosType } from "@/types/trabajos";
 
 const urlBase = process.env.NEXT_PUBLIC_API_URL;
@@ -75,41 +76,6 @@ export async function getTrabajoById(
     ) ?? null
   );
 }
-
-export type TipoProyectoContacto =
-  | "Landing Page"
-  | "Sitio Web Profesional"
-  | "Tienda Online"
-  | "Desarrollo a medida"
-  | "Otro";
-
-export type PresupuestoContacto =
-  | "Necesito orientación"
-  | "Hasta USD 200"
-  | "USD 200 a 1.000"
-  | "USD 1.000 a 2.500"
-  | "Más de USD 2.500";
-
-export type PlazoContacto =
-  | "Lo antes posible"
-  | "Durante el próximo mes"
-  | "En 1 a 3 meses"
-  | "Todavía no lo definí";
-
-export type PreferenciaContacto = "email" | "whatsapp";
-
-export type ContactPayload = {
-    nombre: string;
-    correo: string;
-    mensaje: string;
-    origen_url: string;
-    tipoProyecto?: TipoProyectoContacto;
-    presupuesto?: PresupuestoContacto;
-    plazo?: PlazoContacto;
-    preferenciaContacto?: PreferenciaContacto;
-    telefono?: string;
-    website?: string;
-};
 
 export async function enviarMensajeContacto(
   datosDelFormulario: ContactPayload
