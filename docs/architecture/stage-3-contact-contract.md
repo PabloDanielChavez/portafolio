@@ -24,8 +24,10 @@ No se modifica el diseño, el JSX, las clases, los endpoints ni Analytics/GTM.
 - `src/types/contacto.ts`: tipos del formulario, payload y estado.
 - `src/constants/contacto.constants.ts`: opciones permitidas, preferencia,
   valores iniciales y espera mínima.
+- `src/components/utils/contacto.helpers.ts`: normalización, validación,
+  detección sospechosa, payload y condiciones anti-spam puras.
 - `src/services/fetchData.ts`: transporte HTTP; ya no define tipos de Contacto.
-- `src/components/sections/Contacto.tsx`: validación, estado, interacción y
+- `src/components/sections/Contacto.tsx`: estado, handlers, interacción y
   render hasta las siguientes subfases.
 
 Las opciones se ubican en `constants` porque son valores cerrados del contrato,

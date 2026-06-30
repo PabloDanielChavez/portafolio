@@ -18,6 +18,10 @@ const contactTypesSource = await readFile(
     new URL("../src/types/contacto.ts", import.meta.url),
     "utf8"
 );
+const contactHelpersSource = await readFile(
+    new URL("../src/components/utils/contacto.helpers.ts", import.meta.url),
+    "utf8"
+);
 
 const assertIncludesAll = (source, expectedValues) => {
     for (const expectedValue of expectedValues) {
@@ -127,33 +131,29 @@ test("los tipos de Contacto están separados del servicio de fetch", () => {
 });
 
 test("Contacto conserva el payload enviado al servicio", () => {
-    const payloadStart = contactoSource.indexOf(
-        "await enviarMensajeContacto({"
+    assertIncludesAll(
+        contactoSource,
+        [
+            "buildContactPayload(",
+            "normalizedForm,",
+            "window.location.href",
+            "enviarMensajeContacto(payload)"
+        ]
     );
-    const payloadEnd = contactoSource.indexOf(
-        "});",
-        payloadStart
-    );
-
-    assert.notEqual(payloadStart, -1);
-    assert.notEqual(payloadEnd, -1);
-
-    const payloadSource = contactoSource.slice(payloadStart, payloadEnd);
 
     assertIncludesAll(
-        payloadSource,
+        contactHelpersSource,
         [
-            "nombre: normalizedForm.nombre",
-            "correo: normalizedForm.correo",
-            "mensaje: normalizedForm.mensaje",
-            "origen_url: window.location.href",
-            "tipoProyecto: normalizedForm.tipoProyecto || undefined",
-            "presupuesto: normalizedForm.presupuesto || undefined",
-            "plazo: normalizedForm.plazo || undefined",
-            "preferenciaContacto: normalizedForm.preferenciaContacto",
+            "nombre: form.nombre",
+            "correo: form.correo",
+            "mensaje: form.mensaje",
+            "origen_url: originUrl",
+            "tipoProyecto: form.tipoProyecto || undefined",
+            "presupuesto: form.presupuesto || undefined",
+            "plazo: form.plazo || undefined",
+            "preferenciaContacto: form.preferenciaContacto",
             "CONTACT_PREFERENCES.whatsapp",
-            "telefono",
-            "website: normalizedForm.website"
+            "website: form.website"
         ]
     );
 
@@ -182,8 +182,8 @@ test("Contacto conserva éxito, errores y barreras anti-spam", () => {
         contactoSource,
         [
             "submissionLockRef.current || isSubmitting",
-            "if (normalizedForm.website)",
-            "elapsedTime < CONTACT_MINIMUM_SUBMIT_TIME_MS",
+            "hasContactHoneypot(normalizedForm)",
+            "isContactSubmissionTooFast(",
             "Hay algunos datos para revisar antes de enviar la consulta.",
             "Esperá unos segundos y volvé a enviar la consulta.",
             "No se pudo enviar la consulta. Probá nuevamente o usá uno de los canales directos.",
