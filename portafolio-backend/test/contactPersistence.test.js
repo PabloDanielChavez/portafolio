@@ -37,6 +37,38 @@ test('mapea y valida las opciones antes de persistirlas con Sequelize', async ()
     assert.equal(instance.fecha, fixedDate.toISOString());
 });
 
+test('persiste el caso de referencia con una fecha ISO válida', async () => {
+    const createdAt = new Date();
+    const contact = contactBodySchema.parse({
+        nombre: 'pRUEBA',
+        correo: 'pablo@outlook.es',
+        tipoProyecto: 'Landing Page',
+        presupuesto: 'Hasta USD 200',
+        plazo: 'Lo antes posible',
+        preferenciaContacto: 'whatsapp',
+        telefono: '+54 911 66621017',
+        mensaje:
+            'hOLA QUIERO UNA PAGINA SUPER LINDA DE PRUEBA LOCAL HOST',
+        origen_url: 'http://localhost:3000/contacto',
+        website: ''
+    });
+    const record = buildContactRecord(contact, { createdAt });
+    const instance = mensajes.build(record);
+
+    await instance.validate();
+
+    assert.equal(instance.nombre, 'pRUEBA');
+    assert.equal(instance.correo, 'pablo@outlook.es');
+    assert.equal(instance.tipo_proyecto, 'Landing Page');
+    assert.equal(instance.presupuesto, 'Hasta USD 200');
+    assert.equal(instance.plazo, 'Lo antes posible');
+    assert.equal(instance.preferencia_contacto, 'whatsapp');
+    assert.equal(instance.telefono, '+54 911 66621017');
+    assert.equal(instance.origen_url, 'http://localhost:3000/contacto');
+    assert.equal(instance.fecha, createdAt.toISOString());
+    assert.equal(Number.isNaN(Date.parse(instance.fecha)), false);
+});
+
 test('mapea el payload anterior con columnas nuevas en NULL', async () => {
     const contact = contactBodySchema.parse({
         nombre: 'Ada Lovelace',

@@ -43,6 +43,51 @@ test('acepta, normaliza y conserva todas las opciones del formulario', () => {
     assert.equal(result.data.telefono, '+54 (11) 1234-5678');
 });
 
+test('acepta el caso de referencia vigente del formulario', () => {
+    const result = contactBodySchema.safeParse({
+        nombre: 'pRUEBA',
+        correo: 'pablo@outlook.es',
+        tipoProyecto: 'Landing Page',
+        presupuesto: 'Hasta USD 200',
+        plazo: 'Lo antes posible',
+        preferenciaContacto: 'whatsapp',
+        telefono: '+54 911 66621017',
+        mensaje:
+            'hOLA QUIERO UNA PAGINA SUPER LINDA DE PRUEBA LOCAL HOST',
+        origen_url: 'http://localhost:3000/contacto',
+        website: ''
+    });
+
+    assert.equal(result.success, true);
+    assert.equal(result.data.nombre, 'pRUEBA');
+    assert.equal(result.data.tipoProyecto, 'Landing Page');
+    assert.equal(result.data.presupuesto, 'Hasta USD 200');
+    assert.equal(result.data.plazo, 'Lo antes posible');
+    assert.equal(result.data.preferenciaContacto, 'whatsapp');
+    assert.equal(result.data.telefono, '+54 911 66621017');
+    assert.equal(result.data.origen_url, 'http://localhost:3000/contacto');
+});
+
+test('acepta los dos rangos inferiores de presupuesto vigentes', () => {
+    for (const presupuesto of [
+        'Hasta USD 200',
+        'USD 200 a 1.000'
+    ]) {
+        const result = contactBodySchema.safeParse({
+            nombre: 'Prueba Local',
+            correo: 'prueba@example.com',
+            tipoProyecto: 'Landing Page',
+            presupuesto,
+            plazo: 'Lo antes posible',
+            preferenciaContacto: 'email',
+            mensaje: 'Necesito información sobre una página web.'
+        });
+
+        assert.equal(result.success, true, presupuesto);
+        assert.equal(result.data.presupuesto, presupuesto);
+    }
+});
+
 test('acepta email como alias y valida los campos opcionales', () => {
     const result = contactBodySchema.safeParse({
         nombre: 'Ada Lovelace',
