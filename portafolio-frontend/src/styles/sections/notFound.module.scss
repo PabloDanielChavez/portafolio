@@ -1,0 +1,98 @@
+@use "../base/variables.module.scss" as v;
+@use "../base/mixins.module.scss" as m;
+
+.notFound {
+    @include m.section-shell(v.$background-main);
+    display: grid;
+    min-height: min(720px, calc(100vh - 10rem));
+    place-items: center;
+}
+
+.notFound_layout {
+    @include m.container;
+}
+
+.notFound_card {
+    @include m.card-featured;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 760px;
+    margin-inline: auto;
+    padding: clamp(2rem, 6vw, 4.5rem);
+    text-align: center;
+}
+
+.notFound_code {
+    color: v.$violet-soft;
+    font-family: v.$font-display;
+    font-size: clamp(3rem, 11vw, 6.5rem);
+    font-weight: 900;
+    letter-spacing: -.08em;
+    line-height: 1;
+}
+
+.notFound_title {
+    margin: 1.25rem 0 0;
+    color: v.$text-primary;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+.notFound_description {
+    max-width: 610px;
+    margin: 1.25rem 0 0;
+    color: v.$text-secondary;
+    font-size: v.$font-size-copy;
+    line-height: v.$line-height-copy;
+}
+
+.notFound_actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem;
+    margin-top: 2rem;
+}
+
+.notFound_primaryLink {
+    @include m.button-primary;
+}
+
+.notFound_link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: .8rem 1.15rem;
+    border: 1px solid v.$border-card;
+    border-radius: 999px;
+    color: v.$text-primary;
+    font-family: v.$font-display;
+    font-size: .9rem;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+        border-color .2s ease,
+        color .2s ease,
+        transform .2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        border-color: rgba(v.$violet-soft, .56);
+        color: v.$violet-soft;
+    }
+
+    &:focus-visible {
+        @include m.focus-ring;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .notFound_primaryLink,
+    .notFound_link {
+        transition: none;
+    }
+}

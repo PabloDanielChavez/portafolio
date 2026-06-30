@@ -47,16 +47,6 @@ export default function PagTrabajoDetalle({
     tra,
     tra_tecnologia
 }: PagTrabajoDetalleProps) {
-    if (!tra) {
-        return (
-            <main className={style_trabajos.pagTrabajo_detalle_container}>
-                <p className={style_trabajos.pagTrabajo_parrafo}>
-                    No se encontró información del proyecto.
-                </p>
-            </main>
-        );
-    }
-
     const tecnologias = getTecnologiasTrabajo(tra.id, tra_tecnologia);
     const imagenUrl = getImagenTrabajo(tra);
     const estado = getEstadoProyecto(tra.estado_proyecto);
@@ -64,7 +54,7 @@ export default function PagTrabajoDetalle({
     const destacado = esTrabajoDestacado(tra);
 
     return (
-        <main className={style_trabajos.pagTrabajo_detalle_container}>
+        <article className={style_trabajos.pagTrabajo_detalle_container}>
             <div className={style_trabajos.pagTrabajo_layout}>
                 <TrabajoDetalleActions trabajo={tra} />
                 <section className={style_trabajos.pagTrabajo_hero} aria-labelledby="trabajo-title">
@@ -206,6 +196,6 @@ export default function PagTrabajoDetalle({
 
                 <TrabajoAuditoria trabajo={tra} />
             </div>
-        </main>
+        </article>
     );
 }

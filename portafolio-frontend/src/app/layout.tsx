@@ -4,27 +4,22 @@ import type { Metadata, Viewport } from "next";
 import "@/styles/main.scss";
 
 import Header from "@/components/sections/Header";
+import { siteConfig } from "@/config/site";
 
 const Footer = dynamic(() => import("@/components/sections/Footer"));
-const SITE_URL = "https://paginaswebchavez.netlify.app";
-const SITE_NAME = "PaginasWebChavez";
 const GTM_ID = "GTM-537VNSFP";
-const LOGO_URL = "/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png";
-const ICON_URL = "/img/Logotipo_Portafolio_PDC/Icono/Icono_48x48px.png";
-const SEO_TITLE = "Diseño y Desarrollo de Páginas Web Profesionales | PaginasWebChavez";
-const SEO_DESCRIPTION = "Diseño y desarrollo de páginas web profesionales para empresas y negocios. Landing pages, sitios web corporativos, SEO y desarrollo web a medida para generar clientes.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  applicationName: SITE_NAME,
+  metadataBase: new URL(siteConfig.siteUrl),
+  applicationName: siteConfig.siteName,
   title: {
-    default: SEO_TITLE,
-    template: `%s | ${SITE_NAME}`,
+    default: siteConfig.defaultTitle,
+    template: `%s | ${siteConfig.siteName}`,
   },
-  description: SEO_DESCRIPTION,
+  description: siteConfig.description,
   authors: [{ name: "Pablo Daniel Chavez" }],
   creator: "Pablo Daniel Chavez",
-  publisher: SITE_NAME,
+  publisher: siteConfig.siteName,
   category: "Diseño web y desarrollo web",
   keywords: [
     "paginas web",
@@ -52,9 +47,6 @@ export const metadata: Metadata = {
     "diseño web argentina",
     "desarrollo web argentina",
   ],
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,
@@ -73,17 +65,16 @@ export const metadata: Metadata = {
     title: "Diseño y Desarrollo de Páginas Web Profesionales",
     description:
       "Landing pages, sitios web corporativos, SEO y desarrollo web a medida para empresas, negocios y emprendedores.",
-    url: "/",
-    siteName: SITE_NAME,
+    siteName: siteConfig.siteName,
     images: [
       {
-        url: LOGO_URL,
+        url: siteConfig.defaultOpenGraphImage,
         width: 1200,
         height: 630,
         alt: "PaginasWebChavez - Diseño y desarrollo de páginas web profesionales",
       },
     ],
-    locale: "es_AR",
+    locale: siteConfig.locale,
     type: "website",
   },
 
@@ -94,16 +85,16 @@ export const metadata: Metadata = {
       "Creación de páginas web rápidas, modernas y optimizadas para Google, enfocadas en generar consultas y clientes.",
     images: [
       {
-        url: LOGO_URL,
+        url: siteConfig.defaultOpenGraphImage,
         alt: "PaginasWebChavez - Diseño web profesional",
       },
     ],
   },
 
   icons: {
-    icon: ICON_URL,
-    shortcut: ICON_URL,
-    apple: ICON_URL,
+    icon: siteConfig.icon,
+    shortcut: siteConfig.icon,
+    apple: siteConfig.icon,
   },
 };
 
@@ -119,20 +110,20 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      name: SITE_NAME,
-      url: SITE_URL,
-      inLanguage: "es-AR",
+      "@id": `${siteConfig.siteUrl}/#website`,
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+      inLanguage: siteConfig.language,
       publisher: {
-        "@id": `${SITE_URL}/#organization`,
+        "@id": `${siteConfig.siteUrl}/#organization`,
       },
     },
     {
       "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: `${SITE_URL}${LOGO_URL}`,
+      "@id": `${siteConfig.siteUrl}/#organization`,
+      name: siteConfig.siteName,
+      url: siteConfig.siteUrl,
+      logo: `${siteConfig.siteUrl}${siteConfig.defaultOpenGraphImage}`,
       founder: {
         "@type": "Person",
         name: "Pablo Daniel Chavez",
@@ -159,7 +150,7 @@ const jsonLd = {
     },
     {
       "@type": "Service",
-      "@id": `${SITE_URL}/#web-design-service`,
+      "@id": `${siteConfig.siteUrl}/#web-design-service`,
       name: "Diseño y desarrollo de páginas web profesionales",
       serviceType: [
         "Diseño de páginas web",
@@ -169,7 +160,7 @@ const jsonLd = {
         "Desarrollo web a medida",
       ],
       provider: {
-        "@id": `${SITE_URL}/#organization`,
+        "@id": `${siteConfig.siteUrl}/#organization`,
       },
       areaServed: [
         {
@@ -197,7 +188,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es-AR">
+    <html lang={siteConfig.language}>
       <body className="app-body">
         <noscript>
           <iframe

@@ -21,11 +21,13 @@ import {
 type TrabajosProps = {
     trabajos: TrabajosType[];
     showFooter?: boolean;
+    headingLevel?: "h1" | "h2";
 };
 
 export default function Trabajos({
     trabajos,
-    showFooter = false
+    showFooter = false,
+    headingLevel = "h2"
 }: TrabajosProps) {
     const [dispositivo, setDispositivo] = useState<AuditoriaDispositivo>("mobile");
 
@@ -88,6 +90,7 @@ export default function Trabajos({
                         icon={<IoIosRocket />}
                         title="Trabajos que convierten ideas en presencia digital"
                         description="Una selección de proyectos reales, resueltos con foco en claridad, rendimiento y experiencia de usuario."
+                        headingLevel={headingLevel}
                     />
 
                     {!showFooter && <div className={style_trabajos.trabajos_auditoria}>

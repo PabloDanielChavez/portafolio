@@ -21,9 +21,14 @@ import ServicioCard from "../sub_components/ServicioCard";
 type Props = {
     servicios: ServiciosType[];
     showBackLink?: boolean;
+    headingLevel?: "h1" | "h2";
 };
 
-export default function Servicios({ servicios, showBackLink = true }: Props) {
+export default function Servicios({
+    servicios,
+    showBackLink = true,
+    headingLevel = "h2"
+}: Props) {
     const renderIcono = (nombre: string) => {
         if (nombre === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
         if (nombre === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
@@ -47,6 +52,7 @@ export default function Servicios({ servicios, showBackLink = true }: Props) {
                     icon={<AiTwotoneSchedule />}
                     title="Servicios web para hacer crecer tu negocio"
                     description="Soluciones concretas, explicadas sin tecnicismos y enfocadas en que tu presencia digital sea clara, rápida y confiable."
+                    headingLevel={headingLevel}
                 />
 
                 <div className={styles.servicios_contenido_box_layout}>

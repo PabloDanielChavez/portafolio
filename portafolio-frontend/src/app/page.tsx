@@ -2,11 +2,18 @@ import dynamic from "next/dynamic";
 
 import Hero from "@/components/sections/Hero";
 import { FinalCta, Proceso, TrustBar } from "@/components/sections/HomeSections";
+import { createPageMetadata, siteConfig } from "@/config/site";
 import { getAllPortfolioData } from "@/services/fetchData";
 
 const Trabajos = dynamic(() => import("@/components/sections/Trabajos"));
 const Servicios = dynamic(() => import("@/components/sections/Servicios"));
 const Planes = dynamic(() => import("@/components/sections/Planes"));
+
+export const metadata = createPageMetadata({
+    title: "Diseño y Desarrollo de Páginas Web Profesionales",
+    description: siteConfig.description,
+    path: siteConfig.routes.home,
+});
 
 export default async function Home() {
     const data = await getAllPortfolioData();

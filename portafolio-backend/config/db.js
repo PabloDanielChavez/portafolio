@@ -21,13 +21,13 @@ const db = new Sequelize(env.db.name, env.db.user, env.db.password, {
     },
     ...(env.db.ssl
         ? {
-              dialectOptions: {
-                  ssl: {
-                      require: true,
-                      rejectUnauthorized: env.db.sslRejectUnauthorized
-                  }
-              }
-          }
+            dialectOptions: {
+                ssl: {
+                    require: true,
+                    rejectUnauthorized: env.db.sslRejectUnauthorized
+                }
+            }
+        }
         : {})
 });
 

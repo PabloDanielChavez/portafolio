@@ -19,7 +19,7 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
     }
     const whatsappHref = getWhatsappHref(planSeleccionado.whatsappMensaje);
     return (
-        <main className={styles.planes_detalle}>
+        <article className={styles.planes_detalle}>
             <section
                 className={styles.planes_detalle_hero}
                 aria-labelledby="plan-title"
@@ -307,6 +307,6 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                     </div>
                 </div>
             </section>
-        </main>
+        </article>
     );
 }

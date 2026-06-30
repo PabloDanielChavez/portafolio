@@ -724,6 +724,7 @@ export default function Contacto({ perfil }: Props) {
                         icon={<MdOutlineEmail aria-hidden="true" />}
                         title="Hablemos de tu próximo proyecto web"
                         description="Solicitá un presupuesto o una primera orientación para crear una landing page, un sitio web profesional, una tienda online o un desarrollo a medida."
+                        headingLevel="h1"
                     />
 
                     <div className={style.contacto_value_bar}>

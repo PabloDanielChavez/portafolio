@@ -1,4 +1,6 @@
 // services/fetchData.ts
+import type { TrabajosType } from "@/types/trabajos";
+
 const urlBase = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getAllPortfolioData() {
@@ -37,55 +39,42 @@ export async function getAllPortfolioData() {
     return null;
   }
 }
-type ProyectoAuditoria = {
-  id: number;
-  enlace_despliegue: string;
-};
 
-export const dispararAuditoriaMultipleBackend = async (proyectos: ProyectoAuditoria[]) => {
+export async function getTrabajoById(
+  id: number
+): Promise<TrabajosType | null> {
   if (!urlBase) {
-    console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
-    return { success: false, error: "URL del backend no configurada." };
+    throw new Error("La URL del backend no está configurada.");
   }
 
-  const resultados = [];
+  let response: Response;
 
   try {
-    for (const proyecto of proyectos) {
-      try {
-        const respuesta = await fetch(`${urlBase}actualizar-auditoria`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: proyecto.id, url: proyecto.enlace_despliegue }),
-        });
-
-        let data: any = {};
-        try {
-          data = await respuesta.json();
-        } catch (e) {
-          data = { mensaje: "Error inesperado en el formato del servidor." };
-        }
-
-        if (!respuesta.ok) {
-          const textoError = data.mensaje || data.error || `Error del servidor (${respuesta.status})`;
-          console.warn(`Aviso en ID ${proyecto.id}:`, textoError);
-          
-          resultados.push({ id: proyecto.id, success: false, error: textoError });
-        } else {
-          resultados.push({ id: proyecto.id, success: true, data: data.datosActualizados });
-        }
-      } catch (errorFetch) {
-        resultados.push({ id: proyecto.id, success: false, error: "No se pudo comunicar con el endpoint de auditoría." });
-      }
-    }
-
-    return { success: true, resultados };
-
-  } catch (error: any) {
-    console.error('Error general en el lote de auditorías:', error.message);
-    return { success: false, error: error.message };
+    response = await fetch(`${urlBase}trabajos`, {
+      next: { revalidate: 3600 }
+    });
+  } catch {
+    throw new Error("No se pudo consultar el proyecto.");
   }
-};
+
+  if (!response.ok) {
+    throw new Error(
+      `No se pudo consultar el proyecto (${response.status}).`
+    );
+  }
+
+  const trabajos: unknown = await response.json();
+
+  if (!Array.isArray(trabajos)) {
+    throw new Error("La respuesta de proyectos no tiene un formato válido.");
+  }
+
+  return (
+    (trabajos as TrabajosType[]).find(
+      (trabajo) => Number(trabajo.id) === id
+    ) ?? null
+  );
+}
 
 export type TipoProyectoContacto =
   | "Landing Page"
