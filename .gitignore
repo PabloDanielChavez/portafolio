@@ -5,18 +5,20 @@ node_modules/
 **/node_modules/
 
 # ==================================================
-# ⚙️ NEXT.JS
+# ⚙️ NEXT.JS / FRONTEND
 # ==================================================
 .next/
 **/.next/
 out/
+.vercel/
+.netlify/
+*.tsbuildinfo
 
 # ==================================================
 # 🏗 BUILD / PRODUCCIÓN
 # ==================================================
 dist/
 build/
-Documentacion_personal
 
 # ==================================================
 # 🔐 VARIABLES DE ENTORNO
@@ -24,6 +26,7 @@ Documentacion_personal
 .env
 .env.*
 !.env.example
+!.env.*.example
 
 # ==================================================
 # 🧪 LOGS
@@ -32,11 +35,13 @@ Documentacion_personal
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+render-debug.log*
 
 # ==================================================
 # 🧪 TEST COVERAGE
 # ==================================================
 coverage/
+.nyc_output/
 
 # ==================================================
 # 🧼 SISTEMA
@@ -50,6 +55,7 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+*.swo
 
 # ==================================================
 # 🐳 DOCKER
@@ -62,21 +68,29 @@ docker-compose.override.yml
 # ==================================================
 *.sqlite
 *.sqlite3
+*.db
 
 # ==================================================
 # 🗂 BACKEND ESPECÍFICO
 # ==================================================
 portafolio-backend/public/
-portafolio-frontend/public/StylePrueba
-# portafolio-backend/config/db.js
+
+# ==================================================
+# 🧪 ARCHIVOS DE PRUEBA / TEMPORALES
+# ==================================================
+portafolio-frontend/public/StylePrueba/
+tmp/
+temp/
 
 # ==================================================
 # 📦 ARCHIVOS EMPAQUETADOS
 # ==================================================
 *.tgz
-
+*.zip
+*.rar
 
 # ==================================================
-# 📄 ARCHIVOS PERSONALES
+# 📄 ARCHIVOS PERSONALES / PRIVADOS
 # ==================================================
+Documentacion_personal/
 documentos/
