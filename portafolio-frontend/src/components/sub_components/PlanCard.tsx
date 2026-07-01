@@ -16,12 +16,16 @@ export default function PlanCard({ planes }: PlanCardProps) {
             >
                 {planes.destacado && (
                     <span className={styles.planes_card_badge}>
-                        {planes.etiqueta ?? "Más elegido"}
+                        {planes.etiqueta}
                     </span>
                 )}
                 <h3 className={styles.planes_card_titulo}>{planes.titulo}</h3>
                 <p className={styles.planes_card_descripcion}>{planes.descripcion}</p>
+                <p className={styles.planes_card_ideal}>
+                    <strong>Te conviene si:</strong> {planes.cardIdeal}
+                </p>
                 <p className={styles.planes_card_precio}>{planes.precio}</p>
+                <p className={styles.planes_card_plazo}>{planes.plazo}</p>
                 <ul className={styles.planes_card_lista}>
                     {planes.items.slice(0, 5).map((item) => (
                         <li key={`${planes.id}-${item}`} className={styles.planes_card_item}>
@@ -32,7 +36,7 @@ export default function PlanCard({ planes }: PlanCardProps) {
                     ))}
                 </ul>
                 <span className={styles.planes_boton}>
-                    Ver precio, plazo y alcance
+                    Detalles
                 </span>
             </Link>
         </article>

@@ -1,5 +1,6 @@
 import styles from "@/styles/sections/planes.module.scss";
 import { FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import {
@@ -46,13 +47,18 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                                 aria-label={`Solicitar presupuesto para ${planSeleccionado.titulo} por WhatsApp`}
                             >
                                 <FaWhatsapp aria-hidden="true" />
-                                Solicitar presupuesto
+                                {planSeleccionado.ctaLabel}
                             </a>
-
-                            <span className={styles.planes_detalle_note}>
-                                Te respondo con una propuesta adaptada a tu negocio.
-                            </span>
+                            <Link
+                                href="/contacto"
+                                className={styles.planes_detalle_button_secondary}
+                            >
+                                No sé qué plan elegir
+                            </Link>
                         </div>
+                        <p className={styles.planes_detalle_note}>
+                            {planSeleccionado.ctaMicrocopy}
+                        </p>
                     </div>
 
                     <aside
@@ -61,7 +67,7 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                     >
                         {planSeleccionado.destacado && (
                             <span className={styles.planes_detalle_summary_badge}>
-                                {planSeleccionado.etiqueta ?? "Más elegido"}
+                                {planSeleccionado.etiqueta}
                             </span>
                         )}
 
@@ -105,17 +111,72 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
 
                         <article className={styles.planes_detalle_card}>
                             <span className={styles.planes_detalle_card_label}>
-                                Objetivo
+                                Problema e impacto
                             </span>
 
                             <h2 className={styles.planes_detalle_h2}>
-                                Qué busca lograr este plan
+                                Qué ayuda a resolver
+                            </h2>
+
+                            <p className={styles.planes_detalle_text}>
+                                {planSeleccionado.problema}
+                            </p>
+                            <p className={styles.planes_detalle_impact}>
+                                {planSeleccionado.impacto}
+                            </p>
+                        </article>
+
+                        <article className={styles.planes_detalle_card}>
+                            <span className={styles.planes_detalle_card_label}>
+                                Solución
+                            </span>
+
+                            <h2 className={styles.planes_detalle_h2}>
+                                Cómo puede ayudar a tu negocio
                             </h2>
 
                             <p className={styles.planes_detalle_text}>
                                 {planSeleccionado.objetivo}
                             </p>
                         </article>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                className={styles.planes_detalle_section}
+                aria-labelledby="aparte-title"
+            >
+                <div className={styles.planes_detalle_layout}>
+                    <header className={styles.planes_detalle_section_header}>
+                        <span className={styles.planes_detalle_badge}>
+                            Alcance transparente
+                        </span>
+
+                        <h2
+                            id="aparte-title"
+                            className={styles.planes_detalle_h2}
+                        >
+                            Qué conviene cotizar aparte
+                        </h2>
+
+                        <p className={styles.planes_detalle_text}>
+                            Estos puntos no se suman automáticamente. Si tu
+                            proyecto los necesita, se detallan y cotizan antes
+                            de avanzar.
+                        </p>
+                    </header>
+
+                    <div className={styles.planes_detalle_extras}>
+                        {planSeleccionado.cotizarAparte.map((item) => (
+                            <div
+                                key={item}
+                                className={styles.planes_detalle_extra}
+                            >
+                                <span aria-hidden="true">+</span>
+                                <p>{item}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -286,24 +347,50 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                         </span>
 
                         <h2 className={styles.planes_detalle_h2}>
-                            ¿Querés saber cuánto costaría tu proyecto?
+                            {planSeleccionado.ctaTitle}
                         </h2>
 
                         <p className={styles.planes_detalle_text}>
-                            Contame qué necesitás y te respondo con una propuesta
-                            adaptada a tu negocio.
+                            {planSeleccionado.ctaDescription}
                         </p>
 
-                        <a
-                            href={whatsappHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.planes_detalle_button}
-                            aria-label={`Consultar por ${planSeleccionado.titulo} en WhatsApp`}
+                        <div className={styles.planes_detalle_cta_actions}>
+                            <a
+                                href={whatsappHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles.planes_detalle_button}
+                                aria-label={`Consultar por ${planSeleccionado.titulo} en WhatsApp`}
+                            >
+                                <FaWhatsapp aria-hidden="true" />
+                                {planSeleccionado.ctaLabel}
+                            </a>
+                            <Link
+                                href="/contacto"
+                                className={styles.planes_detalle_button_secondary}
+                            >
+                                Enviar consulta por formulario
+                            </Link>
+                        </div>
+
+                        <p className={styles.planes_detalle_note}>
+                            {planSeleccionado.ctaMicrocopy}
+                        </p>
+
+                        <nav
+                            className={styles.planes_detalle_related}
+                            aria-label="Enlaces para decidir"
                         >
-                            <FaWhatsapp aria-hidden="true" />
-                            Consultar por WhatsApp
-                        </a>
+                            <Link href={planSeleccionado.relatedWork.href}>
+                                {planSeleccionado.relatedWork.label}
+                            </Link>
+                            <Link href="/servicios#planes">
+                                Comparar los tres planes
+                            </Link>
+                            <Link href="/perfil">
+                                Conocer quién está detrás de PaginasWebChavez
+                            </Link>
+                        </nav>
                     </div>
                 </div>
             </section>

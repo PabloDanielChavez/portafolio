@@ -7,7 +7,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --test test/revalidationRoute.test.mjs test/contactContract.test.mjs test/contactHelpers.test.mjs test/workSlugFrontend.test.mjs test/sitemap.test.mjs test/seoTechnicalContract.test.mjs test/workCommercialContent.test.mjs test/homeServicesCommercialContent.test.mjs"
+    "test": "node --test test/revalidationRoute.test.mjs test/contactContract.test.mjs test/contactHelpers.test.mjs test/workSlugFrontend.test.mjs test/sitemap.test.mjs test/seoTechnicalContract.test.mjs test/workCommercialContent.test.mjs test/homeServicesCommercialContent.test.mjs test/plansCommercialContent.test.mjs"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^16.2.7",

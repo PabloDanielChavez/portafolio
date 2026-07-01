@@ -7,8 +7,8 @@ const PlanDetalle = dynamic(() => import('@/components/PagPlan'));
 const plan = getPlanByTag('desarrollo_web');
 
 export const metadata = createPageMetadata({
-  title: plan?.titulo ?? 'Desarrollo Web a Medida',
-  description: plan?.subtitulo ?? siteConfig.description,
+  title: plan?.seoTitle ?? 'Desarrollo Web a Medida',
+  description: plan?.seoDescription ?? siteConfig.description,
   path: siteConfig.planRoutes[2],
 });
 

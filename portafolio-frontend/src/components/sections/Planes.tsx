@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import styles from "@/styles/sections/planes.module.scss";
 import { TbChartBarPopular } from "@/components/utils/Iconos";
 
@@ -22,6 +24,20 @@ export default function Planes() {
                             <PlanCard key={plan.id} planes={plan} />
                         ))}
                     </div>
+                </div>
+
+                <div className={styles.planes_help}>
+                    <div>
+                        <h3>¿No sabés qué plan elegir?</h3>
+                        <p>
+                            Contame qué hace tu negocio y qué necesitás resolver.
+                            Te recomiendo la opción más lógica antes de preparar
+                            cualquier presupuesto.
+                        </p>
+                    </div>
+                    <Link href="/contacto">
+                        Pedir recomendación sin compromiso
+                    </Link>
                 </div>
             </div>
         </section>

@@ -7,8 +7,8 @@ const PlanDetalle = dynamic(() => import('@/components/PagPlan'));
 const plan = getPlanByTag('landing_page');
 
 export const metadata = createPageMetadata({
-  title: plan?.titulo ?? 'Landing Page Profesional',
-  description: plan?.subtitulo ?? siteConfig.description,
+  title: plan?.seoTitle ?? 'Landing Page Profesional',
+  description: plan?.seoDescription ?? siteConfig.description,
   path: siteConfig.planRoutes[0],
 });
 
