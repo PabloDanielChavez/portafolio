@@ -1,6 +1,11 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
+import { esSlugTrabajoValido } from "@/components/utils/trabajos.helpers";
 import { siteConfig } from "@/config/site";
+import { getTrabajos } from "@/services/fetchData";
+import type { TrabajosType } from "@/types/trabajos";
+
+export const revalidate = 3600;
 
 const sitemapEntries = [
   {
@@ -35,10 +40,58 @@ const sitemapEntries = [
   })),
 ] as const;
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return sitemapEntries.map(({ path, changeFrequency, priority }) => ({
+const toSitemapEntries = (
+  entries: ReadonlyArray<{
+    path: string;
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+    priority: number;
+  }>
+): MetadataRoute.Sitemap =>
+  entries.map(({ path, changeFrequency, priority }) => ({
     url: new URL(path, `${siteConfig.siteUrl}/`).toString(),
     changeFrequency,
     priority,
   }));
+
+export const buildSitemap = (
+  trabajos: ReadonlyArray<Pick<TrabajosType, "slug">>
+): MetadataRoute.Sitemap => {
+  const seenSlugs = new Set<string>();
+  const workEntries = [];
+
+  for (const trabajo of trabajos) {
+    if (
+      !esSlugTrabajoValido(trabajo?.slug) ||
+      seenSlugs.has(trabajo.slug)
+    ) {
+      continue;
+    }
+
+    seenSlugs.add(trabajo.slug);
+    workEntries.push({
+      path: `${siteConfig.routes.projects}/${trabajo.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    });
+  }
+
+  return toSitemapEntries([...sitemapEntries, ...workEntries]);
+}
+
+export const createSitemap = async (
+  fetchTrabajos: () => Promise<TrabajosType[]> = getTrabajos
+): Promise<MetadataRoute.Sitemap> => {
+  try {
+    return buildSitemap(await fetchTrabajos());
+  } catch {
+    console.error(
+      "No se pudieron incluir los proyectos dinámicos en el sitemap."
+    );
+
+    return buildSitemap([]);
+  }
+};
+
+export default function sitemap(): Promise<MetadataRoute.Sitemap> {
+  return createSitemap();
 }

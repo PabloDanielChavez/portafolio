@@ -42,6 +42,36 @@ export async function getAllPortfolioData() {
   }
 }
 
+export async function getTrabajos(): Promise<TrabajosType[]> {
+  if (!urlBase) {
+    throw new Error("La URL del backend no está configurada.");
+  }
+
+  let response: Response;
+
+  try {
+    response = await fetch(`${urlBase}trabajos`, {
+      next: { revalidate: 3600 }
+    });
+  } catch {
+    throw new Error("No se pudo consultar el listado de proyectos.");
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      `No se pudo consultar el listado de proyectos (${response.status}).`
+    );
+  }
+
+  const trabajos: unknown = await response.json();
+
+  if (!Array.isArray(trabajos)) {
+    throw new Error("La respuesta de proyectos no tiene un formato válido.");
+  }
+
+  return trabajos as TrabajosType[];
+}
+
 export async function getTrabajoBySlug(
   slug: string
 ): Promise<TrabajosType | null> {
