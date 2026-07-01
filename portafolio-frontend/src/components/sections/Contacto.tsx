@@ -3,8 +3,7 @@
 import {
     useEffect,
     useRef,
-    useState,
-    type ReactNode
+    useState
 } from "react";
 
 import {
@@ -26,6 +25,9 @@ import { useContactoForm } from "@/hooks/useContactoForm";
 import style from "@/styles/sections/contacto.module.scss";
 import type { PerfilType } from "@/types/perfil";
 
+import ContactoCanales, {
+    type ContactoCanalData
+} from "../sub_components/ContactoCanales";
 import ContactoFaq, {
     type ContactoFaqItemData
 } from "../sub_components/ContactoFaq";
@@ -35,14 +37,6 @@ import { trackEvent } from "../utils/Analytics";
 interface Props {
     perfil: PerfilType[];
 }
-
-type SocialLink = {
-    id: string;
-    titulo: string;
-    detalle: string;
-    url: string;
-    icon: ReactNode;
-};
 
 const CONTACT_EMAIL = "pablo_daniel_chavez@outlook.es";
 const getCurrentLocationHref = () => window.location.href;
@@ -205,7 +199,7 @@ export default function Contacto({ perfil }: Props) {
         return () => observer.disconnect();
     }, []);
 
-    const socialLinks: SocialLink[] = [
+    const socialLinks: ContactoCanalData[] = [
         ...(whatsappNumber.length >= 8
             ? [
                   {
@@ -295,6 +289,13 @@ export default function Contacto({ perfil }: Props) {
                 : [];
         })()
     ];
+
+    const handleSocialClick = (network: string) => {
+        trackEvent("contact_social_click", {
+            section: "contacto",
+            network
+        });
+    };
 
     return (
         <section
@@ -707,93 +708,11 @@ export default function Contacto({ perfil }: Props) {
                         </p>
                     </form>
 
-                    <aside
-                        className={`${style.contacto_sidebar} ${style.contacto_reveal} ${style.contacto_reveal_delay_two}`}
-                        aria-label="Garantías y canales de contacto"
-                    >
-                        <div className={style.contacto_trust_panel}>
-                            <span className={style.contacto_eyebrow}>
-                                Una solución pensada para tu negocio
-                            </span>
-                            <h3>Más que una web visualmente atractiva</h3>
-                            <p>
-                                Cada decisión de diseño y desarrollo busca que
-                                tu sitio sea fácil de usar, rápido y capaz de
-                                convertir visitas en consultas reales.
-                            </p>
-                            <ul className={style.contacto_trust_grid}>
-                                {indicadoresConfianza.map((indicador) => (
-                                    <li key={indicador}>
-                                        <FaCheck aria-hidden="true" />
-                                        <span>{indicador}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div className={style.contacto_channels_panel}>
-                            <div className={style.contacto_panel_heading}>
-                                <div>
-                                    <span className={style.contacto_eyebrow}>
-                                        Canales directos
-                                    </span>
-                                    <h3>Elegí cómo conversar</h3>
-                                </div>
-                                <span className={style.contacto_availability}>
-                                    Disponible para nuevos proyectos
-                                </span>
-                            </div>
-
-                            <div className={style.contacto_social_grid}>
-                                {socialLinks.map((social) => (
-                                    <a
-                                        key={social.id}
-                                        href={social.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={style.contacto_social_card}
-                                        aria-label={`Contactar por ${social.titulo}`}
-                                        onClick={() =>
-                                            trackEvent(
-                                                "contact_social_click",
-                                                {
-                                                    section: "contacto",
-                                                    network: social.id
-                                                }
-                                            )
-                                        }
-                                    >
-                                        <span
-                                            className={
-                                                style.contacto_social_icon
-                                            }
-                                        >
-                                            {social.icon}
-                                        </span>
-                                        <span
-                                            className={
-                                                style.contacto_social_info
-                                            }
-                                        >
-                                            <strong>{social.titulo}</strong>
-                                            <small>{social.detalle}</small>
-                                        </span>
-                                        <FaArrowRight
-                                            className={
-                                                style.contacto_social_arrow
-                                            }
-                                            aria-hidden="true"
-                                        />
-                                    </a>
-                                ))}
-                            </div>
-
-                            <p className={style.contacto_response_note}>
-                                Sin mensajes automáticos ni
-                                propuestas genéricas.
-                            </p>
-                        </div>
-                    </aside>
+                    <ContactoCanales
+                        indicadores={indicadoresConfianza}
+                        canales={socialLinks}
+                        onSocialClick={handleSocialClick}
+                    />
                 </div>
 
                 <ContactoFaq items={preguntasFrecuentes} />

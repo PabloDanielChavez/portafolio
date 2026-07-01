@@ -33,6 +33,13 @@ const contactFaqSource = await readFile(
     ),
     "utf8"
 );
+const contactChannelsSource = await readFile(
+    new URL(
+        "../src/components/sub_components/ContactoCanales.tsx",
+        import.meta.url
+    ),
+    "utf8"
+);
 
 const assertIncludesAll = (source, expectedValues) => {
     for (const expectedValue of expectedValues) {
@@ -206,6 +213,50 @@ test("Contacto delega el bloque FAQ sin alterar su contrato", () => {
             'section: "contacto"',
             "faq_id: item.id",
             'state: nextState ? "open" : "closed"'
+        ]
+    );
+});
+
+test("Contacto delega el sidebar sin alterar canales ni tracking", () => {
+    assertIncludesAll(
+        contactoSource,
+        [
+            "ContactoCanales,",
+            "type ContactoCanalData",
+            "const socialLinks: ContactoCanalData[]",
+            "<ContactoCanales",
+            "indicadores={indicadoresConfianza}",
+            "canales={socialLinks}",
+            "onSocialClick={handleSocialClick}",
+            '"contact_social_click"',
+            'section: "contacto"',
+            "network",
+            "`https://wa.me/${whatsappNumber}",
+            "`mailto:${CONTACT_EMAIL}",
+            '"https://www.linkedin.com/in/"',
+            '"https://github.com/"',
+            '"https://www.instagram.com/"'
+        ]
+    );
+
+    assertIncludesAll(
+        contactChannelsSource,
+        [
+            "export default function ContactoCanales",
+            "indicadores: readonly string[]",
+            "canales: readonly ContactoCanalData[]",
+            "onSocialClick: (network: string) => void",
+            "contacto_sidebar",
+            'aria-label="Garantías y canales de contacto"',
+            "contacto_trust_panel",
+            "contacto_channels_panel",
+            "contacto_social_grid",
+            "href={social.url}",
+            'target="_blank"',
+            'rel="noopener noreferrer"',
+            "aria-label={`Contactar por ${social.titulo}`}",
+            "onClick={() => onSocialClick(social.id)}",
+            "Sin mensajes automáticos ni propuestas genéricas."
         ]
     );
 });

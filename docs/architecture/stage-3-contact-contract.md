@@ -30,9 +30,11 @@ No se modifica el diseño, el JSX, las clases, los endpoints ni Analytics/GTM.
   formulario, incluyendo envío y eventos asociados.
 - `src/components/sub_components/ContactoFaq.tsx`: render, estado de apertura,
   accesibilidad y medición del bloque de preguntas frecuentes.
+- `src/components/sub_components/ContactoCanales.tsx`: render accesible del
+  sidebar de confianza y canales directos.
 - `src/services/fetchData.ts`: transporte HTTP; ya no define tipos de Contacto.
 - `src/components/sections/Contacto.tsx`: interacción visual, foco de errores,
-  datos de FAQ, canales sociales y render hasta las siguientes subfases.
+  datos de FAQ, construcción de canales y render hasta las siguientes subfases.
 
 Las opciones se ubican en `constants` porque son valores cerrados del contrato,
 no copy comercial. El backend seguirá siendo su autoridad futura cuando exista
