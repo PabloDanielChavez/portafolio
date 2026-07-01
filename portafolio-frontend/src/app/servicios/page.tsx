@@ -9,9 +9,9 @@ const Planes = dynamic(() => import('@/components/sections/Planes'));
 const Clientes = dynamic(() => import('@/components/sections/Clientes'));
 
 export const metadata = createPageMetadata({
-  title: 'Servicios de Diseño y Desarrollo Web',
+  title: 'Landing Pages, Sitios Web y Desarrollo a Medida',
   description:
-    'Servicios web para crear, optimizar y hacer crecer una presencia digital clara, rápida, profesional y enfocada en resultados.',
+    'Compará Landing Page Profesional, Sitio Web Profesional y Desarrollo Web a Medida. Elegí una solución clara para tu negocio o pedí ayuda para definirla.',
   path: siteConfig.routes.services,
 });
 

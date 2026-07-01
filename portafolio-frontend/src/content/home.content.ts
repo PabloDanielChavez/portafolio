@@ -2,59 +2,64 @@ export const homeContent = {
     trust: {
         ariaLabel: "Indicadores de confianza",
         projects: {
-            valueSuffix: "+",
+            valueSuffix: "",
             label: "proyectos publicados"
         },
         indicators: [
-            { value: "SEO", label: "técnico incluido" },
+            { value: "SEO", label: "técnico inicial" },
             { value: "100%", label: "diseño responsive" },
-            { value: "WhatsApp", label: "contacto directo" }
+            { value: "Directo", label: "acompañamiento personal" }
         ]
     },
     process: {
         eyebrow: "Cómo trabajamos",
-        title: "Un proceso simple, con avances claros",
+        title: "Un proceso claro, sin sorpresas",
         description:
-            "Cada etapa tiene un objetivo concreto para que sepas qué estamos resolviendo y qué sigue.",
+            "Desde la primera consulta sabés qué vamos a resolver, cuánto puede tardar y cuál es el próximo paso.",
         steps: [
             {
                 number: "01",
                 title: "Análisis",
-                description: "Entendemos el negocio y el objetivo."
+                description:
+                    "Revisamos tu negocio, el objetivo y el material disponible."
             },
             {
                 number: "02",
                 title: "Propuesta",
-                description: "Definimos alcance, estructura y tiempos."
+                description:
+                    "Definimos alcance, precio y plazo antes de empezar."
             },
             {
                 number: "03",
                 title: "Desarrollo",
-                description: "Construyo y revisamos avances claros."
+                description:
+                    "Diseño y desarrollo la web con revisiones concretas."
             },
             {
                 number: "04",
                 title: "Entrega",
-                description: "Publicamos y dejamos todo preparado."
+                description:
+                    "Publicamos y te acompaño con dominio, hosting y configuración."
             },
             {
                 number: "05",
                 title: "Acompañamiento",
                 description:
-                    "Seguimos en contacto después del lanzamiento."
+                    "Seguimos en contacto después de la publicación."
             }
         ]
     },
     finalCta: {
-        label: "Tu próximo proyecto",
-        title: "Hagamos que tu negocio se vea tan profesional como es.",
+        label: "Tu consulta, sin vueltas",
+        title: "Contame qué necesita tu negocio y te digo por dónde empezar.",
         description:
-            "Contame qué necesitás y te respondo con una propuesta clara, sin vueltas ni paquetes inflados.",
+            "Te respondo directamente, revisamos juntos qué tipo de web te conviene y, si tiene sentido, recibís un presupuesto claro antes de empezar.",
         checks: [
-            "Respuesta personalizada",
-            "Presupuesto sin compromiso"
+            "Respuesta directa por WhatsApp",
+            "Sin compromiso ni costos ocultos"
         ],
-        primaryAction: "Solicitar presupuesto",
-        secondaryAction: "Ver formulario"
+        primaryAction: "Consultar por WhatsApp",
+        secondaryAction: "Completar formulario",
+        profileAction: "Conocé quién está detrás de PaginasWebChavez"
     }
 } as const;

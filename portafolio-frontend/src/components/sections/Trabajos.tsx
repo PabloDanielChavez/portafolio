@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import { IoIosRocket, IoMdArrowBack } from "react-icons/io";
 
+import { getTrabajoCommercialContent } from "@/content/trabajos-commercial.content";
 import style_trabajos from "@/styles/sections/trabajos.module.scss";
 import type { TrabajosType } from "@/types/trabajos";
 
@@ -37,22 +38,14 @@ export default function Trabajos({
 
         if (!showFooter) return ordenados;
 
-        const prioridadComercial = (nombre: string) => {
-            const normalizado = nombre
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .toLowerCase();
-
-            if (normalizado.includes("jardineria montanez")) return 2;
-            if (normalizado.includes("plomada")) return 1;
-            return 0;
-        };
+        const prioridadComercial = (trabajo: TrabajosType) =>
+            getTrabajoCommercialContent(trabajo).featuredPriority;
 
         return [...ordenados]
             .sort(
                 (a, b) =>
-                    prioridadComercial(b.nombre_trabajo) -
-                    prioridadComercial(a.nombre_trabajo)
+                    prioridadComercial(b) -
+                    prioridadComercial(a)
             )
             .slice(0, 5);
     }, [trabajos, showFooter]);

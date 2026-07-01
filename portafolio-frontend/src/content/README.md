@@ -211,6 +211,31 @@ cuando corresponda.
 Esta decisión orientará más adelante el contenido institucional y Schema.org,
 pero no implica cambios SEO ni JSON-LD durante 3.1.
 
+## Voz comercial
+
+Desde 3.6, el contenido comercial de PaginasWebChavez sigue estas reglas:
+
+- Usar voseo argentino de forma consistente.
+- Nombrar la marca siempre como `PaginasWebChavez`.
+- Explicar primero el beneficio para el cliente y después el detalle técnico.
+- Mantener un tono profesional, claro, humano y directo.
+- Evitar promesas de ventas, posiciones o resultados que no puedan probarse.
+- No inventar testimonios, experiencia, clientes, métricas ni valoraciones.
+- Evitar textos provisorios, lenguaje corporativo vacío y keyword stuffing.
+
+`trabajos-commercial.content.ts` funciona como una capa editorial de
+presentación por `slug`. No reemplaza los datos operativos del backend:
+slugs, estados, métricas, relaciones técnicas e imágenes siguen viniendo de
+la API. La capa local conserva únicamente nombres visibles normalizados,
+resúmenes comerciales, metadata editorial y destinos de conversión hasta que
+exista un modelo administrable equivalente.
+
+`servicios-commercial.content.ts` aplica el mismo criterio a la presentación
+de Servicios: conserva los identificadores e iconos del backend y aporta
+beneficios, guía de elección y enlaces comerciales estáticos. Los planes,
+precios y características continúan en su fuente actual y no se duplican en
+esta capa.
+
 ## Inventario inicial para 3.2
 
 ### Primer grupo: bajo riesgo

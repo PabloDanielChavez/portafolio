@@ -10,8 +10,9 @@ const Servicios = dynamic(() => import("@/components/sections/Servicios"));
 const Planes = dynamic(() => import("@/components/sections/Planes"));
 
 export const metadata = createPageMetadata({
-    title: "Diseño y Desarrollo de Páginas Web Profesionales",
-    description: siteConfig.description,
+    title: "Páginas Web Profesionales para Negocios",
+    description:
+        "Diseño páginas web profesionales para negocios, emprendedores y pymes de Argentina. Landing pages, sitios rápidos y desarrollos a medida con presupuesto claro.",
     path: siteConfig.routes.home,
 });
 
@@ -26,10 +27,10 @@ export default async function Home() {
         <>
             <Hero perfil={data.Perfil} />
             <TrustBar projectCount={data.Trabajos.length} />
-            <Trabajos trabajos={data.Trabajos} showFooter />
             <Servicios servicios={data.Servicios} showBackLink={false} />
-            <Proceso />
             <Planes />
+            <Trabajos trabajos={data.Trabajos} showFooter />
+            <Proceso />
             <FinalCta perfil={data.Perfil} />
         </>
     );

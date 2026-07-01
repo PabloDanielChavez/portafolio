@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
+import { getTrabajoCommercialContent } from "@/content/trabajos-commercial.content";
 import styles from "@/styles/sections/trabajos.module.scss";
 import type { TrabajosType } from "@/types/trabajos";
 
@@ -45,6 +46,7 @@ export default function TrabajoCard({
     const fecha = getFechaProyecto(trabajo.fecha_finalizacion);
     const imagenUrl = getImagenTrabajo(trabajo);
     const destacado = esTrabajoDestacado(trabajo);
+    const commercialContent = getTrabajoCommercialContent(trabajo);
 
     useEffect(() => {
         const currentCard = cardRef.current;
@@ -71,8 +73,8 @@ export default function TrabajoCard({
     const handleClickTrabajo = () => {
         trackEvent("click_trabajo", {
             section: "Trabajos",
-            project_name: trabajo.nombre_trabajo,
-            project_category: trabajo.categoria_trabajo,
+            project_name: commercialContent.displayName,
+            project_category: commercialContent.category,
             device: dispositivo
         });
     };
@@ -89,13 +91,13 @@ export default function TrabajoCard({
                 <Link
                     href={`/trabajos/${trabajo.slug}`}
                     className={styles.trabajos_card_resumen_link}
-                    aria-label={`Ver proyecto ${trabajo.nombre_trabajo}`}
+                    aria-label={`Ver proyecto ${commercialContent.displayName}`}
                     onClick={handleClickTrabajo}
                 >
                     <Image
                         className={styles.trabajos_card_resumen_img}
                         src={imagenUrl}
-                        alt={`Vista previa del proyecto ${trabajo.nombre_trabajo}`}
+                        alt={`Vista previa del proyecto ${commercialContent.displayName}`}
                         fill
                         priority={index === 0}
                         sizes={index === 0
@@ -113,9 +115,9 @@ export default function TrabajoCard({
                     <div className={styles.trabajos_card_overlay}>
                         <div>
                             <span className={styles.trabajos_card_categoria}>
-                                {trabajo.categoria_trabajo}
+                                {commercialContent.category}
                             </span>
-                            <Heading>{trabajo.nombre_trabajo}</Heading>
+                            <Heading>{commercialContent.displayName}</Heading>
                         </div>
 
                         <div className={styles.trabajos_card_resumen_meta}>
@@ -145,14 +147,14 @@ export default function TrabajoCard({
             <Link
                 href={`/trabajos/${trabajo.slug}`}
                 className={styles.trabajos_card_link_wrapper}
-                aria-label={`Ver caso de estudio de ${trabajo.nombre_trabajo}`}
+                aria-label={`Ver caso de estudio de ${commercialContent.displayName}`}
                 onClick={handleClickTrabajo}
             >
                 <div className={styles.trabajos_card_media}>
                     <Image
                         className={styles.trabajos_img}
                         src={imagenUrl}
-                        alt={`Vista previa del proyecto ${trabajo.nombre_trabajo}`}
+                        alt={`Vista previa del proyecto ${commercialContent.displayName}`}
                         width={700}
                         height={520}
                         priority={index === 0}
@@ -175,7 +177,7 @@ export default function TrabajoCard({
                 <div className={styles.trabajos_card_info}>
                     <div className={styles.trabajos_card_top}>
                         <span className={styles.trabajos_card_categoria}>
-                            {trabajo.categoria_trabajo}
+                            {commercialContent.category}
                         </span>
 
                         <span className={styles.trabajos_card_promedio}>
@@ -185,7 +187,7 @@ export default function TrabajoCard({
 
                     <header className={styles.trabajos_card_header}>
                         <Heading className={styles.trabajos_card_titulo}>
-                            {trabajo.nombre_trabajo}
+                            {commercialContent.displayName}
                         </Heading>
 
                         <span className={styles.trabajos_card_url}>
@@ -202,16 +204,16 @@ export default function TrabajoCard({
                     </div>
 
                     <p className={styles.trabajos_card_desc}>
-                        {trabajo.resumen_trabajo}
+                        {commercialContent.commercialSummary}
                     </p>
 
-                    {!modoResumen && trabajo.reto_tecnico && (
+                    {!modoResumen && commercialContent.challenge && (
                         <div className={styles.trabajos_card_challenge}>
                             <span className={styles.trabajos_card_challenge_label}>
-                                Reto técnico
+                                Desafío del proyecto
                             </span>
 
-                            <p>{trabajo.reto_tecnico}</p>
+                            <p>{commercialContent.challenge}</p>
                         </div>
                     )}
 

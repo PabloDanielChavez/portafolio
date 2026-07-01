@@ -1,3 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
+
+import { getTrabajoCommercialContent } from "@/content/trabajos-commercial.content";
 import style_trabajos from "@/styles/sections/trabajos.module.scss";
 import type { TrabajosType } from "@/types/trabajos";
 import type { tra_tecnologiaType } from "@/types/tra_tecnologia";
@@ -24,7 +28,6 @@ import {
     SiSass,
     SiSequelize
 } from "@/components/utils/Iconos";
-import Image from "next/image";
 
 type PagTrabajoDetalleProps = {
     tra: TrabajosType;
@@ -52,6 +55,7 @@ export default function PagTrabajoDetalle({
     const estado = getEstadoProyecto(tra.estado_proyecto);
     const fecha = getFechaProyecto(tra.fecha_finalizacion);
     const destacado = esTrabajoDestacado(tra);
+    const commercialContent = getTrabajoCommercialContent(tra);
 
     return (
         <article className={style_trabajos.pagTrabajo_detalle_container}>
@@ -65,11 +69,11 @@ export default function PagTrabajoDetalle({
                                     Proyecto destacado
                                 </span>
                             )}
-                            <span className={style_trabajos.pagTrabajo_badge}>{tra.categoria_trabajo}</span>
+                            <span className={style_trabajos.pagTrabajo_badge}>{commercialContent.category}</span>
                             <span className={style_trabajos.pagTrabajo_badge}>{estado}</span>
                         </div>
-                        <h1 id="trabajo-title" className={style_trabajos.pagTrabajo_detalle_h1}>{tra.nombre_trabajo}</h1>
-                        <p className={style_trabajos.pagTrabajo_hero_intro}>{tra.resumen_trabajo}</p>
+                        <h1 id="trabajo-title" className={style_trabajos.pagTrabajo_detalle_h1}>{commercialContent.displayName}</h1>
+                        <p className={style_trabajos.pagTrabajo_hero_intro}>{commercialContent.commercialSummary}</p>
                         <div className={style_trabajos.pagTrabajo_hero_meta}>
                             <span>{tra.rol}</span>
                             <span>{tra.categoria_cliente}</span>
@@ -81,7 +85,7 @@ export default function PagTrabajoDetalle({
                         <span className={style_trabajos.pagTrabajo_panel_label}>Proyecto</span>
                         <div className={style_trabajos.pagTrabajo_panel_item}>
                             <strong>Tipo</strong>
-                            <span>{tra.categoria_trabajo}</span>
+                            <span>{commercialContent.category}</span>
                         </div>
 
                         <div className={style_trabajos.pagTrabajo_panel_item}>
@@ -104,7 +108,7 @@ export default function PagTrabajoDetalle({
                     <Image
                         className={style_trabajos.pagTrabajo_detalle_img_main}
                         src={imagenUrl}
-                        alt={`Vista previa del proyecto ${tra.nombre_trabajo}`}
+                        alt={`Vista previa del proyecto ${commercialContent.displayName}`}
                         width={1100}
                         height={720}
                         priority
@@ -115,30 +119,24 @@ export default function PagTrabajoDetalle({
                         <section className={style_trabajos.pagTrabajo_section} aria-labelledby="resumen-title">
                             <span className={style_trabajos.pagTrabajo_section_label}>Resumen</span>
                             <h2 id="resumen-title" className={style_trabajos.pagTrabajo_h2}>Qué se buscó resolver</h2>
-                            <p className={style_trabajos.pagTrabajo_parrafo}>{tra.resumen_trabajo}</p>
-                            {tra.informacion_trabajo && (
+                            {commercialContent.information && (
                                 <p className={style_trabajos.pagTrabajo_parrafo}>
-                                    {tra.informacion_trabajo}
+                                    {commercialContent.information}
                                 </p>
                             )}
                         </section>
-                        {tra.reto_tecnico && (
+                        {commercialContent.challenge && (
                             <section className={style_trabajos.pagTrabajo_section} aria-labelledby="reto-title">
-                                <span className={style_trabajos.pagTrabajo_section_label}>Reto técnico</span>
-                                <h2 id="reto-title" className={style_trabajos.pagTrabajo_h2}>Principal desafío del desarrollo</h2>
-                                <p className={style_trabajos.pagTrabajo_parrafo}>{tra.reto_tecnico}</p>
+                                <span className={style_trabajos.pagTrabajo_section_label}>Desafío del proyecto</span>
+                                <h2 id="reto-title" className={style_trabajos.pagTrabajo_h2}>Principal desafío del proyecto</h2>
+                                <p className={style_trabajos.pagTrabajo_parrafo}>{commercialContent.challenge}</p>
                             </section>
                         )}
-                        {tra.opinion_trabajo && (
-                            <section className={style_trabajos.pagTrabajo_section} aria-labelledby="opinion-title">
-                                <span className={style_trabajos.pagTrabajo_section_label}>Evaluación</span>
-                                <h2 id="opinion-title" className={style_trabajos.pagTrabajo_h2}>Resultado y valoración</h2>
-                                <p className={style_trabajos.pagTrabajo_parrafo}>{tra.opinion_trabajo}</p>
-                                {tra.valoracion_trabajo && (
-                                    <blockquote className={style_trabajos.pagTrabajo_quote}>
-                                        {tra.valoracion_trabajo}
-                                    </blockquote>
-                                )}
+                        {commercialContent.outcome && (
+                            <section className={style_trabajos.pagTrabajo_section} aria-labelledby="resultado-title">
+                                <span className={style_trabajos.pagTrabajo_section_label}>Resultado</span>
+                                <h2 id="resultado-title" className={style_trabajos.pagTrabajo_h2}>Resultado del enfoque</h2>
+                                <p className={style_trabajos.pagTrabajo_parrafo}>{commercialContent.outcome}</p>
                             </section>
                         )}
                     </article>
@@ -195,6 +193,41 @@ export default function PagTrabajoDetalle({
                 </div>
 
                 <TrabajoAuditoria trabajo={tra} />
+
+                <section
+                    className={style_trabajos.pagTrabajo_commercial_cta}
+                    aria-labelledby="trabajo-commercial-cta-title"
+                >
+                    <div>
+                        <span className={style_trabajos.pagTrabajo_section_label}>
+                            Tu próximo proyecto
+                        </span>
+                        <h2
+                            id="trabajo-commercial-cta-title"
+                            className={style_trabajos.pagTrabajo_h2}
+                        >
+                            ¿Querés una web con un enfoque similar?
+                        </h2>
+                        <p className={style_trabajos.pagTrabajo_parrafo}>
+                            Contame qué necesitás y te ayudo a definir una
+                            solución clara para tu negocio.
+                        </p>
+                    </div>
+                    <div className={style_trabajos.pagTrabajo_commercial_cta_actions}>
+                        <Link
+                            href={commercialContent.primaryCta.href}
+                            className={style_trabajos.pagTrabajo_commercial_cta_primary}
+                        >
+                            {commercialContent.primaryCta.label}
+                        </Link>
+                        <Link
+                            href={commercialContent.relatedPlan.href}
+                            className={style_trabajos.pagTrabajo_commercial_cta_secondary}
+                        >
+                            {commercialContent.relatedPlan.label}
+                        </Link>
+                    </div>
+                </section>
             </div>
         </article>
     );

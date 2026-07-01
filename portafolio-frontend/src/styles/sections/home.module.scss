@@ -230,3 +230,18 @@
         color: v.$text-primary;
     }
 }
+
+.cta_profile {
+    @extend %link-reset;
+
+    color: rgba(v.$text-secondary, .78);
+    font-size: .78rem;
+    line-height: 1.45;
+    text-align: center;
+
+    &:hover {
+        color: v.$text-primary;
+        text-decoration: underline;
+        text-underline-offset: .2rem;
+    }
+}

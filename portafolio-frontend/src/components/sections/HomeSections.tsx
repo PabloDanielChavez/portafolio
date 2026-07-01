@@ -101,6 +101,9 @@ export function FinalCta({ perfil }: { perfil: PerfilType[] }) {
                         {homeContent.finalCta.secondaryAction}
                         <FaArrowRight aria-hidden="true" />
                     </Link>
+                    <Link href="/perfil" className={styles.cta_profile}>
+                        {homeContent.finalCta.profileAction}
+                    </Link>
                 </div>
             </div>
         </section>

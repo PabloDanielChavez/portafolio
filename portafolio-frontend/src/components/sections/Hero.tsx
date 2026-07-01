@@ -46,7 +46,7 @@ export default function Hero({ perfil }: Props) {
                             {heroContent.actions.primary}
                         </Link>
 
-                        <Link href="#trabajos" className={styles.hero_secondary}>
+                        <Link href="#planes" className={styles.hero_secondary}>
                             {heroContent.actions.secondary}
                             <FaArrowDown aria-hidden="true" />
                         </Link>

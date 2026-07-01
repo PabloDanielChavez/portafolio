@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+import { getServicioCommercialContent } from "@/content/servicios-commercial.content";
 import styles from "@/styles/sections/servicios.module.scss";
 import type { ServiciosType } from "@/types/servicios";
 
@@ -19,6 +20,7 @@ export default function ServicioCard({
     const [visible, setVisible] = useState(false);
     const ref = useRef<HTMLElement>(null);
     const Heading = headingLevel;
+    const commercialContent = getServicioCommercialContent(servicio);
 
     useEffect(() => {
         const card = ref.current;
@@ -50,8 +52,8 @@ export default function ServicioCard({
             <span className={styles.servicios_card_icon} aria-hidden="true">
                 {icono}
             </span>
-            <Heading>{servicio.nombre_servicio}</Heading>
-            <p>{servicio.informacion_servicio}</p>
+            <Heading>{commercialContent.title}</Heading>
+            <p>{commercialContent.description}</p>
         </article>
     );
 }

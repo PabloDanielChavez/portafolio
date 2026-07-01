@@ -32,7 +32,7 @@ export default function PlanCard({ planes }: PlanCardProps) {
                     ))}
                 </ul>
                 <span className={styles.planes_boton}>
-                    Ver plan
+                    Ver precio, plazo y alcance
                 </span>
             </Link>
         </article>

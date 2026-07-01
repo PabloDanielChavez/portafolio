@@ -1,21 +1,17 @@
-import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import PagTrabajoDetalle from '@/components/PagTrabajo';
 import {
   esSlugTrabajoValido,
   getImagenTrabajo
 } from '@/components/utils/trabajos.helpers';
 import { createPageMetadata, siteConfig } from '@/config/site';
+import { getTrabajoCommercialContent } from '@/content/trabajos-commercial.content';
 import {
   getAllPortfolioData,
   getTrabajoBySlug
 } from "@/services/fetchData";
-
-const PagTrabajoDetalle = dynamic(() => import('@/components/PagTrabajo'), {
-    loading: () => <p>Cargando sección...</p>,
-    ssr: true,
-});
 
 type Props = {
   params: Promise<{
@@ -40,13 +36,11 @@ const resolveTrabajo = async (slug: string) => {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const trabajo = await resolveTrabajo(slug);
+  const commercialContent = getTrabajoCommercialContent(trabajo);
 
   return createPageMetadata({
-    title: `${trabajo.nombre_trabajo} — Proyecto Web`,
-    description:
-      trabajo.resumen_trabajo ||
-      trabajo.informacion_trabajo ||
-      siteConfig.description,
+    title: commercialContent.seoTitle,
+    description: commercialContent.seoDescription,
     path: `${siteConfig.routes.projects}/${trabajo.slug}`,
     type: 'article',
     image: getImagenTrabajo(trabajo),
@@ -65,11 +59,9 @@ export default async function TraDetallePagina({ params }: Props) {
   }
 
   return (
-    <>
-      <PagTrabajoDetalle 
-        tra={trabajoIndividual} 
-        tra_tecnologia={data.TraTecnologia} 
-      />
-    </>
+    <PagTrabajoDetalle
+      tra={trabajoIndividual}
+      tra_tecnologia={data.TraTecnologia}
+    />
   );
 }

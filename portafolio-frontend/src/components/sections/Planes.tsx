@@ -11,8 +11,8 @@ export default function Planes() {
             <div className={styles.planes_layout}>
                 <SectionHeader
                     icon={<TbChartBarPopular />}
-                    title="Planes claros para cada etapa"
-                    description="Elegí una base y la ajustamos a las necesidades reales de tu negocio. Sin costos ocultos ni funciones que no vas a usar."
+                    title="Elegí la web adecuada para tu próximo paso"
+                    description="Compará el alcance, el precio orientativo y el plazo de cada opción. Elegimos una base y la ajustamos a las necesidades reales de tu negocio, sin costos ocultos."
                     headingId="planes-title"
                 />
 

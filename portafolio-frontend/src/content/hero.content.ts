@@ -1,29 +1,29 @@
 export const heroContent = {
-    eyebrow: "Diseño y desarrollo web",
+    eyebrow: "Diseño web para negocios, profesionales y pymes",
     title: {
-        beforeHighlight: "Páginas web que transmiten",
-        highlight: "confianza",
-        afterHighlight: "y generan consultas"
+        beforeHighlight: "Una",
+        highlight: "página web profesional",
+        afterHighlight: "para que tu negocio genere consultas"
     },
     description:
-        "Creo sitios web rápidos, modernos y optimizados para Google, pensados para que tu negocio se vea profesional y convierta visitas en clientes.",
+        "Diseño landing pages, sitios web y soluciones a medida para negocios de Argentina que necesitan verse profesionales, explicar mejor lo que ofrecen y facilitar el contacto.",
     actions: {
         primary: "Solicitar presupuesto",
-        secondary: "Ver trabajos"
+        secondary: "Ver planes disponibles"
     },
     note:
-        "Propuesta clara, trato directo y acompañamiento después de publicar.",
+        "¿No sabés qué tipo de web necesitás? Te ayudo a definirla. Respuesta directa por WhatsApp, sin compromiso.",
     panel: {
         ariaLabel: "Qué incluye cada proyecto",
-        label: "Una base sólida para crecer",
-        title: "Tu web lista para verse bien y trabajar para tu negocio.",
+        label: "Una base profesional desde el inicio",
+        title: "Tu web lista para transmitir confianza y recibir consultas.",
         benefits: [
-            "SEO técnico",
             "Diseño responsive",
-            "WhatsApp integrado",
-            "Carga rápida"
+            "Carga rápida",
+            "SEO técnico inicial",
+            "Contacto integrado"
         ],
-        footerLabel: "Enfoque",
-        footerValue: "Claridad · rendimiento · conversión"
+        footerLabel: "Forma de trabajo",
+        footerValue: "Presupuesto claro · trato directo"
     }
 } as const;

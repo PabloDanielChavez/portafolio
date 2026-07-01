@@ -96,10 +96,161 @@
     }
 }
 
+.servicios_decision {
+    @include m.card-featured;
+
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+.servicios_decision_header {
+    max-width: 760px;
+
+    > span {
+        color: v.$gold;
+        font-family: v.$font-display;
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    h2,
+    h3 {
+        margin: .55rem 0 0;
+        color: v.$text-primary;
+        font-size: clamp(1.45rem, 3.5vw, 2rem);
+        letter-spacing: -.035em;
+        line-height: 1.15;
+    }
+
+    p {
+        margin: .8rem 0 0;
+        color: v.$text-secondary;
+        line-height: 1.7;
+    }
+}
+
+.servicios_decision_options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .75rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+
+    @include m.tablet {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    li {
+        min-width: 0;
+    }
+
+    a {
+        @extend %link-reset;
+        @include m.card-metric;
+
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 1rem;
+        transition:
+            border-color .2s ease,
+            background .2s ease,
+            transform .2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            border-color: rgba(v.$violet-soft, .34);
+            background: rgba(v.$violet-primary, .09);
+        }
+    }
+
+    strong {
+        color: v.$text-primary;
+        font-family: v.$font-display;
+        font-size: .98rem;
+        line-height: 1.35;
+    }
+
+    span {
+        margin-top: .55rem;
+        color: v.$text-secondary;
+        font-size: v.$font-size-small;
+        line-height: 1.6;
+    }
+
+    small {
+        margin-top: auto;
+        padding-top: .8rem;
+        color: v.$violet-soft;
+        font-size: .76rem;
+        font-weight: 800;
+    }
+}
+
+.servicios_decision_actions {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    align-items: center;
+    margin-top: 1.25rem;
+
+    @include m.telefonoXL {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.servicios_decision_primary {
+    @include m.button-primary;
+}
+
+.servicios_decision_secondary {
+    @extend %link-reset;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: .8rem 1.05rem;
+    border: 1px solid v.$border-card;
+    border-radius: 999px;
+    color: v.$text-primary;
+    font-family: v.$font-display;
+    font-size: .86rem;
+    font-weight: 750;
+
+    &:hover {
+        border-color: rgba(v.$violet-soft, .34);
+        background: rgba(v.$violet-primary, .07);
+    }
+}
+
+.servicios_decision_text_link {
+    @extend %link-reset;
+
+    padding: .65rem .4rem;
+    color: v.$text-secondary;
+    font-size: v.$font-size-small;
+    font-weight: 750;
+
+    &:hover {
+        color: v.$text-primary;
+        text-decoration: underline;
+        text-underline-offset: .2rem;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .servicios_card {
         opacity: 1;
         transform: none;
+        transition-duration: .01ms !important;
+    }
+
+    .servicios_decision_options a {
         transition-duration: .01ms !important;
     }
 }
