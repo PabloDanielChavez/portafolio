@@ -6,6 +6,10 @@ import {
     CONTACT_PROJECT_TYPES,
     CONTACT_TIMELINES
 } from '../constants/contactOptions.js';
+import {
+    WORK_SLUG_MAX_LENGTH,
+    WORK_SLUG_PATTERN
+} from '../constants/workSlugs.js';
 
 const CONTROL_CHARACTERS =
     /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
@@ -155,5 +159,16 @@ export const auditBodySchema = z
             .max(2048)
             .url()
             .refine((value) => ['http:', 'https:'].includes(new URL(value).protocol))
+    })
+    .strict();
+
+export const workSlugParamsSchema = z
+    .object({
+        slug: z
+            .string()
+            .min(1)
+            .max(WORK_SLUG_MAX_LENGTH)
+            .regex(WORK_SLUG_PATTERN)
+            .refine((value) => /[a-z]/.test(value))
     })
     .strict();

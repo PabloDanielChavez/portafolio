@@ -11,6 +11,7 @@ import {
     obtenerPerfil,
     obtenerSalud,
     obtenerServicios,
+    obtenerTrabajoPorSlug,
     obtenerTrabajos,
     obtenerTraTecnologia
 } from '../controllers/apiController.js';
@@ -25,7 +26,8 @@ import {
 import { validateRequest } from '../middleware/validateRequest.js';
 import {
     auditBodySchema,
-    contactBodySchema
+    contactBodySchema,
+    workSlugParamsSchema
 } from '../validation/schemas.js';
 
 const router = express.Router();
@@ -38,6 +40,11 @@ router.get('/api/exp_desafio', asyncHandler(obtenerExpDesafio));
 router.get('/api/exp_tecnologia', asyncHandler(obtenerExpTecnologia));
 router.get('/api/servicios', asyncHandler(obtenerServicios));
 router.get('/api/trabajos', asyncHandler(obtenerTrabajos));
+router.get(
+    '/api/trabajos/:slug',
+    validateRequest(workSlugParamsSchema, 'params'),
+    asyncHandler(obtenerTrabajoPorSlug)
+);
 router.get('/api/tra_tecnologia', asyncHandler(obtenerTraTecnologia));
 router.get('/api/clientes', asyncHandler(obtenerClientes));
 

@@ -29,6 +29,8 @@ npm start
 ## Endpoints operativos
 
 - `GET /api/health`: comprueba el servidor y la conexión con MySQL.
+- `GET /api/trabajos`: lista los trabajos con su slug canónico.
+- `GET /api/trabajos/:slug`: obtiene un trabajo por su slug canónico.
 - `POST /api/contacto`: recibe consultas públicas.
 
 El contrato completo del formulario es:

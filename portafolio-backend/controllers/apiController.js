@@ -32,6 +32,22 @@ export const obtenerTrabajos = createGetAllController(trabajos);
 export const obtenerTraTecnologia = createGetAllController(tra_tecnologia);
 export const obtenerClientes = createGetAllController(clientes);
 
+export const createGetWorkBySlugController = (model = trabajos) =>
+    async (req, res) => {
+        const { slug } = req.validated.params;
+        const work = await model.findOne({
+            where: { slug }
+        });
+
+        if (!work) {
+            throw new HttpError(404, 'El trabajo solicitado no existe.');
+        }
+
+        res.json(work);
+    };
+
+export const obtenerTrabajoPorSlug = createGetWorkBySlugController();
+
 export const guardarMensaje = async (req, res) => {
     const contact = req.validated.body;
 
