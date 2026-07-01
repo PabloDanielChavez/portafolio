@@ -6,6 +6,11 @@ import {
     CONTACT_PROJECT_TYPES,
     CONTACT_TIMELINES
 } from '../constants/contactOptions.js';
+import {
+    WORK_SLUG_MAX_LENGTH,
+    WORK_SLUG_PATTERN,
+    WORK_SLUG_UNIQUE_INDEX
+} from '../constants/workSlugs.js';
 
 const modelOptions = (name) => ({
     timestamps: false,
@@ -92,6 +97,15 @@ export const servicios = db.define('servicios', {
 export const trabajos = db.define('trabajos', {
     id: idField(),
     nombre_trabajo: stringField(),
+    slug: {
+        type: DataTypes.STRING(WORK_SLUG_MAX_LENGTH),
+        allowNull: false,
+        unique: WORK_SLUG_UNIQUE_INDEX,
+        validate: {
+            len: [1, WORK_SLUG_MAX_LENGTH],
+            is: WORK_SLUG_PATTERN
+        }
+    },
     categoria_trabajo: stringField(),
     numero_pagina: intField(),
     style_trabajo: stringField(),

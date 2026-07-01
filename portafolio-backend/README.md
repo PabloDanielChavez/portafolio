@@ -19,6 +19,7 @@ nombres `DB_*` son los recomendados.
 ```bash
 npm install
 npm run migrate:contact
+npm run migrate:work-slugs
 npm run dev
 npm test
 npm run check
@@ -85,3 +86,15 @@ ejecutarla antes de desplegar el código nuevo, preferentemente con poco tráfic
 
 No se ejecuta `sequelize.sync()` al iniciar. Los cambios futuros del esquema de
 base de datos deben hacerse mediante migraciones controladas.
+
+Antes de desplegar una versión del backend cuyo modelo de `trabajos` incluya
+`slug`, ejecutar:
+
+```bash
+npm run migrate:work-slugs
+```
+
+La migración verifica el inventario esperado por ID y nombre, agrega la columna
+de forma temporalmente nullable, aplica el backfill, valida formato y unicidad,
+crea el índice único y finalmente exige `NOT NULL`. Puede repetirse sin
+sobrescribir slugs existentes.

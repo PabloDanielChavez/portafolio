@@ -16,7 +16,7 @@ import {
 import { validateProjectAuditUrl } from '../services/auditSecurityService.js';
 import { saveContact } from '../services/contactService.js';
 
-const createGetAllController = (model) => async (req, res) => {
+export const createGetAllController = (model) => async (req, res) => {
     const data = await model.findAll();
 
     res.json(data);

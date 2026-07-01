@@ -8,7 +8,8 @@
     "start": "node index.js",
     "test": "node --test --test-concurrency=1",
     "check": "node --check index.js && node --check app.js",
-    "migrate:contact": "node scripts/migrateContactFields.js"
+    "migrate:contact": "node scripts/migrateContactFields.js",
+    "migrate:work-slugs": "node scripts/migrateWorkSlugs.js"
   },
   "repository": {
     "type": "git",
