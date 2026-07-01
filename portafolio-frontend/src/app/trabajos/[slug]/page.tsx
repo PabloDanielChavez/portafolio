@@ -2,11 +2,14 @@ import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { getImagenTrabajo } from '@/components/utils/trabajos.helpers';
+import {
+  esSlugTrabajoValido,
+  getImagenTrabajo
+} from '@/components/utils/trabajos.helpers';
 import { createPageMetadata, siteConfig } from '@/config/site';
 import {
   getAllPortfolioData,
-  getTrabajoById
+  getTrabajoBySlug
 } from "@/services/fetchData";
 
 const PagTrabajoDetalle = dynamic(() => import('@/components/PagTrabajo'), {
@@ -16,26 +19,16 @@ const PagTrabajoDetalle = dynamic(() => import('@/components/PagTrabajo'), {
 
 type Props = {
   params: Promise<{
-    id: string;
+    slug: string;
   }>;
 };
 
-const parseTrabajoId = (id: string) => {
-  if (!/^[1-9]\d*$/.test(id)) {
+const resolveTrabajo = async (slug: string) => {
+  if (!esSlugTrabajoValido(slug)) {
     notFound();
   }
 
-  const numericId = Number(id);
-
-  if (!Number.isSafeInteger(numericId)) {
-    notFound();
-  }
-
-  return numericId;
-};
-
-const resolveTrabajo = async (id: string) => {
-  const trabajo = await getTrabajoById(parseTrabajoId(id));
+  const trabajo = await getTrabajoBySlug(slug);
 
   if (!trabajo) {
     notFound();
@@ -45,8 +38,8 @@ const resolveTrabajo = async (id: string) => {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const trabajo = await resolveTrabajo(id);
+  const { slug } = await params;
+  const trabajo = await resolveTrabajo(slug);
 
   return createPageMetadata({
     title: `${trabajo.nombre_trabajo} — Proyecto Web`,
@@ -54,15 +47,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       trabajo.resumen_trabajo ||
       trabajo.informacion_trabajo ||
       siteConfig.description,
-    path: `${siteConfig.routes.projects}/${trabajo.id}`,
+    path: `${siteConfig.routes.projects}/${trabajo.slug}`,
     type: 'article',
     image: getImagenTrabajo(trabajo),
   });
 }
 
 export default async function TraDetallePagina({ params }: Props) {
-  const { id } = await params;
-  const trabajoIndividual = await resolveTrabajo(id);
+  const { slug } = await params;
+  const trabajoIndividual = await resolveTrabajo(slug);
   const data = await getAllPortfolioData();
 
   if (!data) {

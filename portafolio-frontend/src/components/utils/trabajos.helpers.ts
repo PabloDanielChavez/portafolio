@@ -4,6 +4,19 @@ import type {
     tra_tecnologiaType
 } from "@/types/tra_tecnologia";
 
+export const TRABAJO_SLUG_MAX_LENGTH = 160;
+export const TRABAJO_SLUG_PATTERN =
+    /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+export const esSlugTrabajoValido = (
+    value: unknown
+): value is string =>
+    typeof value === "string" &&
+    value.length >= 1 &&
+    value.length <= TRABAJO_SLUG_MAX_LENGTH &&
+    TRABAJO_SLUG_PATTERN.test(value) &&
+    /[a-z]/.test(value);
+
 export type AuditoriaDispositivo = "mobile" | "desktop";
 
 export type MetricaAuditoria = {

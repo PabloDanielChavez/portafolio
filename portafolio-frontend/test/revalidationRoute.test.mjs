@@ -106,8 +106,9 @@ test("la allowlist acepta solo las rutas públicas previstas", () => {
         "/contacto",
         "/servicios",
         "/trabajos",
-        "/trabajos/1",
-        "/trabajos/987"
+        "/trabajos/paginas-web-chavez",
+        "/trabajos/plomada",
+        "/trabajos/abc"
     ];
 
     for (const path of allowedPaths) {
@@ -136,17 +137,23 @@ test("la allowlist rechaza URLs, query, fragmentos, traversal y dobles barras", 
     }
 });
 
-test("la allowlist rechaza IDs inválidos", () => {
-    const rejectedIds = [
+test("la allowlist rechaza IDs y slugs inválidos", () => {
+    const rejectedPaths = [
+        "/trabajos/1",
+        "/trabajos/987",
         "/trabajos/0",
         "/trabajos/-1",
         "/trabajos/01",
         "/trabajos/1.5",
-        "/trabajos/abc",
-        `/trabajos/${Number.MAX_SAFE_INTEGER}0`
+        "/trabajos/Slug-Invalido",
+        "/trabajos/slug_invalido",
+        "/trabajos/paginas--web",
+        "/trabajos/plomada-",
+        "/trabajos/-plomada",
+        `/trabajos/${"a".repeat(161)}`
     ];
 
-    for (const path of rejectedIds) {
+    for (const path of rejectedPaths) {
         assert.throws(
             () => validateRevalidationPath(path),
             (error) => error.status === 400,
@@ -165,13 +172,13 @@ test("POST revalida una sola vez y conserva la respuesta exitosa", async () => {
     const response = await handler(
         createRequest({
             authorization: `Bearer ${TEST_TOKEN}`,
-            body: { path: "/trabajos/7" }
+            body: { path: "/trabajos/plomada" }
         })
     );
 
     assert.equal(response.status, 200);
     assert.equal(response.headers.get("cache-control"), "no-store");
-    assert.deepEqual(revalidatedPaths, ["/trabajos/7"]);
+    assert.deepEqual(revalidatedPaths, ["/trabajos/plomada"]);
     assert.deepEqual(await response.json(), {
         revalidated: true,
         now: FIXED_NOW

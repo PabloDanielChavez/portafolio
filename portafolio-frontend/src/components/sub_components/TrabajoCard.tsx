@@ -84,7 +84,7 @@ export default function TrabajoCard({
                 style={{ transitionDelay: `${index * 90}ms` }}
             >
                 <Link
-                    href={`/trabajos/${trabajo.id}`}
+                    href={`/trabajos/${trabajo.slug}`}
                     className={styles.trabajos_card_resumen_link}
                     aria-label={`Ver proyecto ${trabajo.nombre_trabajo}`}
                     onClick={handleClickTrabajo}
@@ -140,7 +140,7 @@ export default function TrabajoCard({
             }}
         >
             <Link
-                href={`/trabajos/${trabajo.id}`}
+                href={`/trabajos/${trabajo.slug}`}
                 className={styles.trabajos_card_link_wrapper}
                 aria-label={`Ver caso de estudio de ${trabajo.nombre_trabajo}`}
                 onClick={handleClickTrabajo}

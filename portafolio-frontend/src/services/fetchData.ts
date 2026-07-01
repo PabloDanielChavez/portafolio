@@ -1,4 +1,5 @@
 // services/fetchData.ts
+import { esSlugTrabajoValido } from "@/components/utils/trabajos.helpers";
 import type { ContactPayload } from "@/types/contacto";
 import type { TrabajosType } from "@/types/trabajos";
 
@@ -41,9 +42,13 @@ export async function getAllPortfolioData() {
   }
 }
 
-export async function getTrabajoById(
-  id: number
+export async function getTrabajoBySlug(
+  slug: string
 ): Promise<TrabajosType | null> {
+  if (!esSlugTrabajoValido(slug)) {
+    return null;
+  }
+
   if (!urlBase) {
     throw new Error("La URL del backend no está configurada.");
   }
@@ -51,11 +56,15 @@ export async function getTrabajoById(
   let response: Response;
 
   try {
-    response = await fetch(`${urlBase}trabajos`, {
+    response = await fetch(`${urlBase}trabajos/${encodeURIComponent(slug)}`, {
       next: { revalidate: 3600 }
     });
   } catch {
     throw new Error("No se pudo consultar el proyecto.");
+  }
+
+  if (response.status === 400 || response.status === 404) {
+    return null;
   }
 
   if (!response.ok) {
@@ -64,17 +73,18 @@ export async function getTrabajoById(
     );
   }
 
-  const trabajos: unknown = await response.json();
+  const trabajo: unknown = await response.json();
 
-  if (!Array.isArray(trabajos)) {
+  if (
+    !trabajo ||
+    typeof trabajo !== "object" ||
+    Array.isArray(trabajo) ||
+    (trabajo as { slug?: unknown }).slug !== slug
+  ) {
     throw new Error("La respuesta de proyectos no tiene un formato válido.");
   }
 
-  return (
-    (trabajos as TrabajosType[]).find(
-      (trabajo) => Number(trabajo.id) === id
-    ) ?? null
-  );
+  return trabajo as TrabajosType;
 }
 
 export async function enviarMensajeContacto(

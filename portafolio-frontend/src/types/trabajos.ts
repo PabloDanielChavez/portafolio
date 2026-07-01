@@ -1,5 +1,6 @@
 export type TrabajosType = {
     id: number;
+    slug: string;
     nombre_trabajo: string;
     categoria_trabajo: string;
     numero_pagina: number;

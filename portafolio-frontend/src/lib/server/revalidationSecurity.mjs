@@ -1,7 +1,9 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 
 const MINIMUM_TOKEN_LENGTH = 32;
-const MAXIMUM_PATH_LENGTH = 128;
+const MAXIMUM_WORK_SLUG_LENGTH = 160;
+const MAXIMUM_PATH_LENGTH =
+    "/trabajos/".length + MAXIMUM_WORK_SLUG_LENGTH;
 const STATIC_ALLOWED_PATHS = new Set([
     "/",
     "/contacto",
@@ -100,12 +102,17 @@ export const validateRevalidationPath = (path) => {
         return path;
     }
 
-    const projectMatch = path.match(/^\/trabajos\/([1-9]\d*)$/);
+    const projectMatch = path.match(
+        /^\/trabajos\/([a-z0-9]+(?:-[a-z0-9]+)*)$/
+    );
 
     if (projectMatch) {
-        const projectId = Number(projectMatch[1]);
+        const projectSlug = projectMatch[1];
 
-        if (Number.isSafeInteger(projectId)) {
+        if (
+            projectSlug.length <= MAXIMUM_WORK_SLUG_LENGTH &&
+            /[a-z]/.test(projectSlug)
+        ) {
             return path;
         }
     }
