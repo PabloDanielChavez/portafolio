@@ -22,6 +22,10 @@ const contactHelpersSource = await readFile(
     new URL("../src/components/utils/contacto.helpers.ts", import.meta.url),
     "utf8"
 );
+const contactHookSource = await readFile(
+    new URL("../src/hooks/useContactoForm.ts", import.meta.url),
+    "utf8"
+);
 
 const assertIncludesAll = (source, expectedValues) => {
     for (const expectedValue of expectedValues) {
@@ -130,13 +134,49 @@ test("los tipos de Contacto están separados del servicio de fetch", () => {
     );
 });
 
-test("Contacto conserva el payload enviado al servicio", () => {
+test("Contacto delega el estado y los handlers en useContactoForm", () => {
     assertIncludesAll(
         contactoSource,
         [
+            'import { useContactoForm } from "@/hooks/useContactoForm";',
+            "useContactoForm({",
+            "getOriginUrl: getCurrentLocationHref",
+            "onValidationError: focusFirstError",
+            "onFocusCapture={handleFormFocus}",
+            "onSubmit={handleSubmit}",
+            "onChange={handleChange}"
+        ]
+    );
+
+    assertIncludesAll(
+        contactHookSource,
+        [
+            "export function useContactoForm",
+            "useState<ContactFormValues>",
+            "useState<ContactFieldErrors>",
+            "useState<ContactSubmitStatus>",
+            "const [isSubmitting, setIsSubmitting]",
+            "const handleChange",
+            "const handleFormFocus",
+            "const handleSubmit",
+            "normalizeContactForm(form)",
+            "validateContactForm(normalizedForm)"
+        ]
+    );
+
+    assert.equal(contactHookSource.includes("window."), false);
+    assert.equal(contactHookSource.includes("document."), false);
+    assert.equal(contactHookSource.includes("className="), false);
+    assert.equal(contactHookSource.includes("<form"), false);
+});
+
+test("Contacto conserva el payload enviado al servicio", () => {
+    assertIncludesAll(
+        contactHookSource,
+        [
             "buildContactPayload(",
             "normalizedForm,",
-            "window.location.href",
+            "getOriginUrl()",
             "enviarMensajeContacto(payload)"
         ]
     );
@@ -179,7 +219,7 @@ test("Contacto conserva éxito, errores y barreras anti-spam", () => {
     );
 
     assertIncludesAll(
-        contactoSource,
+        contactHookSource,
         [
             "submissionLockRef.current || isSubmitting",
             "hasContactHoneypot(normalizedForm)",
@@ -195,13 +235,19 @@ test("Contacto conserva éxito, errores y barreras anti-spam", () => {
 
 test("Contacto conserva los nombres de eventos de medición", () => {
     assertIncludesAll(
-        contactoSource,
+        contactHookSource,
         [
-            '"contact_faq_toggle"',
             '"contact_form_focus"',
             '"contact_form_submit"',
             '"contact_form_error"',
-            '"contact_form_success"',
+            '"contact_form_success"'
+        ]
+    );
+
+    assertIncludesAll(
+        contactoSource,
+        [
+            '"contact_faq_toggle"',
             '"contact_social_click"'
         ]
     );
