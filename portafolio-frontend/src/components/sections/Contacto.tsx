@@ -8,14 +8,11 @@ import {
 } from "react";
 
 import {
-    BsQuestionCircle,
     FaArrowRight,
     FaCheck,
     FaGithubSquare,
     FaInstagram,
     FaLinkedin,
-    FaMinus,
-    FaPlus,
     FaWhatsapp,
     MdOutlineEmail
 } from "@/components/utils/Iconos";
@@ -29,18 +26,15 @@ import { useContactoForm } from "@/hooks/useContactoForm";
 import style from "@/styles/sections/contacto.module.scss";
 import type { PerfilType } from "@/types/perfil";
 
+import ContactoFaq, {
+    type ContactoFaqItemData
+} from "../sub_components/ContactoFaq";
 import SectionHeader from "../sub_components/SectionHeader";
 import { trackEvent } from "../utils/Analytics";
 
 interface Props {
     perfil: PerfilType[];
 }
-
-type Faq = {
-    id: string;
-    pregunta: string;
-    respuesta: string;
-};
 
 type SocialLink = {
     id: string;
@@ -62,7 +56,7 @@ const indicadoresConfianza = [
     "Sitios enfocados en generar consultas"
 ];
 
-const preguntasFrecuentes: Faq[] = [
+const preguntasFrecuentes: ContactoFaqItemData[] = [
     {
         id: "inversion",
         pregunta: "¿Cuánto cuesta desarrollar una página web profesional?",
@@ -152,61 +146,6 @@ const getProfileLabel = (value: string | undefined, fallback: string) => {
 
     return `@${cleanValue.replace(/^@/, "")}`;
 };
-
-function FaqItem({ item }: { item: Faq }) {
-    const [isOpen, setIsOpen] = useState(false);
-    const buttonId = `contact-faq-question-${item.id}`;
-    const answerId = `contact-faq-answer-${item.id}`;
-
-    const toggleFaq = () => {
-        const nextState = !isOpen;
-        setIsOpen(nextState);
-
-        trackEvent("contact_faq_toggle", {
-            section: "contacto",
-            faq_id: item.id,
-            state: nextState ? "open" : "closed"
-        });
-    };
-
-    return (
-        <article
-            className={`${style.contacto_faq_article} ${
-                isOpen ? style.contacto_faq_article_open : ""
-            }`}
-        >
-            <h3 className={style.contacto_faq_heading}>
-                <button
-                    id={buttonId}
-                    type="button"
-                    className={style.contacto_faq_button}
-                    aria-expanded={isOpen}
-                    aria-controls={answerId}
-                    onClick={toggleFaq}
-                >
-                    <span>{item.pregunta}</span>
-                    <span
-                        className={style.contacto_faq_icon}
-                        aria-hidden="true"
-                    >
-                        {isOpen ? <FaMinus /> : <FaPlus />}
-                    </span>
-                </button>
-            </h3>
-            <div
-                id={answerId}
-                className={style.contacto_faq_answer}
-                role="region"
-                aria-labelledby={buttonId}
-                aria-hidden={!isOpen}
-            >
-                <div>
-                    <p>{item.respuesta}</p>
-                </div>
-            </div>
-        </article>
-    );
-}
 
 export default function Contacto({ perfil }: Props) {
     const [isVisible, setIsVisible] = useState(false);
@@ -356,14 +295,6 @@ export default function Contacto({ perfil }: Props) {
                 : [];
         })()
     ];
-
-    const firstFaqColumn = preguntasFrecuentes.slice(
-        0,
-        Math.ceil(preguntasFrecuentes.length / 2)
-    );
-    const secondFaqColumn = preguntasFrecuentes.slice(
-        Math.ceil(preguntasFrecuentes.length / 2)
-    );
 
     return (
         <section
@@ -865,28 +796,7 @@ export default function Contacto({ perfil }: Props) {
                     </aside>
                 </div>
 
-                <div
-                    className={`${style.contacto_faq_section} ${style.contacto_reveal} ${style.contacto_reveal_delay_three}`}
-                >
-                    <SectionHeader
-                        icon={<BsQuestionCircle aria-hidden="true" />}
-                        title="Preguntas frecuentes sobre desarrollo web"
-                        description="Respuestas simples para ayudarte a evaluar tu próxima landing page, sitio profesional, tienda online o desarrollo a medida."
-                    />
-
-                    <div className={style.contacto_faq_layout}>
-                        <div className={style.contacto_faq_column}>
-                            {firstFaqColumn.map((item) => (
-                                <FaqItem key={item.id} item={item} />
-                            ))}
-                        </div>
-                        <div className={style.contacto_faq_column}>
-                            {secondFaqColumn.map((item) => (
-                                <FaqItem key={item.id} item={item} />
-                            ))}
-                        </div>
-                    </div>
-                </div>
+                <ContactoFaq items={preguntasFrecuentes} />
             </div>
         </section>
     );

@@ -26,6 +26,13 @@ const contactHookSource = await readFile(
     new URL("../src/hooks/useContactoForm.ts", import.meta.url),
     "utf8"
 );
+const contactFaqSource = await readFile(
+    new URL(
+        "../src/components/sub_components/ContactoFaq.tsx",
+        import.meta.url
+    ),
+    "utf8"
+);
 
 const assertIncludesAll = (source, expectedValues) => {
     for (const expectedValue of expectedValues) {
@@ -170,6 +177,39 @@ test("Contacto delega el estado y los handlers en useContactoForm", () => {
     assert.equal(contactHookSource.includes("<form"), false);
 });
 
+test("Contacto delega el bloque FAQ sin alterar su contrato", () => {
+    assertIncludesAll(
+        contactoSource,
+        [
+            "ContactoFaq,",
+            "type ContactoFaqItemData",
+            "const preguntasFrecuentes: ContactoFaqItemData[]",
+            "<ContactoFaq items={preguntasFrecuentes} />"
+        ]
+    );
+
+    assertIncludesAll(
+        contactFaqSource,
+        [
+            "export default function ContactoFaq",
+            "items: readonly ContactoFaqItemData[]",
+            "contacto_faq_section",
+            "contacto_reveal_delay_three",
+            "Preguntas frecuentes sobre desarrollo web",
+            "contacto_faq_article_open",
+            "aria-expanded={isOpen}",
+            "aria-controls={answerId}",
+            'role="region"',
+            "aria-labelledby={buttonId}",
+            "aria-hidden={!isOpen}",
+            '"contact_faq_toggle"',
+            'section: "contacto"',
+            "faq_id: item.id",
+            'state: nextState ? "open" : "closed"'
+        ]
+    );
+});
+
 test("Contacto conserva el payload enviado al servicio", () => {
     assertIncludesAll(
         contactHookSource,
@@ -245,9 +285,13 @@ test("Contacto conserva los nombres de eventos de medición", () => {
     );
 
     assertIncludesAll(
+        contactFaqSource,
+        ['"contact_faq_toggle"']
+    );
+
+    assertIncludesAll(
         contactoSource,
         [
-            '"contact_faq_toggle"',
             '"contact_social_click"'
         ]
     );

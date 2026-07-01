@@ -28,9 +28,11 @@ No se modifica el diseño, el JSX, las clases, los endpoints ni Analytics/GTM.
   detección sospechosa, payload y condiciones anti-spam puras.
 - `src/hooks/useContactoForm.ts`: estado, refs y handlers del flujo del
   formulario, incluyendo envío y eventos asociados.
+- `src/components/sub_components/ContactoFaq.tsx`: render, estado de apertura,
+  accesibilidad y medición del bloque de preguntas frecuentes.
 - `src/services/fetchData.ts`: transporte HTTP; ya no define tipos de Contacto.
 - `src/components/sections/Contacto.tsx`: interacción visual, foco de errores,
-  FAQ, canales sociales y render hasta las siguientes subfases.
+  datos de FAQ, canales sociales y render hasta las siguientes subfases.
 
 Las opciones se ubican en `constants` porque son valores cerrados del contrato,
 no copy comercial. El backend seguirá siendo su autoridad futura cuando exista
