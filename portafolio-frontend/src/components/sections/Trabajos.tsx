@@ -30,6 +30,7 @@ export default function Trabajos({
     headingLevel = "h2"
 }: TrabajosProps) {
     const [dispositivo, setDispositivo] = useState<AuditoriaDispositivo>("mobile");
+    const cardHeadingLevel = headingLevel === "h1" ? "h2" : "h3";
 
     const trabajosOrdenados = useMemo(() => {
         const ordenados = ordenarTrabajos(trabajos);
@@ -144,6 +145,7 @@ export default function Trabajos({
                                 dispositivo={dispositivo}
                                 index={index}
                                 modoResumen={showFooter}
+                                headingLevel={cardHeadingLevel}
                             />
                         ))}
                     </div>

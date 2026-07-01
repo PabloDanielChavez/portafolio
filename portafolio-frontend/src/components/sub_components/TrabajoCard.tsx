@@ -25,16 +25,19 @@ type TrabajoCardProps = {
     dispositivo: AuditoriaDispositivo;
     index: number;
     modoResumen?: boolean;
+    headingLevel: "h2" | "h3";
 };
 
 export default function TrabajoCard({
     trabajo,
     dispositivo,
     index,
-    modoResumen = false
+    modoResumen = false,
+    headingLevel
 }: TrabajoCardProps) {
     const [visible, setVisible] = useState(false);
     const cardRef = useRef<HTMLElement>(null);
+    const Heading = headingLevel;
 
     const metricas = getMetricasAuditoria(trabajo, dispositivo);
     const promedio = getPromedioAuditoria(trabajo, dispositivo);
@@ -112,7 +115,7 @@ export default function TrabajoCard({
                             <span className={styles.trabajos_card_categoria}>
                                 {trabajo.categoria_trabajo}
                             </span>
-                            <h3>{trabajo.nombre_trabajo}</h3>
+                            <Heading>{trabajo.nombre_trabajo}</Heading>
                         </div>
 
                         <div className={styles.trabajos_card_resumen_meta}>
@@ -181,9 +184,9 @@ export default function TrabajoCard({
                     </div>
 
                     <header className={styles.trabajos_card_header}>
-                        <h3 className={styles.trabajos_card_titulo}>
+                        <Heading className={styles.trabajos_card_titulo}>
                             {trabajo.nombre_trabajo}
-                        </h3>
+                        </Heading>
 
                         <span className={styles.trabajos_card_url}>
                             {trabajo.enlace_trabajoResumido}

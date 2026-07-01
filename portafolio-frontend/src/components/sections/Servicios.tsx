@@ -29,6 +29,8 @@ export default function Servicios({
     showBackLink = true,
     headingLevel = "h2"
 }: Props) {
+    const cardHeadingLevel = headingLevel === "h1" ? "h2" : "h3";
+
     const renderIcono = (nombre: string) => {
         if (nombre === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
         if (nombre === "HiOutlineCodeBracket") return <HiOutlineCodeBracket />;
@@ -61,6 +63,7 @@ export default function Servicios({
                             key={servicio.id}
                             servicio={servicio}
                             icono={renderIcono(servicio.reactIcon)}
+                            headingLevel={cardHeadingLevel}
                         />
                     ))}
                 </div>

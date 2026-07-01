@@ -347,9 +347,9 @@ export default function Contacto({ perfil }: Props) {
                             <span className={style.contacto_eyebrow}>
                                 Tu consulta
                             </span>
-                            <h3 id="contact-form-title">
+                            <h2 id="contact-form-title">
                                 Contame qué necesitás
-                            </h3>
+                            </h2>
                             <p id="contact-form-intro">
                                 Con estos datos puedo darte una primera
                                 respuesta más útil, concreta y alineada con tu

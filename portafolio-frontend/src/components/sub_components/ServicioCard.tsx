@@ -8,11 +8,17 @@ import type { ServiciosType } from "@/types/servicios";
 type Props = {
     servicio: ServiciosType;
     icono: ReactNode;
+    headingLevel: "h2" | "h3";
 };
 
-export default function ServicioCard({ servicio, icono }: Props) {
+export default function ServicioCard({
+    servicio,
+    icono,
+    headingLevel
+}: Props) {
     const [visible, setVisible] = useState(false);
     const ref = useRef<HTMLElement>(null);
+    const Heading = headingLevel;
 
     useEffect(() => {
         const card = ref.current;
@@ -44,7 +50,7 @@ export default function ServicioCard({ servicio, icono }: Props) {
             <span className={styles.servicios_card_icon} aria-hidden="true">
                 {icono}
             </span>
-            <h3>{servicio.nombre_servicio}</h3>
+            <Heading>{servicio.nombre_servicio}</Heading>
             <p>{servicio.informacion_servicio}</p>
         </article>
     );

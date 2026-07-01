@@ -8,13 +8,15 @@ interface SectionHeaderProps {
     title: string;
     description: string;
     headingLevel?: "h1" | "h2";
+    headingId?: string;
 }
 
 export default function SectionHeader({
     icon,
     title,
     description,
-    headingLevel = "h2"
+    headingLevel = "h2",
+    headingId
 }: SectionHeaderProps) {
     const Heading = headingLevel;
 
@@ -24,7 +26,12 @@ export default function SectionHeader({
             <span className={styles_seccionHeader.header_icon}>
                 {icon}
             </span>
-            <Heading className={styles_seccionHeader.header_title}>{title}</Heading>
+            <Heading
+                id={headingId}
+                className={styles_seccionHeader.header_title}
+            >
+                {title}
+            </Heading>
         </div>
         <div className={styles_seccionHeader.header_description}>
             <p className={styles_seccionHeader.header_description_p}>{description}</p>

@@ -45,6 +45,30 @@ const robotsSource = await readFrontendFile("src/app/robots.ts");
 const slugPageSource = await readFrontendFile(
     "src/app/trabajos/[slug]/page.tsx"
 );
+const sectionHeaderSource = await readFrontendFile(
+    "src/components/sub_components/SectionHeader.tsx"
+);
+const servicesSource = await readFrontendFile(
+    "src/components/sections/Servicios.tsx"
+);
+const serviceCardSource = await readFrontendFile(
+    "src/components/sub_components/ServicioCard.tsx"
+);
+const worksSource = await readFrontendFile(
+    "src/components/sections/Trabajos.tsx"
+);
+const workCardSource = await readFrontendFile(
+    "src/components/sub_components/TrabajoCard.tsx"
+);
+const contactSource = await readFrontendFile(
+    "src/components/sections/Contacto.tsx"
+);
+const contactChannelsSource = await readFrontendFile(
+    "src/components/sub_components/ContactoCanales.tsx"
+);
+const plansSource = await readFrontendFile(
+    "src/components/sections/Planes.tsx"
+);
 
 const siteConfigModule = evaluateCommonJs(
     compileCommonJs(siteConfigSource, "site.ts")
@@ -76,6 +100,17 @@ const routeMetadataContracts = [
         "src/app/servicios/planes/desarrollo_web/page.tsx",
         "path: siteConfig.planRoutes[2]"
     ]
+];
+
+const literalAriaLabelledByFiles = [
+    "src/app/not-found.tsx",
+    "src/components/PagPlan.tsx",
+    "src/components/PagTrabajo.tsx",
+    "src/components/sections/Contacto.tsx",
+    "src/components/sections/Hero.tsx",
+    "src/components/sections/HomeSections.tsx",
+    "src/components/sections/Planes.tsx",
+    "src/components/sub_components/TrabajoAuditoria.tsx"
 ];
 
 const productionCodeExtensions = new Set([
@@ -218,4 +253,61 @@ test("la ruta de error y el manejo de slugs inválidos siguen activos", async ()
         ),
         true
     );
+});
+
+test("las cards respetan la jerarquía del heading principal de su sección", () => {
+    for (const source of [servicesSource, worksSource]) {
+        assert.equal(
+            source.includes(
+                'const cardHeadingLevel = headingLevel === "h1" ? "h2" : "h3"'
+            ),
+            true
+        );
+        assert.equal(
+            source.includes("headingLevel={cardHeadingLevel}"),
+            true
+        );
+    }
+
+    for (const source of [serviceCardSource, workCardSource]) {
+        assert.equal(source.includes('headingLevel: "h2" | "h3"'), true);
+        assert.equal(source.includes("const Heading = headingLevel"), true);
+    }
+});
+
+test("Contacto conserva un H1 y organiza sus bloques principales con H2", () => {
+    assert.equal(contactSource.includes('headingLevel="h1"'), true);
+    assert.equal(
+        contactSource.includes('<h2 id="contact-form-title">'),
+        true
+    );
+    assert.equal(
+        (contactChannelsSource.match(/<h2>/g) ?? []).length,
+        2
+    );
+});
+
+test("los aria-labelledby literales apuntan a IDs declarados", async () => {
+    for (const relativePath of literalAriaLabelledByFiles) {
+        const source = await readFrontendFile(relativePath);
+        const labelledByValues = [
+            ...source.matchAll(/aria-labelledby="([^"]+)"/g)
+        ].map((match) => match[1]);
+
+        for (const id of labelledByValues) {
+            assert.equal(
+                source.includes(`id="${id}"`) ||
+                    source.includes(`headingId="${id}"`),
+                true,
+                `${relativePath}: ${id}`
+            );
+        }
+    }
+});
+
+test("Planes asocia su sección con el heading visible existente", () => {
+    assert.equal(plansSource.includes('aria-labelledby="planes-title"'), true);
+    assert.equal(plansSource.includes('headingId="planes-title"'), true);
+    assert.equal(sectionHeaderSource.includes("headingId?: string"), true);
+    assert.equal(sectionHeaderSource.includes("id={headingId}"), true);
 });

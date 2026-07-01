@@ -34,7 +34,7 @@ export default function ContactoCanales({
                 <span className={style.contacto_eyebrow}>
                     Una solución pensada para tu negocio
                 </span>
-                <h3>Más que una web visualmente atractiva</h3>
+                <h2>Más que una web visualmente atractiva</h2>
                 <p>
                     Cada decisión de diseño y desarrollo busca que tu sitio
                     sea fácil de usar, rápido y capaz de convertir visitas
@@ -56,7 +56,7 @@ export default function ContactoCanales({
                         <span className={style.contacto_eyebrow}>
                             Canales directos
                         </span>
-                        <h3>Elegí cómo conversar</h3>
+                        <h2>Elegí cómo conversar</h2>
                     </div>
                     <span className={style.contacto_availability}>
                         Disponible para nuevos proyectos

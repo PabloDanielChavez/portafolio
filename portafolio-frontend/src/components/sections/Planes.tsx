@@ -13,6 +13,7 @@ export default function Planes() {
                     icon={<TbChartBarPopular />}
                     title="Planes claros para cada etapa"
                     description="Elegí una base y la ajustamos a las necesidades reales de tu negocio. Sin costos ocultos ni funciones que no vas a usar."
+                    headingId="planes-title"
                 />
 
                 <div className={styles.planes_content}>
