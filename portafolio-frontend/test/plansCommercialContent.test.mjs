@@ -44,8 +44,11 @@ const plansSectionSource = await readFrontendFile(
 const planDetailSource = await readFrontendFile(
     "src/components/PagPlan.tsx"
 );
+const plansStylesSource = await readFrontendFile(
+    "src/styles/sections/planes.module.scss"
+);
 const planPages = await Promise.all([
-    readFrontendFile("src/app/servicios/planes/landing_page/page.tsx"),
+    readFrontendasdFile("src/app/servicios/planes/landing_page/page.tsx"),
     readFrontendFile("src/app/servicios/planes/sitio_web/page.tsx"),
     readFrontendFile("src/app/servicios/planes/desarrollo_web/page.tsx")
 ]);
@@ -55,11 +58,30 @@ const plansModule = evaluateCommonJs(
 );
 const plans = plansModule.planes;
 
+test("los precios tienen una única fuente de verdad", () => {
+    assert.deepEqual(plansModule.planPrices, {
+        landing_page: "Desde $150.000",
+        sitio_web: "Desde $450.000",
+        desarrollo_web: "A presupuestar"
+    });
+
+    for (const plan of plans) {
+        assert.equal(plan.precio, plansModule.planPrices[plan.tag]);
+    }
+
+    assert.equal((plansDataSource.match(/\$150\.000/g) ?? []).length, 1);
+    assert.equal((plansDataSource.match(/\$450\.000/g) ?? []).length, 1);
+    assert.equal(
+        (plansDataSource.match(/"A presupuestar"/g) ?? []).length,
+        1
+    );
+});
+
 test("los tres planes conservan precio y suman un contrato de decisión", () => {
     assert.deepEqual(
         plans.map(({ tag, precio }) => ({ tag, precio })),
         [
-            { tag: "landing_page", precio: "Desde $80.000" },
+            { tag: "landing_page", precio: "Desde $150.000" },
             { tag: "sitio_web", precio: "Desde $450.000" },
             { tag: "desarrollo_web", precio: "A presupuestar" }
         ]
@@ -102,7 +124,7 @@ test("las cards muestran decisión, precio, plazo y ayuda para elegir", () => {
     assert.equal(planCardSource.includes("planes.precio"), true);
     assert.equal(planCardSource.includes("planes.plazo"), true);
     assert.equal(
-        planCardSource.includes("Ver precio, plazo y alcance"),
+        planCardSource.includes("Ver plan y alcance"),
         true
     );
     assert.equal(plansSectionSource.includes('href="/contacto"'), true);
@@ -110,6 +132,27 @@ test("las cards muestran decisión, precio, plazo y ayuda para elegir", () => {
         plansSectionSource.includes(
             "Pedir recomendación sin compromiso"
         ),
+        true
+    );
+});
+
+test("badge, FAQ y jerarquía de CTAs quedan visualmente contenidos", () => {
+    assert.equal(
+        plansStylesSource.includes("&_card_badge {\n        position: absolute;"),
+        true
+    );
+    assert.equal(plansStylesSource.includes("font-size: .64rem;"), true);
+    assert.equal(
+        planDetailSource.includes("styles.planes_detalle_faq_section"),
+        true
+    );
+    assert.equal(plansStylesSource.includes("&_faq_section {"), true);
+    assert.equal(
+        plansStylesSource.includes("min-height: 44px;"),
+        true
+    );
+    assert.equal(
+        plansStylesSource.includes("background: transparent;"),
         true
     );
 });

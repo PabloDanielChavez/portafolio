@@ -303,7 +303,7 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
             </section>
 
             <section
-                className={styles.planes_detalle_section}
+                className={`${styles.planes_detalle_section} ${styles.planes_detalle_faq_section}`}
                 aria-labelledby="faq-title"
             >
                 <div className={styles.planes_detalle_layout}>

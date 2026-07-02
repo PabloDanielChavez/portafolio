@@ -493,14 +493,14 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        min-height: 54px;
-        padding: .85rem 1.15rem;
-        border: 1px solid rgba(v.$color-accent, .24);
+        min-height: 44px;
+        padding: .65rem .8rem;
+        border: 1px solid transparent;
         border-radius: 999px;
-        background: rgba(v.$color-white, .035);
-        color: v.$color-crema;
-        font-size: .9rem;
-        font-weight: 850;
+        background: transparent;
+        color: rgba(v.$color-crema, .72);
+        font-size: .86rem;
+        font-weight: 750;
         text-align: center;
         transition:
             border-color .2s ease,
@@ -513,8 +513,9 @@
 
         &:hover {
             transform: translateY(-2px);
-            border-color: rgba(v.$color-accent, .42);
-            background: rgba(v.$color-accent, .08);
+            border-color: rgba(v.$color-accent, .16);
+            background: rgba(v.$color-accent, .055);
+            color: v.$color-white;
         }
 
         &:focus-visible {
@@ -875,19 +876,38 @@
     &_faq {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1rem;
-        max-width: 980px;
+        gap: .7rem;
+        max-width: 900px;
         margin: 0 auto;
     }
 
+    &_faq_section {
+        padding-block: clamp(2.5rem, 5vw, 4rem);
+
+        .planes_detalle_section_header {
+            margin-bottom: clamp(1.4rem, 3vw, 2rem);
+        }
+    }
+
     &_faq_item {
-        padding: clamp(1.2rem, 3vw, 1.7rem);
-        border: 1px solid rgba(v.$color-white, .075);
-        border-radius: 22px;
+        padding: clamp(.95rem, 2vw, 1.2rem);
+        border: 1px solid rgba(v.$color-white, .06);
+        border-radius: 16px;
         background:
-            linear-gradient(145deg, rgba(v.$color-white, .055), rgba(v.$color-white, .018)),
+            linear-gradient(145deg, rgba(v.$color-white, .038), rgba(v.$color-white, .012)),
             rgba(10, 12, 18, .72);
-        box-shadow: 0 18px 46px rgba(0, 0, 0, .22);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+
+        .planes_detalle_h3 {
+            font-size: .98rem;
+            line-height: 1.35;
+        }
+
+        .planes_detalle_text {
+            margin-top: .45rem;
+            font-size: .9rem;
+            line-height: 1.65;
+        }
     }
 
     &_cta {
@@ -1044,9 +1064,22 @@
     }
 
     &_card_badge {
-        margin-bottom: 1rem;
+        position: absolute;
+        top: .8rem;
+        right: .8rem;
+        z-index: 2;
+        max-width: calc(100% - 1.6rem);
+        margin: 0;
+        padding: .3rem .58rem;
         background: v.$gold;
         color: #17110a;
+        font-size: .64rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    &_card_destacado .planes_card_titulo {
+        padding-right: 6.5rem;
     }
 
     &_card_descripcion {

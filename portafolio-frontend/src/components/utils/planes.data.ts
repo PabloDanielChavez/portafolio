@@ -3,6 +3,12 @@ import type { ProcesoPlan } from "@/types/ProcesoPlan";
 
 export type PlanTag = "landing_page" | "sitio_web" | "desarrollo_web";
 
+export const planPrices = {
+    landing_page: "Desde $150.000",
+    sitio_web: "Desde $450.000",
+    desarrollo_web: "A presupuestar"
+} as const satisfies Record<PlanTag, string>;
+
 export const planes: Plan[] = [
     {
         id: "landing-page-profesional",
@@ -25,11 +31,11 @@ export const planes: Plan[] = [
         descripcion:
             "Una página personalizada y enfocada en una sola propuesta, con la información necesaria para generar confianza y orientar al visitante hacia una consulta.",
         href: "/servicios/planes/landing_page",
-        precio: "Desde $80.000",
+        precio: planPrices.landing_page,
         plazo: "Entrega estimada: 4 a 6 días hábiles",
         seoTitle: "Landing Page Profesional para Generar Consultas",
         seoDescription:
-            "Conocé el plan Landing Page Profesional: alcance, precio desde $80.000, plazo estimado y todo lo necesario para presentar tu servicio y recibir consultas.",
+            `Conocé el plan Landing Page Profesional: alcance, precio ${planPrices.landing_page.toLowerCase()}, plazo estimado y todo lo necesario para presentar tu servicio y recibir consultas.`,
         whatsappMensaje:
             "Hola Pablo, quiero solicitar presupuesto por una Landing Page Profesional.",
         ctaLabel: "Necesito una landing para mi servicio",
@@ -139,11 +145,11 @@ export const planes: Plan[] = [
         descripcion:
             "Un sitio multipágina personalizado para organizar servicios, información institucional, trabajos y canales de contacto en una presencia profesional preparada para crecer.",
         href: "/servicios/planes/sitio_web",
-        precio: "Desde $450.000",
+        precio: planPrices.sitio_web,
         plazo: "Entrega estimada: 7 a 15 días hábiles",
         seoTitle: "Sitio Web Profesional para Empresas y Negocios",
         seoDescription:
-            "Conocé el plan Sitio Web Profesional: alcance, precio desde $450.000, plazo estimado y una estructura clara para presentar tu empresa y sus servicios.",
+            `Conocé el plan Sitio Web Profesional: alcance, precio ${planPrices.sitio_web.toLowerCase()}, plazo estimado y una estructura clara para presentar tu empresa y sus servicios.`,
         whatsappMensaje:
             "Hola Pablo, quiero solicitar presupuesto por un Sitio Web Profesional.",
         ctaLabel: "Necesito un sitio para mi negocio",
@@ -254,7 +260,7 @@ export const planes: Plan[] = [
         descripcion:
             "Una solución planificada según procesos y funcionalidades concretas, con alcance por etapas y una arquitectura preparada para incorporar mejoras.",
         href: "/servicios/planes/desarrollo_web",
-        precio: "A presupuestar",
+        precio: planPrices.desarrollo_web,
         plazo: "Plazo según alcance del proyecto",
         seoTitle: "Desarrollo Web a Medida para Negocios",
         seoDescription:

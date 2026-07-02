@@ -36,7 +36,7 @@ export default function PlanCard({ planes }: PlanCardProps) {
                     ))}
                 </ul>
                 <span className={styles.planes_boton}>
-                    Detalles
+                    Ver plan y alcance
                 </span>
             </Link>
         </article>
