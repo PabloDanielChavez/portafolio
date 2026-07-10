@@ -8,6 +8,8 @@
     "start": "node index.js",
     "test": "node --test --test-concurrency=1",
     "check": "node --check index.js && node --check app.js",
+    "backfill:work-commercial-content": "node scripts/backfillContenidoComercialTrabajos.js",
+    "sync:works-from-production": "node scripts/syncTrabajosDesdeProduccion.js",
     "migrate:contact": "node scripts/migrateContactFields.js",
     "migrate:work-slugs": "node scripts/migrateWorkSlugs.js"
   },

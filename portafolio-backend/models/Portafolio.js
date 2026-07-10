@@ -11,6 +11,11 @@ import {
     WORK_SLUG_PATTERN,
     WORK_SLUG_UNIQUE_INDEX
 } from '../constants/workSlugs.js';
+import {
+    INDICE_UNICO_CONTENIDO_COMERCIAL_TRABAJO,
+    PATRON_ENLACE_INTERNO_COMERCIAL,
+    TABLA_CONTENIDO_COMERCIAL_TRABAJOS
+} from '../constants/workCommercialContent.js';
 
 const modelOptions = (name) => ({
     timestamps: false,
@@ -22,6 +27,31 @@ const stringField = () => ({ type: DataTypes.TEXT, allowNull: false });
 const intField = () => ({ type: DataTypes.INTEGER, allowNull: false });
 const idField = () => ({ type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true });
 const validContactPhone = /^[+\d\s().-]+$/;
+
+const campoTextoCortoOpcional = (longitud) => ({
+    type: DataTypes.STRING(longitud),
+    allowNull: true
+});
+
+const campoTextoLargoOpcional = () => ({
+    type: DataTypes.TEXT,
+    allowNull: true
+});
+
+const campoEnlaceInternoOpcional = (longitud = 255) => ({
+    ...campoTextoCortoOpcional(longitud),
+    validate: {
+        esEnlaceComercialInterno(valor) {
+            if (
+                valor !== null &&
+                valor !== undefined &&
+                !PATRON_ENLACE_INTERNO_COMERCIAL.test(valor)
+            ) {
+                throw new Error('El enlace comercial debe ser una ruta interna.');
+            }
+        }
+    }
+});
 
 export const perfil = db.define('perfil', {
     id: idField(),
@@ -140,6 +170,65 @@ export const trabajos = db.define('trabajos', {
         defaultValue: false
     }
 }, modelOptions('trabajos'));
+
+export const trabajo_commercial_content = db.define(
+    TABLA_CONTENIDO_COMERCIAL_TRABAJOS,
+    {
+        id: idField(),
+        trabajo_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: INDICE_UNICO_CONTENIDO_COMERCIAL_TRABAJO
+        },
+        slug_snapshot: campoTextoCortoOpcional(WORK_SLUG_MAX_LENGTH),
+        display_name: campoTextoCortoOpcional(120),
+        commercial_category: campoTextoCortoOpcional(120),
+        seo_title: campoTextoCortoOpcional(120),
+        seo_description: campoTextoCortoOpcional(180),
+        commercial_summary: campoTextoLargoOpcional(),
+        information: campoTextoLargoOpcional(),
+        challenge: campoTextoLargoOpcional(),
+        outcome: campoTextoLargoOpcional(),
+        featured_priority: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                isInt: true
+            }
+        },
+        primary_cta_label: campoTextoCortoOpcional(80),
+        primary_cta_href: campoEnlaceInternoOpcional(),
+        related_plan_label: campoTextoCortoOpcional(120),
+        related_plan_href: campoEnlaceInternoOpcional(),
+        is_commercial_public: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+        },
+        updated_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
+        }
+    },
+    modelOptions(TABLA_CONTENIDO_COMERCIAL_TRABAJOS)
+);
+
+trabajos.hasOne(trabajo_commercial_content, {
+    foreignKey: 'trabajo_id',
+    as: 'commercialContent'
+});
+
+trabajo_commercial_content.belongsTo(trabajos, {
+    foreignKey: 'trabajo_id',
+    as: 'trabajo'
+});
 
 export const tra_tecnologia = db.define('tra_tecnologia', {
     id: idField(),

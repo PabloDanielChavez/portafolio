@@ -3,7 +3,7 @@ import { after, before, test } from 'node:test';
 import express from 'express';
 
 import {
-    createGetAllController,
+    createGetWorksController,
     createGetWorkBySlugController
 } from '../controllers/apiController.js';
 import { asyncHandler } from '../middleware/asyncHandler.js';
@@ -15,27 +15,60 @@ const works = [
     {
         id: 1,
         nombre_trabajo: 'PaginasWebChavez',
-        slug: 'paginas-web-chavez'
+        slug: 'paginas-web-chavez',
+        categoria_trabajo: 'Portfolio',
+        informacion_trabajo: 'InformaciÃ³n legacy',
+        reto_tecnico: 'Reto legacy',
+        opinion_trabajo: 'No debe exponerse como resultado',
+        valoracion_trabajo: 'No debe exponerse como valoraciÃ³n comercial',
+        commercialContent: {
+            id: 99,
+            trabajo_id: 1,
+            slug_snapshot: 'snapshot-distinto',
+            display_name: 'PaginasWebChavez comercial',
+            commercial_category: 'Sitio web profesional',
+            seo_title: 'Title comercial',
+            seo_description: 'Description comercial',
+            commercial_summary: 'Resumen comercial',
+            information: 'InformaciÃ³n comercial',
+            challenge: 'DesafÃ­o comercial',
+            outcome: 'Resultado comercial',
+            featured_priority: 30,
+            primary_cta_label: 'CTA comercial',
+            primary_cta_href: '/contacto',
+            related_plan_label: 'Plan comercial',
+            related_plan_href: '/servicios',
+            is_commercial_public: true,
+            created_at: '2026-07-10',
+            updated_at: '2026-07-10'
+        }
     },
     {
         id: 2,
         nombre_trabajo: 'Plomada',
-        slug: 'plomada'
+        slug: 'plomada',
+        categoria_trabajo: 'Landing',
+        informacion_trabajo: 'InformaciÃ³n legacy Plomada',
+        reto_tecnico: 'Reto legacy Plomada',
+        commercialContent: null
     },
     {
         id: 3,
         nombre_trabajo: 'Montañez',
-        slug: 'jardineria-montanez'
+        slug: 'jardineria-montanez',
+        categoria_trabajo: 'Landing'
     },
     {
         id: 4,
         nombre_trabajo: 'ELU',
-        slug: 'elu'
+        slug: 'elu',
+        categoria_trabajo: 'Landing'
     },
     {
         id: 5,
         nombre_trabajo: 'Esperanza De Vida',
-        slug: 'esperanza-de-vida'
+        slug: 'esperanza-de-vida',
+        categoria_trabajo: 'Plataforma'
     }
 ];
 
@@ -57,7 +90,7 @@ const app = express();
 
 app.get(
     '/api/trabajos',
-    asyncHandler(createGetAllController(workModel))
+    asyncHandler(createGetWorksController(workModel))
 );
 app.get(
     '/api/trabajos/:slug',
@@ -88,23 +121,41 @@ after(async () => {
     });
 });
 
-test('GET /api/trabajos conserva el listado con slugs', async () => {
+test('GET /api/trabajos conserva el listado legacy y agrega commercialContent', async () => {
     const response = await fetch(`${baseUrl}/api/trabajos`);
     const body = await response.json();
 
     assert.equal(response.status, 200);
-    assert.deepEqual(body, works);
+    assert.equal(body.length, works.length);
+    assert.equal(body[0].id, works[0].id);
+    assert.equal(body[0].slug, works[0].slug);
+    assert.equal(body[0].nombre_trabajo, works[0].nombre_trabajo);
+    assert.equal(body[0].commercialContent.displayName, 'PaginasWebChavez comercial');
+    assert.equal(body[0].commercialContent.category, 'Sitio web profesional');
+    assert.equal(body[0].commercialContent.featuredPriority, 30);
+    assert.equal('trabajo_id' in body[0].commercialContent, false);
+    assert.equal('slug_snapshot' in body[0].commercialContent, false);
+    assert.equal('is_commercial_public' in body[0].commercialContent, false);
+    assert.equal(body[0].slug, 'paginas-web-chavez');
+    assert.equal(body[1].commercialContent.displayName, 'Plomada');
 });
 
 for (const work of works) {
-    test(`GET /api/trabajos/${work.slug} devuelve el trabajo`, async () => {
+    test(`GET /api/trabajos/${work.slug} devuelve el trabajo con commercialContent`, async () => {
         const response = await fetch(
             `${baseUrl}/api/trabajos/${work.slug}`
         );
         const body = await response.json();
 
         assert.equal(response.status, 200);
-        assert.deepEqual(body, work);
+        assert.equal(body.id, work.id);
+        assert.equal(body.slug, work.slug);
+        assert.equal(body.nombre_trabajo, work.nombre_trabajo);
+        assert.equal(typeof body.commercialContent.displayName, 'string');
+        assert.equal(typeof body.commercialContent.commercialSummary, 'string');
+        assert.equal('id' in body.commercialContent, false);
+        assert.equal('created_at' in body.commercialContent, false);
+        assert.equal('updated_at' in body.commercialContent, false);
     });
 }
 

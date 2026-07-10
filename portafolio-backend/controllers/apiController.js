@@ -15,6 +15,10 @@ import {
 } from '../models/Portafolio.js';
 import { validateProjectAuditUrl } from '../services/auditSecurityService.js';
 import { saveContact } from '../services/contactService.js';
+import {
+    serializarTrabajo,
+    serializarTrabajos
+} from '../services/workCommercialContentSerializer.js';
 
 export const createGetAllController = (model) => async (req, res) => {
     const data = await model.findAll();
@@ -28,24 +32,39 @@ export const obtenerExperiencia = createGetAllController(experiencia);
 export const obtenerExpDesafio = createGetAllController(exp_desafio);
 export const obtenerExpTecnologia = createGetAllController(exp_tecnologia);
 export const obtenerServicios = createGetAllController(servicios);
-export const obtenerTrabajos = createGetAllController(trabajos);
 export const obtenerTraTecnologia = createGetAllController(tra_tecnologia);
 export const obtenerClientes = createGetAllController(clientes);
+
+const incluirContenidoComercialTrabajo = Object.freeze({
+    association: 'commercialContent',
+    required: false
+});
+
+export const createGetWorksController = (model = trabajos) =>
+    async (req, res) => {
+        const data = await model.findAll({
+            include: [incluirContenidoComercialTrabajo]
+        });
+
+        res.json(serializarTrabajos(data));
+    };
 
 export const createGetWorkBySlugController = (model = trabajos) =>
     async (req, res) => {
         const { slug } = req.validated.params;
         const work = await model.findOne({
-            where: { slug }
+            where: { slug },
+            include: [incluirContenidoComercialTrabajo]
         });
 
         if (!work) {
             throw new HttpError(404, 'El trabajo solicitado no existe.');
         }
 
-        res.json(work);
+        res.json(serializarTrabajo(work));
     };
 
+export const obtenerTrabajos = createGetWorksController();
 export const obtenerTrabajoPorSlug = createGetWorkBySlugController();
 
 export const guardarMensaje = async (req, res) => {
