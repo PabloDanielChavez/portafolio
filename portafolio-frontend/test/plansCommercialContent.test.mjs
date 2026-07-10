@@ -48,7 +48,7 @@ const plansStylesSource = await readFrontendFile(
     "src/styles/sections/planes.module.scss"
 );
 const planPages = await Promise.all([
-    readFrontendasdFile("src/app/servicios/planes/landing_page/page.tsx"),
+    readFrontendFile("src/app/servicios/planes/landing_page/page.tsx"),
     readFrontendFile("src/app/servicios/planes/sitio_web/page.tsx"),
     readFrontendFile("src/app/servicios/planes/desarrollo_web/page.tsx")
 ]);

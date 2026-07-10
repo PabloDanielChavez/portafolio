@@ -35,20 +35,21 @@ export default function Trabajos({
 
     const trabajosOrdenados = useMemo(() => {
         const ordenados = ordenarTrabajos(trabajos);
-
-        if (!showFooter) return ordenados;
-
         const prioridadComercial = (trabajo: TrabajosType) =>
             getTrabajoCommercialContent(trabajo).featuredPriority;
 
-        return [...ordenados]
-            .sort(
-                (a, b) =>
-                    prioridadComercial(b) -
-                    prioridadComercial(a)
-            )
-            .slice(0, 5);
-    }, [trabajos, showFooter]);
+        return [...ordenados].sort((a, b) => {
+            const diferenciaPrioridad =
+                prioridadComercial(b) -
+                prioridadComercial(a);
+
+            if (diferenciaPrioridad !== 0) {
+                return diferenciaPrioridad;
+            }
+
+            return b.id - a.id;
+        });
+    }, [trabajos]);
 
     const handleChangeDispositivo = (nuevoDispositivo: AuditoriaDispositivo) => {
         setDispositivo(nuevoDispositivo);

@@ -1,31 +1,17 @@
-import type { TrabajosType } from "@/types/trabajos";
+import type {
+    TrabajoCommercialContent,
+    TrabajosType
+} from "@/types/trabajos";
 
-type CommercialLink = {
-    label: string;
-    href: string;
-};
-
-export type TrabajoCommercialContent = {
-    displayName: string;
-    category: string;
-    seoTitle: string;
-    seoDescription: string;
-    commercialSummary: string;
-    information?: string;
-    challenge?: string;
-    outcome: string;
-    featuredPriority: number;
-    primaryCta: CommercialLink;
-    relatedPlan: CommercialLink;
-};
-
-export type TrabajoCommercialView = Omit<
+type TrabajoCommercialContentLocal = Omit<
     TrabajoCommercialContent,
     "information" | "challenge"
 > & {
-    information: string;
-    challenge: string;
+    information?: string;
+    challenge?: string;
 };
+
+export type TrabajoCommercialView = TrabajoCommercialContent;
 
 export const trabajoCommercialContentBySlug = {
     "paginas-web-chavez": {
@@ -136,53 +122,140 @@ export const trabajoCommercialContentBySlug = {
             href: "/servicios/planes/desarrollo_web"
         }
     }
-} as const satisfies Record<string, TrabajoCommercialContent>;
+} as const satisfies Record<string, TrabajoCommercialContentLocal>;
 
 const commercialContentLookup: Readonly<
-    Record<string, TrabajoCommercialContent>
+    Record<string, TrabajoCommercialContentLocal>
 > = trabajoCommercialContentBySlug;
+
+const fallbackPrimaryCta = {
+    label: "Consultar por un proyecto similar",
+    href: "/contacto"
+} as const;
+
+const fallbackRelatedPlan = {
+    label: "Ver servicios web",
+    href: "/servicios"
+} as const;
+
+const isNonEmptyString = (value: unknown): value is string =>
+    typeof value === "string" && value.trim().length > 0;
+
+const isInternalPath = (value: unknown): value is string =>
+    isNonEmptyString(value) &&
+    /^\/(?!\/)(?!.*(?:\.\.|\/\/|[?#\\]))[a-z0-9/_-]*$/.test(value.trim());
+
+const resolveText = (
+    apiValue: unknown,
+    localValue: unknown,
+    legacyValue: unknown,
+    fallback: string
+): string => {
+    if (isNonEmptyString(apiValue)) return apiValue.trim();
+    if (isNonEmptyString(localValue)) return localValue.trim();
+    if (isNonEmptyString(legacyValue)) return legacyValue.trim();
+
+    return fallback;
+};
 
 export const getTrabajoCommercialContent = (
     trabajo: TrabajosType
 ): TrabajoCommercialView => {
-    const content = commercialContentLookup[trabajo.slug];
-
-    if (content) {
-        return {
-            ...content,
-            information: content.information ?? trabajo.informacion_trabajo,
-            challenge: content.challenge ?? trabajo.reto_tecnico
-        };
-    }
-
-    const displayName = trabajo.nombre_trabajo;
-    const category = trabajo.categoria_trabajo || "Proyecto web";
+    const apiContent = trabajo.commercialContent;
+    const localContent = commercialContentLookup[trabajo.slug];
+    const displayName = resolveText(
+        apiContent?.displayName,
+        localContent?.displayName,
+        trabajo.nombre_trabajo,
+        "Proyecto web"
+    );
+    const category = resolveText(
+        apiContent?.category,
+        localContent?.category,
+        trabajo.categoria_trabajo,
+        "Proyecto web"
+    );
     const normalizedCategory = category.toLowerCase();
+    const apiFeaturedPriority = apiContent?.featuredPriority;
+    const localFeaturedPriority = localContent?.featuredPriority;
+    const featuredPriority =
+        typeof apiFeaturedPriority === "number" &&
+        Number.isInteger(apiFeaturedPriority)
+            ? apiFeaturedPriority
+            : typeof localFeaturedPriority === "number" &&
+                  Number.isInteger(localFeaturedPriority)
+                ? localFeaturedPriority
+                : 0;
+    const apiPrimaryCtaHref = apiContent?.primaryCta?.href;
+    const localPrimaryCtaHref = localContent?.primaryCta?.href;
+    const apiRelatedPlanHref = apiContent?.relatedPlan?.href;
+    const localRelatedPlanHref = localContent?.relatedPlan?.href;
 
     return {
         displayName,
         category,
-        seoTitle: `${displayName} — Proyecto web`,
-        seoDescription:
-            `Conocé ${displayName}, un proyecto de ${normalizedCategory} presentado por PaginasWebChavez con foco en claridad, confianza y facilidad de contacto.`,
-        commercialSummary:
-            `${displayName} es un proyecto de ${normalizedCategory} pensado para presentar la propuesta con claridad y facilitar que cada persona encuentre la información y el canal de contacto adecuados.`,
-        information:
-            trabajo.informacion_trabajo?.trim() ||
-            "La propuesta organiza la información principal en un recorrido simple, con mensajes claros y acciones fáciles de identificar.",
-        challenge:
-            trabajo.reto_tecnico?.trim() ||
-            "El desafío del proyecto fue ordenar las necesidades principales sin agregar complejidad innecesaria para quien usa la página.",
-        outcome:
-            "El caso presenta una base clara y adaptable para comunicar la propuesta, ordenar la información y orientar a cada persona hacia el próximo paso.",
-        featuredPriority: 0,
+        seoTitle: resolveText(
+            apiContent?.seoTitle,
+            localContent?.seoTitle,
+            null,
+            `${displayName} — Proyecto web`
+        ),
+        seoDescription: resolveText(
+            apiContent?.seoDescription,
+            localContent?.seoDescription,
+            null,
+            `Conocé ${displayName}, un proyecto de ${normalizedCategory} presentado por PaginasWebChavez con foco en claridad, confianza y facilidad de contacto.`
+        ),
+        commercialSummary: resolveText(
+            apiContent?.commercialSummary,
+            localContent?.commercialSummary,
+            null,
+            "Proyecto desarrollado para presentar la información principal de forma clara y facilitar el contacto."
+        ),
+        information: resolveText(
+            apiContent?.information,
+            localContent?.information,
+            trabajo.informacion_trabajo,
+            "La propuesta organiza la información principal en un recorrido simple, con mensajes claros y acciones fáciles de identificar."
+        ),
+        challenge: resolveText(
+            apiContent?.challenge,
+            localContent?.challenge,
+            trabajo.reto_tecnico,
+            "El desafío fue ordenar la información del proyecto sin sumar complejidad innecesaria."
+        ),
+        outcome: resolveText(
+            apiContent?.outcome,
+            localContent?.outcome,
+            null,
+            "El resultado es una base clara y adaptable para comunicar la propuesta."
+        ),
+        featuredPriority,
         primaryCta: {
-            label: "Quiero una web similar",
-            href: "/contacto"
+            label: resolveText(
+                apiContent?.primaryCta?.label,
+                localContent?.primaryCta?.label,
+                null,
+                fallbackPrimaryCta.label
+            ),
+            href: isInternalPath(apiPrimaryCtaHref)
+                ? apiPrimaryCtaHref.trim()
+                : isInternalPath(localPrimaryCtaHref)
+                    ? localPrimaryCtaHref.trim()
+                    : fallbackPrimaryCta.href
         },
         relatedPlan: {
-            label: "Ver servicios web",
-            href: "/servicios"
+            label: resolveText(
+                apiContent?.relatedPlan?.label,
+                localContent?.relatedPlan?.label,
+                null,
+                fallbackRelatedPlan.label
+            ),
+            href: isInternalPath(apiRelatedPlanHref)
+                ? apiRelatedPlanHref.trim()
+                : isInternalPath(localRelatedPlanHref)
+                    ? localRelatedPlanHref.trim()
+                    : fallbackRelatedPlan.href
         }
     };
 };
