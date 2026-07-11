@@ -1,3 +1,22 @@
+export type TrabajoCommercialLink = {
+    label: string;
+    href: string;
+};
+
+export type TrabajoCommercialContent = {
+    displayName: string;
+    category: string;
+    seoTitle: string;
+    seoDescription: string;
+    commercialSummary: string;
+    information: string;
+    challenge: string;
+    outcome: string;
+    featuredPriority: number;
+    primaryCta: TrabajoCommercialLink;
+    relatedPlan: TrabajoCommercialLink;
+};
+
 export type TrabajosType = {
     id: number;
     slug: string;
@@ -31,4 +50,5 @@ export type TrabajosType = {
     categoria_cliente: string;
     reto_tecnico: string;
     destacado: string | number | boolean | null;
+    commercialContent?: TrabajoCommercialContent | null;
 };
