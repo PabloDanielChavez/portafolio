@@ -7,11 +7,13 @@ Este archivo es la fuente propietaria vigente localmente del estado técnico y o
 ## Línea base Git
 
 - **Verificado:** rama local `main`.
-- **Verificado:** `HEAD` local `800fd392b6427b4dc313183736c90df640a467cb`.
-- **Verificado:** referencia remota local disponible `origin/main` en `7cb970095288b9ba5281fa0a1492b1f804e7f22e`.
-- **Verificado:** la referencia local de `origin/main` contiene un commit adicional respecto de `HEAD`.
-- **Verificado:** no se observaron diferencias de archivos entre ambos árboles mediante los diffs read-only ejecutados.
-- **No documentado:** no se hizo `fetch`; por lo tanto, la referencia remota local no prueba el estado actual del servidor remoto.
+- **Verificado:** se ejecutó `git fetch origin` exitosamente antes de la sincronización local.
+- **Verificado:** `main` avanzó mediante `git merge --ff-only origin/main` desde `800fd392b6427b4dc313183736c90df640a467cb` hasta `7cb970095288b9ba5281fa0a1492b1f804e7f22e`, sin crear un commit de merge.
+- **Verificado:** el núcleo documental se preservó localmente mediante el commit `fa5ec7f0613031216b0330470e720ec91eabacd0` (`Establecer gobierno documental del agente PWC`).
+- **Verificado:** `HEAD` local `fa5ec7f0613031216b0330470e720ec91eabacd0`.
+- **Verificado:** frente a la referencia local disponible `origin/main` en `7cb970095288b9ba5281fa0a1492b1f804e7f22e`, `main` está un commit adelantada y cero commits atrasada.
+- **Verificado:** el stage quedó vacío después del commit documental.
+- **No documentado:** no se hizo otro `fetch` después del commit; por lo tanto, la referencia remota local no prueba el estado actual del servidor remoto.
 
 ## Working tree conocido
 
@@ -67,8 +69,8 @@ El detalle de la tarea documental actual pertenece a [`tasks/ACTIVE.md`](tasks/A
 - **Verificado:** existen una fuente propietaria del estado, una ficha de tarea y cinco protocolos con responsabilidades separadas.
 - **Confirmado por Pablo Chavez:** Pablo Chavez revisó y aprobó las catorce decisiones y confirmó este núcleo como gobierno vigente localmente el `2026-07-18`.
 - **Cerrada:** `PWC-2026-001` completó su alcance local y quedó cerrada mediante la confirmación de Pablo Chavez.
-- **Pendiente de preservación durable en Git:** los nueve documentos continúan sin seguimiento.
-- **No documentado:** no existe staging, commit, tag, push, release ni deploy de este núcleo.
+- **Preservado localmente en Git:** los nueve documentos fueron registrados en `fa5ec7f0613031216b0330470e720ec91eabacd0`.
+- **Verificado:** hubo staging y commit locales del núcleo; no hubo tag, push, PR, release, publicación ni deploy.
 
 ## Tarea documental cerrada y bloqueantes
 
@@ -78,4 +80,4 @@ El detalle de la tarea documental actual pertenece a [`tasks/ACTIVE.md`](tasks/A
 
 ## Próximo paso no autorizado
 
-Preservación durable de los nueve documentos en Git mediante una fase expresamente autorizada. Este paso no está autorizado por la confirmación y no habilita staging, commit, tag, push, release, deploy ni otra operación posterior.
+Una vez validada esta actualización, preservar este cambio de estado en un commit local separado mediante una fase expresamente autorizada. Este paso no está autorizado y no habilita push, tag, publicación, release, deploy ni otra operación posterior.

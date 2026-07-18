@@ -10,16 +10,16 @@ Una ficha puede conservar baseline, hashes, rama, resultados, evidencia y bloque
 
 | Responsabilidad | Documento propietario | Estado documental |
 |---|---|---|
-| Reglas durables del agente | [`../AGENTS.md`](../AGENTS.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; pendiente de preservación durable en Git |
-| Estado técnico y operativo actual | [`CURRENT.md`](CURRENT.md) | Fuente propietaria vigente localmente; confirmada por Pablo Chavez el `2026-07-18`; pendiente de preservación durable en Git |
-| Ficha de tarea actual | [`tasks/ACTIVE.md`](tasks/ACTIVE.md) | `PWC-2026-001` cerrada; confirmación registrada; pendiente de preservación durable en Git |
-| Ciclo y permisos por fase | [`protocols/workflow.md`](protocols/workflow.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; pendiente de preservación durable en Git |
-| Contenido comercial | [`protocols/content.md`](protocols/content.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; pendiente de preservación durable en Git |
-| Selección y registro de validaciones | [`protocols/validation.md`](protocols/validation.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; pendiente de preservación durable en Git |
-| Migraciones, backfills y datos | [`protocols/data-changes.md`](protocols/data-changes.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; pendiente de preservación durable en Git |
-| Git, releases y despliegues | [`protocols/git-release-deploy.md`](protocols/git-release-deploy.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; pendiente de preservación durable en Git |
+| Reglas durables del agente | [`../AGENTS.md`](../AGENTS.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; preservado localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
+| Estado técnico y operativo actual | [`CURRENT.md`](CURRENT.md) | Fuente propietaria vigente localmente; confirmada por Pablo Chavez el `2026-07-18`; preservada localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
+| Ficha de tarea actual | [`tasks/ACTIVE.md`](tasks/ACTIVE.md) | `PWC-2026-001` cerrada; confirmación registrada; preservada localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
+| Ciclo y permisos por fase | [`protocols/workflow.md`](protocols/workflow.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; preservado localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
+| Contenido comercial | [`protocols/content.md`](protocols/content.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; preservado localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
+| Selección y registro de validaciones | [`protocols/validation.md`](protocols/validation.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; preservado localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
+| Migraciones, backfills y datos | [`protocols/data-changes.md`](protocols/data-changes.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; preservado localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
+| Git, releases y despliegues | [`protocols/git-release-deploy.md`](protocols/git-release-deploy.md) | Vigente localmente; confirmado por Pablo Chavez el `2026-07-18`; preservado localmente en `fa5ec7f0613031216b0330470e720ec91eabacd0` |
 
-La tabla indica el estado documental confirmado del núcleo, no reemplaza el contenido de [`CURRENT.md`](CURRENT.md) ni el estado detallado de la ficha. La vigencia local no acredita staging, commit, publicación Git, release o deploy.
+La tabla indica el estado documental confirmado y la preservación local del núcleo, no reemplaza el contenido de [`CURRENT.md`](CURRENT.md) ni el estado detallado de la ficha. La vigencia local no acredita push, actualización remota, publicación Git, release o deploy.
 
 ## Tipos de documentación
 

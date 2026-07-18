@@ -178,16 +178,16 @@ La tarea debía detenerse si un path objetivo existía o estaba en conflicto, la
 
 ## Resultado y evidencia
 
-Los nueve documentos fueron creados y corregidos localmente dentro de la allowlist y pasaron las validaciones documentales autorizadas registradas. Pablo Chavez revisó y aprobó las catorce decisiones, aprobó el núcleo documental y confirmó su vigencia local el `2026-07-18`. `PWC-2026-001` quedó `cerrada`. No existe evidencia de staging, commit, tag, push, release o deploy porque esas operaciones no fueron autorizadas ni realizadas.
+Los nueve documentos fueron creados y corregidos localmente dentro de la allowlist y pasaron las validaciones documentales autorizadas registradas. Pablo Chavez revisó y aprobó las catorce decisiones, aprobó el núcleo documental y confirmó su vigencia local el `2026-07-18`. `PWC-2026-001` quedó `cerrada`. El núcleo fue staged y preservado localmente mediante el commit `fa5ec7f0613031216b0330470e720ec91eabacd0` (`Establecer gobierno documental del agente PWC`); no hubo tag, push, PR, release, publicación ni deploy.
 
-Confirmado por Pablo Chavez. Pendiente de preservación durable en Git.
+Confirmado por Pablo Chavez. Preservado localmente en Git mediante `fa5ec7f0613031216b0330470e720ec91eabacd0`.
 
 ## Cambios preexistentes preservados
 
 Se preservaron la modificación preexistente de `portafolio-frontend/next-env.d.ts`, los backups locales y los artefactos comerciales sin seguimiento. No fueron modificados, movidos, eliminados, restaurados ni incorporados.
 
-Esta ficha no puede reutilizarse ni sobrescribirse hasta que su contenido haya sido preservado de forma durable y exista una nueva instrucción autorizada para sustituirla.
+Esta ficha solo puede reutilizarse o sobrescribirse con una nueva instrucción autorizada para sustituirla.
 
 ## Próximo paso no autorizado
 
-Preservación durable de los nueve documentos en Git mediante una fase expresamente autorizada.
+Una vez validada esta actualización, preservación en Git de este cambio de estado mediante staging exclusivo de estos cuatro archivos, revisión staged y un commit local separado, si Pablo Chavez lo autoriza.

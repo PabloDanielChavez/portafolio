@@ -2,7 +2,7 @@
 
 ## Propósito
 
-Este archivo contiene las reglas durables vigentes localmente para el agente principal único de PaginasWebChavez. El gobierno documental fue confirmado por Pablo Chavez el `2026-07-18`. Los nueve documentos existen localmente y están pendientes de preservación durable en Git. El sistema confirmado es extensible, pero no tiene subagentes, skills, hooks, MCP ni automatizaciones propias configuradas. Cualquier extensión futura requiere una necesidad demostrable y autorización expresa de Pablo Chavez.
+Este archivo contiene las reglas durables vigentes localmente para el agente principal único de PaginasWebChavez. El gobierno documental fue confirmado por Pablo Chavez el `2026-07-18` y preservado localmente en Git mediante el commit `fa5ec7f0613031216b0330470e720ec91eabacd0`. No existe evidencia de push, preservación remota, publicación, release o deploy. El sistema confirmado es extensible, pero no tiene subagentes, skills, hooks, MCP ni automatizaciones propias configuradas. Cualquier extensión futura requiere una necesidad demostrable y autorización expresa de Pablo Chavez.
 
 ## Autoridad y precedencia
 
