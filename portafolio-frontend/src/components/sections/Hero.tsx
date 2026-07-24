@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { FaArrowDown, FaCheck, FaWhatsapp } from "@/components/utils/Iconos";
+import { FaArrowDown, FaArrowRight, FaCheck, FaWhatsapp } from "@/components/utils/Iconos";
 import { heroContent } from "@/content/hero.content";
 import type { PerfilType } from "@/types/perfil";
 import styles from "@/styles/sections/hero.module.scss";
@@ -25,9 +25,7 @@ export default function Hero({ perfil }: Props) {
                     </span>
 
                     <h1 id="hero-title" className={styles.hero_title}>
-                        {heroContent.title.beforeHighlight}{" "}
-                        <strong>{heroContent.title.highlight}</strong>{" "}
-                        {heroContent.title.afterHighlight}
+                        {heroContent.title.beforeHighlight}{" "}<strong>{heroContent.title.highlight}</strong>{" "}{heroContent.title.afterHighlight}
                     </h1>
                     <p className={styles.hero_description}>{heroContent.description}</p>
                     <div className={styles.hero_actions}>
@@ -40,9 +38,9 @@ export default function Hero({ perfil }: Props) {
                             <FaWhatsapp aria-hidden="true" />
                             {heroContent.actions.primary}
                         </Link>
-                        <Link href="#planes" className={styles.hero_secondary}>
+                        <Link href="/trabajos" className={styles.hero_secondary}>
                             {heroContent.actions.secondary}
-                            <FaArrowDown aria-hidden="true" />
+                            <FaArrowRight aria-hidden="true" />
                         </Link>
                     </div>
                     <p className={styles.hero_note}>

@@ -15,11 +15,14 @@ import {
     FaWhatsapp,
     MdOutlineEmail
 } from "@/components/utils/Iconos";
+import { 
+    mensajeEmail,
+    mensajeWSP } from "@/components/utils/variables"
 import {
     CONTACT_BUDGET_OPTIONS,
     CONTACT_DEADLINE_OPTIONS,
     CONTACT_PREFERENCES,
-    CONTACT_PROJECT_OPTIONS
+    CONTACT_PROJECT_OPTIONS,
 } from "@/constants/contacto.constants";
 import { useContactoForm } from "@/hooks/useContactoForm";
 import style from "@/styles/sections/contacto.module.scss";
@@ -42,50 +45,49 @@ const CONTACT_EMAIL = "pablo_daniel_chavez@outlook.es";
 const getCurrentLocationHref = () => window.location.href;
 
 const indicadoresConfianza = [
-    "Respuesta clara y personalizada",
-    "Diseño responsive",
-    "SEO técnico desde la base",
-    "Optimización de rendimiento",
-    "Integración con WhatsApp",
-    "Sitios enfocados en generar consultas"
+    "Trato directo con Pablo Chavez",
+    "Alcance definido según el proyecto",
+    "Canales de contacto según necesidad"
 ];
 
 const preguntasFrecuentes: ContactoFaqItemData[] = [
     {
         id: "inversion",
-        pregunta: "¿Cuánto cuesta desarrollar una página web profesional?",
+        pregunta: "¿Cómo se define el presupuesto de un proyecto?",
         respuesta:
-            "La inversión depende del alcance, la cantidad de secciones, las integraciones y los objetivos comerciales. Después de analizar tu consulta recibirás una propuesta clara, sin costos ocultos y adaptada a las necesidades reales del proyecto."
+            "El presupuesto depende del alcance, las páginas, las funciones, las integraciones y las dependencias de cada proyecto. Antes de avanzar se revisa qué corresponde incluir y qué aspectos requieren evaluación por separado."
     },
     {
         id: "tipo-sitio",
-        pregunta: "¿Qué tipo de sitio web necesita mi negocio?",
+        pregunta:
+            "¿Qué tipo de desarrollo web puede corresponder a mi negocio?",
         respuesta:
-            "Una landing page funciona muy bien para una campaña o servicio puntual; un sitio web profesional presenta una empresa de forma integral; y una tienda online permite vender productos. En el análisis inicial definimos la alternativa con mejor relación entre inversión y objetivos."
+            "Una Landing Page Profesional puede corresponder cuando necesitás presentar una propuesta concreta. Un Sitio Web Profesional permite ordenar varios servicios o contenidos. Una Aplicación Web a Medida se evalúa cuando intervienen procesos, datos, usuarios o tareas con lógica propia."
     },
     {
         id: "seo-rendimiento",
-        pregunta: "¿El desarrollo incluye SEO, velocidad y diseño responsive?",
+        pregunta:
+            "¿Se trabajan SEO técnico, rendimiento y diseño adaptable?",
         respuesta:
-            "Sí. Cada proyecto se construye con estructura semántica, SEO técnico, adaptación a celulares y buenas prácticas de rendimiento. El objetivo es lograr una experiencia rápida, clara y preparada para convertir visitas en oportunidades."
+            "Estos aspectos se trabajan según las necesidades y prioridades de cada proyecto. El SEO técnico y el rendimiento no implican promesas de posiciones, tráfico ni resultados comerciales."
     },
     {
         id: "tiempos",
-        pregunta: "¿Cuánto tiempo demora un proyecto web?",
+        pregunta: "¿Cuánto tiempo puede llevar un proyecto web?",
         respuesta:
-            "Una landing page puede resolverse en pocas semanas, mientras que una tienda online o un desarrollo a medida requiere más planificación. Antes de comenzar acordamos alcance, etapas y un cronograma realista."
+            "Una Landing Page Profesional tiene un plazo orientativo de 5 a 10 días hábiles desde la aprobación del alcance y la recepción completa del material. Un Sitio Web Profesional puede llevar entre 20 y 35 días hábiles según el alcance y los tiempos de respuesta. Una Aplicación Web a Medida define su cronograma por etapas después del relevamiento."
     },
     {
         id: "material",
         pregunta: "¿Necesito tener listos los textos y las imágenes?",
         respuesta:
-            "No necesariamente. Podemos ordenar el contenido existente y definir qué materiales hacen falta. También recibirás orientación para que cada texto, llamada a la acción e imagen ayude a comunicar mejor el valor de tu negocio."
+            "No necesariamente. Podemos revisar el material disponible, ordenar la información y definir qué contenidos hacen falta para avanzar."
     },
     {
         id: "publicacion",
-        pregunta: "¿Qué sucede después de publicar el sitio?",
+        pregunta: "¿Qué ocurre después de publicar la web?",
         respuesta:
-            "El sitio queda configurado y listo para operar. Según el proyecto, también podemos planificar mantenimiento, medición con Analytics, mejoras SEO, nuevas secciones y optimizaciones basadas en resultados reales."
+            "Se revisa la entrega o publicación acordada dentro del alcance del proyecto. Mantenimiento, soporte, nuevas secciones o futuras etapas pueden evaluarse por separado."
     }
 ];
 
@@ -206,9 +208,7 @@ export default function Contacto({ perfil }: Props) {
                       id: "whatsapp",
                       titulo: "WhatsApp",
                       detalle: "Conversación directa",
-                      url: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-                          "Hola Pablo, vi tu portfolio y me gustaría conversar sobre un proyecto web."
-                      )}`,
+                      url: `https://wa.me/${whatsappNumber}?text=${mensajeWSP}`,
                       icon: <FaWhatsapp aria-hidden="true" />
                   }
               ]
@@ -218,8 +218,8 @@ export default function Contacto({ perfil }: Props) {
             titulo: "Correo",
             detalle: CONTACT_EMAIL,
             url: `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                "Consulta desde el portfolio"
-            )}`,
+                "Consulta desde PaginasWebChavez"
+            )}&body=${mensajeEmail}`,
             icon: <MdOutlineEmail aria-hidden="true" />
         },
         ...(() => {
@@ -304,7 +304,7 @@ export default function Contacto({ perfil }: Props) {
             className={`${style.contacto} ${
                 isVisible ? style.contacto_visible : ""
             }`}
-            aria-label="Solicitar presupuesto de desarrollo web"
+            aria-label="Contacto para proyectos de desarrollo web"
         >
             <div className={style.contacto_layout}>
                 <header
@@ -312,23 +312,23 @@ export default function Contacto({ perfil }: Props) {
                 >
                     <SectionHeader
                         icon={<MdOutlineEmail aria-hidden="true" />}
-                        title="Hablemos de tu próximo proyecto web"
-                        description="Solicitá un presupuesto o una primera orientación para crear una landing page, un sitio web profesional, una tienda online o un desarrollo a medida."
+                        title="Hablemos de tu proyecto web"
+                        description="Contame qué necesitás comunicar, ordenar o desarrollar. Podemos revisar si corresponde una Landing Page Profesional, un Sitio Web Profesional o una Aplicación Web a Medida."
                         headingLevel="h1"
                     />
 
                     <div className={style.contacto_value_bar}>
                         <span>
                             <FaCheck aria-hidden="true" />
-                            Análisis inicial sin compromiso
+                            Trato directo con Pablo Chavez
                         </span>
                         <span>
                             <FaCheck aria-hidden="true" />
-                            Respuesta clara y personalizada
+                            Alcance definido según el proyecto
                         </span>
                         <span>
                             <FaCheck aria-hidden="true" />
-                            Foco en rendimiento, SEO y conversión
+                            Canales de contacto según necesidad
                         </span>
                     </div>
                 </header>
@@ -351,9 +351,8 @@ export default function Contacto({ perfil }: Props) {
                                 Contame qué necesitás
                             </h2>
                             <p id="contact-form-intro">
-                                Con estos datos puedo darte una primera
-                                respuesta más útil, concreta y alineada con tu
-                                negocio.
+                                Con estos datos puedo revisar tu consulta y
+                                responder por el medio que indiques.
                             </p>
                         </div>
 
@@ -471,7 +470,9 @@ export default function Contacto({ perfil }: Props) {
                                     }
                                     onChange={handleChange}
                                 >
-                                    <option value="">Seleccioná una opción</option>
+                                    <option value="">
+                                        Seleccioná una opción
+                                    </option>
                                     {CONTACT_PROJECT_OPTIONS.map((tipo) => (
                                         <option key={tipo} value={tipo}>
                                             {tipo}
@@ -567,7 +568,8 @@ export default function Contacto({ perfil }: Props) {
                             </fieldset>
                         </div>
 
-                        {form.preferenciaContacto === CONTACT_PREFERENCES.whatsapp && (
+                        {form.preferenciaContacto ===
+                            CONTACT_PREFERENCES.whatsapp && (
                             <div className={style.contacto_field}>
                                 <label htmlFor="contact-telefono">
                                     Tu número de WhatsApp
@@ -695,16 +697,15 @@ export default function Contacto({ perfil }: Props) {
                             )}
                             {isSubmitting
                                 ? "Enviando consulta..."
-                                : "Solicitar una primera orientación"}
+                                : "Enviar consulta"}
                             {!isSubmitting && (
                                 <FaArrowRight aria-hidden="true" />
                             )}
                         </button>
 
                         <p className={style.contacto_privacy}>
-                            Tus datos se usan únicamente para responder esta
-                            consulta. No se comparten ni se utilizan para enviar
-                            publicidad.
+                            Tus datos se utilizarán para responder esta
+                            consulta por el medio indicado.
                         </p>
                     </form>
 

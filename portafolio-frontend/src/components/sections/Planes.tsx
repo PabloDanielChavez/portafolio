@@ -13,8 +13,8 @@ export default function Planes() {
             <div className={styles.planes_layout}>
                 <SectionHeader
                     icon={<TbChartBarPopular />}
-                    title="Elegí la web adecuada para tu próximo paso"
-                    description="Compará el alcance, el precio orientativo y el plazo de cada opción. Elegimos una base y la ajustamos a las necesidades reales de tu negocio, sin costos ocultos."
+                    title="Elegí el desarrollo web adecuado para tu proyecto"
+                    description="Compará para qué sirve cada desarrollo, qué variables definen su alcance y cómo se establece el presupuesto. Si todavía no sabés por dónde empezar, revisamos juntos qué necesitás resolver."
                     headingId="planes-title"
                 />
 
@@ -28,15 +28,13 @@ export default function Planes() {
 
                 <div className={styles.planes_help}>
                     <div>
-                        <h3>¿No sabés qué plan elegir?</h3>
+                        <h3>¿No sabés qué servicio elegir?</h3>
                         <p>
-                            Contame qué hace tu negocio y qué necesitás resolver.
-                            Te recomiendo la opción más lógica antes de preparar
-                            cualquier presupuesto.
+                            Contame qué hace tu negocio y qué necesitás resolver. Revisamos el contexto y te oriento sobre el punto de partida más adecuado antes de definir el alcance y el presupuesto.
                         </p>
                     </div>
                     <Link href="/contacto">
-                        Pedir recomendación sin compromiso
+                        Contame tu proyecto
                     </Link>
                 </div>
             </div>

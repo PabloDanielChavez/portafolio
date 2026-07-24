@@ -83,19 +83,19 @@ export default function Trabajos({
                 <header className={style_trabajos.trabajos_header}>
                     <SectionHeader
                         icon={<IoIosRocket />}
-                        title="Trabajos que convierten ideas en presencia digital"
-                        description="Una selección de proyectos reales, resueltos con foco en claridad, rendimiento y experiencia de usuario."
+                        title="Trabajos web desarrollados con criterio"
+                        description="Conocé una selección de proyectos en los que se trabajó la estructura, el diseño y la experiencia de navegación según la necesidad de cada negocio."
                         headingLevel={headingLevel}
                     />
 
                     {!showFooter && <div className={style_trabajos.trabajos_auditoria}>
                         <div className={style_trabajos.trabajos_auditoria_info}>
                             <span className={style_trabajos.trabajos_auditoria_label}>
-                                Métricas Lighthouse
+                                Auditorías Lighthouse
                             </span>
 
                             <p className={style_trabajos.trabajos_auditoria_texto}>
-                                Cambiá entre auditoría móvil y escritorio para ver el rendimiento de cada proyecto.
+                                Consultá las métricas técnicas de cada proyecto y compará sus resultados entre dispositivos móviles y de escritorio.
                             </p>
                         </div>
 

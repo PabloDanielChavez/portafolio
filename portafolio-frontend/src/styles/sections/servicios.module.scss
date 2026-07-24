@@ -1,18 +1,131 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
+/* =========================================================
+   SERVICIOS — FICHAS EDITORIALES DE DIAGNÓSTICO
+   ========================================================= */
+
+$paper-main: #e1d0bb;
+$paper-light: #e4d4c0;
+$paper-bright: #f2e6d5;
+$paper-white: #f7efe4;
+$paper-muted: #ceb99f;
+
+$charcoal: #232322;
+$earth-gray: #5e5750;
+$shadow-brown: #4d423b;
+
+$orange-dark: #b54723;
+$orange-main: #c14d28;
+$orange-light: #d66538;
+
+$font-editorial: Georgia, 'Times New Roman', serif;
+
+/* =========================================================
+   SECCIÓN GENERAL
+   ========================================================= */
+
 .servicios {
-    @include m.section-shell(v.$background-main);
+    @include m.section-shell($paper-main);
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    overflow: clip;
+    color: $charcoal;
+    background: radial-gradient(circle at 8% 18%, rgba($orange-main, .09), transparent 25rem), radial-gradient(circle at 92% 58%, rgba($shadow-brown, .07), transparent 30rem), linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        opacity: .31;
+        background-image: linear-gradient(rgba($earth-gray, .1) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .1) 1px, transparent 1px), radial-gradient(circle, rgba($charcoal, .21) 1px, transparent 1.2px);
+        background-size: 54px 54px, 54px 54px, 20px 20px;
+        background-position: 7% 12%, 7% 12%, 96% 15%;
+        mask-image: linear-gradient(90deg, rgba(0, 0, 0, .56), transparent 34%, transparent 68%, rgba(0, 0, 0, .55));
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 11%;
+        right: -15rem;
+        z-index: -1;
+        width: min(35rem, 76vw);
+        aspect-ratio: 1;
+        border: 1px solid rgba($earth-gray, .18);
+        border-radius: 50%;
+        box-shadow: -5rem 8rem 0 -4.95rem rgba($earth-gray, .14);
+        pointer-events: none;
+    }
 }
 
 .servicios_layout {
     @include m.container;
+
+    position: relative;
+    z-index: 1;
 }
+
+/* =========================================================
+   ENLACE SUPERIOR
+   ========================================================= */
+
+.servicios_LINK {
+    @extend %link-reset;
+
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    width: fit-content;
+    margin-bottom: 2rem;
+    padding: .5rem .7rem;
+    border: 1px solid rgba($shadow-brown, .18);
+    border-radius: .16rem;
+    background: rgba($paper-white, .66);
+    color: rgba($charcoal, .66);
+    font-family: v.$font-display;
+    font-size: v.$font-size-small;
+    font-weight: 800;
+    box-shadow: 3px 3px 0 rgba($orange-main, .1);
+    transition: color .22s ease, border-color .22s ease, background-color .22s ease, transform .22s ease;
+
+    &::before {
+        content: "←";
+        color: $orange-dark;
+        font-size: 1rem;
+        transition: transform .22s ease;
+    }
+
+    &:hover {
+        transform: translateX(-3px);
+        border-color: rgba($orange-main, .4);
+        background: $paper-white;
+        color: $charcoal;
+
+        &::before {
+            transform: translateX(-3px);
+        }
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba($orange-main, .35);
+        outline-offset: 4px;
+    }
+}
+
+/* =========================================================
+   GRILLA DE SERVICIOS
+   ========================================================= */
 
 .servicios_contenido_box_layout {
     display: grid;
     grid-template-columns: 1fr;
-    gap: .9rem;
+    gap: 1rem;
+    counter-reset: servicio;
 
     @include m.telefonoXL {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -23,121 +136,243 @@
     }
 }
 
-.servicios_card {
-    @include m.card-compact;
+/* =========================================================
+   TARJETAS
+   ========================================================= */
 
-    min-height: 190px;
-    padding: 1.4rem;
+.servicios_card {
+    --card-tilt: 0deg;
+
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    min-height: 210px;
+    padding: 1.4rem 1.3rem 1.45rem;
+    border: 1px solid rgba($shadow-brown, .2);
+    border-radius: .22rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, .24), transparent 40%), rgba($paper-white, .86);
+    color: $charcoal;
+    box-shadow: 5px 6px 0 rgba($shadow-brown, .08), 0 14px 30px rgba($shadow-brown, .08);
     opacity: 0;
-    transform: translateY(16px);
-    transition:
-        opacity .45s ease,
-        transform .45s ease,
-        border-color .2s ease,
-        background .2s ease;
+    counter-increment: servicio;
+    transform: translateY(18px) rotate(var(--card-tilt));
+    transition: opacity .45s ease, transform .45s cubic-bezier(.16, 1, .3, 1), border-color .22s ease, background-color .22s ease, box-shadow .22s ease;
+
+    &:nth-child(3n + 1) {
+        --card-tilt: -.25deg;
+    }
+
+    &:nth-child(3n + 2) {
+        --card-tilt: .2deg;
+    }
+
+    &:nth-child(3n) {
+        --card-tilt: -.1deg;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -.34rem;
+        left: clamp(1rem, 5vw, 3.2rem);
+        z-index: -1;
+        width: 3.3rem;
+        height: .76rem;
+        background: $orange-main;
+        clip-path: polygon(2% 15%, 17% 2%, 35% 12%, 54% 1%, 73% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+        opacity: .72;
+        transform: rotate(-2deg);
+    }
+
+    &::after {
+        content: counter(servicio, decimal-leading-zero);
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        color: rgba($orange-dark, .42);
+        font-family: $font-editorial;
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: -.04em;
+        line-height: 1;
+    }
 
     &:hover {
-        transform: translateY(-3px);
-        border-color: rgba(v.$violet-soft, .3);
-        background: #181320;
+        transform: translateY(-5px) rotate(0);
+        border-color: rgba($orange-main, .42);
+        background: $paper-white;
+        box-shadow: 7px 9px 0 rgba($orange-main, .12), 0 21px 40px rgba($shadow-brown, .12);
+
+        .servicios_card_icon {
+            border-color: $orange-main;
+            background: $orange-main;
+            color: #fffaf1;
+            transform: rotate(-3deg) scale(1.04);
+        }
     }
 
     h2,
     h3 {
-        margin: 1rem 0 .55rem;
-        color: v.$text-primary;
-        font-size: 1.08rem;
-        line-height: 1.25;
+        max-width: 18ch;
+        margin: 1rem 2.4rem .6rem 0;
+        color: $charcoal;
+        font-family: $font-editorial;
+        font-size: clamp(1.16rem, 2.2vw, 1.35rem);
+        font-weight: 700;
+        letter-spacing: -.025em;
+        line-height: 1.18;
+        text-wrap: balance;
     }
 
     p {
         display: -webkit-box;
         margin: 0;
         overflow: hidden;
-        color: v.$text-secondary;
+        color: rgba($charcoal, .68);
         font-size: v.$font-size-card;
         line-height: 1.66;
+        text-wrap: pretty;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 4;
     }
 }
 
 .servicios_card_visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) rotate(var(--card-tilt));
 }
 
 .servicios_card_icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(v.$violet-soft, .2);
-    border-radius: 12px;
-    background: rgba(v.$violet-primary, .07);
-    color: v.$violet-soft;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba($orange-dark, .25);
+    border-radius: .18rem;
+    background: rgba($orange-main, .09);
+    color: $orange-dark;
     font-size: 1.35rem;
-}
+    box-shadow: 3px 3px 0 rgba($orange-main, .09);
+    transition: color .22s ease, border-color .22s ease, background-color .22s ease, transform .22s ease;
 
-.servicios_LINK {
-    @extend %link-reset;
-
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    margin-bottom: 2rem;
-    color: v.$text-secondary;
-    font-size: v.$font-size-small;
-    font-weight: 700;
-
-    &:hover {
-        color: v.$text-primary;
+    svg {
+        width: 1.25rem;
+        height: 1.25rem;
     }
 }
 
-.servicios_decision {
-    @include m.card-featured;
+/* =========================================================
+   BLOQUE DE DECISIÓN
+   ========================================================= */
 
-    margin-top: clamp(1.5rem, 4vw, 2.5rem);
-    padding: clamp(1.25rem, 4vw, 2rem);
+.servicios_decision {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border: 1px solid rgba($shadow-brown, .22);
+    border-radius: .28rem;
+    background: linear-gradient(125deg, rgba(255, 255, 255, .24), transparent 36%), $paper-light;
+    clip-path: polygon(.7% 2%, 10% .6%, 21% 1.6%, 32% .5%, 43% 1.5%, 54% .4%, 65% 1.5%, 76% .5%, 87% 1.5%, 99.3% .7%, 99% 18%, 99.5% 35%, 99% 52%, 99.5% 69%, 99% 85%, 99.3% 98%, 88% 99.2%, 76% 98.1%, 64% 99.2%, 52% 98.1%, 40% 99.2%, 28% 98.1%, 16% 99.2%, .7% 98.4%, 1.2% 82%, .5% 65%, 1.1% 48%, .5% 31%, 1.1% 15%);
+    filter: drop-shadow(-.6rem .7rem 0 rgba($orange-main, .84)) drop-shadow(0 1.25rem 1rem rgba($shadow-brown, .16));
+
+    &::before {
+        content: "";
+        position: absolute;
+        right: 1.4rem;
+        bottom: 1.2rem;
+        z-index: -1;
+        width: 7rem;
+        height: 5.5rem;
+        opacity: .24;
+        pointer-events: none;
+        background-image: linear-gradient(rgba($earth-gray, .3) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .3) 1px, transparent 1px);
+        background-size: 14px 14px;
+    }
+
+    &::after {
+        content: "ORIENTACIÓN";
+        position: absolute;
+        top: 1.2rem;
+        right: clamp(1rem, 4vw, 2.2rem);
+        color: rgba($orange-dark, .42);
+        font-family: v.$font-display;
+        font-size: .6rem;
+        font-weight: 900;
+        letter-spacing: .12em;
+        writing-mode: vertical-rl;
+    }
 }
 
 .servicios_decision_header {
-    max-width: 760px;
+    max-width: 780px;
+    padding-right: clamp(0rem, 5vw, 3rem);
 
     > span {
-        color: v.$gold;
+        display: inline-flex;
+        align-items: center;
+        gap: .5rem;
+        width: fit-content;
+        padding: .44rem .65rem;
+        border: 1px solid rgba($shadow-brown, .18);
+        border-radius: .14rem;
+        background: rgba($paper-white, .7);
+        color: $orange-dark;
         font-family: v.$font-display;
         font-size: .72rem;
-        font-weight: 800;
+        font-weight: 850;
         letter-spacing: .08em;
         text-transform: uppercase;
+        box-shadow: 3px 3px 0 rgba($orange-main, .11);
+        transform: rotate(-.4deg);
+
+        &::before {
+            content: "";
+            width: 6px;
+            aspect-ratio: 1;
+            background: $orange-main;
+            transform: rotate(45deg);
+        }
     }
 
     h2,
     h3 {
-        margin: .55rem 0 0;
-        color: v.$text-primary;
-        font-size: clamp(1.45rem, 3.5vw, 2rem);
-        letter-spacing: -.035em;
-        line-height: 1.15;
+        max-width: 17ch;
+        margin: .8rem 0 0;
+        color: $charcoal;
+        font-family: $font-editorial;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: -.045em;
+        line-height: 1.05;
+        text-wrap: balance;
     }
 
     p {
-        margin: .8rem 0 0;
-        color: v.$text-secondary;
-        line-height: 1.7;
+        max-width: 680px;
+        margin: 1rem 0 0;
+        padding-left: 1rem;
+        border-left: 3px solid $orange-main;
+        color: rgba($charcoal, .68);
+        line-height: 1.72;
+        text-wrap: pretty;
     }
 }
+
+/* =========================================================
+   OPCIONES DE DECISIÓN
+   ========================================================= */
 
 .servicios_decision_options {
     display: grid;
     grid-template-columns: 1fr;
-    gap: .75rem;
-    margin: 1.5rem 0 0;
+    gap: .85rem;
+    margin: 1.7rem 0 0;
     padding: 0;
     list-style: none;
+    counter-reset: opcion;
 
     @include m.tablet {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -145,66 +380,133 @@
 
     li {
         min-width: 0;
+        counter-increment: opcion;
     }
 
     a {
         @extend %link-reset;
-        @include m.card-metric;
 
+        position: relative;
         display: flex;
         flex-direction: column;
         height: 100%;
-        padding: 1rem;
-        transition:
-            border-color .2s ease,
-            background .2s ease,
-            transform .2s ease;
+        min-height: 180px;
+        padding: 1.15rem 1rem 1rem;
+        border: 1px solid rgba($shadow-brown, .19);
+        border-radius: .2rem;
+        background: rgba($paper-white, .72);
+        color: $charcoal;
+        box-shadow: 3px 4px 0 rgba($shadow-brown, .07);
+        transition: border-color .22s ease, background-color .22s ease, transform .22s ease, box-shadow .22s ease;
+
+        &::before {
+            content: counter(opcion, decimal-leading-zero);
+            position: absolute;
+            top: .75rem;
+            right: .8rem;
+            color: rgba($orange-dark, .38);
+            font-family: $font-editorial;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: .85rem;
+            bottom: .8rem;
+            width: 1.9rem;
+            height: .48rem;
+            background: $orange-main;
+            clip-path: polygon(2% 15%, 17% 2%, 35% 12%, 54% 1%, 73% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+            opacity: .62;
+            transform: rotate(-2deg);
+        }
 
         &:hover {
-            transform: translateY(-2px);
-            border-color: rgba(v.$violet-soft, .34);
-            background: rgba(v.$violet-primary, .09);
+            transform: translateY(-4px) rotate(-.15deg);
+            border-color: rgba($orange-main, .42);
+            background: $paper-white;
+            box-shadow: 5px 6px 0 rgba($orange-main, .11), 0 15px 30px rgba($shadow-brown, .09);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba($orange-main, .35);
+            outline-offset: 4px;
         }
     }
 
     strong {
-        color: v.$text-primary;
-        font-family: v.$font-display;
-        font-size: .98rem;
-        line-height: 1.35;
+        max-width: calc(100% - 2rem);
+        color: $charcoal;
+        font-family: $font-editorial;
+        font-size: 1.08rem;
+        font-weight: 700;
+        line-height: 1.28;
     }
 
     span {
-        margin-top: .55rem;
-        color: v.$text-secondary;
+        margin-top: .65rem;
+        color: rgba($charcoal, .64);
         font-size: v.$font-size-small;
-        line-height: 1.6;
+        line-height: 1.62;
     }
 
     small {
         margin-top: auto;
-        padding-top: .8rem;
-        color: v.$violet-soft;
+        padding-top: 1rem;
+        color: $orange-dark;
+        font-family: v.$font-display;
         font-size: .76rem;
-        font-weight: 800;
+        font-weight: 850;
     }
 }
+
+/* =========================================================
+   ACCIONES
+   ========================================================= */
 
 .servicios_decision_actions {
     display: flex;
     flex-direction: column;
-    gap: .7rem;
-    align-items: center;
-    margin-top: 1.25rem;
+    gap: .75rem;
+    align-items: stretch;
+    margin-top: 1.5rem;
 
     @include m.telefonoXL {
         flex-direction: row;
         flex-wrap: wrap;
+        align-items: center;
     }
 }
 
 .servicios_decision_primary {
     @include m.button-primary;
+
+    min-height: 52px;
+    border: 1px solid $orange-dark;
+    border-radius: .2rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .1), transparent), $orange-main;
+    color: #fffaf1;
+    font-family: v.$font-display;
+    box-shadow: 0 7px 0 $orange-dark, 0 16px 27px rgba($shadow-brown, .17);
+    transition: transform .22s ease, background-color .22s ease, box-shadow .22s ease;
+
+    &:hover {
+        transform: translateY(-3px);
+        background-color: $orange-light;
+        box-shadow: 0 10px 0 $orange-dark, 0 22px 36px rgba($shadow-brown, .2);
+    }
+
+    &:active {
+        transform: translateY(2px);
+        box-shadow: 0 3px 0 $orange-dark, 0 8px 15px rgba($shadow-brown, .13);
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba($orange-main, .36);
+        outline-offset: 4px;
+    }
 }
 
 .servicios_decision_secondary {
@@ -213,35 +515,161 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
+    gap: .5rem;
+    min-height: 49px;
     padding: .8rem 1.05rem;
-    border: 1px solid v.$border-card;
-    border-radius: 999px;
-    color: v.$text-primary;
+    border: 1px solid rgba($shadow-brown, .24);
+    border-radius: .2rem;
+    background: rgba($paper-white, .66);
+    color: $charcoal;
     font-family: v.$font-display;
     font-size: .86rem;
-    font-weight: 750;
+    font-weight: 780;
+    box-shadow: 3px 3px 0 rgba($shadow-brown, .08);
+    transition: border-color .22s ease, background-color .22s ease, transform .22s ease, box-shadow .22s ease;
+
+    &::after {
+        content: "→";
+        color: $orange-dark;
+        transition: transform .22s ease;
+    }
 
     &:hover {
-        border-color: rgba(v.$violet-soft, .34);
-        background: rgba(v.$violet-primary, .07);
+        transform: translateY(-2px);
+        border-color: rgba($orange-main, .4);
+        background: $paper-white;
+        box-shadow: 4px 5px 0 rgba($orange-main, .1);
+
+        &::after {
+            transform: translateX(4px);
+        }
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba($orange-main, .34);
+        outline-offset: 4px;
     }
 }
 
 .servicios_decision_text_link {
     @extend %link-reset;
 
-    padding: .65rem .4rem;
-    color: v.$text-secondary;
+    padding: .7rem .45rem;
+    color: rgba($charcoal, .6);
     font-size: v.$font-size-small;
-    font-weight: 750;
+    font-weight: 760;
+    text-align: center;
+    transition: color .22s ease;
 
     &:hover {
-        color: v.$text-primary;
+        color: $charcoal;
         text-decoration: underline;
-        text-underline-offset: .2rem;
+        text-decoration-color: $orange-main;
+        text-decoration-thickness: 2px;
+        text-underline-offset: .25rem;
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgba($orange-main, .35);
+        outline-offset: 3px;
     }
 }
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 35.99rem) {
+    .servicios {
+        &_card {
+            min-height: 0;
+            padding: 1.3rem 1.05rem;
+        }
+
+        &_decision {
+            padding: 1.6rem 1.05rem;
+            filter: drop-shadow(-.35rem .5rem 0 rgba($orange-main, .82)) drop-shadow(0 .95rem .8rem rgba($shadow-brown, .14));
+
+            &::after {
+                display: none;
+            }
+        }
+
+        &_decision_header {
+            padding-right: 0;
+
+            h2,
+            h3 {
+                max-width: none;
+            }
+        }
+
+        &_decision_options a {
+            min-height: 0;
+        }
+
+        &_decision_primary,
+        &_decision_secondary {
+            width: 100%;
+        }
+    }
+}
+
+/* =========================================================
+   ESCRITORIO
+   ========================================================= */
+
+@media (min-width: 62rem) {
+    .servicios_card:nth-child(2),
+    .servicios_card:nth-child(5) {
+        margin-top: .7rem;
+    }
+
+    .servicios_decision_options li:nth-child(2) a {
+        transform: translateY(.55rem);
+
+        &:hover {
+            transform: translateY(.15rem) rotate(-.15deg);
+        }
+    }
+}
+
+/* =========================================================
+   CONTRASTE FORZADO
+   ========================================================= */
+
+@media (forced-colors: active) {
+    .servicios,
+    .servicios_LINK,
+    .servicios_card,
+    .servicios_card_icon,
+    .servicios_decision,
+    .servicios_decision_header > span,
+    .servicios_decision_options a,
+    .servicios_decision_primary,
+    .servicios_decision_secondary {
+        border: 1px solid CanvasText;
+        background: Canvas;
+        color: CanvasText;
+        box-shadow: none;
+        filter: none;
+    }
+
+    .servicios::before,
+    .servicios::after,
+    .servicios_card::before,
+    .servicios_card::after,
+    .servicios_decision::before,
+    .servicios_decision::after,
+    .servicios_decision_options a::before,
+    .servicios_decision_options a::after {
+        display: none;
+    }
+}
+
+/* =========================================================
+   MOVIMIENTO REDUCIDO
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
     .servicios_card {
@@ -250,7 +678,24 @@
         transition-duration: .01ms !important;
     }
 
-    .servicios_decision_options a {
+    .servicios_card_icon,
+    .servicios_LINK,
+    .servicios_LINK::before,
+    .servicios_decision_options a,
+    .servicios_decision_primary,
+    .servicios_decision_secondary,
+    .servicios_decision_secondary::after {
         transition-duration: .01ms !important;
+    }
+
+    .servicios_card:hover,
+    .servicios_card_visible,
+    .servicios_decision_options a:hover,
+    .servicios_decision_options li:nth-child(2) a,
+    .servicios_decision_options li:nth-child(2) a:hover,
+    .servicios_decision_primary:hover,
+    .servicios_decision_primary:active,
+    .servicios_decision_secondary:hover {
+        transform: none;
     }
 }

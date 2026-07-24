@@ -91,7 +91,7 @@ export default function ContactoFaq({ items }: ContactoFaqProps) {
             <SectionHeader
                 icon={<BsQuestionCircle aria-hidden="true" />}
                 title="Preguntas frecuentes sobre desarrollo web"
-                description="Respuestas simples para ayudarte a evaluar tu próxima landing page, sitio profesional, tienda online o desarrollo a medida."
+                description="Respuestas claras sobre Landing Page Profesional, Sitio Web Profesional y Aplicación Web a Medida: alcance, presupuesto, plazos y próximos pasos."
             />
 
             <div className={style.contacto_faq_layout}>

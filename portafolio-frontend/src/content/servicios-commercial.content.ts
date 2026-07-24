@@ -6,79 +6,74 @@ type ServicioCommercialContent = {
 };
 
 export const serviciosSectionContent = {
-    title: "Soluciones web para que tu negocio se vea profesional y reciba consultas",
+    title: "Desarrollo web según lo que necesitás resolver",
     description:
-        "Combino diseño, desarrollo y optimización para que tu web sea clara, rápida y fácil de usar. Cada decisión parte de lo que necesita tu negocio, no de una plantilla genérica.",
+        "Diseño y desarrollo web para presentar mejor lo que ofrecés, ordenar información o resolver una necesidad concreta de tu actividad. El alcance se define según el contexto de cada proyecto.",
     decisionGuide: {
-        eyebrow: "Elegí según tu objetivo",
-        title: "¿Qué tipo de web necesita tu negocio?",
+        eyebrow: "Elegí según tu necesidad",
+        title: "¿Qué tipo de desarrollo web puede necesitar tu proyecto?",
         description:
-            "Si todavía no lo tenés claro, esta guía te muestra el punto de partida. Después ajustamos el alcance, el contenido y las funciones a tu caso.",
+            "Esta guía te ayuda a identificar un punto de partida. Después definimos el alcance, los contenidos y las funciones necesarias para tu caso.",
         options: [
             {
                 title: "Landing Page Profesional",
                 description:
-                    "Para presentar un servicio o una campaña y concentrar las consultas en una acción concreta.",
+                    "Para presentar una propuesta concreta y guiar hacia una acción principal.",
                 href: "/servicios/planes/landing_page",
-                linkLabel: "Ver plan de Landing Page"
+                linkLabel: "Consultar landing"
             },
             {
                 title: "Sitio Web Profesional",
                 description:
-                    "Para ordenar varios servicios, fortalecer la confianza y construir una presencia online más completa.",
+                    "Para ordenar varios servicios o contenidos en una estructura con navegación clara.",
                 href: "/servicios/planes/sitio_web",
-                linkLabel: "Ver plan de Sitio Web"
+                linkLabel: "Consultar sitio"
             },
             {
-                title: "Desarrollo Web a Medida",
+                title: "Aplicación Web a Medida",
                 description:
-                    "Para resolver procesos, integraciones o funciones que una web tradicional no cubre.",
+                    "Para acompañar un proceso, datos, usuarios o tareas que requieren relevamiento y desarrollo por etapas.",
                 href: "/servicios/planes/desarrollo_web",
-                linkLabel: "Ver desarrollo a medida"
+                linkLabel: "Evaluar proyecto"
             }
         ],
         primaryAction: {
-            label: "Ver planes disponibles",
-            href: "#planes"
-        },
-        contactAction: {
-            label: "Te ayudo a definir qué web necesitás",
+            label: "Contame tu proyecto",
             href: "/contacto"
         },
         servicesAction: {
-            label: "Conocer todos los servicios",
+            label: "Ver servicios",
             href: "/servicios"
         }
     }
 } as const;
 
-export const servicioCommercialContentById: Readonly<
-    Record<number, ServicioCommercialContent>
-> = {
+
+export const servicioCommercialContentById: Readonly<Record<number, ServicioCommercialContent>> = {
     1: {
-        title: "Diseño profesional adaptado a tu negocio",
+        title: "Diseño adaptado a tu negocio",
         description:
-            "Una identidad visual clara, responsive y coherente con tu marca para transmitir confianza desde la primera visita."
+            "Una identidad visual clara, adaptable y coherente con tu marca para presentar mejor lo que ofrecés."
     },
     2: {
-        title: "Una web preparada para tu objetivo",
+        title: "Un desarrollo web según tu necesidad",
         description:
-            "Desarrollo la solución que tu negocio necesita, desde una página enfocada en consultas hasta funciones personalizadas."
+            "Desarrollo una Landing Page, un Sitio Web o una Aplicación Web a Medida según el problema y el alcance definidos."
     },
     3: {
-        title: "Carga rápida y una base técnica para Google",
+        title: "Una base técnica ordenada",
         description:
-            "Optimizo rendimiento, estructura y SEO técnico inicial para que las personas naveguen mejor y los buscadores puedan interpretar tu web."
+            "Trabajo la estructura, el rendimiento y el SEO técnico según las prioridades de cada proyecto, para facilitar la navegación y la interpretación técnica de la web."
     },
     4: {
-        title: "Acompañamiento después de publicar",
+        title: "Una entrega revisada y acordada",
         description:
-            "Te ayudo a mantener la web actualizada, estable y preparada para crecer cuando el negocio lo necesite."
+            "Revisamos el trabajo y definimos la entrega o publicación según el alcance acordado."
     },
     5: {
-        title: "Contacto y herramientas conectadas",
+        title: "Canales de contacto e integraciones",
         description:
-            "Integro WhatsApp, formularios y servicios externos para facilitar consultas y ordenar tareas de tu operación."
+            "La web puede incluir formularios, WhatsApp u otras herramientas cuando forman parte de la necesidad y del alcance del proyecto."
     }
 };
 

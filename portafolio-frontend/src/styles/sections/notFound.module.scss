@@ -1,98 +1,524 @@
 @use "../base/variables.module.scss" as v;
 @use "../base/mixins.module.scss" as m;
 
+/* =========================================================
+   404 — DOCUMENTO ROTO / ENLACE INTERRUMPIDO
+   ========================================================= */
+
+$paper-main: #e1d0bb;
+$paper-light: #e4d4c0;
+$paper-bright: #f4e8d8;
+$paper-white: #f8f0e5;
+$paper-muted: #cfbaa1;
+
+$charcoal: #232322;
+$earth-gray: #5e5750;
+$shadow-brown: #4d423b;
+
+$orange-dark: #b54723;
+$orange-main: #c14d28;
+$orange-light: #d66538;
+
+$font-editorial: Georgia, "Times New Roman", serif;
+
+/* =========================================================
+   CONTENEDOR GENERAL
+   ========================================================= */
+
 .notFound {
-    @include m.section-shell(v.$background-main);
+    @include m.section-shell($paper-main);
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    overflow: clip;
     display: grid;
-    min-height: min(720px, calc(100vh - 10rem));
+    min-height: min(760px, calc(100dvh - 5rem));
     place-items: center;
+    color: $charcoal;
+    background: radial-gradient(circle at 12% 15%, rgba($orange-main, .1), transparent 25rem), radial-gradient(circle at 88% 75%, rgba($shadow-brown, .08), transparent 30rem), linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        opacity: .34;
+        background-image: linear-gradient(rgba($earth-gray, .1) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .1) 1px, transparent 1px), radial-gradient(circle, rgba($charcoal, .2) 1px, transparent 1.2px);
+        background-size: 58px 58px, 58px 58px, 21px 21px;
+        background-position: 7% 12%, 7% 12%, 94% 20%;
+        mask-image: linear-gradient(90deg, rgba(0, 0, 0, .56), transparent 35%, transparent 67%, rgba(0, 0, 0, .56));
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 15%;
+        right: -14rem;
+        z-index: -1;
+        width: min(34rem, 78vw);
+        aspect-ratio: 1;
+        border: 1px solid rgba($earth-gray, .18);
+        border-radius: 50%;
+        box-shadow: -5rem 8rem 0 -4.95rem rgba($earth-gray, .15);
+        pointer-events: none;
+    }
 }
 
 .notFound_layout {
     @include m.container;
+
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-block: clamp(4rem, 9vw, 7rem);
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    /* Fragmento desprendido izquierdo */
+    &::before {
+        top: 18%;
+        left: clamp(.5rem, 4vw, 3rem);
+        width: clamp(3.8rem, 8vw, 6.5rem);
+        height: clamp(2rem, 4vw, 3.5rem);
+        border: 1px solid rgba($shadow-brown, .17);
+        background: $paper-muted;
+        clip-path: polygon(2% 8%, 18% 2%, 35% 12%, 52% 1%, 69% 11%, 86% 3%, 98% 14%, 93% 88%, 76% 96%, 57% 87%, 37% 98%, 17% 88%, 4% 96%);
+        box-shadow: 5px 6px 0 rgba($shadow-brown, .09);
+        transform: rotate(-9deg);
+    }
+
+    /* Fragmento desprendido derecho */
+    &::after {
+        right: clamp(.5rem, 4vw, 3rem);
+        bottom: 17%;
+        width: clamp(3rem, 7vw, 5.5rem);
+        height: clamp(3rem, 7vw, 5rem);
+        border: 1px solid rgba($orange-dark, .2);
+        background: $orange-main;
+        clip-path: polygon(5% 3%, 21% 11%, 37% 2%, 54% 13%, 71% 4%, 96% 10%, 88% 28%, 98% 44%, 87% 61%, 96% 82%, 76% 96%, 58% 87%, 39% 98%, 22% 87%, 4% 94%, 12% 74%, 2% 56%, 11% 37%, 2% 19%);
+        opacity: .76;
+        transform: rotate(8deg);
+    }
 }
 
+/* =========================================================
+   HOJA PRINCIPAL
+   ========================================================= */
+
 .notFound_card {
-    @include m.card-featured;
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 760px;
+    width: min(100%, 780px);
     margin-inline: auto;
-    padding: clamp(2rem, 6vw, 4.5rem);
+    padding: clamp(2.2rem, 6vw, 4.8rem) clamp(1.2rem, 5vw, 4rem);
+    border: 1px solid rgba($shadow-brown, .21);
+    background: linear-gradient(140deg, rgba(255, 255, 255, .27), transparent 38%), $paper-white;
     text-align: center;
+    clip-path: polygon(.8% 2%, 9% .5%, 18% 1.8%, 27% .4%, 36% 1.7%, 45% .5%, 54% 1.9%, 63% .4%, 72% 1.8%, 81% .5%, 90% 1.9%, 99.2% .7%, 99% 14%, 99.6% 27%, 98.8% 40%, 99.5% 53%, 98.8% 66%, 99.5% 79%, 98.8% 97%, 91% 99.2%, 82% 97.8%, 73% 99.3%, 64% 97.8%, 55% 99.2%, 46% 97.7%, 37% 99.3%, 28% 97.8%, 19% 99.2%, 10% 97.7%, .8% 98.7%, 1.4% 85%, .5% 72%, 1.3% 59%, .5% 46%, 1.4% 33%, .5% 20%);
+    filter: drop-shadow(-.75rem .85rem 0 rgba($orange-main, .86)) drop-shadow(0 1.5rem 1.25rem rgba($shadow-brown, .18));
+
+    /* Cuadrícula y ruta técnica interrumpida */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: clamp(1rem, 3vw, 2rem);
+        z-index: -1;
+        pointer-events: none;
+        opacity: .25;
+        background-image: linear-gradient(rgba($earth-gray, .19) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .19) 1px, transparent 1px);
+        background-size: 22px 22px;
+        mask-image: linear-gradient(135deg, transparent 8%, rgba(0, 0, 0, .7) 27%, transparent 54%, rgba(0, 0, 0, .55) 82%, transparent 96%);
+    }
+
+    /* Cinta negra superior */
+    &::after {
+        content: "";
+        position: absolute;
+        top: -.55rem;
+        left: 50%;
+        z-index: 3;
+        width: clamp(5rem, 12vw, 8rem);
+        height: 1.15rem;
+        background: $charcoal;
+        clip-path: polygon(2% 14%, 13% 3%, 27% 11%, 41% 1%, 55% 12%, 69% 3%, 83% 12%, 98% 4%, 94% 87%, 79% 96%, 62% 88%, 45% 98%, 28% 89%, 7% 96%);
+        opacity: .9;
+        transform: translateX(-50%) rotate(-1deg);
+        pointer-events: none;
+    }
 }
+
+/* =========================================================
+   CÓDIGO 404
+   ========================================================= */
 
 .notFound_code {
-    color: v.$violet-soft;
-    font-family: v.$font-display;
-    font-size: clamp(3rem, 11vw, 6.5rem);
-    font-weight: 900;
-    letter-spacing: -.08em;
-    line-height: 1;
-}
-
-.notFound_title {
-    margin: 1.25rem 0 0;
-    color: v.$text-primary;
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    line-height: 1.1;
-    text-wrap: balance;
-}
-
-.notFound_description {
-    max-width: 610px;
-    margin: 1.25rem 0 0;
-    color: v.$text-secondary;
-    font-size: v.$font-size-copy;
-    line-height: v.$line-height-copy;
-}
-
-.notFound_actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: .75rem;
-    margin-top: 2rem;
-}
-
-.notFound_primaryLink {
-    @include m.button-primary;
-}
-
-.notFound_link {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
+    min-width: min(100%, 5.2ch);
+    margin-top: .5rem;
+    padding: .25rem .65rem .4rem;
+    color: $charcoal;
+    font-family: $font-editorial;
+    font-size: clamp(4.5rem, 15vw, 9rem);
+    font-weight: 700;
+    letter-spacing: -.11em;
+    line-height: .82;
+    text-shadow: .05em .05em 0 rgba($orange-main, .24);
+
+    /* Etiqueta del error */
+    &::before {
+        content: "ENLACE ROTO";
+        position: absolute;
+        top: -.8rem;
+        left: 50%;
+        width: max-content;
+        padding: .42rem .65rem;
+        border: 1px solid rgba($orange-dark, .25);
+        background: $orange-main;
+        color: #fffaf1;
+        font-family: v.$font-display;
+        font-size: clamp(.58rem, 1.5vw, .72rem);
+        font-weight: 900;
+        letter-spacing: .12em;
+        line-height: 1;
+        text-transform: uppercase;
+        box-shadow: 3px 4px 0 rgba($orange-dark, .28);
+        transform: translateX(-50%) rotate(-2deg);
+    }
+
+    /* Rotura visual central */
+    &::after {
+        content: "";
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        width: 76%;
+        height: 12px;
+        background: $paper-white;
+        clip-path: polygon(0 44%, 10% 23%, 20% 60%, 31% 17%, 42% 68%, 53% 20%, 64% 63%, 75% 15%, 86% 61%, 100% 31%, 100% 72%, 88% 54%, 77% 88%, 66% 47%, 55% 83%, 44% 43%, 33% 86%, 21% 48%, 10% 79%, 0 61%);
+        transform: translate(-50%, -50%) rotate(-2deg);
+        pointer-events: none;
+    }
+}
+
+/* =========================================================
+   TÍTULO Y DESCRIPCIÓN
+   ========================================================= */
+
+.notFound_title {
+    position: relative;
+    max-width: 15ch;
+    margin: 1.5rem 0 0;
+    padding: .45rem .7rem;
+    color: $charcoal;
+    background: rgba($paper-bright, .76);
+    font-family: $font-editorial;
+    font-size: clamp(2rem, 5.2vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: -.05em;
+    line-height: 1.03;
+    text-wrap: balance;
+    clip-path: polygon(1% 5%, 13% 1%, 27% 4%, 41% .5%, 55% 4%, 69% 1%, 83% 4%, 99% 1%, 98% 94%, 84% 98%, 68% 95%, 52% 99%, 36% 95%, 19% 98%, 1% 95%);
+    box-shadow: 5px 6px 0 rgba($orange-main, .13);
+
+    &::after {
+        content: "";
+        position: absolute;
+        right: 12%;
+        bottom: -.65rem;
+        width: 4rem;
+        height: .7rem;
+        background: $orange-main;
+        clip-path: polygon(2% 16%, 17% 2%, 35% 12%, 54% 1%, 73% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+        opacity: .7;
+        transform: rotate(-3deg);
+    }
+}
+
+.notFound_description {
+    position: relative;
+    max-width: 610px;
+    margin: 1.55rem 0 0;
+    padding: .9rem 1rem .9rem 1.25rem;
+    border-left: 3px solid $orange-main;
+    background: rgba($paper-light, .52);
+    color: rgba($charcoal, .7);
+    font-size: v.$font-size-copy;
+    line-height: v.$line-height-copy;
+    text-wrap: pretty;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -2.2rem;
+        width: 1.3rem;
+        height: 2px;
+        background: $orange-main;
+        box-shadow: -1rem -.55rem 0 -1px $orange-main, -1rem .55rem 0 -1px $orange-main;
+        transform: translateY(-50%);
+    }
+}
+
+/* =========================================================
+   CAMINO ROTO HACIA LAS ACCIONES
+   ========================================================= */
+
+.notFound_actions {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .8rem;
+    width: 100%;
+    margin-top: 2.4rem;
+    padding-top: 1.5rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: min(18rem, 72%);
+        height: 1px;
+        background: linear-gradient(90deg, $orange-main 0 38%, transparent 38% 48%, $orange-main 48% 57%, transparent 57% 67%, $orange-main 67%);
+        opacity: .46;
+        transform: translateX(-50%);
+    }
+
+    &::after {
+        content: "RECALCULANDO RUTA";
+        position: absolute;
+        top: -.37rem;
+        left: 50%;
+        padding-inline: .55rem;
+        background: $paper-white;
+        color: rgba($charcoal, .42);
+        font-family: v.$font-display;
+        font-size: .56rem;
+        font-weight: 900;
+        letter-spacing: .1em;
+        line-height: 1;
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================================
+   ACCIÓN PRINCIPAL
+   ========================================================= */
+
+.notFound_primaryLink {
+    @include m.button-primary;
+
+    min-height: 52px;
+    padding: .85rem 1.3rem;
+    border: 1px solid $orange-dark;
+    border-radius: .2rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .1), transparent), $orange-main;
+    color: #fffaf1;
+    font-family: v.$font-display;
+    box-shadow: 0 7px 0 $orange-dark, 0 16px 28px rgba($shadow-brown, .17);
+    transition: transform .22s ease, background-color .22s ease, box-shadow .22s ease;
+
+    &::after {
+        content: "→";
+        margin-left: .5rem;
+        transition: transform .22s ease;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        background-color: $orange-light;
+        box-shadow: 0 10px 0 $orange-dark, 0 22px 38px rgba($shadow-brown, .21);
+
+        &::after {
+            transform: translateX(4px);
+        }
+    }
+
+    &:active {
+        transform: translateY(2px);
+        box-shadow: 0 3px 0 $orange-dark, 0 8px 16px rgba($shadow-brown, .13);
+    }
+
+    &:focus-visible {
+        outline: 3px solid rgba($orange-main, .38);
+        outline-offset: 4px;
+    }
+}
+
+/* =========================================================
+   ACCIONES SECUNDARIAS
+   ========================================================= */
+
+.notFound_link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
     padding: .8rem 1.15rem;
-    border: 1px solid v.$border-card;
-    border-radius: 999px;
-    color: v.$text-primary;
+    border: 1px solid rgba($shadow-brown, .25);
+    border-radius: .18rem;
+    background: rgba($paper-bright, .7);
+    color: $charcoal;
     font-family: v.$font-display;
     font-size: .9rem;
     font-weight: 800;
     line-height: 1;
     text-decoration: none;
-    transition:
-        border-color .2s ease,
-        color .2s ease,
-        transform .2s ease;
+    box-shadow: 3px 4px 0 rgba($shadow-brown, .08);
+    transition: border-color .22s ease, color .22s ease, background-color .22s ease, box-shadow .22s ease, transform .22s ease;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: rgba($earth-gray, .38);
+        box-shadow: 5px 0 rgba($earth-gray, .22);
+    }
 
     &:hover {
-        transform: translateY(-2px);
-        border-color: rgba(v.$violet-soft, .56);
-        color: v.$violet-soft;
+        transform: translateY(-3px) rotate(-.3deg);
+        border-color: rgba($orange-main, .46);
+        background: $paper-white;
+        color: $orange-dark;
+        box-shadow: 4px 5px 0 rgba($orange-main, .12);
     }
 
     &:focus-visible {
         @include m.focus-ring;
+
+        outline-color: rgba($orange-main, .5);
+        outline-offset: 4px;
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 35.99rem) {
+    .notFound {
+        min-height: calc(100dvh - 4rem);
+        padding-inline: .8rem;
+    }
+
+    .notFound_layout {
+        padding-block: 4.5rem;
+    }
+
+    .notFound_card {
+        padding: 3rem 1rem 2.4rem;
+        filter: drop-shadow(-.35rem .5rem 0 rgba($orange-main, .82)) drop-shadow(0 1rem .85rem rgba($shadow-brown, .15));
+    }
+
+    .notFound_code {
+        font-size: clamp(4.8rem, 27vw, 7.2rem);
+    }
+
+    .notFound_title {
+        max-width: none;
+        padding-inline: .45rem;
+    }
+
+    .notFound_description {
+        padding: .85rem .75rem .85rem 1rem;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .notFound_actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .notFound_primaryLink,
     .notFound_link {
-        transition: none;
+        width: 100%;
+    }
+
+    .notFound_layout::before,
+    .notFound_layout::after {
+        opacity: .55;
+    }
+}
+
+/* =========================================================
+   CONTRASTE FORZADO
+   ========================================================= */
+
+@media (forced-colors: active) {
+    .notFound,
+    .notFound_card,
+    .notFound_code,
+    .notFound_title,
+    .notFound_description,
+    .notFound_primaryLink,
+    .notFound_link {
+        border: 1px solid CanvasText;
+        background: Canvas;
+        color: CanvasText;
+        box-shadow: none;
+        filter: none;
+        clip-path: none;
+    }
+
+    .notFound::before,
+    .notFound::after,
+    .notFound_layout::before,
+    .notFound_layout::after,
+    .notFound_card::before,
+    .notFound_card::after,
+    .notFound_code::before,
+    .notFound_code::after,
+    .notFound_title::after,
+    .notFound_description::before,
+    .notFound_actions::before,
+    .notFound_actions::after,
+    .notFound_link::before {
+        display: none;
+    }
+}
+
+/* =========================================================
+   MOVIMIENTO REDUCIDO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .notFound,
+    .notFound *,
+    .notFound *::before,
+    .notFound *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .notFound_primaryLink:hover,
+    .notFound_primaryLink:active,
+    .notFound_link:hover,
+    .notFound_primaryLink:hover::after {
+        transform: none;
     }
 }

@@ -1,6 +1,24 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
+/* =========================================================
+   PLANES — SISTEMA EDITORIAL, PAPEL Y COLLAGE
+   ========================================================= */
+
+$paper-main: #e1d0bb;
+$paper-light: #e4d4c0;
+$paper-bright: #f2e6d5;
+$paper-white: #f7efe4;
+$paper-muted: #ceb99f;
+$charcoal: #232322;
+$earth-gray: #5e5750;
+$shadow-brown: #4d423b;
+$orange-dark: #b54723;
+$orange-main: #c14d28;
+$orange-light: #d66538;
+$green-dark: #356548;
+$font-editorial: Georgia, 'Times New Roman', serif;
+
 %planes-link-reset {
     color: inherit;
     text-decoration: none;
@@ -11,100 +29,68 @@
     }
 }
 
+%planes-focus {
+    outline: 3px solid $charcoal;
+    outline-offset: 4px;
+}
+
 %planes-card-surface {
     position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(v.$color-white, .08);
-    border-radius: 24px;
-    background:
-        radial-gradient(circle at top left, rgba(v.$color-accent, .10), transparent 42%),
-        linear-gradient(145deg, rgba(v.$color-white, .07), rgba(v.$color-white, .025) 58%),
-        rgba(10, 12, 18, .82);
-    box-shadow:
-        0 24px 64px rgba(0, 0, 0, .32),
-        inset 0 1px 0 rgba(v.$color-white, .06);
-    backdrop-filter: blur(16px);
+    isolation: isolate;
+    border: 1px solid rgba($shadow-brown, .2);
+    border-radius: .3rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, .25), transparent 38%), rgba($paper-light, .94);
+    box-shadow: 5px 6px 0 rgba($shadow-brown, .08), 0 20px 44px rgba($shadow-brown, .1);
 }
 
 %planes-card-hover {
-    transition:
-        transform .35s cubic-bezier(.16, 1, .3, 1),
-        border-color .3s ease,
-        box-shadow .3s ease,
-        background .3s ease;
+    transition: transform .28s cubic-bezier(.16, 1, .3, 1), border-color .28s ease, box-shadow .28s ease, background-color .28s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        border-color: rgba($orange-main, .42);
+        box-shadow: 7px 9px 0 rgba($orange-main, .12), 0 26px 52px rgba($shadow-brown, .14);
+    }
+}
+
+/* =========================================================
+   LISTADO GENERAL DE PLANES
+   ========================================================= */
+
+.planes {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    overflow: clip;
+    padding: clamp(5rem, 9vw, 8rem) 1rem;
+    color: $charcoal;
+    background: radial-gradient(circle at 8% 8%, rgba($orange-main, .09), transparent 26rem), radial-gradient(circle at 92% 42%, rgba($shadow-brown, .07), transparent 32rem), linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
 
     &::before {
         content: "";
         position: absolute;
         inset: 0;
+        z-index: -2;
         pointer-events: none;
-        opacity: 0;
-        background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(v.$color-white, .08),
-            transparent
-        );
-        transform: translateX(-55%);
-        transition:
-            opacity .3s ease,
-            transform .8s cubic-bezier(.16, 1, .3, 1);
+        opacity: .32;
+        background-image: linear-gradient(rgba($earth-gray, .1) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .1) 1px, transparent 1px), radial-gradient(circle, rgba($charcoal, .2) 1px, transparent 1.2px);
+        background-size: 56px 56px, 56px 56px, 21px 21px;
+        background-position: 6% 8%, 6% 8%, 95% 18%;
+        mask-image: linear-gradient(90deg, rgba(0, 0, 0, .58), transparent 34%, transparent 66%, rgba(0, 0, 0, .58));
     }
 
-    &:hover {
-        transform: translateY(-6px);
-        border-color: rgba(v.$color-accent, .28);
-        box-shadow:
-            0 34px 80px rgba(0, 0, 0, .42),
-            0 0 42px rgba(v.$color-accent, .11);
-    }
-
-    &:hover::before {
-        opacity: 1;
-        transform: translateX(55%);
-    }
-}
-
-/* =========================================================
-   SECCIÓN GENERAL DE PLANES
-   ========================================================= */
-
-.planes {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    padding: clamp(4.5rem, 8vw, 7rem) 1rem;
-    color: v.$color-crema;
-    background:
-        radial-gradient(circle at 12% 10%, rgba(v.$color-primary, .14), transparent 32rem),
-        radial-gradient(circle at 88% 18%, rgba(v.$color-accent, .12), transparent 28rem),
-        linear-gradient(180deg, v.$hero-bg 0%, v.$color-negro-fondo 100%);
-
-    &::before,
     &::after {
         content: "";
         position: absolute;
+        top: 16rem;
+        right: -17rem;
         z-index: -1;
+        width: min(38rem, 82vw);
+        aspect-ratio: 1;
+        border: 1px solid rgba($earth-gray, .18);
         border-radius: 50%;
-        filter: blur(14px);
-        opacity: .55;
+        box-shadow: -5rem 9rem 0 -4.95rem rgba($earth-gray, .15);
         pointer-events: none;
-    }
-
-    &::before {
-        top: 12%;
-        left: -8rem;
-        width: 18rem;
-        height: 18rem;
-        background: rgba(v.$color-primary, .14);
-    }
-
-    &::after {
-        right: -10rem;
-        bottom: 10%;
-        width: 22rem;
-        height: 22rem;
-        background: rgba(v.$color-accent, .11);
     }
 
     &_layout {
@@ -112,11 +98,11 @@
 
         position: relative;
         z-index: 1;
-        width: 100%;
-        margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: clamp(3rem, 6vw, 5.5rem);
+        gap: clamp(2.4rem, 5vw, 4rem);
+        width: 90%;
+        margin: 0 auto;
     }
 
     &_content,
@@ -128,7 +114,7 @@
     &_contenido_box_layout {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.4rem;
+        gap: 1.15rem;
         align-items: stretch;
 
         @include m.tablet {
@@ -145,26 +131,35 @@
 
         display: inline-flex;
         align-items: center;
-        gap: .5rem;
+        gap: .55rem;
         width: fit-content;
-        margin-bottom: 2rem;
-        color: rgba(v.$color-crema, .72);
-        font-weight: 700;
-        transition:
-            color .25s ease,
-            transform .25s ease;
+        margin-bottom: 1.6rem;
+        padding: .55rem .7rem;
+        border: 1px solid rgba($shadow-brown, .18);
+        border-radius: .16rem;
+        background: rgba($paper-white, .65);
+        color: rgba($charcoal, .7);
+        font-family: v.$font-display;
+        font-size: .88rem;
+        font-weight: 800;
+        box-shadow: 3px 3px 0 rgba($shadow-brown, .07);
+        transition: transform .22s ease, border-color .22s ease, background-color .22s ease, color .22s ease;
 
         &:hover {
-            color: v.$color-white;
             transform: translateX(-4px);
+            border-color: rgba($orange-main, .4);
+            background: $paper-white;
+            color: $charcoal;
         }
 
         &:focus-visible {
-            outline: 3px solid rgba(v.$color-accent, .6);
-            outline-offset: 5px;
-            border-radius: 999px;
+            @extend %planes-focus;
         }
     }
+
+    /* =====================================================
+       TARJETAS COMERCIALES
+       ===================================================== */
 
     &_card {
         @extend %planes-card-surface;
@@ -173,20 +168,57 @@
         display: flex;
         flex-direction: column;
         min-height: 100%;
-        color: v.$color-crema;
+        color: $charcoal;
+
+        &::before {
+            content: "";
+            position: absolute;
+            right: .9rem;
+            bottom: .8rem;
+            z-index: -1;
+            width: 5.2rem;
+            height: 4.2rem;
+            opacity: .18;
+            pointer-events: none;
+            background-image: linear-gradient(rgba($earth-gray, .34) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .34) 1px, transparent 1px);
+            background-size: 12px 12px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: -.32rem;
+            left: 1rem;
+            z-index: 2;
+            width: 3.4rem;
+            height: .7rem;
+            background: $paper-muted;
+            clip-path: polygon(2% 15%, 17% 2%, 36% 12%, 55% 1%, 74% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+            opacity: .64;
+            transform: rotate(-2deg);
+            pointer-events: none;
+        }
     }
 
     &_card_destacado {
-        border-color: rgba(v.$color-oro, .38);
-        background:
-            radial-gradient(circle at top left, rgba(v.$color-oro, .16), transparent 38%),
-            radial-gradient(circle at bottom right, rgba(v.$color-accent, .09), transparent 45%),
-            linear-gradient(145deg, rgba(v.$color-white, .08), rgba(v.$color-white, .025)),
-            rgba(12, 11, 18, .88);
-        box-shadow:
-            0 28px 70px rgba(0, 0, 0, .42),
-            0 0 52px rgba(v.$color-oro, .12),
-            inset 0 1px 0 rgba(v.$color-white, .07);
+        z-index: 2;
+        border-color: rgba($orange-main, .5);
+        background: linear-gradient(145deg, rgba(255, 255, 255, .28), transparent 38%), $paper-white;
+        box-shadow: 8px 10px 0 rgba($orange-main, .2), 0 25px 58px rgba($shadow-brown, .15);
+
+        &::after {
+            width: 4.6rem;
+            background: $orange-main;
+            opacity: .88;
+        }
+
+        @include m.tabletXL {
+            transform: translateY(-.7rem);
+
+            &:hover {
+                transform: translateY(-1.05rem);
+            }
+        }
     }
 
     &_card_link {
@@ -195,77 +227,141 @@
         position: relative;
         z-index: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
         min-height: 100%;
-        padding: clamp(1.4rem, 3vw, 2rem);
+        padding: clamp(1.4rem, 3vw, 1.9rem);
 
         &:focus-visible {
-            outline: 3px solid rgba(v.$color-accent, .65);
-            outline-offset: -8px;
-            border-radius: 22px;
+            outline: 3px solid $charcoal;
+            outline-offset: -6px;
+            border-radius: .2rem;
         }
     }
 
     &_card_badge {
-        align-self: flex-start;
+        position: absolute;
+        top: .85rem;
+        right: .85rem;
+        z-index: 3;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: fit-content;
-        margin-bottom: 1.25rem;
-        padding: .45rem .85rem;
-        border: 1px solid rgba(v.$color-oro, .28);
-        border-radius: 999px;
-        background: linear-gradient(135deg, v.$color-oro, v.$color-oro-dos);
-        color: #111;
-        font-size: .75rem;
+        max-width: calc(100% - 1.7rem);
+        margin: 0;
+        padding: .38rem .65rem;
+        border: 1px solid $orange-dark;
+        border-radius: .14rem;
+        background: $orange-main;
+        color: #fffaf1;
+        font-family: v.$font-display;
+        font-size: .66rem;
         font-weight: 900;
-        letter-spacing: .02em;
+        letter-spacing: .04em;
+        line-height: 1.15;
+        text-transform: uppercase;
+        box-shadow: 3px 3px 0 rgba($charcoal, .9);
+        transform: rotate(1deg);
+        white-space: nowrap;
     }
 
     &_card_titulo {
-        margin: 0 0 .8rem;
-        color: v.$color-crema;
-        font-size: clamp(1.35rem, 3vw, 1.85rem);
-        line-height: 1.08;
-        font-weight: 900;
-        letter-spacing: -.03em;
+        max-width: 15ch;
+        margin: 0 0 .75rem;
+        color: $charcoal;
+        font-family: $font-editorial;
+        font-size: clamp(1.65rem, 3vw, 2.15rem);
+        font-weight: 700;
+        letter-spacing: -.04em;
+        line-height: 1.04;
+        text-wrap: balance;
+    }
+
+    &_card_destacado .planes_card_titulo {
+        padding-right: 5.5rem;
     }
 
     &_card_descripcion {
-        margin: 0 0 1.5rem;
-        color: rgba(v.$color-crema, .74);
+        min-height: 5.1rem;
+        margin: 0 0 1rem;
+        color: rgba($charcoal, .67);
         font-size: .96rem;
-        line-height: 1.75;
+        line-height: 1.65;
+        text-wrap: pretty;
+    }
+
+    &_card_ideal {
+        margin: 0 0 1.1rem;
+        padding: .82rem .9rem;
+        border: 1px dashed rgba($shadow-brown, .24);
+        border-left: 3px solid $orange-main;
+        border-radius: .12rem;
+        background: rgba($paper-bright, .7);
+        color: rgba($charcoal, .68);
+        font-size: .88rem;
+        line-height: 1.55;
+
+        strong {
+            color: $charcoal;
+            font-family: v.$font-display;
+            font-weight: 850;
+        }
+    }
+
+    &_card_precio {
+        margin: 0 0 .25rem;
+        color: $orange-dark;
+        font-family: $font-editorial;
+        font-size: clamp(1.6rem, 3vw, 2rem);
+        font-weight: 700;
+        letter-spacing: -.035em;
+        line-height: 1.08;
+    }
+
+    &_card_plazo {
+        margin: 0 0 1.15rem;
+        color: rgba($charcoal, .55);
+        font-size: .82rem;
+        font-weight: 700;
+        line-height: 1.5;
     }
 
     &_card_lista {
-        flex: 1;
         display: flex;
+        flex: 1;
         flex-direction: column;
-        gap: .82rem;
+        gap: .72rem;
         margin: 0;
-        padding: 0;
+        padding: 1rem 0 0;
+        border-top: 1px dashed rgba($shadow-brown, .22);
         list-style: none;
     }
 
     &_card_item {
         position: relative;
         padding-left: 1.55rem;
-        color: rgba(v.$color-crema, .9);
-        font-size: .95rem;
-        line-height: 1.55;
+        color: rgba($charcoal, .76);
+        font-size: .94rem;
+        line-height: 1.58;
 
         &::before {
-            content: "";
+            content: "✓";
             position: absolute;
-            top: .58rem;
+            top: .02rem;
             left: 0;
-            width: .48rem;
-            height: .48rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1rem;
+            height: 1rem;
+            border: 1px solid rgba($orange-dark, .28);
             border-radius: 50%;
-            background: v.$color-accent;
-            box-shadow: 0 0 14px rgba(v.$color-accent, .7);
+            background: rgba($orange-main, .09);
+            color: $orange-dark;
+            font-size: .66rem;
+            font-weight: 950;
+            line-height: 1;
         }
     }
 
@@ -278,89 +374,185 @@
         align-items: center;
         justify-content: center;
         gap: .55rem;
-        min-height: 54px;
         width: 100%;
-        margin-top: 2rem;
-        padding: .85rem 1.25rem;
-        border: 0;
-        border-radius: 999px;
-        background: linear-gradient(135deg, v.$cream, v.$violet-soft, v.$violet-primary);
-        color: #071015;
-        font-size: .95rem;
+        min-height: 50px;
+        margin-top: 1.5rem;
+        padding: .85rem 1.15rem;
+        border: 1px solid $orange-dark;
+        border-radius: .18rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, .1), transparent), $orange-main;
+        color: #fffaf1;
+        cursor: pointer;
+        font-family: v.$font-display;
+        font-size: .9rem;
         font-weight: 900;
         line-height: 1;
-        cursor: pointer;
-        box-shadow: 0 18px 45px rgba(v.$color-accent, .22);
-        transition:
-            transform .25s ease,
-            box-shadow .25s ease,
-            filter .25s ease;
+        box-shadow: 0 6px 0 $orange-dark, 0 14px 26px rgba($shadow-brown, .15);
+        transition: transform .23s ease, background-color .23s ease, box-shadow .23s ease;
 
         svg {
             flex: 0 0 auto;
-            width: 1.1rem;
-            height: 1.1rem;
+            width: 1.05rem;
+            height: 1.05rem;
+            transition: transform .22s ease;
         }
 
         &:hover {
             transform: translateY(-3px);
-            box-shadow: 0 25px 60px rgba(v.$color-accent, .35);
-            filter: saturate(1.04);
+            background-color: $orange-light;
+            box-shadow: 0 9px 0 $orange-dark, 0 20px 34px rgba($shadow-brown, .19);
+
+            svg {
+                transform: translateX(4px);
+            }
+        }
+
+        &:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 $orange-dark, 0 8px 16px rgba($shadow-brown, .13);
         }
 
         &:focus-visible {
-            outline: 3px solid rgba(v.$color-white, .75);
-            outline-offset: 4px;
+            @extend %planes-focus;
+        }
+    }
+
+    &_help {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        flex-direction: column;
+        gap: 1.15rem;
+        align-items: flex-start;
+        margin-top: 1.2rem;
+        padding: clamp(1.35rem, 3vw, 1.9rem);
+        border: 1px solid rgba($shadow-brown, .2);
+        border-radius: .25rem;
+        background: linear-gradient(125deg, rgba(255, 255, 255, .24), transparent 38%), $paper-light;
+        box-shadow: 5px 6px 0 rgba($orange-main, .13), 0 18px 38px rgba($shadow-brown, .09);
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -.35rem;
+            right: clamp(1rem, 4vw, 3rem);
+            z-index: -1;
+            width: 4rem;
+            height: .75rem;
+            background: $orange-main;
+            clip-path: polygon(2% 15%, 17% 2%, 36% 12%, 55% 1%, 74% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+            transform: rotate(-2deg);
+        }
+
+        h3 {
+            margin: 0;
+            color: $charcoal;
+            font-family: $font-editorial;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -.025em;
+            line-height: 1.12;
+        }
+
+        p {
+            max-width: 700px;
+            margin: .45rem 0 0;
+            color: rgba($charcoal, .66);
+            line-height: 1.68;
+        }
+
+        > a {
+            @extend %planes-link-reset;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: .8rem 1.1rem;
+            border: 1px solid $charcoal;
+            border-radius: .18rem;
+            background: $charcoal;
+            color: $paper-white;
+            font-family: v.$font-display;
+            font-size: .88rem;
+            font-weight: 850;
+            box-shadow: 4px 4px 0 rgba($orange-main, .8);
+            transition: transform .22s ease, box-shadow .22s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                color: $paper-white;
+                box-shadow: 5px 6px 0 rgba($orange-main, .9);
+            }
+
+            &:focus-visible {
+                @extend %planes-focus;
+            }
+        }
+
+        @include m.tablet {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
         }
     }
 }
 
 /* =========================================================
-   PÁGINA DETALLE DEL PLAN
+   PÁGINA DE DETALLE DEL PLAN
    ========================================================= */
 
 .planes_detalle {
     position: relative;
-    overflow: hidden;
     isolation: isolate;
+    overflow: hidden;
+    overflow: clip;
     min-height: 100dvh;
-    color: v.$color-crema;
-    background:
-        radial-gradient(circle at 10% 5%, rgba(v.$color-primary, .16), transparent 32rem),
-        radial-gradient(circle at 90% 8%, rgba(v.$color-accent, .13), transparent 30rem),
-        linear-gradient(180deg, v.$hero-bg 0%, v.$color-negro-fondo 45%, #080a0f 100%);
+    color: $charcoal;
+    background: radial-gradient(circle at 8% 5%, rgba($orange-main, .1), transparent 28rem), radial-gradient(circle at 92% 34%, rgba($shadow-brown, .07), transparent 32rem), linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
 
     &::before {
         content: "";
         position: absolute;
         inset: 0;
-        z-index: -1;
+        z-index: -2;
         pointer-events: none;
-        opacity: .34;
-        background-image:
-            linear-gradient(rgba(v.$color-white, .035) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(v.$color-white, .035) 1px, transparent 1px);
-        background-size: 42px 42px;
-        mask-image: linear-gradient(180deg, rgba(0, 0, 0, .85), transparent 70%);
+        opacity: .3;
+        background-image: linear-gradient(rgba($earth-gray, .1) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .1) 1px, transparent 1px), radial-gradient(circle, rgba($charcoal, .18) 1px, transparent 1.2px);
+        background-size: 54px 54px, 54px 54px, 21px 21px;
+        background-position: 6% 5%, 6% 5%, 95% 14%;
+        mask-image: linear-gradient(90deg, rgba(0, 0, 0, .55), transparent 34%, transparent 66%, rgba(0, 0, 0, .55));
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 15rem;
+        right: -17rem;
+        z-index: -1;
+        width: min(38rem, 82vw);
+        aspect-ratio: 1;
+        border: 1px solid rgba($earth-gray, .17);
+        border-radius: 50%;
+        box-shadow: -5rem 9rem 0 -4.95rem rgba($earth-gray, .14);
+        pointer-events: none;
     }
 
     &_layout {
-        @include m.widTamaño;
+        @include m.container;
 
+        position: relative;
+        z-index: 1;
         width: 100%;
-        margin: 0 auto;
-        padding-inline: 1rem;
     }
+
+    /* =====================================================
+       HERO DEL PLAN
+       ===================================================== */
 
     &_hero {
         position: relative;
-        padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(3.5rem, 7vw, 6rem);
-    }
-
-    &_hero_content {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        padding: clamp(5rem, 9vw, 8rem) 0 clamp(3.5rem, 7vw, 6rem);
     }
 
     &_hero .planes_detalle_layout {
@@ -371,54 +563,82 @@
 
         @include m.tabletXL {
             grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
-            gap: clamp(2rem, 5vw, 5rem);
+            gap: clamp(2.5rem, 5vw, 5rem);
         }
+    }
+
+    &_hero_content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     &_badge {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
+        gap: .5rem;
         width: fit-content;
-        margin-bottom: 1.25rem;
-        padding: .52rem .95rem;
-        border: 1px solid rgba(v.$color-accent, .24);
-        border-radius: 999px;
-        background:
-            linear-gradient(135deg, rgba(v.$color-accent, .18), rgba(v.$color-primary, .16));
-        color: rgba(v.$color-crema, .9);
-        font-size: .78rem;
+        margin-bottom: 1.2rem;
+        padding: .48rem .7rem;
+        border: 1px solid rgba($shadow-brown, .2);
+        border-radius: .14rem;
+        background: rgba($paper-white, .74);
+        color: $orange-dark;
+        font-family: v.$font-display;
+        font-size: .74rem;
         font-weight: 900;
-        letter-spacing: .04em;
+        letter-spacing: .07em;
+        line-height: 1.2;
         text-transform: uppercase;
+        box-shadow: 3px 3px 0 rgba($orange-main, .13);
+        transform: rotate(-.4deg);
+
+        &::before {
+            content: "";
+            width: 6px;
+            aspect-ratio: 1;
+            background: $orange-main;
+            transform: rotate(45deg);
+        }
     }
 
     &_h1 {
-        max-width: 880px;
+        position: relative;
+        max-width: 13ch;
         margin: 0;
-        color: v.$color-crema;
-        font-size: clamp(2.6rem, 8vw, 5.6rem);
-        line-height: .95;
-        font-weight: 950;
-        letter-spacing: -.065em;
+        padding: .65rem .9rem;
+        color: $charcoal;
+        background: rgba($paper-white, .88);
+        font-family: $font-editorial;
+        font-size: clamp(2.7rem, 8vw, 5.7rem);
+        font-weight: 700;
+        letter-spacing: -.06em;
+        line-height: .94;
+        text-wrap: balance;
+        clip-path: polygon(1% 4%, 13% 1%, 26% 3%, 40% .5%, 54% 3%, 68% 1%, 82% 3.5%, 99% 1%, 98.5% 95%, 84% 98%, 68% 96%, 52% 99%, 36% 96%, 19% 98%, 1% 95%);
+        filter: drop-shadow(-.52rem .58rem 0 rgba($orange-main, .84)) drop-shadow(0 .72rem .64rem rgba($shadow-brown, .14));
     }
 
     &_intro {
         max-width: 760px;
-        margin: 1.25rem 0 0;
-        color: v.$color-white;
-        font-size: clamp(1.15rem, 2.5vw, 1.55rem);
-        line-height: 1.45;
-        font-weight: 750;
-        letter-spacing: -.025em;
+        margin: 1.5rem 0 0;
+        color: $charcoal;
+        font-family: $font-editorial;
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        font-weight: 700;
+        letter-spacing: -.02em;
+        line-height: 1.4;
     }
 
     &_description {
         max-width: 760px;
         margin: 1rem 0 0;
-        color: rgba(v.$color-crema, .75);
+        padding-left: 1rem;
+        border-left: 3px solid $orange-main;
+        color: rgba($charcoal, .68);
         font-size: 1rem;
-        line-height: 1.85;
+        line-height: 1.8;
+        text-wrap: pretty;
 
         @include m.tablet {
             font-size: 1.06rem;
@@ -429,7 +649,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: .9rem;
+        gap: .85rem;
         width: 100%;
         margin-top: 2rem;
 
@@ -447,42 +667,47 @@
         justify-content: center;
         gap: .6rem;
         width: 100%;
-        min-height: 56px;
-        padding: .95rem 1.3rem;
-        border-radius: 999px;
-        background: linear-gradient(135deg, v.$cream, v.$violet-soft, v.$violet-primary);
-        color: #071015;
-        font-size: .96rem;
+        min-height: 54px;
+        padding: .9rem 1.25rem;
+        border: 1px solid $orange-dark;
+        border-radius: .18rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, .1), transparent), $orange-main;
+        color: #fffaf1;
+        font-family: v.$font-display;
+        font-size: .94rem;
         font-weight: 900;
-        box-shadow:
-            0 18px 45px rgba(v.$color-accent, .24),
-            inset 0 1px 0 rgba(v.$color-white, .6);
-        transition:
-            transform .25s ease,
-            box-shadow .25s ease,
-            filter .25s ease;
-
-        @include m.telefonoXL {
-            width: fit-content;
-            min-width: 250px;
-        }
+        box-shadow: 0 7px 0 $orange-dark, 0 16px 28px rgba($shadow-brown, .17);
+        transition: transform .23s ease, background-color .23s ease, box-shadow .23s ease;
 
         svg {
-            width: 1.15rem;
-            height: 1.15rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            transition: transform .22s ease;
         }
 
         &:hover {
             transform: translateY(-3px);
-            box-shadow:
-                0 26px 64px rgba(v.$color-accent, .35),
-                inset 0 1px 0 rgba(v.$color-white, .65);
-            filter: saturate(1.04);
+            background-color: $orange-light;
+            color: #fffaf1;
+            box-shadow: 0 10px 0 $orange-dark, 0 22px 38px rgba($shadow-brown, .21);
+
+            svg {
+                transform: translateX(4px);
+            }
+        }
+
+        &:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 $orange-dark, 0 8px 16px rgba($shadow-brown, .13);
         }
 
         &:focus-visible {
-            outline: 3px solid rgba(v.$color-white, .75);
-            outline-offset: 4px;
+            @extend %planes-focus;
+        }
+
+        @include m.telefonoXL {
+            width: fit-content;
+            min-width: 240px;
         }
     }
 
@@ -493,44 +718,45 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        min-height: 44px;
-        padding: .65rem .8rem;
-        border: 1px solid transparent;
-        border-radius: 999px;
-        background: transparent;
-        color: rgba(v.$color-crema, .72);
+        min-height: 46px;
+        padding: .7rem .9rem;
+        border: 1px solid rgba($shadow-brown, .22);
+        border-radius: .16rem;
+        background: rgba($paper-white, .55);
+        color: rgba($charcoal, .7);
+        font-family: v.$font-display;
         font-size: .86rem;
-        font-weight: 750;
-        text-align: center;
-        transition:
-            border-color .2s ease,
-            background .2s ease,
-            transform .2s ease;
-
-        @include m.telefonoXL {
-            width: fit-content;
-        }
+        font-weight: 800;
+        box-shadow: 3px 3px 0 rgba($shadow-brown, .07);
+        transition: transform .22s ease, border-color .22s ease, background-color .22s ease, color .22s ease;
 
         &:hover {
             transform: translateY(-2px);
-            border-color: rgba(v.$color-accent, .16);
-            background: rgba(v.$color-accent, .055);
-            color: v.$color-white;
+            border-color: rgba($orange-main, .4);
+            background: $paper-white;
+            color: $charcoal;
         }
 
         &:focus-visible {
-            outline: 3px solid rgba(v.$color-accent, .6);
-            outline-offset: 4px;
+            @extend %planes-focus;
+        }
+
+        @include m.telefonoXL {
+            width: fit-content;
         }
     }
 
     &_note {
         max-width: 720px;
         margin: 1rem 0 0;
-        color: rgba(v.$color-crema, .62);
-        font-size: .9rem;
-        line-height: 1.5;
+        color: rgba($charcoal, .56);
+        font-size: .88rem;
+        line-height: 1.55;
     }
+
+    /* =====================================================
+       RESUMEN COMERCIAL
+       ===================================================== */
 
     &_summary {
         @extend %planes-card-surface;
@@ -538,89 +764,139 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 1.15rem;
-        padding: clamp(1.4rem, 3vw, 2rem);
-        border-color: rgba(v.$color-accent, .16);
+        gap: 1.05rem;
+        padding: clamp(1.45rem, 3vw, 2rem);
+        border-color: rgba($orange-main, .36);
+        background: linear-gradient(145deg, rgba(255, 255, 255, .28), transparent 38%), $paper-white;
+        box-shadow: 8px 10px 0 rgba($orange-main, .18), 0 24px 54px rgba($shadow-brown, .13);
+
+        &::before {
+            content: "";
+            position: absolute;
+            right: .9rem;
+            bottom: .8rem;
+            z-index: -1;
+            width: 5rem;
+            height: 4rem;
+            opacity: .2;
+            background-image: linear-gradient(rgba($earth-gray, .34) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .34) 1px, transparent 1px);
+            background-size: 12px 12px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: -.38rem;
+            right: 1.3rem;
+            z-index: -1;
+            width: 4.4rem;
+            height: .82rem;
+            background: $orange-main;
+            clip-path: polygon(2% 15%, 17% 2%, 36% 12%, 55% 1%, 74% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+            transform: rotate(2deg);
+        }
 
         @include m.tabletXL {
             position: sticky;
-            top: 2rem;
+            top: 88px;
         }
     }
 
     &_summary_badge {
         display: inline-flex;
         width: fit-content;
-        padding: .45rem .8rem;
-        border-radius: 999px;
-        background: linear-gradient(135deg, v.$color-oro, v.$color-oro-dos);
-        color: #111;
-        font-size: .74rem;
-        font-weight: 950;
+        padding: .4rem .68rem;
+        border: 1px solid $orange-dark;
+        border-radius: .14rem;
+        background: $orange-main;
+        color: #fffaf1;
+        font-family: v.$font-display;
+        font-size: .68rem;
+        font-weight: 900;
+        letter-spacing: .05em;
+        line-height: 1.15;
         text-transform: uppercase;
-        letter-spacing: .04em;
+        box-shadow: 3px 3px 0 rgba($charcoal, .88);
     }
 
     &_summary_title {
         margin: 0;
-        color: v.$color-crema;
-        font-size: 1.15rem;
-        font-weight: 900;
+        color: rgba($charcoal, .66);
+        font-family: v.$font-display;
+        font-size: .82rem;
+        font-weight: 850;
+        letter-spacing: .06em;
+        text-transform: uppercase;
     }
 
     &_price {
-        color: v.$color-white;
-        font-size: clamp(2rem, 5vw, 3rem);
-        line-height: 1;
-        font-weight: 950;
+        color: $orange-dark;
+        font-family: $font-editorial;
+        font-size: clamp(2.2rem, 5vw, 3.3rem);
+        font-weight: 700;
         letter-spacing: -.05em;
+        line-height: 1;
     }
 
     &_deadline {
         margin: 0;
-        color: rgba(v.$color-crema, .68);
+        color: rgba($charcoal, .62);
         line-height: 1.6;
     }
 
     &_highlights {
         display: grid;
-        gap: .75rem;
-        margin: .25rem 0 0;
-        padding: 0;
+        gap: .7rem;
+        margin: .2rem 0 0;
+        padding: 1rem 0 0;
+        border-top: 1px dashed rgba($shadow-brown, .22);
         list-style: none;
 
         li {
             position: relative;
-            padding: .9rem 1rem .9rem 2.25rem;
-            border: 1px solid rgba(v.$color-white, .07);
-            border-radius: 16px;
-            background: rgba(v.$color-white, .04);
-            color: rgba(v.$color-crema, .88);
-            font-size: .94rem;
-            font-weight: 750;
+            padding: .8rem .85rem .8rem 2.2rem;
+            border: 1px solid rgba($shadow-brown, .16);
+            border-radius: .16rem;
+            background: rgba($paper-bright, .65);
+            color: rgba($charcoal, .75);
+            font-size: .91rem;
+            font-weight: 720;
+            line-height: 1.45;
 
             &::before {
                 content: "✓";
                 position: absolute;
                 top: 50%;
-                left: .9rem;
-                color: v.$color-accent;
+                left: .85rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 1rem;
+                height: 1rem;
+                border-radius: 50%;
+                background: rgba($orange-main, .1);
+                color: $orange-dark;
+                font-size: .68rem;
                 font-weight: 950;
                 transform: translateY(-50%);
             }
         }
     }
 
+    /* =====================================================
+       SECCIONES Y ENCABEZADOS
+       ===================================================== */
+
     &_section {
-        padding: clamp(3.5rem, 7vw, 6rem) 0;
+        padding: clamp(3.8rem, 7vw, 6.5rem) 0;
     }
 
     &_section_header {
         display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 780px;
-        margin: 0 auto clamp(2rem, 4vw, 3rem);
+        max-width: 800px;
+        margin: 0 auto clamp(2.2rem, 4vw, 3.4rem);
         text-align: center;
 
         .planes_detalle_badge {
@@ -628,14 +904,14 @@
         }
 
         .planes_detalle_text {
-            margin-top: .9rem;
+            margin-top: 1rem;
         }
     }
 
     &_info_grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.4rem;
+        gap: 1rem;
 
         @include m.tablet {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -649,7 +925,7 @@
     &_benefits {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.4rem;
+        gap: 1rem;
 
         @include m.tablet {
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -658,79 +934,99 @@
 
     &_card {
         @extend %planes-card-surface;
+        @extend %planes-card-hover;
 
         display: flex;
         flex-direction: column;
         min-height: 100%;
-        padding: clamp(1.35rem, 3vw, 2rem);
-        transition:
-            transform .3s ease,
-            border-color .3s ease,
-            box-shadow .3s ease;
+        padding: clamp(1.35rem, 3vw, 1.9rem);
 
-        &:hover {
-            transform: translateY(-4px);
-            border-color: rgba(v.$color-accent, .22);
-            box-shadow:
-                0 28px 68px rgba(0, 0, 0, .38),
-                0 0 34px rgba(v.$color-accent, .08);
+        &::after {
+            content: "";
+            position: absolute;
+            top: -.3rem;
+            right: .9rem;
+            z-index: -1;
+            width: 3.4rem;
+            height: .68rem;
+            background: $paper-muted;
+            clip-path: polygon(2% 15%, 17% 2%, 36% 12%, 55% 1%, 74% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+            opacity: .68;
+            transform: rotate(2deg);
         }
     }
 
     &_card_label {
         display: inline-flex;
         width: fit-content;
-        margin-bottom: 1rem;
-        padding: .42rem .75rem;
-        border: 1px solid rgba(v.$color-accent, .16);
-        border-radius: 999px;
-        background: rgba(v.$color-accent, .07);
-        color: rgba(v.$color-accent-dos, .95);
-        font-size: .75rem;
+        margin-bottom: .95rem;
+        padding: .4rem .62rem;
+        border: 1px solid rgba($shadow-brown, .18);
+        border-radius: .14rem;
+        background: rgba($paper-white, .7);
+        color: $orange-dark;
+        font-family: v.$font-display;
+        font-size: .7rem;
         font-weight: 900;
+        letter-spacing: .06em;
         text-transform: uppercase;
-        letter-spacing: .05em;
+        box-shadow: 3px 3px 0 rgba($orange-main, .1);
     }
 
     &_h2 {
+        width: fit-content;
+        max-width: 18ch;
         margin: 0;
-        color: v.$color-crema;
-        font-size: clamp(1.55rem, 3vw, 2.1rem);
-        line-height: 1.05;
-        font-weight: 930;
+        padding: .55rem .75rem;
+        color: $charcoal;
+        background: rgba($paper-white, .82);
+        font-family: $font-editorial;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
         letter-spacing: -.045em;
+        line-height: 1.04;
+        text-wrap: balance;
+        clip-path: polygon(1% 4%, 13% 1%, 26% 3%, 40% .5%, 54% 3%, 68% 1%, 82% 3.5%, 99% 1%, 98.5% 95%, 84% 98%, 68% 96%, 52% 99%, 36% 96%, 19% 98%, 1% 95%);
+        filter: drop-shadow(-.38rem .42rem 0 rgba($orange-main, .76)) drop-shadow(0 .5rem .45rem rgba($shadow-brown, .11));
     }
 
     &_h3 {
         margin: 0;
-        color: v.$color-crema;
-        font-size: clamp(1.05rem, 2vw, 1.28rem);
-        line-height: 1.25;
-        font-weight: 850;
+        color: $charcoal;
+        font-family: $font-editorial;
+        font-size: clamp(1.15rem, 2vw, 1.42rem);
+        font-weight: 700;
         letter-spacing: -.025em;
+        line-height: 1.2;
     }
 
     &_text {
         margin: .85rem 0 0;
-        color: rgba(v.$color-crema, .72);
+        color: rgba($charcoal, .67);
         font-size: .98rem;
         line-height: 1.75;
+        text-wrap: pretty;
     }
 
     &_impact {
         margin: 1rem 0 0;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(v.$color-white, .08);
-        color: rgba(v.$color-crema, .86);
+        padding: 1rem 0 0 1rem;
+        border-top: 1px dashed rgba($shadow-brown, .22);
+        border-left: 3px solid $orange-main;
+        color: rgba($charcoal, .78);
         font-size: .98rem;
         font-weight: 700;
-        line-height: 1.75;
+        line-height: 1.7;
     }
+
+    /* =====================================================
+       INCLUYE Y EXTRAS
+       ===================================================== */
 
     &_includes {
         display: grid;
         grid-template-columns: 1fr;
-        gap: .9rem;
+        gap: .85rem;
 
         @include m.tablet {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -741,54 +1037,54 @@
         }
     }
 
-    &_include {
+    &_include,
+    &_extra {
         display: flex;
         align-items: flex-start;
         gap: .75rem;
         min-height: 100%;
-        padding: 1rem;
-        border: 1px solid rgba(v.$color-white, .075);
-        border-radius: 18px;
-        background: rgba(v.$color-white, .04);
-        transition:
-            transform .25s ease,
-            border-color .25s ease,
-            background .25s ease;
+        padding: .95rem 1rem;
+        border: 1px solid rgba($shadow-brown, .17);
+        border-radius: .18rem;
+        background: rgba($paper-white, .64);
+        box-shadow: 3px 3px 0 rgba($shadow-brown, .06);
+        transition: transform .23s ease, border-color .23s ease, background-color .23s ease, box-shadow .23s ease;
 
         span {
-            flex: 0 0 auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            flex: 0 0 auto;
             width: 1.45rem;
             height: 1.45rem;
+            border: 1px solid rgba($orange-dark, .25);
             border-radius: 50%;
-            background: rgba(v.$color-accent, .13);
-            color: v.$color-accent;
-            font-size: .85rem;
+            background: rgba($orange-main, .09);
+            color: $orange-dark;
+            font-size: .82rem;
             font-weight: 950;
-            box-shadow: 0 0 18px rgba(v.$color-accent, .12);
         }
 
         p {
             margin: 0;
-            color: rgba(v.$color-crema, .88);
-            font-size: .95rem;
-            line-height: 1.55;
+            color: rgba($charcoal, .76);
+            font-size: .94rem;
             font-weight: 650;
+            line-height: 1.58;
         }
 
         &:hover {
             transform: translateY(-3px);
-            border-color: rgba(v.$color-accent, .2);
-            background: rgba(v.$color-accent, .055);
+            border-color: rgba($orange-main, .36);
+            background: $paper-white;
+            box-shadow: 4px 5px 0 rgba($orange-main, .1);
         }
     }
 
     &_extras {
         display: grid;
         grid-template-columns: 1fr;
-        gap: .9rem;
+        gap: .85rem;
         max-width: 980px;
         margin: 0 auto;
 
@@ -798,39 +1094,23 @@
     }
 
     &_extra {
-        display: flex;
-        align-items: flex-start;
-        gap: .75rem;
-        padding: 1rem;
-        border: 1px solid rgba(v.$color-oro, .14);
-        border-radius: 18px;
-        background: rgba(v.$color-oro, .035);
+        border-style: dashed;
 
         span {
-            flex: 0 0 auto;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 1.45rem;
-            height: 1.45rem;
-            border-radius: 50%;
-            background: rgba(v.$color-oro, .12);
-            color: v.$color-oro;
-            font-weight: 950;
-        }
-
-        p {
-            margin: 0;
-            color: rgba(v.$color-crema, .8);
-            font-size: .94rem;
-            line-height: 1.6;
+            background: $charcoal;
+            color: $paper-white;
+            border-color: $charcoal;
         }
     }
+
+    /* =====================================================
+       PROCESO
+       ===================================================== */
 
     &_process {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.4rem;
+        gap: 1rem;
 
         @include m.tablet {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -847,11 +1127,18 @@
         display: flex;
         flex-direction: column;
         min-height: 100%;
-        padding: 1.5rem;
+        padding: 1.45rem;
         text-align: left;
+        transition: transform .23s ease, border-color .23s ease, box-shadow .23s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            border-color: rgba($orange-main, .36);
+            box-shadow: 5px 7px 0 rgba($orange-main, .1), 0 20px 40px rgba($shadow-brown, .11);
+        }
 
         @include m.tablet {
-            padding: 1.7rem;
+            padding: 1.65rem;
         }
     }
 
@@ -859,19 +1146,22 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 3.2rem;
-        height: 3.2rem;
-        margin-bottom: 1.2rem;
-        border: 1px solid rgba(v.$color-accent, .22);
-        border-radius: 18px;
-        background:
-            radial-gradient(circle at top, rgba(v.$color-accent, .25), transparent 70%),
-            rgba(v.$color-white, .045);
-        color: v.$color-accent-dos;
+        width: 3rem;
+        height: 3rem;
+        margin-bottom: 1.1rem;
+        border: 1px solid rgba($orange-dark, .28);
+        border-radius: 50%;
+        background: rgba($orange-main, .1);
+        color: $orange-dark;
+        font-family: $font-editorial;
         font-size: 1.05rem;
-        font-weight: 950;
-        box-shadow: 0 0 28px rgba(v.$color-accent, .08);
+        font-weight: 700;
+        box-shadow: 0 0 0 5px rgba($orange-main, .05);
     }
+
+    /* =====================================================
+       FAQ
+       ===================================================== */
 
     &_faq {
         display: grid;
@@ -882,67 +1172,96 @@
     }
 
     &_faq_section {
-        padding-block: clamp(2.5rem, 5vw, 4rem);
+        padding-block: clamp(2.8rem, 5vw, 4.5rem);
 
         .planes_detalle_section_header {
-            margin-bottom: clamp(1.4rem, 3vw, 2rem);
+            margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
         }
     }
 
     &_faq_item {
-        padding: clamp(.95rem, 2vw, 1.2rem);
-        border: 1px solid rgba(v.$color-white, .06);
-        border-radius: 16px;
-        background:
-            linear-gradient(145deg, rgba(v.$color-white, .038), rgba(v.$color-white, .012)),
-            rgba(10, 12, 18, .72);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, .14);
+        position: relative;
+        padding: clamp(1rem, 2vw, 1.25rem);
+        border: 1px solid rgba($shadow-brown, .17);
+        border-radius: .18rem;
+        background: rgba($paper-white, .66);
+        box-shadow: 3px 3px 0 rgba($shadow-brown, .06);
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 1rem;
+            left: -.18rem;
+            width: 4px;
+            height: 2.2rem;
+            background: $orange-main;
+        }
 
         .planes_detalle_h3 {
-            font-size: .98rem;
+            font-size: 1rem;
             line-height: 1.35;
         }
 
         .planes_detalle_text {
-            margin-top: .45rem;
+            margin-top: .5rem;
             font-size: .9rem;
-            line-height: 1.65;
+            line-height: 1.68;
         }
     }
 
+    /* =====================================================
+       CTA FINAL
+       ===================================================== */
+
     &_cta {
-        padding: clamp(3rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 7rem);
+        padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(4.5rem, 8vw, 7.5rem);
     }
 
     &_cta_box {
         position: relative;
-        overflow: hidden;
+        isolation: isolate;
+        overflow: visible;
         display: flex;
         flex-direction: column;
         align-items: center;
         max-width: 980px;
         margin: 0 auto;
-        padding: clamp(2rem, 6vw, 4.5rem) clamp(1.2rem, 4vw, 3rem);
-        border: 1px solid rgba(v.$color-accent, .2);
-        border-radius: 32px;
-        background:
-            radial-gradient(circle at 50% 0%, rgba(v.$color-accent, .22), transparent 58%),
-            linear-gradient(145deg, rgba(v.$color-accent, .09), rgba(v.$color-primary, .08)),
-            rgba(10, 12, 18, .78);
-        box-shadow:
-            0 34px 90px rgba(0, 0, 0, .36),
-            inset 0 1px 0 rgba(v.$color-white, .07);
+        padding: clamp(2.2rem, 6vw, 4.5rem) clamp(1.2rem, 4vw, 3rem);
+        border: 1px solid rgba($shadow-brown, .21);
+        border-radius: .28rem;
+        background: linear-gradient(125deg, rgba(255, 255, 255, .25), transparent 35%), $paper-light;
+        box-shadow: 8px 10px 0 rgba($orange-main, .18), 0 28px 64px rgba($shadow-brown, .13);
         text-align: center;
 
         &::before {
             content: "";
             position: absolute;
-            inset: -1px;
+            right: 1.2rem;
+            bottom: 1rem;
+            z-index: -1;
+            width: 6.5rem;
+            height: 5rem;
+            opacity: .2;
             pointer-events: none;
-            opacity: .55;
-            background:
-                linear-gradient(90deg, transparent, rgba(v.$color-white, .1), transparent);
-            transform: translateX(-70%);
+            background-image: linear-gradient(rgba($earth-gray, .32) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .32) 1px, transparent 1px);
+            background-size: 14px 14px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: -.42rem;
+            left: clamp(1rem, 6vw, 5rem);
+            z-index: -1;
+            width: clamp(4.5rem, 10vw, 8rem);
+            height: .9rem;
+            background: $orange-main;
+            clip-path: polygon(2% 15%, 17% 2%, 36% 12%, 55% 1%, 74% 13%, 98% 4%, 94% 86%, 72% 96%, 48% 87%, 24% 98%, 4% 84%);
+            transform: rotate(-1deg);
+        }
+
+        .planes_detalle_h2 {
+            max-width: 16ch;
         }
 
         .planes_detalle_text {
@@ -950,22 +1269,22 @@
             margin-bottom: 1.4rem;
         }
 
+        .planes_detalle_note {
+            margin-top: 1rem;
+        }
+
         .planes_detalle_button {
             @include m.telefonoXL {
                 min-width: 280px;
             }
-        }
-
-        .planes_detalle_note {
-            margin-top: 1rem;
         }
     }
 
     &_cta_actions {
         display: flex;
         flex-direction: column;
-        gap: .75rem;
         align-items: center;
+        gap: .75rem;
         width: 100%;
 
         @include m.telefonoXL {
@@ -978,12 +1297,28 @@
     &_related {
         display: flex;
         flex-direction: column;
-        gap: .65rem;
         align-items: center;
+        gap: .65rem;
         width: 100%;
         margin-top: 1.4rem;
         padding-top: 1.4rem;
-        border-top: 1px solid rgba(v.$color-white, .08);
+        border-top: 1px dashed rgba($shadow-brown, .22);
+
+        a {
+            color: rgba($charcoal, .66);
+            font-size: .86rem;
+            font-weight: 780;
+            text-underline-offset: .25rem;
+
+            &:hover {
+                color: $orange-dark;
+                text-decoration-color: $orange-main;
+            }
+
+            &:focus-visible {
+                @extend %planes-focus;
+            }
+        }
 
         @include m.tablet {
             flex-direction: row;
@@ -991,25 +1326,107 @@
             justify-content: center;
             gap: .75rem 1.25rem;
         }
+    }
+}
 
-        a {
-            color: rgba(v.$color-crema, .72);
-            font-size: .86rem;
-            font-weight: 750;
-            text-underline-offset: .25rem;
+/* =========================================================
+   MÓVIL
+   ========================================================= */
 
-            &:hover {
-                color: v.$color-white;
-            }
+@media (max-width: 35.99rem) {
+    .planes,
+    .planes_detalle {
+        padding-inline: .8rem;
+    }
 
-            &:focus-visible {
-                outline: 3px solid rgba(v.$color-accent, .6);
-                outline-offset: 4px;
-                border-radius: 4px;
-            }
+    .planes {
+        &_card_destacado {
+            box-shadow: 5px 7px 0 rgba($orange-main, .18), 0 20px 44px rgba($shadow-brown, .12);
+        }
+
+        &_card_destacado .planes_card_titulo {
+            max-width: 10ch;
+            padding-right: 4rem;
+        }
+
+        &_card_badge {
+            top: .75rem;
+            right: .75rem;
+            max-width: 6rem;
+            white-space: normal;
+            text-align: center;
+        }
+
+        &_help > a {
+            width: 100%;
+        }
+    }
+
+    .planes_detalle {
+        &_h1,
+        &_h2 {
+            max-width: none;
+        }
+
+        &_h1 {
+            filter: drop-shadow(-.3rem .4rem 0 rgba($orange-main, .8)) drop-shadow(0 .5rem .45rem rgba($shadow-brown, .13));
+        }
+
+        &_summary {
+            box-shadow: 5px 7px 0 rgba($orange-main, .16), 0 20px 44px rgba($shadow-brown, .11);
+        }
+
+        &_contact_preference > div {
+            grid-template-columns: 1fr;
         }
     }
 }
+
+/* =========================================================
+   CONTRASTE FORZADO
+   ========================================================= */
+
+@media (forced-colors: active) {
+    .planes,
+    .planes_card,
+    .planes_help,
+    .planes_boton,
+    .planes_detalle,
+    .planes_detalle_summary,
+    .planes_detalle_card,
+    .planes_detalle_include,
+    .planes_detalle_extra,
+    .planes_detalle_process_card,
+    .planes_detalle_faq_item,
+    .planes_detalle_cta_box,
+    .planes_detalle_button,
+    .planes_detalle_button_secondary {
+        border: 1px solid CanvasText;
+        background: Canvas;
+        color: CanvasText;
+        box-shadow: none;
+        filter: none;
+    }
+
+    .planes::before,
+    .planes::after,
+    .planes_card::before,
+    .planes_card::after,
+    .planes_help::before,
+    .planes_detalle::before,
+    .planes_detalle::after,
+    .planes_detalle_summary::before,
+    .planes_detalle_summary::after,
+    .planes_detalle_card::after,
+    .planes_detalle_cta_box::before,
+    .planes_detalle_cta_box::after {
+        display: none;
+    }
+}
+
+/* =========================================================
+   MOVIMIENTO REDUCIDO
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
     .planes *,
@@ -1019,166 +1436,23 @@
     .planes_detalle *::before,
     .planes_detalle *::after {
         scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-    }
-}
-
-/* Consolidación visual de la grilla comercial */
-.planes {
-    @include m.section-shell(v.$background-main);
-
-    background: v.$background-main;
-
-    &::before,
-    &::after {
-        display: none;
+        transition-duration: .01ms !important;
     }
 
-    &_layout {
-        @include m.container;
-
-        max-width: none;
-        gap: 0;
-    }
-
-    &_grid {
-        gap: 1rem;
-    }
-
-    &_card {
-        @include m.card-base;
-
-        border-radius: v.$radius-large;
-        background: v.$background-card;
-        box-shadow: v.$shadow-card;
-    }
-
-    &_card_destacado {
-        @include m.card-featured;
-    }
-
-    &_card_link {
-        padding: clamp(1.3rem, 3vw, 1.7rem);
-    }
-
-    &_card_badge {
-        position: absolute;
-        top: .8rem;
-        right: .8rem;
-        z-index: 2;
-        max-width: calc(100% - 1.6rem);
-        margin: 0;
-        padding: .3rem .58rem;
-        background: v.$gold;
-        color: #17110a;
-        font-size: .64rem;
-        line-height: 1;
-        white-space: nowrap;
-    }
-
-    &_card_destacado .planes_card_titulo {
-        padding-right: 6.5rem;
-    }
-
-    &_card_descripcion {
-        margin-bottom: .75rem;
-        color: v.$text-secondary;
-        line-height: 1.6;
-    }
-
-    &_card_ideal {
-        margin: 0 0 1rem;
-        padding: .85rem;
-        border: 1px solid rgba(v.$violet-soft, .12);
-        border-radius: v.$radius-base;
-        background: rgba(v.$violet-primary, .045);
-        color: v.$text-secondary;
-        font-size: .88rem;
-        line-height: 1.55;
-
-        strong {
-            color: v.$text-primary;
-        }
-    }
-
-    &_card_precio {
-        margin: 0 0 .35rem;
-        color: v.$cream;
-        font-family: v.$font-display;
-        font-size: clamp(1.4rem, 2vw, 1.65rem);
-        font-weight: 800;
-    }
-
-    &_card_plazo {
-        margin: 0 0 1.1rem;
-        color: rgba(v.$text-secondary, .82);
-        font-size: .82rem;
-        line-height: 1.5;
-    }
-
-    &_card_lista {
-        gap: .6rem;
-    }
-
-    &_card_item {
-        color: v.$text-secondary;
-        font-size: .96rem;
-        line-height: 1.62;
-
-        &::before {
-            background: v.$violet-soft;
-            box-shadow: none;
-        }
-    }
-
-    &_boton {
-        min-height: 48px;
-        margin-top: 1.4rem;
-        background: v.$violet-primary;
-        color: #0b0712;
-        box-shadow: 0 12px 30px rgba(v.$violet-primary, .16);
-        font-family: v.$font-display;
-
-        &:hover {
-            box-shadow: 0 16px 36px rgba(v.$violet-primary, .23);
-        }
-    }
-
-    &_help {
-        @include m.card-featured;
-
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-        align-items: flex-start;
-        margin-top: 1rem;
-        padding: clamp(1.25rem, 3vw, 1.7rem);
-
-        @include m.tablet {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        h3 {
-            margin: 0;
-            color: v.$text-primary;
-            font-size: 1.15rem;
-        }
-
-        p {
-            max-width: 680px;
-            margin: .5rem 0 0;
-            color: v.$text-secondary;
-            line-height: 1.65;
-        }
-
-        > a {
-            @include m.button-primary;
-
-            flex: 0 0 auto;
-        }
+    .planes_card:hover,
+    .planes_card_destacado,
+    .planes_card_destacado:hover,
+    .planes_boton:hover,
+    .planes_boton:active,
+    .planes_detalle_button:hover,
+    .planes_detalle_button:active,
+    .planes_detalle_button_secondary:hover,
+    .planes_detalle_card:hover,
+    .planes_detalle_include:hover,
+    .planes_detalle_extra:hover,
+    .planes_detalle_process_card:hover {
+        transform: none;
     }
 }

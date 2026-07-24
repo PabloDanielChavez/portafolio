@@ -78,15 +78,17 @@ export default function Perfil() {
                     </div>
                     <div className={styles.perfil_header_box_informacion}>
                         <span className={styles.perfil_header_span_tag}>
-                            Buenos Aires - Argentina
+                            PaginasWebChavez · Buenos Aires, Argentina
                         </span>
+
                         <h1 className={styles.perfil_header_h1_nombre}>
-                            Pablo Daniel Chavez
+                            Pablo Chavez
                         </h1>
+
                         <p className={styles.perfil_header_p_descripcion}>
-                            Desarrollador Web Full Stack de Buenos Aires, Argentina. Especialista en creación de <strong className={styles.destacadoPrimary}>páginas web</strong> a medida, 
-                            optimizadas para <strong className={styles.destacadoPrimary}>alto rendimiento</strong> y posicionamiento <strong className={styles.destacadoPrimary}>SEO</strong>, enfocadas 
-                            en <strong className={styles.destacadoPrimary}>resultados para negocios</strong>.
+                            Dirijo PaginasWebChavez y trabajo directamente en el análisis,
+                            diseño y desarrollo de cada proyecto. Antes de construir, busco
+                            entender el contexto, ordenar la información y definir un alcance claro.
                         </p>
                         <div className={styles.perfil_header_btn_layout}>
                             <Link
@@ -116,24 +118,25 @@ export default function Perfil() {
                     </div>
                 </section>
                 <section className={styles.perfil_historia}>
-                    <h2 className={styles.perfil_historia_h2}>
-                        Mi camino en el código
-                    </h2>
-                    <p className={styles.perfil_historia_p}>
-                        Mi pasión por la tecnología nació de la curiosidad técnica. Todo comenzó siendo chico, 
-                        fascinado por los videojuegos, lo que me llevó en 2018 a dar mis primeros pasos 
-                        administrando y desarrollando un servidor en SAMP.
-                    </p>
-                    <p className={styles.perfil_historia_p}>
-                        Esa experiencia inicial fue la puerta de entrada al mundo de la programación. 
-                        En 2024 formalicé mi camino hacia el desarrollo web, donde descubrí 
-                        que mi verdadera motivación no es sólo escribir código, sino crear soluciones 
-                        funcionales que ayuden a profesionales y negocios a crecer y digitalizarse.
-                    </p>
+                    <h2 className={styles.perfil_filosofia_h2}>
+                    Cómo trabajo
+                </h2>
+
+                <p className={styles.perfil_filosofia_p}>
+                    Cada proyecto parte de entender qué necesita resolver, qué
+                    información existe y qué conviene priorizar antes de definir el
+                    desarrollo.
+                </p>
+
+                <p className={styles.perfil_filosofia_p}>
+                    Trabajo la estructura, el diseño y la base técnica según el alcance
+                    acordado. El rendimiento, el SEO técnico, las integraciones y las
+                    herramientas de medición se evalúan cuando corresponden al proyecto.
+                </p>
                 </section>
                 <section className={styles.perfil_tecnologias}>
                     <h2 className={styles.perfil_tecnologias_h2}>
-                        Tecnologías
+                        Trabajo principalmente con las siguientes tecnologías:
                     </h2>
                     <div className={styles.perfil_tecnologias_layout}>
                         {tecnologias.map((tech) => (
@@ -160,23 +163,6 @@ export default function Perfil() {
                         medible y preparado para destacar en los resultados de búsqueda.
                     </p>
                 </section>
-                <section className={styles.perfil_metricas}>
-                    <div className={styles.perfil_metricas_layout}>
-                        {metricas.map((item, index) => (
-                            <article
-                                key={index}
-                                className={styles.perfil_metricas_box}
-                            >
-                                <span className={styles.perfil_metricas_numero}>
-                                    {item.valor}
-                                </span>
-                                <span className={styles.perfil_metricas_texto}>
-                                    {item.etiqueta}
-                                </span>
-                            </article>
-                        ))}
-                    </div>
-                </section>
                 <section className={styles.perfil_redes}>
                     <h2 className={styles.perfil_redes_h2}>
                         Redes Sociales
@@ -202,22 +188,16 @@ export default function Perfil() {
                 </section>
                 <section className={styles.perfil_contacto}>
                     <h2 className={styles.perfil_contacto_h2}>
-                        ¿Tienes una idea en mente?
+                        ¿Querés revisar tu proyecto?
                     </h2>
+
                     <p className={styles.perfil_contacto_p}>
-                        Estoy disponible para colaborar en nuevos proyectos y transformar tus ideas en realidades 
-                        digitales de alto impacto. Te invito a explorar mis trabajos previos para conocer lo que 
-                        puedo hacer.
+                        Podés contarme qué necesitás resolver y qué información ya tenés.
+                        A partir de ahí, revisamos el contexto y definimos el próximo paso.
                     </p>
-                    <p className={styles.perfil_contacto_p}>
-                        Si estás listo para dar el siguiente paso, conversemos. <strong className={styles.destacadoDorado}>Estoy a disposición para asesorarte 
-                        y convertir tu visión en realidad</strong>.
-                    </p>
-                    <Link
-                        href="/contacto"
-                        className={styles.perfil_contacto_btn}
-                    >
-                        Hablemos
+
+                    <Link href="/contacto" className={styles.perfil_contacto_btn}>
+                        Contame tu proyecto
                     </Link>
                 </section>
             </div>

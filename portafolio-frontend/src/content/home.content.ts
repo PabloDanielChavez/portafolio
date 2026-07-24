@@ -1,65 +1,65 @@
 export const homeContent = {
     trust: {
-        ariaLabel: "Indicadores de confianza",
+        ariaLabel: "Proyectos y forma de trabajo",
         projects: {
             valueSuffix: "",
-            label: "proyectos publicados"
+            label: "Proyectos publicados"
         },
         indicators: [
-            { value: "SEO", label: "técnico inicial" },
-            { value: "100%", label: "diseño responsive" },
-            { value: "Directo", label: "acompañamiento personal" }
+            { value: "Trato directo", label: "Con Pablo Chavez" },
+            { value: "Alcance definido", label: "Según el proyecto" },
+            { value: "Decisiones explicables", label: "Durante el proceso" }
         ]
     },
     process: {
-        eyebrow: "Cómo trabajamos",
-        title: "Un proceso claro, sin sorpresas",
+        eyebrow: "Forma de trabajo",
+        title: "Un proceso claro para avanzar con criterio",
         description:
-            "Desde la primera consulta sabés qué vamos a resolver, cuánto puede tardar y cuál es el próximo paso.",
+            "Desde la primera consulta revisamos el contexto, definimos qué corresponde abordar y acordamos cuál sería el próximo paso.",
         steps: [
             {
                 number: "01",
-                title: "Análisis",
+                title: "Consulta inicial",
                 description:
-                    "Revisamos tu negocio, el objetivo y el material disponible."
+                    "Me contás qué necesitás, qué información ya tenés y qué situación buscás abordar."
             },
             {
                 number: "02",
-                title: "Propuesta",
+                title: "Alcance y propuesta",
                 description:
-                    "Definimos alcance, precio y plazo antes de empezar."
+                    "Reviso el contexto y, si el proyecto avanza, preparo una propuesta con alcance, presupuesto y plazo orientativo."
             },
             {
                 number: "03",
-                title: "Desarrollo",
+                title: "Diseño y desarrollo",
                 description:
-                    "Diseño y desarrollo la web con revisiones concretas."
+                    "Trabajo la estructura, el diseño y el desarrollo según el alcance acordado, con revisiones definidas para el proyecto."
             },
             {
                 number: "04",
-                title: "Entrega",
+                title: "Entrega o publicación",
                 description:
-                    "Publicamos y te acompaño con dominio, hosting y configuración."
+                    "Realizo la entrega o publicación acordada, con las configuraciones incluidas en el alcance."
             },
             {
                 number: "05",
-                title: "Acompañamiento",
+                title: "Siguientes pasos",
                 description:
-                    "Seguimos en contacto después de la publicación."
+                    "Si después hace falta, evaluamos mejoras o mantenimiento por separado según la necesidad."
             }
         ]
     },
     finalCta: {
-        label: "Tu consulta, sin vueltas",
-        title: "Contame qué necesita tu negocio y te digo por dónde empezar.",
+        label: "Hablemos de tu proyecto",
+        title: "Contame qué necesitás y vemos por dónde empezar.",
         description:
-            "Te respondo directamente, revisamos juntos qué tipo de web te conviene y, si tiene sentido, recibís un presupuesto claro antes de empezar.",
+            "Reviso el contexto, te oriento sobre el punto de partida y, si corresponde, preparo un presupuesto según el alcance del proyecto.",
         checks: [
-            "Respuesta directa por WhatsApp",
-            "Sin compromiso ni costos ocultos"
+            "Contacto directo por WhatsApp",
+            "Alcance y dependencias explicados"
         ],
-        primaryAction: "Consultar por WhatsApp",
+        primaryAction: "Contame tu proyecto",
         secondaryAction: "Completar formulario",
-        profileAction: "Conocé quién está detrás de PaginasWebChavez"
+        profileAction: "Conocé a Pablo Chavez"
     }
 } as const;

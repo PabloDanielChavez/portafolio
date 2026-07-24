@@ -6,8 +6,9 @@ import { LiaLinkedin } from "react-icons/lia";
 
 import {
     FaGithub,
-    FaWhatsapp,
-    PiMicrosoftOutlookLogo
+    FaInstagram,
+    FaLinkedin,
+    FaWhatsapp
 } from "@/components/utils/Iconos";
 import styles from "@/styles/sections/footer.module.scss";
 
@@ -15,33 +16,32 @@ import { trackEvent } from "../utils/Analytics";
 
 const navigation = [
     { name: "Inicio", url: "/" },
-    { name: "Trabajos", url: "/trabajos" },
     { name: "Servicios", url: "/servicios" },
-    { name: "Planes", url: "/#planes" },
+    { name: "Trabajos", url: "/trabajos" },
     { name: "Perfil", url: "/perfil" },
-    { name: "Contacto", url: "/contacto" }
+    { name: "Hablemos", url: "/contacto" }
 ];
 
 const contact = [
-    {
-        name: "LinkedIn",
-        icon: <LiaLinkedin aria-hidden="true" />,
-        url: "https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/"
-    },
-    {
-        name: "GitHub",
-        icon: <FaGithub aria-hidden="true" />,
-        url: "https://github.com/PabloDanielChavez/portafolio"
-    },
     {
         name: "WhatsApp",
         icon: <FaWhatsapp aria-hidden="true" />,
         url: "https://wa.me/5491164095914?text=Hola%20Pablo%2C%20vi%20tu%20portafolio%20y%20quiero%20consultarte%20por%20un%20proyecto."
     },
     {
-        name: "Email",
-        icon: <PiMicrosoftOutlookLogo aria-hidden="true" />,
-        url: "mailto:pablo_daniel_chavez@outlook.es?subject=Consulta%20desde%20el%20portafolio"
+        name: "Instagram",
+        icon: <FaInstagram aria-hidden="true" />,
+        url: "https://www.instagram.com/paginaswebchavez/"
+    },
+    {
+        name: "LinkedIn",
+        icon: <FaLinkedin aria-hidden="true" />,
+        url: "https://www.linkedin.com/in/pablo-daniel-chavez-4a57a2277/"
+    },
+    {
+        name: "GitHub",
+        icon: <FaGithub aria-hidden="true" />,
+        url: "https://github.com/PabloDanielChavez/portafolio"
     }
 ];
 
@@ -52,7 +52,7 @@ export default function Footer() {
                 <div className={styles.footer_brand}>
                     <Link href="/" aria-label="Ir al inicio">
                         <Image
-                            src="/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png"
+                            src="/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.png"
                             alt="PaginasWeb Chavez"
                             width={56}
                             height={56}

@@ -4,120 +4,118 @@ import type { ProcesoPlan } from "@/types/ProcesoPlan";
 export type PlanTag = "landing_page" | "sitio_web" | "desarrollo_web";
 
 export const planPrices = {
-    landing_page: "Desde $150.000",
-    sitio_web: "Desde $450.000",
-    desarrollo_web: "A presupuestar"
+    landing_page: "A presupuestar según alcance",
+    sitio_web: "Presupuesto según alcance, páginas y funcionalidades",
+    desarrollo_web: "Presupuesto por etapas después del relevamiento"
 } as const satisfies Record<PlanTag, string>;
 
 export const planes: Plan[] = [
     {
         id: "landing-page-profesional",
         tag: "landing_page",
-        destacado: true,
-        etiqueta: "Ideal para empezar",
+        destacado: false,
         titulo: "Landing Page Profesional",
         subtitulo:
-            "Presentá tu servicio con claridad y facilitá que las personas interesadas te consulten.",
+            "Una página personalizada para presentar una propuesta concreta, ordenar la información esencial y orientar hacia un siguiente paso.",
         cardIdeal:
-            "Querés empezar rápido, promocionar una oferta concreta o dejar de depender solamente de Instagram y WhatsApp.",
+            "Necesitás presentar un servicio, una propuesta o una campaña concreta en una sola página.",
         ideal:
-            "Profesionales independientes, emprendedores, prestadores de servicios y pequeños negocios que quieren mostrar lo que hacen de forma profesional y empezar a recibir consultas por internet.",
+            "Profesionales y negocios de servicios que necesitan explicar con claridad qué ofrecen y dar un lugar propio a su propuesta.",
         problema:
-            "Tu servicio está repartido entre redes sociales, mensajes y recomendaciones, sin un lugar propio donde una persona pueda entender rápidamente qué ofrecés.",
+            "La información está repartida entre redes sociales, mensajes y recomendaciones, sin un lugar donde una persona pueda entender rápidamente qué ofrecés.",
         impacto:
-            "Esa falta de claridad puede generar dudas y hacer que una consulta se pierda antes de empezar.",
+            "Cuando el mensaje está disperso, puede resultar más difícil comprender la propuesta y saber cuál es el siguiente paso.",
         objetivo:
-            "Presentar tu servicio de forma clara, transmitir confianza y facilitar que las personas interesadas te contacten por WhatsApp o formulario.",
+            "Ordenar el mensaje, resolver dudas principales y facilitar el contacto mediante una acción definida según el proyecto.",
         descripcion:
-            "Una página personalizada y enfocada en una sola propuesta, con la información necesaria para generar confianza y orientar al visitante hacia una consulta.",
+            "Una página personalizada que organiza el contenido, presenta la propuesta y orienta el recorrido hacia una acción principal.",
         href: "/servicios/planes/landing_page",
         precio: planPrices.landing_page,
-        plazo: "Entrega estimada: 4 a 6 días hábiles",
-        seoTitle: "Landing Page Profesional para Generar Consultas",
+        plazo:
+            "Plazo orientativo: 5 a 10 días hábiles desde la aprobación del alcance y la recepción completa del material.",
+        seoTitle: "Landing Page Profesional | PaginasWebChavez",
         seoDescription:
-            `Conocé el plan Landing Page Profesional: alcance, precio ${planPrices.landing_page.toLowerCase()}, plazo estimado y todo lo necesario para presentar tu servicio y recibir consultas.`,
+            "Landing Page Profesional para presentar una propuesta concreta, ordenar el mensaje y orientar hacia una acción principal. Alcance y presupuesto según proyecto.",
         whatsappMensaje:
-            "Hola Pablo, quiero solicitar presupuesto por una Landing Page Profesional.",
-        ctaLabel: "Necesito una landing para mi servicio",
-        ctaTitle: "¿Querés presentar tu servicio con una página clara y profesional?",
+            "Hola Pablo, quiero consultar por una Landing Page Profesional.",
+        ctaLabel: "Consultar landing",
+        ctaTitle:
+            "¿Querés presentar una propuesta concreta con mayor claridad?",
         ctaDescription:
-            "Contame qué ofrecés y qué acción querés que realicen tus clientes. Te ayudo a ordenar la idea y te respondo con un alcance claro.",
+            "Contame qué ofrecés y qué acción te gustaría facilitar desde la página. Primero revisamos el contexto y definimos el alcance adecuado.",
         ctaMicrocopy:
-            "No hace falta que tengas todos los textos o imágenes listos. Presupuesto claro antes de empezar y sin compromiso.",
+            "El alcance, los materiales y los servicios externos se revisan antes de empezar.",
         destacados: [
-            "SEO técnico inicial",
-            "Diseño responsive",
-            "WhatsApp integrado",
-            "Alta velocidad"
+            "Arquitectura de contenido",
+            "Diseño adaptado",
+            "Contacto simple según alcance",
+            "Rendimiento según alcance"
         ],
+
         beneficios: [
             {
-                titulo: "Más consultas",
+                titulo: "Información organizada",
                 descripcion:
-                    "La estructura está pensada para guiar al visitante hacia una acción concreta: contactarte."
+                    "La propuesta, las dudas principales y el siguiente paso se presentan en un mismo recorrido."
             },
             {
-                titulo: "Imagen profesional",
+                titulo: "Presentación clara",
                 descripcion:
-                    "Tu negocio se muestra con una presencia moderna, clara y confiable."
+                    "El diseño y la jerarquía ayudan a mostrar lo importante de forma comprensible."
             },
             {
-                titulo: "Carga rápida",
+                titulo: "Canal de contacto evaluado",
                 descripcion:
-                    "La página se optimiza para ofrecer una experiencia fluida y evitar que el usuario abandone por tiempos de carga lentos."
+                    "La página puede orientar hacia un canal de contacto cuando corresponde al alcance acordado."
             }
         ],
         items: [
-            "Diseño moderno y personalizado",
-            "Estructura orientada a conversión",
-            "Diseño responsive",
-            "Integración con WhatsApp",
-            "SEO técnico inicial",
+            "Análisis inicial de objetivo y público",
+            "Arquitectura de contenido",
+            "Diseño adaptado a celular y escritorio",
+            "Desarrollo de la página",
             "Optimización de rendimiento",
-            "Asesoramiento para dominio y hosting"
+            "Estructura semántica según alcance",
+            "Dos rondas consolidadas de revisión",
+            "Contacto simple cuando corresponde"
         ],
         cotizarAparte: [
-            "Formulario de contacto",
-            "Google Analytics",
-            "Compra o renovación del dominio y del servicio de hosting",
+            "Dominio, hosting y servicios externos",
             "Producción integral de textos, fotografía, video o identidad visual",
-            "Tienda online, catálogo administrable o funcionalidades avanzadas"
+            "Integraciones, nuevas secciones o funciones adicionales",
+            "Mantenimiento",
+            "Paneles, base de datos o funciones con backend"
         ],
         preguntas: [
             {
-                pregunta: "¿Qué plan me conviene si recién empiezo?",
+                pregunta: "¿Cuándo corresponde una Landing Page?",
                 respuesta:
-                    "La Landing Page suele ser el punto de partida más simple cuando necesitás presentar un servicio u oferta concreta y facilitar las consultas. Si tu negocio necesita varias secciones o servicios con más profundidad, conviene evaluar el Sitio Web Profesional."
+                    "Cuando necesitás presentar una propuesta concreta en una sola página y orientar a las personas hacia una acción principal."
             },
             {
-                pregunta: "¿Qué necesito enviarte para empezar?",
+                pregunta: "¿Qué se define antes de empezar?",
                 respuesta:
-                    "Alcanza con que me cuentes qué ofrecés, a quién querés llegar y cuál es la consulta que querés recibir. Si todavía no tenés textos o imágenes definitivos, te ayudo a ordenar lo disponible y definimos qué falta."
+                    "Revisamos el objetivo de la página, la información disponible, el público, los materiales y el alcance necesario para el proyecto."
             },
             {
                 pregunta: "¿Incluye dominio y hosting?",
                 respuesta:
-                    "El plan incluye asesoramiento y ayuda con la configuración. La compra o renovación del dominio y del hosting se informa y cotiza por separado antes de avanzar."
+                    "Se brinda orientación sobre estos servicios, pero su contratación o renovación se evalúa por separado antes de avanzar."
             },
             {
-                pregunta: "¿Puedo pedir cambios durante el desarrollo?",
+                pregunta: "¿Qué pasa si aparece una necesidad nueva?",
                 respuesta:
-                    "Sí. La propuesta define instancias de revisión para ajustar contenido y presentación dentro del alcance acordado. Si aparece una necesidad nueva, se cotiza antes de incorporarla."
+                    "Se revisa antes de incorporarla. Si modifica el alcance, los tiempos o el presupuesto, se presenta una estimación actualizada."
             },
             {
-                pregunta: "¿La página queda preparada para Google?",
+                pregunta: "¿Qué significa SEO técnico inicial?",
                 respuesta:
-                    "Se entrega con una base de SEO técnico inicial para que Google pueda rastrear e interpretar la página. Esto no implica promesas de posiciones ni reemplaza una estrategia continua de contenidos."
+                    "Se trabaja una base técnica y una estructura que pueden ayudar a los buscadores a interpretar la página. No implica promesas de posiciones ni reemplaza una estrategia continua de contenidos."
             },
             {
-                pregunta: "¿Puedo pagar en partes?",
+                pregunta: "¿Qué ocurre al finalizar el proyecto?",
                 respuesta:
-                    "La forma de pago se acuerda antes de comenzar y queda detallada en la propuesta. Consultame y revisamos una modalidad razonable para el alcance del proyecto."
-            },
-            {
-                pregunta: "¿Qué pasa después de publicar?",
-                respuesta:
-                    "Revisamos que formularios, enlaces y canales de contacto funcionen correctamente. También te explico lo necesario para usar la página y podemos acordar mantenimiento o futuras mejoras por separado."
+                    "La entrega contempla la configuración acordada y las revisiones definidas. Mantenimiento, cambios posteriores o nuevas etapas pueden evaluarse por separado."
             }
         ],
         relatedWork: {
@@ -131,112 +129,109 @@ export const planes: Plan[] = [
         destacado: false,
         titulo: "Sitio Web Profesional",
         subtitulo:
-            "Ordená tus servicios y construí una presencia online sólida para tu negocio.",
+            "Una estructura multipágina para ordenar servicios, contenidos y canales de contacto en un mismo lugar.",
         cardIdeal:
-            "Necesitás varias secciones, explicar mejor tus servicios y transmitir más confianza que con una página única.",
+            "Necesitás explicar varios servicios o contenidos con mayor profundidad y dar recorridos claros a distintos públicos.",
         ideal:
-            "Empresas, estudios profesionales, consultoras, restaurantes, constructoras, clínicas y negocios que necesitan explicar mejor sus servicios y consolidar su presencia online.",
+            "Negocios y pequeños equipos que necesitan organizar servicios, información institucional y canales de contacto en una estructura más completa.",
         problema:
-            "Tu negocio ofrece varios servicios o necesita contar más sobre su propuesta, pero la información está desordenada o depende de publicaciones aisladas en redes sociales.",
+            "Los servicios, la información sobre el negocio y las formas de contacto aparecen desarticulados entre redes sociales, mensajes o materiales aislados.",
         impacto:
-            "Cuando una persona no encuentra respuestas claras sobre la empresa, sus servicios o cómo contactarse, puede dudar de la propuesta o abandonar la búsqueda.",
+            "Cuando la información es difícil de recorrer, puede resultar más complejo encontrar respuestas claras sobre el negocio y sus servicios.",
         objetivo:
-            "Mostrar tu empresa con una imagen profesional, ordenar la información de tus servicios y facilitar que nuevos clientes se contacten.",
+            "Ordenar la información en una estructura multipágina, mantener una identidad consistente y definir recorridos de navegación claros.",
         descripcion:
-            "Un sitio multipágina personalizado para organizar servicios, información institucional, trabajos y canales de contacto en una presencia profesional preparada para crecer.",
+            "Un sitio web personalizado para distribuir servicios, información institucional y contacto en una arquitectura pensada según el contenido del proyecto.",
         href: "/servicios/planes/sitio_web",
         precio: planPrices.sitio_web,
-        plazo: "Entrega estimada: 7 a 15 días hábiles",
-        seoTitle: "Sitio Web Profesional para Empresas y Negocios",
+        plazo:
+            "Plazo orientativo: 20 a 35 días hábiles, sujeto al alcance y a los tiempos de respuesta.",
+        seoTitle: "Sitio Web Profesional | PaginasWebChavez",
         seoDescription:
-            `Conocé el plan Sitio Web Profesional: alcance, precio ${planPrices.sitio_web.toLowerCase()}, plazo estimado y una estructura clara para presentar tu empresa y sus servicios.`,
+            "Sitio Web Profesional para ordenar servicios, contenidos y canales de contacto en una estructura multipágina. Presupuesto según alcance, páginas y funcionalidades.",
         whatsappMensaje:
-            "Hola Pablo, quiero solicitar presupuesto por un Sitio Web Profesional.",
-        ctaLabel: "Necesito un sitio para mi negocio",
-        ctaTitle: "¿Tu negocio necesita una presencia online más completa?",
+            "Hola Pablo, quiero consultar por un Sitio Web Profesional.",
+        ctaLabel: "Consultar sitio",
+        ctaTitle:
+            "¿Necesitás ordenar varios servicios o contenidos en una misma web?",
         ctaDescription:
-            "Contame qué servicios ofrecés y qué información necesitás organizar. Te recomiendo una estructura y te envío una propuesta con alcance, precio y plazo.",
+            "Contame qué información necesitás organizar y a quiénes querés orientar. Revisamos el contexto para definir una estructura adecuada.",
         ctaMicrocopy:
-            "No hace falta que llegues con toda la estructura definida. Si el alcance cambia, se cotiza antes de avanzar.",
+            "Las páginas, funciones, materiales y servicios externos se definen según el alcance.",
         destacados: [
-            "Sitio multipágina",
-            "SEO técnico",
-            "Analytics",
-            "Diseño personalizado"
+            "Arquitectura multipágina",
+            "Navegación clara",
+            "Diseño adaptado",
+            "Preparación de publicación"
         ],
         beneficios: [
             {
-                titulo: "Mayor confianza",
+                titulo: "Servicios organizados",
                 descripcion:
-                    "Una web profesional ayuda a que tu negocio se perciba más serio, sólido y preparado."
+                    "Cada tema puede tener un lugar definido dentro de una estructura fácil de recorrer."
             },
             {
-                titulo: "Mejor organización",
+                titulo: "Información centralizada",
                 descripcion:
-                    "Cada servicio puede tener su espacio, mejorando la claridad para el usuario."
+                    "El negocio, sus servicios y los canales de contacto se reúnen en un mismo sitio."
             },
             {
-                titulo: "Base para crecer",
+                titulo: "Recorridos de navegación",
                 descripcion:
-                    "El sitio puede prepararse para sumar nuevas secciones, páginas o funcionalidades con el tiempo."
+                    "La arquitectura permite orientar a distintos públicos hacia la información que necesitan."
             }
         ],
         items: [
-            "Diseño completamente personalizado",
-            "Alto rendimiento y buena experiencia de usuario",
-            "Sitio web multipágina",
-            "Secciones adaptadas a tu negocio",
-            "Integración con WhatsApp",
-            "Formularios de contacto",
-            "Optimización SEO técnica",
-            "Google Analytics y Search Console"
+            "Revisión de servicios, públicos y materiales",
+            "Arquitectura de páginas y navegación",
+            "Dirección visual",
+            "Diseño adaptado a celular y escritorio",
+            "Desarrollo del sitio",
+            "Revisiones consolidadas",
+            "Preparación de la publicación"
         ],
         cotizarAparte: [
-            "Blog o sección de noticias",
-            "Panel básico de administración para actualizar contenido",
-            "Compra o renovación de dominio, hosting y servicios externos",
-            "Producción completa de imagenes, identidad o redacción especializada",
-            "Funciones con lógica propia, pagos, reservas complejas o paneles administrativos avanzado"
+            "Páginas o secciones adicionales",
+            "Formularios específicos e integraciones",
+            "Administración de contenido o blog",
+            "Dominio, hosting y servicios externos",
+            "Producción integral de imágenes, identidad o redacción especializada",
+            "Paneles, backend, base de datos o funciones con lógica propia"
         ],
         preguntas: [
             {
                 pregunta: "¿Qué diferencia hay con una Landing Page?",
                 respuesta:
-                    "La Landing Page está enfocada en una sola página y un objetivo puntual. El Sitio Web Profesional permite mostrar más información, servicios, páginas internas y contenido institucional."
+                    "La Landing Page concentra una propuesta concreta en una sola página. El Sitio Web Profesional permite organizar varios servicios, contenidos o públicos en una estructura multipágina."
             },
             {
-                pregunta: "¿Qué necesito enviarte para empezar?",
+                pregunta: "¿Qué se necesita para empezar?",
                 respuesta:
-                    "Necesito conocer el negocio, sus servicios, el público y el objetivo principal del sitio. Podemos empezar con material preliminar y definir juntos qué textos, imágenes o datos faltan."
+                    "Primero necesito conocer el negocio, sus servicios, el público y el objetivo principal. Después revisamos qué materiales ya existen y qué falta definir."
             },
             {
                 pregunta: "¿El dominio y hosting están incluidos?",
                 respuesta:
-                    "Incluye asesoramiento y configuración técnica. La contratación o renovación del dominio, hosting y servicios externos se presenta por separado para que conozcas esos costos antes de avanzar."
+                    "Se brinda orientación técnica, pero la contratación o renovación de dominio, hosting y otros servicios externos se evalúa por separado."
             },
             {
-                pregunta: "¿Puedo pedir cambios o agregar secciones después?",
+                pregunta: "¿Se pueden sumar páginas o funciones?",
                 respuesta:
-                    "Sí. Durante el proyecto hay revisiones dentro del alcance acordado y el sitio puede prepararse para crecer. Las secciones o funciones nuevas se estiman y cotizan antes de desarrollarlas."
+                    "Sí, cuando corresponde. Las páginas, integraciones o funciones adicionales se revisan y cotizan antes de incorporarlas."
             },
             {
                 pregunta: "¿El sitio queda preparado para Google?",
                 respuesta:
-                    "Incluye una base de SEO técnico, estructura semántica y configuración inicial. El posicionamiento posterior depende también del contenido, la competencia y el trabajo sostenido; no se prometen posiciones."
+                    "Se puede trabajar una base técnica, estructura semántica y aspectos de SEO según el alcance. No se garantizan posiciones ni resultados de buscadores."
             },
             {
-                pregunta: "¿Puedo pagar en partes?",
+                pregunta: "¿Qué ocurre después de publicar?",
                 respuesta:
-                    "La modalidad se define en la propuesta antes de comenzar. Consultame para revisar una forma de pago coherente con el tamaño y las etapas del proyecto."
-            },
-            {
-                pregunta: "¿Qué pasa después de publicar?",
-                respuesta:
-                    "Verificamos el funcionamiento general y las mediciones acordadas. Recibís orientación para usar el sitio y podemos definir mantenimiento o nuevas etapas si las necesitás."
+                    "Se prepara la publicación según lo acordado y se revisa el funcionamiento general definido en el alcance. Mantenimiento o nuevas etapas pueden evaluarse por separado."
             }
         ],
         relatedWork: {
-            label: "Ver un sitio web profesional en funcionamiento",
+            label: "Ver un sitio web publicado",
             href: "/trabajos/paginas-web-chavez"
         }
     },
@@ -244,116 +239,111 @@ export const planes: Plan[] = [
         id: "desarrollo-web-a-medida",
         tag: "desarrollo_web",
         destacado: false,
-        titulo: "Desarrollo Web a Medida",
+        titulo: "Aplicación Web a Medida",
         subtitulo:
-            "Convertí una necesidad específica de tu negocio en una herramienta web propia.",
+            "Una herramienta web para procesos, datos, usuarios o tareas que requieren una lógica propia.",
         cardIdeal:
-            "Necesitás paneles, bases de datos, filtros, reservas, catálogos, integraciones o una lógica que una plantilla no puede resolver.",
+            "Necesitás evaluar un proceso, centralizar información o desarrollar una herramienta adaptada a la forma en que trabaja tu negocio.",
         ideal:
-            "Empresas y negocios que necesitan funcionalidades específicas, procesos personalizados o herramientas internas para trabajar mejor.",
+            "Negocios y equipos que necesitan revisar procesos, datos, usuarios o tareas que una web informativa no puede abordar por sí sola.",
         problema:
-            "Tu operación depende de tareas manuales, herramientas desconectadas o una plantilla que no se adapta a la forma real en que trabaja el negocio.",
+            "El trabajo depende de planillas, mensajes o sistemas desconectados; varias personas consultan o actualizan los mismos datos, o el proceso requiere reglas propias.",
         impacto:
-            "Eso puede sumar pasos innecesarios, duplicar información y limitar mejoras porque el proceso termina adaptándose a la herramienta, en vez de ocurrir al revés.",
+            "Cuando la información y las tareas están dispersas, puede resultar difícil revisar el proceso, priorizar cambios y definir qué conviene desarrollar primero.",
         objetivo:
-            "Crear una solución digital adaptada a las necesidades reales del negocio para ahorrar tiempo, ordenar procesos y mejorar la gestión.",
+            "Relevar el proceso, evaluar su viabilidad y priorizar un alcance inicial que permita avanzar por etapas.",
         descripcion:
-            "Una solución planificada según procesos y funcionalidades concretas, con alcance por etapas y una arquitectura preparada para incorporar mejoras.",
+            "Una aplicación web se define a partir de los procesos, datos, usuarios y prioridades reales del proyecto. El alcance inicial se revisa antes de avanzar con el desarrollo.",
         href: "/servicios/planes/desarrollo_web",
         precio: planPrices.desarrollo_web,
-        plazo: "Plazo según alcance del proyecto",
-        seoTitle: "Desarrollo Web a Medida para Negocios",
+        plazo:
+            "Cronograma definido por etapas después del relevamiento.",
+        seoTitle: "Aplicación Web a Medida | PaginasWebChavez",
         seoDescription:
-            "Conocé cómo se cotiza un desarrollo web a medida con paneles, bases de datos, integraciones o funciones específicas, con alcance y etapas definidas.",
+            "Aplicación Web a Medida para evaluar procesos, datos, usuarios o tareas con lógica propia. Alcance, presupuesto y cronograma definidos por etapas.",
         whatsappMensaje:
-            "Hola Pablo, quiero consultar por un Desarrollo Web a Medida.",
-        ctaLabel: "Necesito un desarrollo a medida",
-        ctaTitle: "¿Necesitás una solución que una plantilla no puede resolver?",
+            "Hola Pablo, quiero evaluar un proyecto de Aplicación Web a Medida.",
+        ctaLabel: "Evaluar proyecto",
+        ctaTitle:
+            "¿Necesitás revisar un proceso, datos o tareas que requieren una herramienta propia?",
         ctaDescription:
-            "Contame qué proceso querés ordenar o qué función necesitás. Primero definimos prioridades y después preparo una propuesta por alcance y etapas.",
+            "Contame qué proceso querés revisar, quiénes lo usan y qué información interviene. Primero evaluamos el contexto, las prioridades y la viabilidad.",
         ctaMicrocopy:
-            "No hace falta que tengas la solución técnica definida. El alcance, los cambios y cada costo se acuerdan antes de desarrollar.",
+            "Las capacidades, dependencias, infraestructura y costos se definen antes de desarrollar cada etapa.",
         destacados: [
-            "Paneles administrativos",
-            "Base de datos",
-            "APIs",
-            "Arquitectura escalable"
+            "Relevamiento inicial",
+            "Alcance por etapas",
+            "Lógica según necesidad",
+            "Revisiones definidas"
         ],
         beneficios: [
             {
-                titulo: "Procesos más ordenados",
+                titulo: "Relevamiento del proceso",
                 descripcion:
-                    "Permite digitalizar tareas que hoy se hacen de forma manual o desorganizada."
+                    "El punto de partida es entender qué información, tareas, usuarios y restricciones intervienen."
             },
             {
-                titulo: "Funcionalidades específicas",
+                titulo: "Prioridades definidas",
                 descripcion:
-                    "El sistema se adapta a las necesidades del negocio, no al revés."
+                    "El alcance inicial se ordena para distinguir qué conviene abordar primero y qué puede quedar para otra etapa."
             },
             {
-                titulo: "Escalabilidad",
+                titulo: "Funciones evaluadas",
                 descripcion:
-                    "La arquitectura puede prepararse para sumar nuevas funciones con el tiempo."
+                    "Las funciones se incorporan cuando responden a una necesidad validada y su viabilidad está confirmada."
             }
         ],
         items: [
-            "Desarrollo a medida según tu negocio",
-            "Alcance funcional definido antes de empezar",
-            "Panel administrativo personalizado",
-            "Dashboards o vistas de control",
-            "Integración con APIs documentadas",
-            "Automatización de procesos clave",
-            "Base de datos estructurada y segura",
-            "Preparado para escalar y sumar funciones"
+            "Relevamiento de objetivos, usuarios, datos y flujo",
+            "Evaluación de riesgos, dependencias y viabilidad",
+            "Priorización del alcance inicial",
+            "Desarrollo por etapas",
+            "Revisión de cada etapa",
+            "Definición de próximos pasos"
         ],
         cotizarAparte: [
-            "Módulos no incluidos en el alcance inicial",
-            "Reservas, turnos, pagos o usuarios avanzados",
-            "Gestión avanzada de clientes, roles o reportes",
-            "Infraestructura, licencias o servicios externos",
+            "Capacidades no incluidas en el alcance inicial",
+            "Usuarios, roles, paneles, datos o estados adicionales",
+            "Integraciones, notificaciones o automatizaciones",
+            "Infraestructura, licencias y servicios externos",
             "Migración, limpieza o carga inicial de datos",
-            "Integraciones externas complejas o no documentadas",
-            "Cambios solicitados después de aprobar la propuesta"
+            "Seguridad, copias de seguridad, monitoreo o soporte",
+            "Cambios posteriores a la aprobación de cada etapa"
         ],
         preguntas: [
             {
-                pregunta: "¿Cuándo conviene un desarrollo a medida?",
+                pregunta: "¿Cuándo conviene evaluar una Aplicación Web a Medida?",
                 respuesta:
-                    "Cuando necesitás lógica propia, usuarios, paneles, bases de datos, filtros, catálogos, reservas, automatizaciones o integraciones que no se resuelven bien con una página tradicional."
+                    "Cuando la necesidad involucra procesos, datos, usuarios, tareas o reglas propias que una web informativa no puede abordar de manera suficiente."
             },
             {
                 pregunta: "¿Por qué no tiene un precio fijo?",
                 respuesta:
-                    "Porque el costo depende de las funciones, roles, integraciones, datos y nivel de complejidad. Primero definimos prioridades y luego recibís una propuesta con alcance, etapas, precio y plazo."
+                    "Porque el presupuesto depende del relevamiento, las prioridades, los datos, las dependencias y las funciones que resulten viables. El proyecto se cotiza por etapas después de revisar ese contexto."
             },
             {
-                pregunta: "¿Puede incluir panel, base de datos e integraciones?",
+                pregunta: "¿Puede incluir paneles, datos o integraciones?",
                 respuesta:
-                    "Sí. Puede incluir paneles administrativos, bases de datos, APIs y servicios externos cuando forman parte del alcance acordado y su viabilidad técnica está confirmada."
+                    "Pueden evaluarse cuando forman parte de una necesidad validada y su viabilidad técnica, infraestructura y presupuesto están confirmados."
             },
             {
-                pregunta: "¿Qué necesito enviarte para empezar?",
+                pregunta: "¿Qué se necesita para empezar?",
                 respuesta:
-                    "Necesito entender el problema, quién usa hoy el proceso y qué resultado esperás. No hace falta que diseñes la solución técnica: esa definición forma parte del análisis."
+                    "Necesito entender el proceso actual, quiénes lo usan, qué información interviene y qué situación se busca abordar. No hace falta llegar con una definición técnica cerrada."
             },
             {
-                pregunta: "¿Qué pasa si el alcance cambia?",
+                pregunta: "¿Qué pasa si cambia el alcance?",
                 respuesta:
-                    "El cambio se analiza antes de implementarlo. Si modifica tiempos o costos, recibís una estimación actualizada y decidís si se incorpora ahora o queda para otra etapa."
+                    "El cambio se analiza antes de implementarlo. Si modifica prioridades, tiempos o presupuesto, se presenta una estimación para decidir si se incorpora en la etapa actual o en una posterior."
             },
             {
-                pregunta: "¿Puedo pagar por etapas?",
+                pregunta: "¿Qué ocurre después de cada etapa?",
                 respuesta:
-                    "Los proyectos a medida pueden organizarse por etapas y entregables cuando el alcance lo permite. La modalidad concreta queda acordada en la propuesta antes de comenzar."
-            },
-            {
-                pregunta: "¿Qué pasa después de publicar?",
-                respuesta:
-                    "Se valida el funcionamiento acordado y se define cómo atender soporte, mantenimiento y nuevas etapas. La evolución del sistema se cotiza según las prioridades reales del negocio."
+                    "Se revisa lo acordado y se decide si corresponde continuar, ajustar prioridades o definir una nueva etapa. Soporte, mantenimiento y nuevas funciones se evalúan por separado."
             }
         ],
         relatedWork: {
-            label: "Ver un caso de desarrollo web a medida",
+            label: "Conocer un proyecto de aplicación web en desarrollo",
             href: "/trabajos/esperanza-de-vida"
         }
     }
@@ -362,33 +352,33 @@ export const planes: Plan[] = [
 export const procesoPlan: ProcesoPlan[] = [
     {
         numero: "01",
-        titulo: "Análisis",
-        descripcion:
-            "Revisamos el objetivo de la landing, el material disponible y qué necesita resolver tu negocio. No hace falta que tengas todo definido."
+        titulo: "Contexto",
+        descripcion: 
+            "Revisamos qué necesita abordar el proyecto, qué información existe y qué deberían encontrar o poder hacer las personas que visiten o utilicen la web."
     },
     {
         numero: "02",
-        titulo: "Estrategia",
+        titulo: "Alcance",
         descripcion:
-            "Analizo tu rubro, tu competencia y tu público objetivo para definir cómo diferenciar tu propuesta y orientar mejor el contenido de la página."
+            "Definimos prioridades, entregables, dependencias y qué aspectos requieren evaluación adicional antes de avanzar."
     },
     {
         numero: "03",
         titulo: "Propuesta",
         descripcion:
-            "Definimos alcance, entregables, precio, plazo de entrega y qué queda fuera del servicio antes de empezar."
+            "El presupuesto, el plazo orientativo y lo que queda fuera del alcance se presentan antes de comenzar."
     },
     {
         numero: "04",
         titulo: "Desarrollo",
         descripcion:
-            "Diseño y desarrollo la landing page, revisando avances en las instancias acordadas para ajustar los detalles importantes."
+            "Diseño y desarrollo el proyecto según el alcance acordado, con instancias de revisión cuando corresponden."
     },
     {
         numero: "05",
-        titulo: "Entrega",
+        titulo: "Revisión y entrega",
         descripcion:
-            "Publicamos la página, validamos los canales principales y dejamos acordado el soporte o las mejoras futuras si hacen falta."
+            "Revisamos lo acordado y preparamos la entrega o publicación según las condiciones definidas para el proyecto."
     }
 ];
 

@@ -1,10 +1,11 @@
 import Link from "next/link";
 
-import { FaArrowRight, FaCheck, FaWhatsapp } from "@/components/utils/Iconos";
+import { FaArrowRight, FaCheck, FaWhatsapp, IoIosRocket } from "@/components/utils/Iconos";
 import { mensajePresupuesto } from "@/components/utils/variables";
 import { homeContent } from "@/content/home.content";
 import styles from "@/styles/sections/home.module.scss";
 import type { PerfilType } from "@/types/perfil";
+import SectionHeader from "../sub_components/SectionHeader";
 
 type TrustBarProps = {
     projectCount: number;
@@ -43,11 +44,12 @@ export function Proceso() {
     return (
         <section className={styles.process} id="proceso" aria-labelledby="proceso-title">
             <div className={styles.process_layout}>
-                <header className={styles.process_header}>
-                    <span>{homeContent.process.eyebrow}</span>
-                    <h2 id="proceso-title">{homeContent.process.title}</h2>
-                    <p>{homeContent.process.description}</p>
-                </header>
+                <SectionHeader
+                    icon={<IoIosRocket />}
+                    title={`${homeContent.process.title}`}
+                    description={`${homeContent.process.description}`}
+                    headingLevel={"h2"}
+                />
 
                 <ol className={styles.process_grid}>
                     {homeContent.process.steps.map((paso) => (

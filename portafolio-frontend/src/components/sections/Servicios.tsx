@@ -115,18 +115,6 @@ export default function Servicios({
                                     .primaryAction.label
                             }
                         </Link>
-                        <Link
-                            href={
-                                serviciosSectionContent.decisionGuide
-                                    .contactAction.href
-                            }
-                            className={styles.servicios_decision_secondary}
-                        >
-                            {
-                                serviciosSectionContent.decisionGuide
-                                    .contactAction.label
-                            }
-                        </Link>
                         {!showBackLink && (
                             <Link
                                 href={

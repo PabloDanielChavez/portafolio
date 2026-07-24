@@ -15,10 +15,13 @@ type PlanDetalleProps = {
 
 export default function PlanDetalle({ plan }: PlanDetalleProps) {
     const planSeleccionado = getPlanByTag(plan);
+
     if (!planSeleccionado) {
         notFound();
     }
+
     const whatsappHref = getWhatsappHref(planSeleccionado.whatsappMensaje);
+
     return (
         <article className={styles.planes_detalle}>
             <section
@@ -28,12 +31,20 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                 <div className={styles.planes_detalle_layout}>
                     <div className={styles.planes_detalle_hero_content}>
                         <span className={styles.planes_detalle_badge}>
-                            Servicio profesional
+                            Desarrollo web profesional
                         </span>
-                        <h1 id="plan-title" className={styles.planes_detalle_h1}>
+
+                        <h1
+                            id="plan-title"
+                            className={styles.planes_detalle_h1}
+                        >
                             {planSeleccionado.titulo}
                         </h1>
-                        <p className={styles.planes_detalle_intro}> {planSeleccionado.subtitulo}</p>
+
+                        <p className={styles.planes_detalle_intro}>
+                            {planSeleccionado.subtitulo}
+                        </p>
+
                         <p className={styles.planes_detalle_description}>
                             {planSeleccionado.descripcion}
                         </p>
@@ -44,18 +55,20 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.planes_detalle_button}
-                                aria-label={`Solicitar presupuesto para ${planSeleccionado.titulo} por WhatsApp`}
+                                aria-label={`Consultar por ${planSeleccionado.titulo} por WhatsApp`}
                             >
                                 <FaWhatsapp aria-hidden="true" />
                                 {planSeleccionado.ctaLabel}
                             </a>
+
                             <Link
                                 href="/contacto"
                                 className={styles.planes_detalle_button_secondary}
                             >
-                                No sé qué plan elegir
+                                Contame tu proyecto
                             </Link>
                         </div>
+
                         <p className={styles.planes_detalle_note}>
                             {planSeleccionado.ctaMicrocopy}
                         </p>
@@ -63,7 +76,7 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
 
                     <aside
                         className={styles.planes_detalle_summary}
-                        aria-label="Resumen del plan"
+                        aria-label="Resumen del servicio"
                     >
                         {planSeleccionado.destacado && (
                             <span className={styles.planes_detalle_summary_badge}>
@@ -72,7 +85,7 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                         )}
 
                         <h2 className={styles.planes_detalle_summary_title}>
-                            Resumen del plan
+                            Resumen del servicio
                         </h2>
 
                         <div className={styles.planes_detalle_price}>
@@ -97,11 +110,11 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                     <div className={styles.planes_detalle_info_grid}>
                         <article className={styles.planes_detalle_card}>
                             <span className={styles.planes_detalle_card_label}>
-                                Para quién es
+                                Necesidad principal
                             </span>
 
                             <h2 className={styles.planes_detalle_h2}>
-                                Ideal para este tipo de negocio
+                                Cuándo puede corresponder
                             </h2>
 
                             <p className={styles.planes_detalle_text}>
@@ -111,16 +124,17 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
 
                         <article className={styles.planes_detalle_card}>
                             <span className={styles.planes_detalle_card_label}>
-                                Problema e impacto
+                                Situación habitual
                             </span>
 
                             <h2 className={styles.planes_detalle_h2}>
-                                Qué ayuda a resolver
+                                Qué situación ayuda a abordar
                             </h2>
 
                             <p className={styles.planes_detalle_text}>
                                 {planSeleccionado.problema}
                             </p>
+
                             <p className={styles.planes_detalle_impact}>
                                 {planSeleccionado.impacto}
                             </p>
@@ -128,11 +142,11 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
 
                         <article className={styles.planes_detalle_card}>
                             <span className={styles.planes_detalle_card_label}>
-                                Solución
+                                Enfoque del proyecto
                             </span>
 
                             <h2 className={styles.planes_detalle_h2}>
-                                Cómo puede ayudar a tu negocio
+                                Qué se busca trabajar
                             </h2>
 
                             <p className={styles.planes_detalle_text}>
@@ -150,20 +164,21 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                 <div className={styles.planes_detalle_layout}>
                     <header className={styles.planes_detalle_section_header}>
                         <span className={styles.planes_detalle_badge}>
-                            Alcance transparente
+                            Alcance y dependencias
                         </span>
 
                         <h2
                             id="aparte-title"
                             className={styles.planes_detalle_h2}
                         >
-                            Qué conviene cotizar aparte
+                            Aspectos que se evalúan por separado
                         </h2>
 
                         <p className={styles.planes_detalle_text}>
-                            Estos puntos no se suman automáticamente. Si tu
-                            proyecto los necesita, se detallan y cotizan antes
-                            de avanzar.
+                            Estos puntos no forman parte automáticamente del
+                            servicio. Si son necesarios, se revisan, se
+                            detallan y se incorporan al presupuesto antes de
+                            avanzar.
                         </p>
                     </header>
 
@@ -188,20 +203,20 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                 <div className={styles.planes_detalle_layout}>
                     <header className={styles.planes_detalle_section_header}>
                         <span className={styles.planes_detalle_badge}>
-                            Beneficios
+                            Criterios del desarrollo
                         </span>
 
                         <h2
                             id="beneficios-title"
                             className={styles.planes_detalle_h2}
                         >
-                            Qué puede aportar a tu negocio
+                            Qué se trabaja en este tipo de proyecto
                         </h2>
 
                         <p className={styles.planes_detalle_text}>
-                            El objetivo no es solamente tener una página web, sino
-                            construir una herramienta clara para generar confianza y
-                            facilitar el contacto con nuevos clientes.
+                            El contenido, las decisiones técnicas y las
+                            funciones se definen según el contexto, la
+                            información disponible y el alcance acordado.
                         </p>
                     </header>
 
@@ -231,14 +246,14 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                 <div className={styles.planes_detalle_layout}>
                     <header className={styles.planes_detalle_section_header}>
                         <span className={styles.planes_detalle_badge}>
-                            Incluye
+                            Alcance base
                         </span>
 
                         <h2
                             id="incluye-title"
                             className={styles.planes_detalle_h2}
                         >
-                            Todo lo que incluye el plan
+                            Qué puede formar parte del alcance
                         </h2>
                     </header>
 
@@ -256,6 +271,7 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                 </div>
             </section>
 
+            {/* Pendiente: procesoPlan y su presentación específica por servicio. */}
             <section
                 className={styles.planes_detalle_section}
                 aria-labelledby="proceso-title"
@@ -285,7 +301,11 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                                 key={item.numero}
                                 className={styles.planes_detalle_process_card}
                             >
-                                <span className={styles.planes_detalle_process_number}>
+                                <span
+                                    className={
+                                        styles.planes_detalle_process_number
+                                    }
+                                >
                                     {item.numero}
                                 </span>
 
@@ -316,7 +336,7 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                             id="faq-title"
                             className={styles.planes_detalle_h2}
                         >
-                            Preguntas antes de solicitar presupuesto
+                            Preguntas frecuentes sobre este servicio
                         </h2>
                     </header>
 
@@ -365,11 +385,12 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
                                 <FaWhatsapp aria-hidden="true" />
                                 {planSeleccionado.ctaLabel}
                             </a>
+
                             <Link
                                 href="/contacto"
                                 className={styles.planes_detalle_button_secondary}
                             >
-                                Enviar consulta por formulario
+                                Completar formulario
                             </Link>
                         </div>
 
@@ -379,16 +400,18 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
 
                         <nav
                             className={styles.planes_detalle_related}
-                            aria-label="Enlaces para decidir"
+                            aria-label="Enlaces relacionados"
                         >
                             <Link href={planSeleccionado.relatedWork.href}>
                                 {planSeleccionado.relatedWork.label}
                             </Link>
-                            <Link href="/servicios#planes">
-                                Comparar los tres planes
+
+                            <Link href="/servicios">
+                                Comparar los tres servicios
                             </Link>
+
                             <Link href="/perfil">
-                                Conocer quién está detrás de PaginasWebChavez
+                                Conocé a Pablo Chavez
                             </Link>
                         </nav>
                     </div>

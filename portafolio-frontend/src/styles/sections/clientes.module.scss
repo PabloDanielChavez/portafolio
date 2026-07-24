@@ -1,50 +1,87 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
+/* =========================================================
+   CLIENTES — TESTIMONIOS EN PAPELES EDITORIALES
+   ========================================================= */
+
+$paper-main: #e1d0bb;
+$paper-light: #e4d4c0;
+$paper-bright: #f3e7d7;
+$paper-white: #f8f0e5;
+$paper-kraft: #ceb89c;
+$paper-muted: #d8c5ac;
+
+$charcoal: #232322;
+$charcoal-soft: #343331;
+$earth-gray: #5e5750;
+$shadow-brown: #4d423b;
+
+$orange-dark: #b54723;
+$orange-main: #c14d28;
+$orange-light: #d66538;
+
+$font-editorial: Georgia, 'Times New Roman', serif;
+
+/* =========================================================
+   SECCIÓN GENERAL
+   ========================================================= */
+
 .clientes {
     position: relative;
-    overflow: hidden;
-    padding: clamp(4.5rem, 8vw, 7rem) 1rem;
-    color: v.$color-crema;
     isolation: isolate;
+    overflow: hidden;
+    overflow: clip;
+    padding: clamp(5rem, 9vw, 8rem) 1rem;
+    color: $charcoal;
+    background: radial-gradient(circle at 8% 15%, rgba($orange-main, .09), transparent 26rem), radial-gradient(circle at 92% 72%, rgba($shadow-brown, .08), transparent 30rem), linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
 
     &::before,
     &::after {
         content: "";
         position: absolute;
-        pointer-events: none;
         z-index: -1;
+        pointer-events: none;
     }
 
-    // &::before {
-    //     inset: 0;
-    //     background:
-    //         radial-gradient(720px circle at 12% 18%, rgba(v.$color-primary, .10), transparent 64%),
-    //         radial-gradient(680px circle at 88% 82%, rgba(v.$color-accent, .10), transparent 62%);
-    // }
+    &::before {
+        inset: 0;
+        opacity: .32;
+        background-image: linear-gradient(rgba($earth-gray, .1) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .1) 1px, transparent 1px), radial-gradient(circle, rgba($charcoal, .2) 1px, transparent 1.2px);
+        background-size: 58px 58px, 58px 58px, 21px 21px;
+        background-position: 7% 10%, 7% 10%, 95% 18%;
+        mask-image: linear-gradient(90deg, rgba(0, 0, 0, .58), transparent 36%, transparent 66%, rgba(0, 0, 0, .55));
+    }
 
     &::after {
-        width: 520px;
-        height: 520px;
-        right: -220px;
-        top: -180px;
-        border-radius: 999px;
-        background: radial-gradient(circle, rgba(v.$color-oro-mate, .10), transparent 64%);
-        filter: blur(72px);
-        animation: glowFloat 13s ease-in-out infinite;
+        top: 12%;
+        right: -16rem;
+        width: min(36rem, 80vw);
+        aspect-ratio: 1;
+        border: 1px solid rgba($earth-gray, .18);
+        border-radius: 50%;
+        box-shadow: -5rem 8rem 0 -4.95rem rgba($earth-gray, .14);
     }
 
     &_layout {
+        @include m.widTamaño;
+        @include m.container;
+
         position: relative;
         z-index: 2;
-        @include m.widTamaño;
         margin: 0 auto;
     }
+
+    /* =====================================================
+       GRILLA
+       ===================================================== */
 
     &_box_layout {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: clamp(1.3rem, 3vw, 2rem);
+        align-items: stretch;
+        counter-reset: testimonio;
 
         @include m.telefonoXL {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -52,79 +89,247 @@
 
         @include m.tabletXL {
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.25rem;
         }
     }
 
+    /* =====================================================
+       TARJETA BASE
+       ===================================================== */
+
     &_card {
+        --card-paper: #{$paper-white};
+        --card-accent: #{$orange-main};
+        --card-rotate: 0deg;
+        --card-shadow-x: 6px;
+        --card-shadow-y: 8px;
+        --tape-left: 50%;
+        --tape-right: auto;
+        --tape-rotate: -2deg;
+
         position: relative;
-        overflow: hidden;
+        isolation: isolate;
+        overflow: visible;
         display: flex;
         flex-direction: column;
         gap: 1.35rem;
         height: 100%;
-        min-height: 270px;
-        padding: clamp(1.25rem, 3vw, 1.7rem);
-        border: 1px solid rgba(255, 255, 255, .08);
-        border-radius: 18px;
-        background:
-            linear-gradient(160deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .022) 54%, rgba(6, 182, 212, .026)),
-            rgba(10, 12, 18, .76);
-        box-shadow:
-            0 22px 58px rgba(0, 0, 0, .30),
-            inset 0 1px 0 rgba(255, 255, 255, .08);
-        backdrop-filter: blur(16px) saturate(120%);
-        -webkit-backdrop-filter: blur(16px) saturate(120%);
-        animation: cardReveal .72s cubic-bezier(.16, 1, .3, 1) both;
-        transition:
-            transform .36s cubic-bezier(.16, 1, .3, 1),
-            box-shadow .36s ease,
-            border-color .36s ease,
-            background .36s ease;
+        min-height: 290px;
+        padding: clamp(1.35rem, 3vw, 1.85rem);
+        border: 1px solid rgba($shadow-brown, .19);
+        border-radius: .2rem;
+        background: linear-gradient(145deg, rgba(255, 255, 255, .24), transparent 38%), var(--card-paper);
+        color: $charcoal;
+        box-shadow: var(--card-shadow-x) var(--card-shadow-y) 0 rgba($shadow-brown, .09), 0 18px 38px rgba($shadow-brown, .09);
+        opacity: 0;
+        counter-increment: testimonio;
+        transform: translateY(28px) rotate(var(--card-rotate));
+        animation: cardReveal .7s cubic-bezier(.16, 1, .3, 1) both;
+        transition: transform .3s cubic-bezier(.16, 1, .3, 1), border-color .3s ease, background-color .3s ease, box-shadow .3s ease, filter .3s ease;
 
+        /* Cinta o elemento de sujeción superior */
         &::before {
             content: "";
             position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(360px circle at 88% 12%, rgba(v.$color-primary, .13), transparent 58%),
-                linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
-            opacity: 0;
-            transform: translateX(-35%);
-            transition: opacity .34s ease, transform .8s cubic-bezier(.16, 1, .3, 1);
+            top: -.48rem;
+            right: var(--tape-right);
+            left: var(--tape-left);
+            z-index: 3;
+            width: 4.3rem;
+            height: 1rem;
+            background: color-mix(in srgb, var(--card-accent) 82%, $paper-main);
+            clip-path: polygon(2% 13%, 14% 3%, 29% 10%, 44% 1%, 59% 11%, 74% 3%, 88% 12%, 98% 4%, 95% 87%, 79% 96%, 61% 88%, 42% 98%, 24% 89%, 5% 96%);
+            opacity: .78;
+            transform: translateX(-50%) rotate(var(--tape-rotate));
+            pointer-events: none;
+        }
+
+        /* Sello numérico */
+        &::after {
+            content: "TESTIMONIO · " counter(testimonio, decimal-leading-zero);
+            position: absolute;
+            right: 1.1rem;
+            bottom: .95rem;
+            z-index: 0;
+            color: rgba($shadow-brown, .27);
+            font-family: v.$font-display;
+            font-size: .58rem;
+            font-weight: 900;
+            letter-spacing: .11em;
+            line-height: 1;
+            text-transform: uppercase;
             pointer-events: none;
         }
 
         &:hover,
         &:focus-within {
-            transform: translateY(-8px);
-            border-color: rgba(v.$color-accent, .25);
-            background:
-                linear-gradient(160deg, rgba(255, 255, 255, .085), rgba(255, 255, 255, .025) 54%, rgba(6, 182, 212, .045)),
-                rgba(10, 12, 18, .84);
-            box-shadow:
-                0 30px 72px rgba(0, 0, 0, .38),
-                0 0 44px rgba(v.$color-accent, .10);
+            z-index: 4;
+            transform: translateY(-7px) rotate(0);
+            border-color: color-mix(in srgb, var(--card-accent) 48%, transparent);
+            background-color: $paper-white;
+            box-shadow: 8px 11px 0 color-mix(in srgb, var(--card-accent) 13%, transparent), 0 26px 50px rgba($shadow-brown, .15);
 
-            &::before {
-                opacity: 1;
-                transform: translateX(35%);
+            .clientes_avatar {
+                border-color: var(--card-accent);
+                box-shadow: 4px 5px 0 color-mix(in srgb, var(--card-accent) 16%, transparent), 0 12px 24px rgba($shadow-brown, .14);
             }
 
             .avatar_img {
-                transform: scale(1.08);
-                filter: grayscale(0);
+                transform: scale(1.06);
+                filter: grayscale(0) saturate(1.04);
+            }
+
+            .clientes_btn {
+                border-color: var(--card-accent);
+                background: var(--card-accent);
+                color: #fffaf1;
             }
         }
     }
 
+    /* =====================================================
+       VARIANTE 1 — PAPEL CLARO CON RESPALDO NARANJA
+       ===================================================== */
+
+    &_card:nth-child(6n + 1) {
+        --card-paper: #{$paper-white};
+        --card-accent: #{$orange-main};
+        --card-rotate: -.45deg;
+        --card-shadow-x: 7px;
+        --card-shadow-y: 9px;
+        --tape-left: 38%;
+        --tape-rotate: -3deg;
+
+        clip-path: polygon(.8% 2%, 10% .7%, 21% 1.8%, 32% .5%, 43% 1.7%, 54% .6%, 65% 1.6%, 77% .5%, 88% 1.8%, 99.2% .8%, 99% 18%, 99.5% 35%, 99% 52%, 99.5% 69%, 99% 85%, 99.2% 98%, 88% 99.2%, 76% 98.2%, 64% 99.2%, 52% 98.1%, 40% 99.2%, 28% 98.1%, 16% 99.1%, .8% 98.3%, 1.3% 82%, .5% 65%, 1.2% 48%, .5% 31%, 1.2% 15%);
+        filter: drop-shadow(-.5rem .55rem 0 rgba($orange-main, .72)) drop-shadow(0 .8rem .7rem rgba($shadow-brown, .12));
+    }
+
+    /* =====================================================
+       VARIANTE 2 — PAPEL KRAFT CON CINTA LATERAL
+       ===================================================== */
+
+    &_card:nth-child(6n + 2) {
+        --card-paper: #{$paper-kraft};
+        --card-accent: #{$charcoal};
+        --card-rotate: .4deg;
+        --card-shadow-x: -5px;
+        --card-shadow-y: 8px;
+        --tape-left: auto;
+        --tape-right: -.35rem;
+        --tape-rotate: 7deg;
+
+        border-color: rgba($shadow-brown, .25);
+        clip-path: polygon(1% 1%, 16% 2.2%, 30% .5%, 45% 2%, 61% .7%, 76% 2%, 99% .8%, 98% 17%, 99.3% 35%, 98.4% 53%, 99.2% 70%, 98% 86%, 99% 99%, 83% 97.7%, 68% 99.2%, 52% 97.8%, 36% 99.2%, 20% 97.7%, 1% 99%, 2% 82%, .7% 64%, 1.8% 47%, .6% 29%);
+        box-shadow: -5px 8px 0 rgba($charcoal, .12), 0 18px 38px rgba($shadow-brown, .12);
+
+        &::before {
+            width: 3.8rem;
+            background: $charcoal;
+            transform: rotate(var(--tape-rotate));
+        }
+
+        &::after {
+            color: rgba($charcoal, .32);
+        }
+    }
+
+    /* =====================================================
+       VARIANTE 3 — PAPEL BLANCO CUADRICULADO
+       ===================================================== */
+
+    &_card:nth-child(6n + 3) {
+        --card-paper: #{$paper-bright};
+        --card-accent: #{$orange-dark};
+        --card-rotate: -.2deg;
+        --card-shadow-x: 6px;
+        --card-shadow-y: 7px;
+        --tape-left: 72%;
+        --tape-rotate: 2deg;
+
+        background-color: $paper-bright;
+        background-image: linear-gradient(rgba($earth-gray, .08) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .08) 1px, transparent 1px), linear-gradient(145deg, rgba(255, 255, 255, .25), transparent 42%);
+        background-size: 22px 22px, 22px 22px, 100% 100%;
+        clip-path: polygon(1% 3%, 13% .6%, 26% 2.3%, 39% .4%, 52% 2%, 65% .7%, 78% 2.4%, 91% .5%, 99% 3%, 98.5% 20%, 99.4% 38%, 98.5% 56%, 99.3% 74%, 98.5% 97%, 84% 99%, 69% 97.4%, 53% 99%, 37% 97.5%, 21% 99%, 1% 97%, 1.6% 79%, .6% 61%, 1.5% 43%, .6% 24%);
+    }
+
+    /* =====================================================
+       VARIANTE 4 — PAPEL CREMA CON ESQUINA OSCURA
+       ===================================================== */
+
+    &_card:nth-child(6n + 4) {
+        --card-paper: #{$paper-light};
+        --card-accent: #{$orange-main};
+        --card-rotate: .35deg;
+        --card-shadow-x: 8px;
+        --card-shadow-y: 8px;
+        --tape-left: 22%;
+        --tape-rotate: -5deg;
+
+        clip-path: polygon(.8% 1.5%, 12% .6%, 24% 2%, 37% .5%, 50% 1.9%, 63% .6%, 76% 2.1%, 89% .6%, 99% 2%, 99% 78%, 91% 88%, 83% 99%, 68% 97.8%, 53% 99.1%, 38% 97.7%, 23% 99%, 8% 97.6%, 1% 99%, 1.4% 81%, .5% 63%, 1.3% 45%, .5% 27%);
+
+        &::after {
+            right: 1.5rem;
+            bottom: 1.15rem;
+            padding: .42rem .5rem;
+            border: 1px solid rgba($charcoal, .18);
+            background: rgba($paper-white, .48);
+            color: rgba($charcoal, .36);
+            transform: rotate(-2deg);
+        }
+    }
+
+    /* =====================================================
+       VARIANTE 5 — NOTA VERTICAL CON RESPALDO
+       ===================================================== */
+
+    &_card:nth-child(6n + 5) {
+        --card-paper: #{$paper-white};
+        --card-accent: #{$orange-light};
+        --card-rotate: -.35deg;
+        --card-shadow-x: -6px;
+        --card-shadow-y: 9px;
+        --tape-left: 50%;
+        --tape-rotate: 1deg;
+
+        border-left: 4px solid $orange-main;
+        clip-path: polygon(1% 2%, 17% .5%, 33% 2%, 49% .6%, 65% 2%, 81% .5%, 99% 2%, 98% 19%, 99.3% 37%, 98% 55%, 99% 73%, 98% 98%, 82% 99.2%, 66% 97.8%, 50% 99.2%, 34% 97.8%, 18% 99%, 1% 97.5%, 2% 80%, .7% 62%, 1.7% 44%, .7% 26%);
+        box-shadow: -6px 9px 0 rgba($orange-main, .14), 0 19px 40px rgba($shadow-brown, .1);
+    }
+
+    /* =====================================================
+       VARIANTE 6 — FICHA EDITORIAL SOBRIA
+       ===================================================== */
+
+    &_card:nth-child(6n) {
+        --card-paper: #{$paper-muted};
+        --card-accent: #{$charcoal};
+        --card-rotate: .18deg;
+        --card-shadow-x: 5px;
+        --card-shadow-y: 7px;
+        --tape-left: 78%;
+        --tape-rotate: 4deg;
+
+        border: 2px solid rgba($charcoal, .62);
+        background: linear-gradient(160deg, rgba(255, 255, 255, .15), transparent 44%), $paper-muted;
+        clip-path: polygon(1% 1%, 14% 2%, 28% .6%, 42% 2%, 57% .7%, 72% 2%, 86% .6%, 99% 2%, 98% 18%, 99% 36%, 98% 54%, 99% 72%, 98% 99%, 84% 97.8%, 69% 99.2%, 54% 97.7%, 39% 99%, 24% 97.8%, 1% 99%, 2% 81%, .7% 63%, 1.7% 45%, .7% 27%);
+
+        &::before {
+            background: $charcoal;
+        }
+    }
+
+    /* =====================================================
+       CABECERA DE LA OPINIÓN
+       ===================================================== */
+
     &_header {
         position: relative;
-        z-index: 1;
+        z-index: 2;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         gap: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px dashed rgba($shadow-brown, .23);
     }
 
     &_user {
@@ -134,49 +339,98 @@
         min-width: 0;
     }
 
+    /* =====================================================
+       AVATAR
+       ===================================================== */
+
     &_avatar {
-        flex-shrink: 0;
+        flex: 0 0 auto;
         overflow: hidden;
-        width: 60px;
-        height: 60px;
-        border: 1px solid rgba(v.$color-accent, .22);
-        border-radius: 16px;
-        background: rgba(255, 255, 255, .035);
-        box-shadow: 0 14px 34px rgba(0, 0, 0, .22);
+        width: 62px;
+        height: 62px;
+        border: 2px solid $charcoal;
+        border-radius: 50%;
+        background: $paper-bright;
+        box-shadow: 3px 4px 0 rgba($orange-main, .12), 0 9px 20px rgba($shadow-brown, .12);
+        transition: border-color .28s ease, box-shadow .28s ease, transform .28s ease;
+    }
+
+    &_card:nth-child(6n + 2) &_avatar,
+    &_card:nth-child(6n + 6) &_avatar {
+        border-radius: .2rem;
+        transform: rotate(-2deg);
+    }
+
+    &_card:nth-child(6n + 3) &_avatar {
+        border-radius: 40% 60% 46% 54% / 54% 42% 58% 46%;
+    }
+
+    &_card:nth-child(6n + 4) &_avatar {
+        border-radius: .18rem 50% 50% .18rem;
     }
 
     &_info {
         display: flex;
         flex-direction: column;
-        gap: .25rem;
+        gap: .28rem;
         min-width: 0;
     }
 
     &_h3 {
         margin: 0;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: 800;
+        overflow: hidden;
+        color: $charcoal;
+        font-family: $font-editorial;
+        font-size: 1.08rem;
+        font-weight: 700;
+        letter-spacing: -.02em;
         line-height: 1.2;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     &_span {
-        color: rgba(242, 239, 233, .58);
-        font-size: .84rem;
+        overflow: hidden;
+        color: rgba($charcoal, .58);
+        font-size: .83rem;
+        font-weight: 650;
+        line-height: 1.4;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
+    /* =====================================================
+       BOTÓN O ENLACE DEL CLIENTE
+       ===================================================== */
+
     &_btn {
+        @extend %link-reset;
+
+        position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         flex: 0 0 auto;
         width: 42px;
         height: 42px;
-        border: 1px solid rgba(255, 255, 255, .09);
-        border-radius: 13px;
-        background: rgba(255, 255, 255, .04);
-        color: v.$color-primary;
-        transition: transform .3s ease, color .3s ease, border-color .3s ease, background .3s ease;
+        border: 1px solid rgba($shadow-brown, .25);
+        border-radius: .18rem;
+        background: rgba($paper-white, .62);
+        color: var(--card-accent);
+        box-shadow: 2px 2px 0 rgba($shadow-brown, .08);
+        transition: transform .25s ease, color .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba($earth-gray, .4);
+            box-shadow: 5px 0 rgba($earth-gray, .25);
+        }
 
         svg {
             font-size: 1.15rem;
@@ -184,74 +438,207 @@
 
         &:hover,
         &:focus-visible {
-            transform: translateY(-2px) rotate(-2deg);
-            border-color: rgba(v.$color-primary, .32);
-            background: rgba(v.$color-primary, .10);
-            color: #fff;
+            transform: translateY(-3px) rotate(-2deg);
+            border-color: var(--card-accent);
+            background: var(--card-accent);
+            color: #fffaf1;
+            box-shadow: 3px 4px 0 rgba($shadow-brown, .12);
             outline: none;
         }
+
+        &:focus-visible {
+            outline: 3px solid color-mix(in srgb, var(--card-accent) 38%, transparent);
+            outline-offset: 4px;
+        }
     }
+
+    /* =====================================================
+       CUERPO Y OPINIÓN
+       ===================================================== */
 
     &_body {
         position: relative;
         z-index: 1;
         display: flex;
         flex: 1;
+        padding-bottom: 1.45rem;
     }
 
     &_parrafo {
         position: relative;
         margin: 0;
-        color: rgba(242, 239, 233, .76);
-        font-size: .96rem;
-        line-height: 1.82;
+        padding: .35rem 0 0 1.25rem;
+        border-left: 3px solid var(--card-accent);
+        color: rgba($charcoal, .76);
+        font-family: $font-editorial;
+        font-size: clamp(.98rem, 1.5vw, 1.06rem);
+        font-style: italic;
+        line-height: 1.78;
         text-wrap: pretty;
 
         &::before {
-            content: '"';
+            content: "“";
             position: absolute;
-            left: -8px;
-            top: -26px;
-            color: rgba(v.$color-accent, .18);
-            font-family: Georgia, serif;
+            top: -1.45rem;
+            left: .35rem;
+            color: color-mix(in srgb, var(--card-accent) 28%, transparent);
+            font-family: $font-editorial;
             font-size: 4.6rem;
+            font-style: normal;
             line-height: 1;
             pointer-events: none;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 3.5rem;
+            height: 2px;
+            margin-top: 1.1rem;
+            background: color-mix(in srgb, var(--card-accent) 55%, transparent);
+            transform: rotate(-1deg);
         }
     }
 }
 
+/* =========================================================
+   IMAGEN DEL AVATAR
+   ========================================================= */
+
 .avatar_img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(.16);
-    transition: transform .55s cubic-bezier(.16, 1, .3, 1), filter .35s ease;
+    filter: grayscale(.14) contrast(1.02);
+    transition: transform .5s cubic-bezier(.16, 1, .3, 1), filter .3s ease;
 }
 
-@keyframes glowFloat {
-    0%, 100% {
-        transform: translate3d(0, 0, 0) scale(1);
+/* =========================================================
+   RETRASOS DE APARICIÓN
+   ========================================================= */
+
+.clientes_card:nth-child(2) {
+    animation-delay: 70ms;
+}
+
+.clientes_card:nth-child(3) {
+    animation-delay: 140ms;
+}
+
+.clientes_card:nth-child(4) {
+    animation-delay: 210ms;
+}
+
+.clientes_card:nth-child(5) {
+    animation-delay: 280ms;
+}
+
+.clientes_card:nth-child(6) {
+    animation-delay: 350ms;
+}
+
+/* =========================================================
+   ESCRITORIO
+   ========================================================= */
+
+@media (min-width: 62rem) {
+    .clientes_card:nth-child(3n + 2) {
+        margin-top: 1rem;
     }
 
-    50% {
-        transform: translate3d(26px, -28px, 0) scale(1.04);
+    .clientes_card:nth-child(3n) {
+        margin-top: .35rem;
     }
 }
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 35.99rem) {
+    .clientes {
+        padding-inline: .8rem;
+
+        &_box_layout {
+            gap: 1.45rem;
+        }
+
+        &_card {
+            min-height: 0;
+            padding: 1.35rem 1.05rem;
+            filter: none;
+        }
+
+        &_header {
+            align-items: flex-start;
+        }
+
+        &_avatar {
+            width: 56px;
+            height: 56px;
+        }
+
+        &_h3,
+        &_span {
+            white-space: normal;
+        }
+
+        &_parrafo {
+            padding-left: 1rem;
+        }
+    }
+}
+
+/* =========================================================
+   CONTRASTE FORZADO
+   ========================================================= */
+
+@media (forced-colors: active) {
+    .clientes,
+    .clientes_card,
+    .clientes_avatar,
+    .clientes_btn {
+        border: 1px solid CanvasText;
+        background: Canvas;
+        color: CanvasText;
+        box-shadow: none;
+        filter: none;
+        clip-path: none;
+    }
+
+    .clientes::before,
+    .clientes::after,
+    .clientes_card::before,
+    .clientes_card::after,
+    .clientes_btn::before,
+    .clientes_parrafo::before,
+    .clientes_parrafo::after {
+        display: none;
+    }
+}
+
+/* =========================================================
+   ANIMACIÓN
+   ========================================================= */
 
 @keyframes cardReveal {
     from {
         opacity: 0;
-        transform: translateY(34px);
-        filter: blur(8px);
+        transform: translateY(30px) rotate(var(--card-rotate));
+        filter: blur(5px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) rotate(var(--card-rotate));
         filter: blur(0);
     }
 }
+
+/* =========================================================
+   MOVIMIENTO REDUCIDO
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
     .clientes,
@@ -259,7 +646,21 @@
     .clientes::before,
     .clientes::after {
         animation-duration: .01ms !important;
+        animation-delay: 0ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
+    }
+
+    .clientes_card {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .clientes_card:hover,
+    .clientes_card:focus-within,
+    .clientes_btn:hover,
+    .avatar_img {
+        transform: none;
     }
 }

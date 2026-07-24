@@ -28,17 +28,15 @@ export default function ContactoCanales({
     return (
         <aside
             className={`${style.contacto_sidebar} ${style.contacto_reveal} ${style.contacto_reveal_delay_two}`}
-            aria-label="Garantías y canales de contacto"
+            aria-label="Forma de trabajo y canales de contacto"
         >
             <div className={style.contacto_trust_panel}>
                 <span className={style.contacto_eyebrow}>
-                    Una solución pensada para tu negocio
+                    Una forma clara de trabajar
                 </span>
                 <h2>Más que una web visualmente atractiva</h2>
                 <p>
-                    Cada decisión de diseño y desarrollo busca que tu sitio
-                    sea fácil de usar, rápido y capaz de convertir visitas
-                    en consultas reales.
+                    Cada decisión de diseño y desarrollo busca que tu web sea clara, fácil de usar y adecuada al objetivo definido para el proyecto.
                 </p>
                 <ul className={style.contacto_trust_grid}>
                     {indicadores.map((indicador) => (
@@ -59,7 +57,7 @@ export default function ContactoCanales({
                         <h2>Elegí cómo conversar</h2>
                     </div>
                     <span className={style.contacto_availability}>
-                        Disponible para nuevos proyectos
+                        Trato directo con Pablo Chavez
                     </span>
                 </div>
 
@@ -89,9 +87,7 @@ export default function ContactoCanales({
                     ))}
                 </div>
 
-                <p className={style.contacto_response_note}>
-                    Sin mensajes automáticos ni propuestas genéricas.
-                </p>
+                <p className={style.contacto_response_note}>Podés contarme qué necesitás y revisar juntos cuál es el próximo paso.</p>
             </div>
         </aside>
     );

@@ -1,75 +1,177 @@
 @use '../base/variables.module.scss' as v;
 @use '../base/mixins.module.scss' as m;
 
+/* =========================================================
+   PERFIL — ESTÉTICA EDITORIAL Y COLLAGE
+   ========================================================= */
+
+$paper-main: #e1d0bb;
+$paper-light: #e4d4c0;
+$paper-bright: #f2e6d5;
+$paper-white: #f6efe5;
+$paper-muted: #ceb99f;
+
+$charcoal: #232322;
+$earth-gray: #5e5750;
+$shadow-brown: #4d423b;
+
+$orange-dark: #b54723;
+$orange-main: #c14d28;
+$orange-light: #d66538;
+
+$font-editorial: Georgia, 'Times New Roman', serif;
+
 .perfil {
     position: relative;
-    overflow: hidden;
-    padding: clamp(5rem, 9vw, 8rem) 1rem;
-    color: v.$color-crema;
     isolation: isolate;
+    overflow: hidden;
+    overflow: clip;
+    padding: clamp(5rem, 9vw, 8rem) 1rem;
+    color: $charcoal;
+    background: radial-gradient(circle at 8% 10%, rgba($orange-main, .08), transparent 25rem), radial-gradient(circle at 92% 52%, rgba($shadow-brown, .07), transparent 30rem), linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
 
-    // &::before {
-    //     content: "";
-    //     position: absolute;
-    //     inset: 0;
-    //     z-index: -1;
-    //     background:
-    //         radial-gradient(820px circle at 12% 10%, rgba(v.$color-accent, .10), transparent 62%),
-    //         radial-gradient(760px circle at 88% 86%, rgba(v.$color-primary, .11), transparent 62%),
-    //         linear-gradient(180deg, #0b0d11, #07080b);
-    //     pointer-events: none;
-    // }
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        opacity: .34;
+        background-image: linear-gradient(rgba($earth-gray, .1) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .1) 1px, transparent 1px), radial-gradient(circle, rgba($charcoal, .2) 1px, transparent 1.2px);
+        background-size: 56px 56px, 56px 56px, 21px 21px;
+        background-position: 7% 8%, 7% 8%, 95% 18%;
+        mask-image: linear-gradient(90deg, rgba(0, 0, 0, .62), transparent 34%, transparent 66%, rgba(0, 0, 0, .58));
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 17rem;
+        right: -16rem;
+        z-index: -1;
+        width: min(36rem, 78vw);
+        aspect-ratio: 1;
+        border: 1px solid rgba($earth-gray, .18);
+        border-radius: 50%;
+        box-shadow: -5rem 9rem 0 -4.95rem rgba($earth-gray, .15);
+        pointer-events: none;
+    }
 
     &_layout {
+        @include m.widTamaño;
+        @include m.container;
+
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
-        gap: clamp(4rem, 7vw, 6rem);
-        @include m.widTamaño;
+        gap: clamp(4.5rem, 8vw, 7rem);
         margin: 0 auto;
     }
 
+    /* =====================================================
+       CABECERA DEL PERFIL
+       ===================================================== */
+
     &_header {
+        position: relative;
+        isolation: isolate;
         display: grid;
-        gap: 2.2rem;
+        gap: clamp(2rem, 4vw, 3.4rem);
         align-items: center;
-        padding: clamp(1.2rem, 3vw, 2rem);
-        border: 1px solid rgba(255, 255, 255, .08);
-        border-radius: 22px;
-        background:
-            linear-gradient(150deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02)),
-            rgba(10, 12, 18, .76);
-        box-shadow:
-            0 26px 70px rgba(0, 0, 0, .34),
-            inset 0 1px 0 rgba(255, 255, 255, .08);
-        backdrop-filter: blur(16px) saturate(120%);
-        -webkit-backdrop-filter: blur(16px) saturate(120%);
-        animation: profileIn .74s cubic-bezier(.16, 1, .3, 1) both;
+        padding: clamp(1.6rem, 4vw, 3rem);
+        border: 1px solid rgba($shadow-brown, .2);
+        border-radius: .3rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, .25), transparent 38%), $paper-light;
+        clip-path: polygon(.7% 1.5%, 10% .5%, 20% 1.4%, 31% .4%, 42% 1.3%, 53% .4%, 64% 1.4%, 75% .5%, 87% 1.5%, 99.2% .6%, 99% 17%, 99.5% 34%, 99% 51%, 99.5% 68%, 99% 84%, 99.3% 98.5%, 88% 99.2%, 76% 98.2%, 64% 99.3%, 52% 98.2%, 40% 99.2%, 28% 98.1%, 16% 99.2%, .7% 98.4%, 1.2% 82%, .5% 65%, 1.1% 48%, .5% 31%, 1.1% 15%);
+        filter: drop-shadow(-.7rem .8rem 0 rgba($orange-main, .88)) drop-shadow(0 1.4rem 1.2rem rgba($shadow-brown, .18));
+        animation: profileIn .7s cubic-bezier(.16, 1, .3, 1) both;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 1.4rem;
+            right: 1.5rem;
+            z-index: -1;
+            width: 8rem;
+            height: 6rem;
+            opacity: .28;
+            pointer-events: none;
+            background-image: linear-gradient(rgba($earth-gray, .28) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .28) 1px, transparent 1px);
+            background-size: 15px 15px;
+            transform: rotate(2deg);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: clamp(1rem, 4vw, 3rem);
+            bottom: -.45rem;
+            z-index: -1;
+            width: clamp(4rem, 9vw, 7rem);
+            height: 1rem;
+            background: $charcoal;
+            clip-path: polygon(2% 15%, 16% 3%, 32% 12%, 49% 1%, 65% 13%, 81% 4%, 98% 15%, 94% 88%, 76% 96%, 57% 87%, 37% 98%, 18% 88%, 4% 96%);
+            opacity: .9;
+            transform: rotate(2deg);
+        }
 
         @include m.tablet {
-            grid-template-columns: 260px 1fr;
+            grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
         }
 
         &_box_imagen {
+            position: relative;
+            isolation: isolate;
             display: flex;
             justify-content: center;
+            padding: 1.3rem;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: -1;
+                width: min(250px, 82%);
+                aspect-ratio: 1;
+                background: $orange-main;
+                clip-path: polygon(2% 8%, 15% 2%, 29% 6%, 43% 1%, 58% 7%, 72% 2%, 87% 8%, 98% 3%, 96% 89%, 81% 96%, 66% 90%, 50% 98%, 34% 91%, 18% 97%, 3% 88%);
+                transform: translate(-50%, -50%) rotate(-5deg);
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: -2;
+                width: min(270px, 90%);
+                aspect-ratio: 1;
+                border: 1px solid rgba($earth-gray, .15);
+                background-color: rgba($paper-white, .8);
+                background-image: linear-gradient(rgba($earth-gray, .18) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .18) 1px, transparent 1px);
+                background-size: 17px 17px;
+                clip-path: polygon(3% 4%, 17% 1%, 32% 6%, 47% 2%, 63% 7%, 79% 1%, 97% 5%, 99% 92%, 83% 97%, 67% 92%, 51% 98%, 35% 93%, 19% 97%, 1% 91%);
+                transform: translate(-50%, -50%) rotate(4deg);
+            }
         }
 
         &_imagen_perfil {
-            width: 180px;
-            height: 180px;
-            border: 3px solid rgba(v.$color-accent, .28);
+            position: relative;
+            z-index: 1;
+            width: clamp(175px, 26vw, 220px);
+            height: clamp(175px, 26vw, 220px);
+            border: 3px solid $charcoal;
             border-radius: 50%;
+            background: $paper-bright;
             object-fit: cover;
-            box-shadow:
-                0 0 0 10px rgba(255, 255, 255, .025),
-                0 24px 70px rgba(6, 182, 212, .14);
-            transition: transform .4s cubic-bezier(.16, 1, .3, 1), box-shadow .4s ease;
+            box-shadow: 0 0 0 6px rgba($paper-bright, .75), 0 20px 45px rgba($shadow-brown, .24);
+            transition: transform .35s cubic-bezier(.16, 1, .3, 1), box-shadow .35s ease;
 
             &:hover {
-                transform: translateY(-5px) scale(1.025);
-                box-shadow:
-                    0 0 0 10px rgba(6, 182, 212, .055),
-                    0 30px 82px rgba(6, 182, 212, .20);
+                transform: translateY(-5px) rotate(-1deg) scale(1.02);
+                box-shadow: 0 0 0 6px rgba($paper-bright, .9), 0 28px 60px rgba($shadow-brown, .28);
             }
         }
 
@@ -77,7 +179,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.1rem;
+            gap: 1.15rem;
             text-align: center;
 
             @include m.tablet {
@@ -88,31 +190,65 @@
 
         &_span_tag {
             display: inline-flex;
+            align-items: center;
+            gap: .55rem;
             width: fit-content;
-            padding: .55rem .9rem;
-            border: 1px solid rgba(v.$color-accent, .22);
-            border-radius: 999px;
-            background: rgba(6, 182, 212, .075);
-            color: #dffaff;
-            font-size: .92rem;
+            padding: .5rem .75rem;
+            border: 1px solid rgba($shadow-brown, .2);
+            border-radius: .15rem;
+            background: rgba($paper-white, .75);
+            color: $orange-dark;
+            font-family: v.$font-display;
+            font-size: .78rem;
             font-weight: 850;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 rgba($orange-main, .13);
+            transform: rotate(-.5deg);
+
+            &::before {
+                content: "";
+                width: 7px;
+                aspect-ratio: 1;
+                flex: 0 0 auto;
+                background: $orange-main;
+                transform: rotate(45deg);
+            }
         }
 
         &_h1_nombre {
+            position: relative;
+            width: fit-content;
+            max-width: 12ch;
             margin: 0;
-            color: #fff;
-            font-size: clamp(2.5rem, 7vw, 5.5rem);
-            font-weight: 900;
-            line-height: .98;
+            color: $charcoal;
+            font-family: $font-editorial;
+            font-size: clamp(2.8rem, 7vw, 5.7rem);
+            font-weight: 700;
+            letter-spacing: -.055em;
+            line-height: .94;
             text-wrap: balance;
+
+            &::after {
+                content: "";
+                display: block;
+                width: min(7rem, 52%);
+                height: 4px;
+                margin-top: .8rem;
+                border-radius: 65% 35% 70% 30%;
+                background: $orange-main;
+                transform: rotate(-1deg);
+            }
         }
 
         &_p_descripcion {
             max-width: 720px;
             margin: 0;
-            color: rgba(242, 239, 233, .72);
-            font-size: clamp(1.08rem, 2.4vw, 1.32rem);
-            line-height: 1.85;
+            padding-left: 1rem;
+            border-left: 3px solid $orange-main;
+            color: rgba($charcoal, .72);
+            font-size: clamp(1.05rem, 2.3vw, 1.28rem);
+            line-height: 1.78;
             text-wrap: pretty;
         }
 
@@ -129,37 +265,55 @@
 
         &_btn {
             @extend %link-reset;
+
             display: inline-flex;
             align-items: center;
             gap: .65rem;
-            min-height: 2.9rem;
-            padding: .78rem 1rem;
-            border: 1px solid rgba(255, 255, 255, .09);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .04);
-            color: rgba(242, 239, 233, .78);
-            font-weight: 850;
-            transition: transform .28s ease, color .28s ease, border-color .28s ease, background .28s ease, box-shadow .28s ease;
+            min-height: 2.95rem;
+            padding: .8rem 1rem;
+            border: 1px solid rgba($shadow-brown, .25);
+            border-radius: .18rem;
+            background: rgba($paper-white, .7);
+            color: rgba($charcoal, .76);
+            font-family: v.$font-display;
+            font-size: .9rem;
+            font-weight: 800;
+            box-shadow: 3px 3px 0 rgba($shadow-brown, .09);
+            transition: transform .25s ease, color .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+
+            svg {
+                color: $orange-dark;
+            }
 
             &:hover,
             &:focus-visible {
                 transform: translateY(-3px);
-                border-color: rgba(v.$color-accent, .28);
-                background: rgba(6, 182, 212, .08);
-                color: #fff;
-                box-shadow: 0 14px 34px rgba(6, 182, 212, .09);
+                border-color: rgba($orange-main, .48);
+                background: $paper-white;
+                color: $charcoal;
+                box-shadow: 4px 5px 0 rgba($orange-main, .13);
                 outline: none;
+            }
+
+            &:focus-visible {
+                outline: 3px solid rgba($orange-main, .35);
+                outline-offset: 3px;
             }
         }
     }
+
+    /* =====================================================
+       SECCIONES GENERALES
+       ===================================================== */
 
     &_historia,
     &_tecnologias,
     &_filosofia,
     &_redes {
+        position: relative;
         display: flex;
         flex-direction: column;
-        gap: 1.35rem;
+        gap: 1.45rem;
     }
 
     &_historia_h2,
@@ -167,12 +321,21 @@
     &_filosofia_h2,
     &_redes_h2,
     &_contacto_h2 {
+        position: relative;
+        width: fit-content;
+        max-width: 18ch;
         margin: 0;
-        color: #fff;
-        font-size: clamp(1.9rem, 4vw, 3.2rem);
-        font-weight: 850;
-        line-height: 1.08;
+        padding: .6rem .85rem;
+        color: $charcoal;
+        background: rgba($paper-white, .82);
+        font-family: $font-editorial;
+        font-size: clamp(2rem, 4.4vw, 3.3rem);
+        font-weight: 700;
+        letter-spacing: -.045em;
+        line-height: 1.05;
         text-wrap: balance;
+        clip-path: polygon(1% 4%, 13% 1%, 26% 3%, 40% .5%, 54% 3%, 68% 1%, 82% 3.5%, 99% 1%, 98.5% 95%, 84% 98%, 68% 96%, 52% 99%, 36% 96%, 19% 98%, 1% 95%);
+        filter: drop-shadow(-.4rem .45rem 0 rgba($orange-main, .78)) drop-shadow(0 .55rem .5rem rgba($shadow-brown, .12));
     }
 
     &_historia_p,
@@ -180,11 +343,43 @@
     &_contacto_p {
         max-width: 870px;
         margin: 0;
-        color: rgba(242, 239, 233, .72);
-        font-size: clamp(1.04rem, 2.2vw, 1.2rem);
-        line-height: 1.9;
+        padding-left: 1rem;
+        border-left: 3px solid $orange-main;
+        color: rgba($charcoal, .7);
+        font-size: clamp(1.04rem, 2.1vw, 1.19rem);
+        line-height: 1.85;
         text-wrap: pretty;
     }
+
+    /* =====================================================
+       HISTORIA Y FILOSOFÍA
+       ===================================================== */
+
+    &_historia,
+    &_filosofia {
+        padding: clamp(1.4rem, 3vw, 2rem);
+        border: 1px solid rgba($shadow-brown, .16);
+        border-radius: .22rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, .18), transparent 42%), rgba($paper-light, .62);
+        box-shadow: 5px 6px 0 rgba($shadow-brown, .07);
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: -.35rem;
+            right: clamp(1rem, 5vw, 4rem);
+            width: 3.5rem;
+            height: .8rem;
+            background: $orange-main;
+            clip-path: polygon(2% 16%, 15% 2%, 31% 13%, 48% 1%, 65% 12%, 82% 3%, 98% 15%, 94% 88%, 75% 96%, 55% 87%, 35% 98%, 16% 88%, 4% 96%);
+            opacity: .76;
+            transform: rotate(-2deg);
+        }
+    }
+
+    /* =====================================================
+       TECNOLOGÍAS Y REDES
+       ===================================================== */
 
     &_tecnologias_layout,
     &_redes_layout {
@@ -195,31 +390,77 @@
 
     &_tecnologias_item,
     &_redes_item {
-        border: 1px solid rgba(255, 255, 255, .08);
-        border-radius: 999px;
-        background: rgba(255, 255, 255, .04);
-        color: #fff;
-        transition: transform .28s ease, border-color .28s ease, background .28s ease, box-shadow .28s ease;
+        border: 1px solid rgba($shadow-brown, .2);
+        border-radius: .18rem;
+        background: rgba($paper-white, .68);
+        color: $charcoal;
+        box-shadow: 3px 3px 0 rgba($shadow-brown, .08);
+        transition: transform .25s ease, border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+
+        &:nth-child(3n + 1) {
+            transform: rotate(-.35deg);
+        }
+
+        &:nth-child(3n + 2) {
+            transform: rotate(.3deg);
+        }
 
         &:hover,
         &:focus-visible {
-            transform: translateY(-3px);
-            border-color: rgba(v.$color-accent, .24);
-            background: rgba(6, 182, 212, .07);
-            box-shadow: 0 12px 30px rgba(6, 182, 212, .08);
+            transform: translateY(-3px) rotate(0);
+            border-color: rgba($orange-main, .46);
+            background: $paper-white;
+            box-shadow: 4px 5px 0 rgba($orange-main, .12);
             outline: none;
         }
     }
 
     &_tecnologias_item {
-        padding: .82rem 1.1rem;
+        position: relative;
+        padding: .82rem 1.1rem .82rem 2rem;
+        font-family: v.$font-display;
         font-weight: 800;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: .9rem;
+            width: 6px;
+            aspect-ratio: 1;
+            background: $orange-main;
+            transform: translateY(-50%) rotate(45deg);
+        }
     }
+
+    &_redes_item {
+        @extend %link-reset;
+
+        display: inline-flex;
+        align-items: center;
+        gap: .65rem;
+        padding: .82rem 1.1rem;
+        font-family: v.$font-display;
+        font-weight: 800;
+
+        svg {
+            color: $orange-dark;
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba($orange-main, .35);
+            outline-offset: 3px;
+        }
+    }
+
+    /* =====================================================
+       MÉTRICAS
+       ===================================================== */
 
     &_metricas_layout {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: .9rem;
+        gap: .95rem;
 
         @include m.tablet {
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -227,117 +468,288 @@
     }
 
     &_metricas_box {
-        display: flex;
-        flex-direction: column;
-        gap: .55rem;
-        min-height: 150px;
-        padding: 1.4rem .95rem;
-        border: 1px solid rgba(255, 255, 255, .08);
-        border-radius: 18px;
-        background:
-            linear-gradient(150deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .02)),
-            rgba(10, 12, 18, .72);
-        text-align: center;
-        box-shadow: 0 20px 54px rgba(0, 0, 0, .26);
-        transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-
-        &:hover {
-            transform: translateY(-6px);
-            border-color: rgba(v.$color-accent, .22);
-            box-shadow: 0 28px 68px rgba(0, 0, 0, .34), 0 0 40px rgba(v.$color-accent, .08);
-        }
-    }
-
-    &_metricas_numero {
-        color: v.$color-accent;
-        font-size: clamp(2rem, 4vw, 2.8rem);
-        font-weight: 900;
-        line-height: 1;
-    }
-
-    &_metricas_texto {
-        color: rgba(242, 239, 233, .66);
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1.45;
-    }
-
-    &_redes_item {
-        @extend %link-reset;
-        display: inline-flex;
-        align-items: center;
-        gap: .65rem;
-        padding: .82rem 1.1rem;
-        font-weight: 800;
-    }
-
-    &_contacto {
         position: relative;
-        overflow: hidden;
+        isolation: isolate;
         display: flex;
         flex-direction: column;
-        gap: 1.25rem;
-        padding: clamp(1.5rem, 4vw, 2.6rem);
-        border: 1px solid rgba(v.$color-accent, .18);
-        border-radius: 22px;
-        background:
-            linear-gradient(135deg, rgba(6, 182, 212, .10), rgba(192, 132, 252, .07)),
-            rgba(10, 12, 18, .78);
-        box-shadow: 0 28px 78px rgba(0, 0, 0, .34);
+        justify-content: center;
+        gap: .55rem;
+        min-height: 155px;
+        padding: 1.4rem .95rem;
+        border: 1px solid rgba($shadow-brown, .19);
+        border-radius: .22rem;
+        background: linear-gradient(145deg, rgba(255, 255, 255, .22), transparent 38%), rgba($paper-white, .77);
+        text-align: center;
+        box-shadow: 5px 6px 0 rgba($shadow-brown, .08), 0 15px 30px rgba($shadow-brown, .07);
+        transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease;
 
         &::before {
             content: "";
             position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
-            transform: translateX(-110%) skewX(-18deg);
-            animation: ctaShine 8s ease-in-out infinite;
+            top: .65rem;
+            left: .65rem;
+            z-index: -1;
+            width: 2.4rem;
+            height: 2.4rem;
+            opacity: .26;
+            background-image: linear-gradient(rgba($earth-gray, .38) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .38) 1px, transparent 1px);
+            background-size: 8px 8px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: .8rem;
+            bottom: .7rem;
+            width: 1.7rem;
+            height: .5rem;
+            background: $orange-main;
+            clip-path: polygon(2% 15%, 18% 2%, 38% 13%, 59% 1%, 79% 12%, 98% 3%, 94% 86%, 70% 96%, 46% 87%, 22% 98%, 4% 84%);
+            opacity: .65;
+            transform: rotate(-2deg);
+        }
+
+        &:hover {
+            transform: translateY(-6px) rotate(-.2deg);
+            border-color: rgba($orange-main, .42);
+            box-shadow: 7px 9px 0 rgba($orange-main, .12), 0 22px 42px rgba($shadow-brown, .12);
+        }
+    }
+
+    &_metricas_numero {
+        color: $orange-dark;
+        font-family: $font-editorial;
+        font-size: clamp(2.2rem, 4.5vw, 3.1rem);
+        font-weight: 700;
+        letter-spacing: -.04em;
+        line-height: 1;
+    }
+
+    &_metricas_texto {
+        color: rgba($charcoal, .67);
+        font-size: .98rem;
+        font-weight: 700;
+        line-height: 1.42;
+    }
+
+    /* =====================================================
+       CONTACTO FINAL
+       ===================================================== */
+
+    &_contacto {
+        position: relative;
+        isolation: isolate;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        gap: 1.3rem;
+        padding: clamp(1.8rem, 4vw, 3rem);
+        border: 1px solid rgba($shadow-brown, .21);
+        border-radius: .25rem;
+        background: linear-gradient(125deg, rgba(255, 255, 255, .25), transparent 35%), $paper-light;
+        clip-path: polygon(.7% 2%, 10% .6%, 21% 1.6%, 32% .5%, 43% 1.5%, 54% .4%, 65% 1.5%, 76% .5%, 87% 1.5%, 99.3% .7%, 99% 18%, 99.5% 35%, 99% 52%, 99.5% 69%, 99% 85%, 99.3% 98%, 88% 99.2%, 76% 98.1%, 64% 99.2%, 52% 98.1%, 40% 99.2%, 28% 98.1%, 16% 99.2%, .7% 98.4%, 1.2% 82%, .5% 65%, 1.1% 48%, .5% 31%, 1.1% 15%);
+        filter: drop-shadow(-.65rem .75rem 0 rgba($orange-main, .86)) drop-shadow(0 1.3rem 1.1rem rgba($shadow-brown, .17));
+
+        &::before {
+            content: "";
+            position: absolute;
+            right: 1.2rem;
+            bottom: 1rem;
+            z-index: -1;
+            width: 7rem;
+            height: 5rem;
+            opacity: .27;
             pointer-events: none;
+            background-image: linear-gradient(rgba($earth-gray, .27) 1px, transparent 1px), linear-gradient(90deg, rgba($earth-gray, .27) 1px, transparent 1px);
+            background-size: 14px 14px;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: -.5rem;
+            right: clamp(1rem, 5vw, 4rem);
+            z-index: -1;
+            width: clamp(4rem, 9vw, 7rem);
+            height: 1rem;
+            background: $orange-main;
+            clip-path: polygon(2% 15%, 15% 2%, 31% 12%, 47% 1%, 64% 13%, 81% 3%, 98% 14%, 94% 88%, 76% 96%, 57% 87%, 37% 98%, 18% 88%, 4% 96%);
+            transform: rotate(-2deg);
         }
 
         &_btn {
             @extend %link-reset;
+
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: fit-content;
             min-height: 3.2rem;
             padding: .92rem 1.45rem;
-            border: 1px solid rgba(v.$color-accent, .36);
-            border-radius: 999px;
-            background: linear-gradient(135deg, #effcff, #67e8f9 35%, v.$color-accent 78%);
-            color: #071015;
+            border: 1px solid $orange-dark;
+            border-radius: .2rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .09), transparent), $orange-main;
+            color: #fffaf1;
+            font-family: v.$font-display;
             font-weight: 900;
-            box-shadow: 0 20px 48px rgba(6, 182, 212, .20);
-            transition: transform .3s cubic-bezier(.16, 1, .3, 1), box-shadow .3s ease;
+            box-shadow: 0 7px 0 $orange-dark, 0 16px 27px rgba($shadow-brown, .17);
+            transition: transform .28s cubic-bezier(.16, 1, .3, 1), background-color .28s ease, box-shadow .28s ease;
 
             &:hover,
             &:focus-visible {
                 transform: translateY(-4px);
-                box-shadow: 0 28px 62px rgba(6, 182, 212, .30);
+                background-color: $orange-light;
+                box-shadow: 0 10px 0 $orange-dark, 0 23px 38px rgba($shadow-brown, .21);
                 outline: none;
+            }
+
+            &:active {
+                transform: translateY(2px);
+                box-shadow: 0 3px 0 $orange-dark, 0 9px 18px rgba($shadow-brown, .14);
+            }
+
+            &:focus-visible {
+                outline: 3px solid rgba($orange-main, .36);
+                outline-offset: 4px;
             }
         }
     }
 
+    /* =====================================================
+       TEXTOS DESTACADOS
+       ===================================================== */
+
     .destacadoPrimary {
-        color: v.$color-accent;
+        color: $orange-dark;
         font-weight: 850;
-        text-shadow: 0 0 18px rgba(6, 182, 212, .16);
+        text-decoration: underline;
+        text-decoration-color: rgba($orange-main, .66);
+        text-decoration-thickness: 3px;
+        text-underline-offset: .17em;
     }
 
     .destacadoDorado {
-        color: #f3d9aa;
+        color: $shadow-brown;
         font-weight: 850;
-        text-shadow: 0 0 18px rgba(245, 166, 35, .16);
+        background: linear-gradient(transparent 62%, rgba($orange-light, .22) 62%);
     }
 }
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 35.99rem) {
+    .perfil {
+        padding-inline: .8rem;
+
+        &_header {
+            padding: 1.5rem 1rem;
+            filter: drop-shadow(-.35rem .5rem 0 rgba($orange-main, .84)) drop-shadow(0 1rem .9rem rgba($shadow-brown, .15));
+
+            &_box_imagen {
+                padding: 1rem;
+            }
+
+            &_btn_layout,
+            &_btn {
+                width: 100%;
+            }
+
+            &_btn {
+                justify-content: center;
+            }
+        }
+
+        &_historia_h2,
+        &_tecnologias_h2,
+        &_filosofia_h2,
+        &_redes_h2,
+        &_contacto_h2 {
+            max-width: none;
+            filter: drop-shadow(-.28rem .35rem 0 rgba($orange-main, .76)) drop-shadow(0 .45rem .4rem rgba($shadow-brown, .11));
+        }
+
+        &_metricas_layout {
+            grid-template-columns: 1fr;
+        }
+
+        &_contacto {
+            padding: 1.7rem 1.1rem 1.9rem;
+            filter: drop-shadow(-.35rem .5rem 0 rgba($orange-main, .82)) drop-shadow(0 1rem .9rem rgba($shadow-brown, .14));
+
+            &_btn {
+                width: 100%;
+            }
+        }
+    }
+}
+
+/* =========================================================
+   ESCRITORIO
+   ========================================================= */
+
+@media (min-width: 62rem) {
+    .perfil {
+        &_historia,
+        &_filosofia {
+            padding: clamp(1.8rem, 3vw, 2.5rem);
+        }
+
+        &_tecnologias_item:nth-child(even),
+        &_redes_item:nth-child(even) {
+            transform: rotate(.3deg);
+        }
+    }
+}
+
+/* =========================================================
+   CONTRASTE FORZADO
+   ========================================================= */
+
+@media (forced-colors: active) {
+    .perfil,
+    .perfil_header,
+    .perfil_historia,
+    .perfil_filosofia,
+    .perfil_tecnologias_item,
+    .perfil_redes_item,
+    .perfil_metricas_box,
+    .perfil_contacto,
+    .perfil_header_btn,
+    .perfil_contacto_btn {
+        border: 1px solid CanvasText;
+        background: Canvas;
+        color: CanvasText;
+        box-shadow: none;
+        filter: none;
+    }
+
+    .perfil::before,
+    .perfil::after,
+    .perfil_header::before,
+    .perfil_header::after,
+    .perfil_header_box_imagen::before,
+    .perfil_header_box_imagen::after,
+    .perfil_historia::after,
+    .perfil_filosofia::after,
+    .perfil_metricas_box::before,
+    .perfil_metricas_box::after,
+    .perfil_contacto::before,
+    .perfil_contacto::after {
+        display: none;
+    }
+}
+
+/* =========================================================
+   ANIMACIÓN DE ENTRADA
+   ========================================================= */
 
 @keyframes profileIn {
     from {
         opacity: 0;
-        transform: translateY(34px);
-        filter: blur(8px);
+        transform: translateY(26px);
+        filter: blur(5px);
     }
 
     to {
@@ -347,22 +759,27 @@
     }
 }
 
-@keyframes ctaShine {
-    0%, 38% {
-        transform: translateX(-110%) skewX(-18deg);
-    }
-
-    58%, 100% {
-        transform: translateX(110%) skewX(-18deg);
-    }
-}
+/* =========================================================
+   MOVIMIENTO REDUCIDO
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
     .perfil,
     .perfil *,
-    .perfil::before {
+    .perfil::before,
+    .perfil::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: .01ms !important;
+    }
+
+    .perfil_header_imagen_perfil:hover,
+    .perfil_header_btn:hover,
+    .perfil_tecnologias_item:hover,
+    .perfil_redes_item:hover,
+    .perfil_metricas_box:hover,
+    .perfil_contacto_btn:hover,
+    .perfil_contacto_btn:active {
+        transform: none;
     }
 }
