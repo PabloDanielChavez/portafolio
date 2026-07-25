@@ -116,6 +116,11 @@ $font-editorial: Georgia, 'Times New Roman', serif;
     color: $charcoal;
     background: radial-gradient(circle at 8% 7%, rgba($orange-main, .09), transparent 27rem), radial-gradient(circle at 92% 42%, rgba($shadow-brown, .07), transparent 32rem), linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
 
+    @media (max-width: 61.99rem) {
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto 1300px;
+    }
+
     &::before {
         content: "";
         position: absolute;
@@ -639,11 +644,6 @@ $font-editorial: Georgia, 'Times New Roman', serif;
 .view {
     opacity: 1;
     transform: translateY(0);
-}
-
-.trabajos_card_animada,
-.trabajos_card_resumen_animada {
-    animation: slideUpFade .55s cubic-bezier(.16, 1, .3, 1);
 }
 
 .oculto {
@@ -1996,11 +1996,6 @@ $font-editorial: Georgia, 'Times New Roman', serif;
     .trabajos_card_resumen {
         opacity: 1;
         transform: none;
-    }
-
-    .trabajos_card_animada,
-    .trabajos_card_resumen_animada {
-        animation: none;
     }
 
     .trabajos_card:hover,

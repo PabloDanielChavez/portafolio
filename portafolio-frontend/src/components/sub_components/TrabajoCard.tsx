@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { getTrabajoCommercialContent } from "@/content/trabajos-commercial.content";
 import styles from "@/styles/sections/trabajos.module.scss";
 import type { TrabajosType } from "@/types/trabajos";
 
-import { ContadorAnimadoAuditoria } from "./ContadorAnimado";
 import { trackEvent } from "../utils/Analytics";
 
 import {
@@ -20,6 +19,12 @@ import {
     type AuditoriaDispositivo
 } from "../utils/trabajos.helpers";
 import Image from "next/image";
+
+const ContadorAnimadoAuditoria = dynamic(
+    () => import("./ContadorAnimado").then(
+        (module) => module.ContadorAnimadoAuditoria
+    )
+);
 
 type TrabajoCardProps = {
     trabajo: TrabajosType;
@@ -36,8 +41,6 @@ export default function TrabajoCard({
     modoResumen = false,
     headingLevel
 }: TrabajoCardProps) {
-    const [debeAnimarse, establecerDebeAnimarse] = useState(false);
-    const cardRef = useRef<HTMLElement>(null);
     const Heading = headingLevel;
 
     const metricas = getMetricasAuditoria(trabajo, dispositivo);
@@ -47,28 +50,6 @@ export default function TrabajoCard({
     const imagenUrl = getImagenTrabajo(trabajo);
     const destacado = esTrabajoDestacado(trabajo);
     const commercialContent = getTrabajoCommercialContent(trabajo);
-
-    useEffect(() => {
-        const currentCard = cardRef.current;
-
-        if (!currentCard || typeof IntersectionObserver === "undefined") return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    establecerDebeAnimarse(true);
-                    observer.disconnect();
-                }
-            },
-            {
-                threshold: 0.2
-            }
-        );
-
-        observer.observe(currentCard);
-
-        return () => observer.disconnect();
-    }, []);
 
     const handleClickTrabajo = () => {
         trackEvent("click_trabajo", {
@@ -82,11 +63,9 @@ export default function TrabajoCard({
     if (modoResumen) {
         return (
             <article
-                ref={cardRef}
                 className={`${styles.trabajos_card_resumen} ${
                     index === 0 ? styles.trabajos_card_principal : ""
-                } ${debeAnimarse ? styles.trabajos_card_resumen_animada : ""}`}
-                style={{ transitionDelay: `${index * 90}ms` }}
+                }`}
             >
                 <Link
                     href={`/trabajos/${trabajo.slug}`}
@@ -99,7 +78,6 @@ export default function TrabajoCard({
                         src={imagenUrl}
                         alt={`Vista previa del proyecto ${commercialContent.displayName}`}
                         fill
-                        priority={index === 0}
                         sizes={index === 0
                             ? "(min-width: 974px) 1180px, 100vw"
                             : "(min-width: 974px) 33vw, (min-width: 696px) 50vw, 100vw"}
@@ -136,15 +114,11 @@ export default function TrabajoCard({
 
     return (
         <article
-            ref={cardRef}
-                className={`${styles.trabajos_card} ${
-                    debeAnimarse ? styles.trabajos_card_animada : ""
-                } ${destacado ? styles.trabajos_card_destacado : ""} ${
+            className={`${styles.trabajos_card} ${
+                destacado ? styles.trabajos_card_destacado : ""
+            } ${
                     index === 0 ? styles.trabajos_card_evidencia_principal : ""
                 }`}
-            style={{
-                transitionDelay: `${index * 120}ms`
-            }}
         >
             <Link
                 href={`/trabajos/${trabajo.slug}`}

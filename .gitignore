@@ -94,7 +94,7 @@ temp/
 # ==================================================
 documentacion/
 documentos/
-docs/
+/docs/
 .local-backups/
 AGENTS.md
 .gitignore

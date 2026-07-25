@@ -5,6 +5,45 @@ import type { TrabajosType } from "@/types/trabajos";
 
 const urlBase = process.env.NEXT_PUBLIC_API_URL;
 
+async function getPortfolioEndpoints(endpoints: string[]) {
+  return Promise.all(
+    endpoints.map(endpoint =>
+      fetch(`${urlBase}${endpoint}`, {
+        next: { revalidate: 3600 }
+      })
+        .then(res => res.ok ? res.json() : [])
+        .catch(() => [])
+    )
+  );
+}
+
+export async function getHomePortfolioData() {
+  if (!urlBase) {
+    console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
+    return null;
+  }
+
+  try {
+    const [Perfil, Servicios, Trabajos, Clientes] =
+      await getPortfolioEndpoints([
+        "perfil",
+        "servicios",
+        "trabajos",
+        "clientes"
+      ]);
+
+    return {
+      Perfil,
+      Servicios,
+      Trabajos,
+      Clientes
+    };
+  } catch (error) {
+    console.error("Error crítico al obtener datos de Inicio:", error);
+    return null;
+  }
+}
+
 export async function getAllPortfolioData() {
   if (!urlBase) {
     console.error("ERROR: NEXT_PUBLIC_API_URL no está definida.");
@@ -14,15 +53,7 @@ export async function getAllPortfolioData() {
   const endpoints = ['perfil', 'habilidades', 'experiencia', 'exp_desafio', 'exp_tecnologia', 'servicios', 'trabajos', 'tra_tecnologia', 'clientes', 'seccion'];
 
   try {
-    const promesas = endpoints.map(endpoint => 
-      fetch(`${urlBase}${endpoint}`, { 
-          next: { revalidate: 3600 }
-        })
-        .then(res => res.ok ? res.json() : [])
-        .catch(() => []) 
-    );
-
-    const resultados = await Promise.all(promesas);
+    const resultados = await getPortfolioEndpoints(endpoints);
 
     return {
       Perfil: resultados[0],

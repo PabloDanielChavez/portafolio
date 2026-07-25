@@ -20,6 +20,14 @@ $orange-light: #d66538;
 
 $font-editorial: Georgia, 'Times New Roman', serif;
 
+@media (max-width: 61.99rem) {
+    .process,
+    .cta {
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto 760px;
+    }
+}
+
 /* =========================================================
    FRANJA DE CONFIANZA
    ========================================================= */

@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
 import { FinalCta, Proceso, TrustBar } from "@/components/sections/HomeSections";
 import { createPageMetadata, siteConfig } from "@/config/site";
-import { getAllPortfolioData } from "@/services/fetchData";
+import { getHomePortfolioData } from "@/services/fetchData";
 
 const Servicios = dynamic(() => import("@/components/sections/Servicios"));
 const Planes = dynamic(() => import("@/components/sections/Planes"));
@@ -18,7 +18,7 @@ export const metadata = createPageMetadata({
 });
 
 export default async function Home() {
-    const data = await getAllPortfolioData();
+    const data = await getHomePortfolioData();
 
     if (!data) {
         return <p>No se pudo cargar el contenido. Intentá nuevamente en unos minutos.</p>;
