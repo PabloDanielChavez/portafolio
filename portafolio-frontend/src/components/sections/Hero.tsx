@@ -35,12 +35,12 @@ export default function Hero({ perfil }: Props) {
                             target={whatsapp ? "_blank" : undefined}
                             rel={whatsapp ? "noopener noreferrer" : undefined}
                         >
-                            <FaWhatsapp aria-hidden="true" />
+                            {/* <FaWhatsapp aria-hidden="true" /> */}
                             {heroContent.actions.primary}
                         </Link>
                         <Link href="/trabajos" className={styles.hero_secondary}>
                             {heroContent.actions.secondary}
-                            <FaArrowRight aria-hidden="true" />
+                            {/* <FaArrowRight aria-hidden="true" /> */}
                         </Link>
                     </div>
                     <p className={styles.hero_note}>
