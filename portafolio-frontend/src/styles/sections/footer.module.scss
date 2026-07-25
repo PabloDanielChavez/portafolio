@@ -65,6 +65,11 @@ $font-editorial: Georgia, 'Times New Roman', serif;
     position: relative;
     z-index: 1;
     display: grid;
+    grid-template-areas:
+        "marca"
+        "navegacion"
+        "social"
+        "copia";
     grid-template-columns: 1fr;
     gap: 1.8rem;
     align-items: center;
@@ -76,9 +81,9 @@ $font-editorial: Georgia, 'Times New Roman', serif;
         top: 2rem;
         right: 1rem;
         z-index: -1;
-        width: 7rem;
-        height: 5rem;
-        opacity: .2;
+        width: 5.5rem;
+        height: 4rem;
+        opacity: .12;
         pointer-events: none;
         background-image: linear-gradient(rgba($paper-main, .3) 1px, transparent 1px), linear-gradient(90deg, rgba($paper-main, .3) 1px, transparent 1px);
         background-size: 14px 14px;
@@ -96,6 +101,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    ========================================================= */
 
 .footer_brand {
+    grid-area: marca;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -198,6 +204,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    ========================================================= */
 
 .footer_nav {
+    grid-area: navegacion;
     display: flex;
     flex-wrap: wrap;
     gap: .45rem .65rem;
@@ -262,6 +269,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    ========================================================= */
 
 .footer_social {
+    grid-area: social;
     display: flex;
     flex-wrap: wrap;
     gap: .6rem;
@@ -321,6 +329,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
 .footer_copy {
     position: relative;
     grid-column: 1 / -1;
+    grid-area: copia;
     margin: .15rem 0 0;
     padding-top: 1.35rem;
     border-top: 1px dashed rgba($paper-main, .15);
@@ -388,8 +397,11 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    ========================================================= */
 
 @include m.tablet {
-    .footer_brand {
-        grid-row: span 2;
+    .footer_layout {
+        grid-template-areas:
+            "marca navegacion"
+            "marca social"
+            "copia copia";
     }
 
     .footer_nav {

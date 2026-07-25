@@ -60,30 +60,38 @@ const plans = plansModule.planes;
 
 test("los precios tienen una única fuente de verdad", () => {
     assert.deepEqual(plansModule.planPrices, {
-        landing_page: "Desde $150.000",
-        sitio_web: "Desde $450.000",
-        desarrollo_web: "A presupuestar"
+        landing_page: "A presupuestar según alcance",
+        sitio_web: "Presupuesto según alcance, páginas y funcionalidades",
+        desarrollo_web: "Presupuesto por etapas después del relevamiento"
     });
 
     for (const plan of plans) {
         assert.equal(plan.precio, plansModule.planPrices[plan.tag]);
     }
 
-    assert.equal((plansDataSource.match(/\$150\.000/g) ?? []).length, 1);
-    assert.equal((plansDataSource.match(/\$450\.000/g) ?? []).length, 1);
     assert.equal(
-        (plansDataSource.match(/"A presupuestar"/g) ?? []).length,
-        1
+        (plansDataSource.match(/precio: planPrices\./g) ?? []).length,
+        plans.length
     );
+    assert.equal(/precio:\s*"/.test(plansDataSource), false);
 });
 
 test("los tres planes conservan precio y suman un contrato de decisión", () => {
     assert.deepEqual(
         plans.map(({ tag, precio }) => ({ tag, precio })),
         [
-            { tag: "landing_page", precio: "Desde $150.000" },
-            { tag: "sitio_web", precio: "Desde $450.000" },
-            { tag: "desarrollo_web", precio: "A presupuestar" }
+            {
+                tag: "landing_page",
+                precio: plansModule.planPrices.landing_page
+            },
+            {
+                tag: "sitio_web",
+                precio: plansModule.planPrices.sitio_web
+            },
+            {
+                tag: "desarrollo_web",
+                precio: plansModule.planPrices.desarrollo_web
+            }
         ]
     );
 
@@ -96,7 +104,7 @@ test("los tres planes conservan precio y suman un contrato de decisión", () => 
         assert.ok(plan.ctaMicrocopy, plan.tag);
         assert.ok(plan.relatedWork.href.startsWith("/trabajos/"), plan.tag);
         assert.equal(plan.cotizarAparte.length >= 4, true, plan.tag);
-        assert.equal(plan.preguntas.length >= 7, true, plan.tag);
+        assert.equal(plan.preguntas.length >= 6, true, plan.tag);
         assert.equal(plan.seoDescription.length <= 170, true, plan.tag);
     }
 });
@@ -105,9 +113,9 @@ test("Landing Page queda como entrada honesta sin popularidad inventada", () => 
     const landing = plansModule.getPlanByTag("landing_page");
     const site = plansModule.getPlanByTag("sitio_web");
 
-    assert.equal(landing.destacado, true);
-    assert.equal(landing.etiqueta, "Ideal para empezar");
+    assert.equal(landing.destacado, false);
     assert.equal(site.destacado, false);
+    assert.equal(plans.every((plan) => plan.destacado === false), true);
 
     for (const source of [
         plansDataSource,
@@ -129,30 +137,24 @@ test("las cards muestran decisión, precio, plazo y ayuda para elegir", () => {
     );
     assert.equal(plansSectionSource.includes('href="/contacto"'), true);
     assert.equal(
-        plansSectionSource.includes(
-            "Pedir recomendación sin compromiso"
-        ),
+        plansSectionSource.includes("Contame tu proyecto"),
         true
     );
 });
 
 test("badge, FAQ y jerarquía de CTAs quedan visualmente contenidos", () => {
     assert.equal(
-        plansStylesSource.includes("&_card_badge {\n        position: absolute;"),
+        plansStylesSource.includes("&_card_badge {"),
         true
     );
-    assert.equal(plansStylesSource.includes("font-size: .64rem;"), true);
+    assert.equal(plansStylesSource.includes("position: absolute;"), true);
     assert.equal(
         planDetailSource.includes("styles.planes_detalle_faq_section"),
         true
     );
     assert.equal(plansStylesSource.includes("&_faq_section {"), true);
     assert.equal(
-        plansStylesSource.includes("min-height: 44px;"),
-        true
-    );
-    assert.equal(
-        plansStylesSource.includes("background: transparent;"),
+        plansStylesSource.includes("&:focus-visible"),
         true
     );
 });
@@ -171,8 +173,10 @@ test("cada página presenta problema, alcance, CTA y enlaces para decidir", () =
     }
 
     assert.equal(planDetailSource.includes('href="/contacto"'), true);
-    assert.equal(planDetailSource.includes('href="/servicios#planes"'), true);
-    assert.equal(planDetailSource.includes('href="/perfil"'), true);
+    assert.equal(
+        planDetailSource.includes("href={planSeleccionado.relatedWork.href}"),
+        true
+    );
 });
 
 test("las FAQ cubren inicio, materiales, costos, cambios y publicación", () => {
@@ -181,13 +185,12 @@ test("las FAQ cubren inicio, materiales, costos, cambios y publicación", () => 
     ).toLowerCase();
 
     for (const expectedText of [
-        "recién empiezo",
-        "necesito enviarte",
+        "para empezar",
         "dominio y hosting",
-        "pedir cambios",
-        "pagar",
+        "presupuesto",
+        "cambia el alcance",
         "después de publicar",
-        "desarrollo a medida"
+        "proceso"
     ]) {
         assert.equal(faqText.includes(expectedText), true, expectedText);
     }

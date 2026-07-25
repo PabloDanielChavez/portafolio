@@ -5,9 +5,10 @@ import { FinalCta, Proceso, TrustBar } from "@/components/sections/HomeSections"
 import { createPageMetadata, siteConfig } from "@/config/site";
 import { getAllPortfolioData } from "@/services/fetchData";
 
-const Trabajos = dynamic(() => import("@/components/sections/Trabajos"));
 const Servicios = dynamic(() => import("@/components/sections/Servicios"));
 const Planes = dynamic(() => import("@/components/sections/Planes"));
+const Trabajos = dynamic(() => import("@/components/sections/Trabajos"));
+const Clientes = dynamic(() => import("@/components/sections/Clientes"));
 
 export const metadata = createPageMetadata({
     title: "Páginas Web Profesionales para Negocios",
@@ -27,9 +28,14 @@ export default async function Home() {
         <>
             <Hero perfil={data.Perfil} />
             <TrustBar projectCount={data.Trabajos.length} />
-            <Servicios servicios={data.Servicios} showBackLink={false} />
-            <Planes />
-            <Trabajos trabajos={data.Trabajos} showFooter />
+            <Servicios
+                servicios={data.Servicios}
+                showBackLink={false}
+                modoInicio
+            />
+            <Trabajos trabajos={data.Trabajos} showFooter modoInicio />
+            <Planes variante="comparacion" />
+            <Clientes clientes={data.Clientes} />
             <Proceso />
             <FinalCta perfil={data.Perfil} />
         </>

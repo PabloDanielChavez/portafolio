@@ -54,7 +54,7 @@ const menu = [
 ] as const;
 
 const SCROLL_THRESHOLD = 40;
-const TABLET_MEDIA_QUERY = "(min-width: 48rem)";
+const TABLET_MEDIA_QUERY = "(min-width: 974px)";
 
 export default function Header() {
     const pathname = usePathname();
@@ -244,6 +244,8 @@ export default function Header() {
                             const isActive = isCurrentRoute(
                                 item.target
                             );
+                            const esEnlaceAccion =
+                                item.target === "/contacto";
 
                             return (
                                 <li
@@ -252,7 +254,14 @@ export default function Header() {
                                 >
                                     <Link
                                         href={item.target}
-                                        className={styles.header_LINK}
+                                        className={[
+                                            styles.header_LINK,
+                                            esEnlaceAccion
+                                                ? styles.header_enlace_accion
+                                                : ""
+                                        ]
+                                            .filter(Boolean)
+                                            .join(" ")}
                                         aria-current={
                                             isActive
                                                 ? "page"

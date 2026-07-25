@@ -23,12 +23,14 @@ type TrabajosProps = {
     trabajos: TrabajosType[];
     showFooter?: boolean;
     headingLevel?: "h1" | "h2";
+    modoInicio?: boolean;
 };
 
 export default function Trabajos({
     trabajos,
     showFooter = false,
-    headingLevel = "h2"
+    headingLevel = "h2",
+    modoInicio = false
 }: TrabajosProps) {
     const [dispositivo, setDispositivo] = useState<AuditoriaDispositivo>("mobile");
     const cardHeadingLevel = headingLevel === "h1" ? "h2" : "h3";
@@ -64,6 +66,8 @@ export default function Trabajos({
         <section
             className={`${style_trabajos.trabajos} ${
                 showFooter ? style_trabajos.trabajos_resumen : ""
+            } ${
+                !showFooter ? style_trabajos.trabajos_piloto_evidencia : ""
             }`}
             id="trabajos"
             aria-label="Proyectos web realizados"
@@ -86,6 +90,7 @@ export default function Trabajos({
                         title="Trabajos web desarrollados con criterio"
                         description="Conocé una selección de proyectos en los que se trabajó la estructura, el diseño y la experiencia de navegación según la necesidad de cada negocio."
                         headingLevel={headingLevel}
+                        variante={modoInicio ? "evidencia" : undefined}
                     />
 
                     {!showFooter && <div className={style_trabajos.trabajos_auditoria}>

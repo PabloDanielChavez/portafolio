@@ -280,8 +280,9 @@ $font-editorial: Georgia, "Times New Roman", serif;
 
 .notFound_actions {
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    align-items: center;
     justify-content: center;
     gap: .8rem;
     width: 100%;
@@ -315,6 +316,14 @@ $font-editorial: Georgia, "Times New Roman", serif;
         line-height: 1;
         transform: translateX(-50%);
     }
+}
+
+.notFound_enlacesSecundarios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .8rem;
+    min-width: 0;
 }
 
 /* =========================================================
@@ -449,6 +458,11 @@ $font-editorial: Georgia, "Times New Roman", serif;
     }
 
     .notFound_actions {
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+    }
+
+    .notFound_enlacesSecundarios {
         flex-direction: column;
         align-items: stretch;
     }

@@ -49,6 +49,8 @@ export function Proceso() {
                     title={`${homeContent.process.title}`}
                     description={`${homeContent.process.description}`}
                     headingLevel={"h2"}
+                    headingId="proceso-title"
+                    variante="proceso"
                 />
 
                 <ol className={styles.process_grid}>

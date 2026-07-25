@@ -6,7 +6,7 @@ const usefulLinks = [
   { href: "/", label: "Volver al inicio" },
   { href: "/trabajos", label: "Ver trabajos" },
   { href: "/servicios", label: "Ver servicios" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/contacto", label: "Hablemos" },
 ] as const;
 
 export default function NotFound() {
@@ -31,19 +31,23 @@ export default function NotFound() {
             className={styles.notFound_actions}
             aria-label="Opciones para continuar navegando"
           >
-            {usefulLinks.map((link, index) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={
-                  index === 0
-                    ? styles.notFound_primaryLink
-                    : styles.notFound_link
-                }
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              href={usefulLinks[0].href}
+              className={styles.notFound_primaryLink}
+            >
+              {usefulLinks[0].label}
+            </Link>
+            <div className={styles.notFound_enlacesSecundarios}>
+              {usefulLinks.slice(1).map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={styles.notFound_link}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </nav>
         </div>
       </div>

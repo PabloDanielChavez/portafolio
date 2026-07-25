@@ -62,6 +62,29 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    PLACA DEL TÍTULO
    ========================================================= */
 
+.header_title_marco {
+    position: relative;
+    isolation: isolate;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: rgba($orange-main, .8);
+        clip-path: polygon(1% 4%, 10% 1%, 20% 3%, 31% .5%, 42% 3%, 53% 1%, 64% 3.5%, 75% .7%, 87% 3%, 99% 1%, 98.5% 94%, 87% 98%, 74% 96%, 61% 99%, 48% 96%, 35% 99%, 22% 96%, 10% 98%, 1% 95%);
+        transform: translate(-.45rem, .5rem);
+        pointer-events: none;
+    }
+
+    @include m.tablet {
+        margin-inline: 0;
+    }
+}
+
 .header_title_group {
     position: relative;
     isolation: isolate;
@@ -76,7 +99,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
     border: 1px solid rgba($shadow-brown, .18);
     background: linear-gradient(135deg, rgba(255, 255, 255, .25), transparent 42%), rgba($paper-white, .9);
     clip-path: polygon(1% 4%, 10% 1%, 20% 3%, 31% .5%, 42% 3%, 53% 1%, 64% 3.5%, 75% .7%, 87% 3%, 99% 1%, 98.5% 94%, 87% 98%, 74% 96%, 61% 99%, 48% 96%, 35% 99%, 22% 96%, 10% 98%, 1% 95%);
-    filter: drop-shadow(-.45rem .5rem 0 rgba($orange-main, .8)) drop-shadow(0 .65rem .55rem rgba($shadow-brown, .14));
+    filter: none;
 
     &::before {
         content: "";
@@ -219,6 +242,161 @@ $font-editorial: Georgia, 'Times New Roman', serif;
 }
 
 /* =========================================================
+   VARIANTES EXPLÍCITAS
+   La salida por defecto permanece intacta hasta que un consumidor
+   adopte una de estas composiciones de forma deliberada.
+   ========================================================= */
+
+.header_box_compacto {
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+
+    .header_title_group {
+        padding: .7rem .9rem;
+        filter: none;
+    }
+
+    .header_icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 1rem;
+    }
+
+    .header_title {
+        font-size: clamp(1.55rem, 3vw, 2.2rem);
+    }
+
+    .header_description {
+        margin-top: .85rem;
+    }
+}
+
+.header_box_orientacion {
+    .header_title_group {
+        border-left: 4px solid $orange-main;
+        background: rgba($paper-white, .82);
+        clip-path: none;
+        filter: none;
+    }
+
+    .header_description {
+        max-width: 68ch;
+        margin-inline: 0;
+    }
+}
+
+.header_box_evidencia {
+    .header_title_group {
+        border-color: $charcoal;
+        background: $charcoal;
+        clip-path: none;
+        color: $paper-white;
+        filter: none;
+    }
+
+    .header_icon {
+        border-color: rgba($paper-white, .4);
+        background: rgba($orange-main, .2);
+        color: $paper-white;
+    }
+
+    .header_title {
+        color: $paper-white;
+    }
+
+    .header_description {
+        border-left-color: $charcoal;
+    }
+}
+
+.header_box_comparacion {
+    .header_title_group {
+        border-top: 3px solid $orange-main;
+        border-bottom: 3px solid $charcoal;
+        background: transparent;
+        clip-path: none;
+        filter: none;
+    }
+
+    .header_icon {
+        border-radius: 50%;
+    }
+}
+
+.header_box_proceso {
+    .header_title_group {
+        gap: 1.25rem;
+        border-style: dashed;
+        clip-path: none;
+        filter: none;
+    }
+
+    .header_icon {
+        border-radius: 50%;
+        transform: none;
+    }
+
+    .header_description::after {
+        width: min(12rem, 70%);
+    }
+}
+
+.header_box_soporte {
+    margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+
+    .header_title_group {
+        border-color: rgba($shadow-brown, .12);
+        background: transparent;
+        clip-path: none;
+        box-shadow: none;
+        filter: none;
+    }
+
+    .header_icon {
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .header_description {
+        border-left-color: rgba($orange-main, .62);
+    }
+}
+
+.header_box_humano {
+    .header_title_group {
+        align-items: flex-end;
+        background: linear-gradient(135deg, rgba($paper-white, .98), rgba($paper-light, .9));
+    }
+
+    .header_title_marco::after {
+        inset: auto 0 .12rem 0;
+        height: .58rem;
+        background: rgba($orange-main, .64);
+        transform: translate(-.3rem, .46rem);
+    }
+
+    .header_icon {
+        border-radius: 50%;
+        transform: rotate(3deg);
+    }
+
+    .header_description {
+        max-width: 58ch;
+        margin-inline: 0;
+    }
+}
+
+.header_box_compacto,
+.header_box_orientacion,
+.header_box_evidencia,
+.header_box_comparacion,
+.header_box_proceso,
+.header_box_soporte {
+    .header_title_marco::after {
+        display: none;
+    }
+}
+
+/* =========================================================
    MÓVIL
    ========================================================= */
 
@@ -240,7 +418,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
     .header_title_group {
         width: 100%;
         padding: 1rem .85rem;
-        filter: drop-shadow(-.3rem .4rem 0 rgba($orange-main, .78)) drop-shadow(0 .5rem .45rem rgba($shadow-brown, .12));
+        filter: none;
     }
 
     .header_title {
@@ -268,6 +446,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
 
     .header_box::before,
     .header_box::after,
+    .header_title_marco::after,
     .header_title_group::before,
     .header_icon::before,
     .header_description::after {

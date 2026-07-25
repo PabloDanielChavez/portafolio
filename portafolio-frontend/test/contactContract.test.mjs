@@ -247,7 +247,7 @@ test("Contacto delega el sidebar sin alterar canales ni tracking", () => {
             "canales: readonly ContactoCanalData[]",
             "onSocialClick: (network: string) => void",
             "contacto_sidebar",
-            'aria-label="Garantías y canales de contacto"',
+            'aria-label="Forma de trabajo y canales de contacto"',
             "contacto_trust_panel",
             "contacto_channels_panel",
             "contacto_social_grid",
@@ -256,7 +256,7 @@ test("Contacto delega el sidebar sin alterar canales ni tracking", () => {
             'rel="noopener noreferrer"',
             "aria-label={`Contactar por ${social.titulo}`}",
             "onClick={() => onSocialClick(social.id)}",
-            "Sin mensajes automáticos ni propuestas genéricas."
+            "Podés contarme qué necesitás y revisar juntos cuál es el próximo paso."
         ]
     );
 });

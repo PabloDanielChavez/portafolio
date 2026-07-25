@@ -13,12 +13,13 @@ export default function Clientes({ clientes }: Props) {
     if (!clientes || clientes.length === 0) return null;
 
     return (
-        <article className={styles.clientes}>
+        <article className={`${styles.clientes} ${styles.clientes_piloto_humano}`}>
             <div className={styles.clientes_layout}>
                 <SectionHeader 
                     icon={<AiTwotoneSchedule />} 
                     title="Opiniones de clientes" 
                     description="Descubre lo que opinan mis clientes satisfechos sobre su experiencia trabajando conmigo." 
+                    variante="humano"
                 />
                 <div className={styles.clientes_box}>
                     <div className={styles.clientes_box_layout}>

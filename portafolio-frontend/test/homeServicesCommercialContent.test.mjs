@@ -72,12 +72,15 @@ const servicesContentModule = evaluateCommonJs(
     )
 );
 
-test("el Hero prioriza la propuesta comercial y el acceso a planes", () => {
-    assert.equal(heroContent.actions.primary, "Solicitar presupuesto");
-    assert.equal(heroContent.actions.secondary, "Ver planes disponibles");
-    assert.equal(heroComponentSource.includes('href="#planes"'), true);
-    assert.equal(heroContent.description.includes("negocios de Argentina"), true);
-    assert.equal(heroContent.note.includes("Te ayudo a definirla"), true);
+test("el Hero presenta el proyecto y permite recorrer trabajos", () => {
+    assert.equal(heroContent.actions.primary, "Contame tu proyecto");
+    assert.equal(heroContent.actions.secondary, "Ver trabajos");
+    assert.equal(heroComponentSource.includes('href="/trabajos"'), true);
+    assert.equal(heroContent.description.includes("necesidad concreta"), true);
+    assert.equal(
+        heroContent.note.includes("Cada proyecto parte de entender el problema"),
+        true
+    );
 });
 
 test("Servicios traduce las capacidades técnicas a beneficios de negocio", () => {
@@ -87,11 +90,15 @@ test("Servicios traduce las capacidades técnicas a beneficios de negocio", () =
 
     assert.equal(entries.length, 5);
     assert.equal(
-        entries.some((entry) => entry.title.includes("Diseño profesional")),
+        entries.some((entry) =>
+            entry.title.includes("Diseño adaptado a tu negocio")
+        ),
         true
     );
     assert.equal(
-        entries.some((entry) => entry.title.includes("Carga rápida")),
+        entries.some((entry) =>
+            entry.title.includes("Una base técnica ordenada")
+        ),
         true
     );
     assert.equal(
@@ -120,7 +127,7 @@ test("la guía diferencia las tres ofertas y enlaza sus planes", () => {
                 href: "/servicios/planes/sitio_web"
             },
             {
-                title: "Desarrollo Web a Medida",
+                title: "Aplicación Web a Medida",
                 href: "/servicios/planes/desarrollo_web"
             }
         ]
@@ -142,8 +149,8 @@ test("Home mantiene las rutas de conversión principales y secundarias", () => {
     const plansIndex = homePageSource.indexOf("<Planes");
     const worksIndex = homePageSource.indexOf("<Trabajos");
 
-    assert.equal(servicesIndex < plansIndex, true);
-    assert.equal(plansIndex < worksIndex, true);
+    assert.equal(servicesIndex < worksIndex, true);
+    assert.equal(worksIndex < plansIndex, true);
     assert.equal(homePageSource.includes("<FinalCta"), true);
     assert.equal(homeSectionsSource.includes('href="/contacto"'), true);
     assert.equal(homeSectionsSource.includes('href="/perfil"'), true);
@@ -165,11 +172,11 @@ test("el copy reduce objeciones sin afirmaciones comerciales no comprobadas", ()
     }).toLowerCase();
 
     for (const expectedText of [
-        "presupuesto claro",
-        "cuánto puede tardar",
-        "dominio, hosting",
-        "plantilla genérica",
-        "sin compromiso"
+        "alcance",
+        "contexto",
+        "información",
+        "contacto directo",
+        "revisamos"
     ]) {
         assert.equal(reviewedCopy.includes(expectedText), true, expectedText);
     }
@@ -184,7 +191,7 @@ test("el copy reduce objeciones sin afirmaciones comerciales no comprobadas", ()
     }
 
     assert.equal(plansSource.includes('"Más elegido"'), false);
-    assert.equal(plansSource.includes('"Ideal para empezar"'), true);
+    assert.equal(plansSource.includes('"Ideal para empezar"'), false);
 });
 
 test("Home y Servicios usan metadata comercial única", () => {

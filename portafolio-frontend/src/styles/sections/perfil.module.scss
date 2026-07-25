@@ -639,6 +639,57 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    MÓVIL
    ========================================================= */
 
+/* =========================================================
+   PILOTO E4 - PRESENCIA HUMANA
+   ========================================================= */
+
+.perfil_piloto_humano {
+    .perfil_header {
+        border-left: 4px solid $orange-main;
+        background: linear-gradient(120deg, rgba($paper-white, .96), rgba($paper-light, .78));
+    }
+
+    .perfil_historia,
+    .perfil_filosofia {
+        padding-inline: clamp(1.35rem, 4vw, 3rem);
+        border-left: 3px solid $orange-main;
+        background: rgba($paper-white, .74);
+    }
+
+    .perfil_filosofia {
+        border-left-color: $charcoal;
+        background: rgba($paper-light, .7);
+    }
+
+    .perfil_tecnologias {
+        padding-top: clamp(1rem, 2vw, 1.8rem);
+        border-top: 1px solid rgba($shadow-brown, .25);
+    }
+
+    .perfil_redes {
+        align-self: flex-end;
+        width: min(100%, 48rem);
+        padding-top: clamp(1rem, 2vw, 1.8rem);
+        border-top: 1px solid rgba($orange-main, .38);
+    }
+
+    @include m.tabletXL {
+        .perfil_header {
+            grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+        }
+
+        .perfil_historia {
+            align-self: flex-start;
+            width: min(100%, 76rem);
+        }
+
+        .perfil_filosofia {
+            align-self: flex-end;
+            width: min(100%, 68rem);
+        }
+    }
+}
+
 @media (max-width: 35.99rem) {
     .perfil {
         padding-inline: .8rem;

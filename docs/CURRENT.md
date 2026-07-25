@@ -1,8 +1,20 @@
 # Estado actual de PaginasWebChavez
 
-Fecha de corte: 2026-07-18
+Fecha de corte: 2026-07-25
 
 Este archivo es la fuente propietaria vigente localmente del estado técnico y operativo actual. Pablo Chavez revisó y aprobó las catorce decisiones y confirmó el núcleo documental como gobierno vigente del proyecto el `2026-07-18`. La vigencia local no acredita por sí sola aprobación comercial de contenidos específicos, preservación Git, releases, deploys o estado de producción.
+
+## Actualización vigente — PWC-2026-002
+
+La tarea activa es [`PWC-2026-002`](tasks/ACTIVE.md), `Rediseño visual progresivo`, con estado `en validación` al cierre de su regresión R1. La baseline documental de esta tarea es `1b0b2fd` en la rama local `main`; no se realizó ninguna operación Git mutante, publicación, release ni deploy durante sus fases.
+
+Se ejecutaron F1, F2, F3, C1, C2, S1, S2, E1, E2, E3, E4, E5, J1, J2 e I1, seguidas de R1. El resultado es una actualización visual progresiva de fundamentos, Header, Servicios, planes, Trabajos, Jardinería Montañez, Contacto, Perfil/Opiniones, Footer, 404 e Inicio, manteniendo fuera de alcance la oferta, copy comercial, datos, precios, rutas, enlaces, imágenes, API y backend.
+
+R1 verificó las rutas afectadas en `320`, `430`, `696`, `974`, `1218` y `1866px`: no se reprodujeron overflow horizontal, errores de consola, errores de red locales, duplicación de renderizado ni pérdida de foco/navegación. La 404 personalizada, el FAQ de Contacto, el enlace activo y el render SSR de las tarjetas quedaron comprobados. Las imágenes completas que mostraban repetición o lienzos negros se atribuyeron a un artefacto de captura/scroll stitching, no a una regresión del DOM.
+
+Los gates actuales del frontend son: build aprobado con Next.js `16.2.7` y advertencias Sass preexistentes por `darken()` en `hero.module.scss`; `62` pruebas aprobadas y `14` fallidas, sin variación respecto de la baseline; y lint no disponible porque el script `next lint` no es compatible con Next.js 16. Las 14 fallas se tratarán como corrección funcional separada y no se atribuyen al rediseño hasta completar su diagnóstico.
+
+El working tree permanece deliberadamente con cambios y archivos sin seguimiento preexistentes, además de los cambios locales de PWC-2026-002. No se hizo staging ni commit. Las entradas previas de este documento se conservan como checkpoints históricos cuando describen estados anteriores; esta sección es la referencia operativa vigente para el rediseño.
 
 ## Línea base Git
 
@@ -81,3 +93,43 @@ El detalle de la tarea documental actual pertenece a [`tasks/ACTIVE.md`](tasks/A
 ## Próximo paso no autorizado
 
 Una vez validada esta actualización, preservar este cambio de estado en un commit local separado mediante una fase expresamente autorizada. Este paso no está autorizado y no habilita push, tag, publicación, release, deploy ni otra operación posterior.
+
+## Checkpoint C4.1 — cierre documental
+
+Fecha del checkpoint: 2026-07-20.
+
+C4.1 está cerrada dentro de su alcance editorial y técnico. C4 general no se declara cerrada mientras el plan contemple subfases posteriores. C5–C10 continúan sin autorización.
+
+### Resultado consolidado
+
+- El copy público aprobado fue implementado y reconciliado con B3.2.5.
+- Se actualizaron los contratos editoriales afectados.
+- Tests: 76 aprobados, 0 fallidos.
+- TypeScript: aprobado, código de salida 0.
+- Build: aprobado, código de salida 0; 13 páginas generadas.
+- Las rutas `/`, `/servicios`, `/trabajos`, `/perfil` y `/contacto` respondieron con HTTP 200.
+- Los recursos locales comprobados respondieron 35/35 con HTTP 200.
+- La fuente vigente continúa siendo B3.2.5; Landing Page Express permanece fuera de la oferta pública.
+
+### Gates y límites
+
+- El gate de lint fue reparado: `npm run lint` ejecuta `eslint .` y analiza realmente el proyecto.
+- ESLint registra 12 errores y 7 warnings como deuda técnica general preexistente respecto de C4.1F. No se corrigieron dentro de esta fase.
+- La inspección visual automatizada no pudo completarse por aislamiento de red del navegador integrado. No se validaron formalmente los cuatro viewports.
+- Pablo Chavez decidió diferir la revisión y modificación visual a una tarea exclusiva de rediseño/UI. Esto no constituye aprobación visual del diseño actual ni bloquea el cierre del alcance textual de C4.1.
+- No se aprobaron formalmente responsive, contraste, foco visual, menú móvil, solapamientos, overflow, animaciones ni jerarquía visual; quedan diferidos.
+- No se modificaron planes, Contacto, API, fallback, metadata, caché ni backend.
+- El saneamiento progresivo de ESLint del frontend queda como deuda técnica separada.
+- La advertencia del sitemap dinámico y los dos warnings de caché de webpack quedan fuera de C4.1 y pertenecen a C8/C10.
+- `.next` fue regenerado. `next-env.d.ts` fue actualizado automáticamente por Next.js durante el build, luego coincidió con HEAD y dejó de aparecer como modificado; no fue editado ni restaurado manualmente.
+- Permanece como pendiente documental independiente la diferencia de conteos declarados de B3.2 (58/43/8/1 = 110) frente a campos explícitos (57/41/8/1 = 107). No bloquea este cierre.
+
+### Decisión humana
+
+> Pablo Chavez aprueba el cierre técnico y editorial de C4.1 dentro de su alcance textual. La validación y modificación visual quedan diferidas a una tarea futura exclusiva de rediseño/UI. Los hallazgos generales de ESLint se registran como deuda técnica separada y no bloquean el cierre de esta fase editorial.
+
+El cierre de C4.1 no autoriza automáticamente C5 ni ninguna operación de Git, publicación o deploy.
+
+## Addendum vigente — T1
+T1 corrigió el vínculo `aria-labelledby="proceso-title"` en `HomeSections.tsx` y actualizó los contratos de prueba de Contacto, Inicio/Servicios y Planes al estado vigente. No alteró copy, datos, precios, rutas, estilos ni configuración.
+Tras T1, el frontend queda con `76` pruebas aprobadas y `0` fallidas. El build continúa aprobado con las advertencias Sass conocidas; la baseline histórica `62/14` se conserva únicamente como referencia de comparación. No se ejecutaron staging, commit, push, release ni deploy.

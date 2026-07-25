@@ -22,7 +22,7 @@ export default async function Ser() {
   return (
     <>
       <Servicios servicios={data.Servicios} headingLevel="h1" />
-      <Planes />
+      <Planes variante="comparacion" />
     </>
   );
 }

@@ -36,7 +36,7 @@ export default function TrabajoCard({
     modoResumen = false,
     headingLevel
 }: TrabajoCardProps) {
-    const [visible, setVisible] = useState(false);
+    const [debeAnimarse, establecerDebeAnimarse] = useState(false);
     const cardRef = useRef<HTMLElement>(null);
     const Heading = headingLevel;
 
@@ -51,12 +51,12 @@ export default function TrabajoCard({
     useEffect(() => {
         const currentCard = cardRef.current;
 
-        if (!currentCard) return;
+        if (!currentCard || typeof IntersectionObserver === "undefined") return;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setVisible(true);
+                    establecerDebeAnimarse(true);
                     observer.disconnect();
                 }
             },
@@ -85,7 +85,7 @@ export default function TrabajoCard({
                 ref={cardRef}
                 className={`${styles.trabajos_card_resumen} ${
                     index === 0 ? styles.trabajos_card_principal : ""
-                } ${visible ? styles.view : ""}`}
+                } ${debeAnimarse ? styles.trabajos_card_resumen_animada : ""}`}
                 style={{ transitionDelay: `${index * 90}ms` }}
             >
                 <Link
@@ -137,9 +137,11 @@ export default function TrabajoCard({
     return (
         <article
             ref={cardRef}
-            className={`${styles.trabajos_card} ${
-                visible ? styles.view : ""
-            } ${destacado ? styles.trabajos_card_destacado : ""}`}
+                className={`${styles.trabajos_card} ${
+                    debeAnimarse ? styles.trabajos_card_animada : ""
+                } ${destacado ? styles.trabajos_card_destacado : ""} ${
+                    index === 0 ? styles.trabajos_card_evidencia_principal : ""
+                }`}
             style={{
                 transitionDelay: `${index * 120}ms`
             }}

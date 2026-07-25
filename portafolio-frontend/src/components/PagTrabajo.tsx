@@ -56,9 +56,16 @@ export default function PagTrabajoDetalle({
     const fecha = getFechaProyecto(tra.fecha_finalizacion);
     const destacado = esTrabajoDestacado(tra);
     const commercialContent = getTrabajoCommercialContent(tra);
+    const esCasoJardineria = tra.slug === "jardineria-montanez";
 
     return (
-        <article className={style_trabajos.pagTrabajo_detalle_container}>
+        <article
+            className={`${style_trabajos.pagTrabajo_detalle_container} ${
+                esCasoJardineria
+                    ? style_trabajos.pagTrabajo_variante_jardineria
+                    : ""
+            }`}
+        >
             <div className={style_trabajos.pagTrabajo_layout}>
                 <TrabajoDetalleActions trabajo={tra} />
                 <section className={style_trabajos.pagTrabajo_hero} aria-labelledby="trabajo-title">
@@ -116,7 +123,7 @@ export default function PagTrabajoDetalle({
                 </section>
                 <div className={style_trabajos.pagTrabajo_content_grid}>
                     <article className={style_trabajos.pagTrabajo_case_content}>
-                        <section className={style_trabajos.pagTrabajo_section} aria-labelledby="resumen-title">
+                        <section className={`${style_trabajos.pagTrabajo_section} ${style_trabajos.pagTrabajo_section_resumen}`} aria-labelledby="resumen-title">
                             <span className={style_trabajos.pagTrabajo_section_label}>Resumen</span>
                             <h2 id="resumen-title" className={style_trabajos.pagTrabajo_h2}>Qué se buscó resolver</h2>
                             {commercialContent.information && (
@@ -126,14 +133,14 @@ export default function PagTrabajoDetalle({
                             )}
                         </section>
                         {commercialContent.challenge && (
-                            <section className={style_trabajos.pagTrabajo_section} aria-labelledby="reto-title">
+                            <section className={`${style_trabajos.pagTrabajo_section} ${style_trabajos.pagTrabajo_section_desafio}`} aria-labelledby="reto-title">
                                 <span className={style_trabajos.pagTrabajo_section_label}>Desafío del proyecto</span>
                                 <h2 id="reto-title" className={style_trabajos.pagTrabajo_h2}>Principal desafío del proyecto</h2>
                                 <p className={style_trabajos.pagTrabajo_parrafo}>{commercialContent.challenge}</p>
                             </section>
                         )}
                         {commercialContent.outcome && (
-                            <section className={style_trabajos.pagTrabajo_section} aria-labelledby="resultado-title">
+                            <section className={`${style_trabajos.pagTrabajo_section} ${style_trabajos.pagTrabajo_section_resultado}`} aria-labelledby="resultado-title">
                                 <span className={style_trabajos.pagTrabajo_section_label}>Resultado</span>
                                 <h2 id="resultado-title" className={style_trabajos.pagTrabajo_h2}>Resultado del enfoque</h2>
                                 <p className={style_trabajos.pagTrabajo_parrafo}>{commercialContent.outcome}</p>

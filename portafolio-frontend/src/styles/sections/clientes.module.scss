@@ -556,6 +556,49 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    MÓVIL
    ========================================================= */
 
+/* =========================================================
+   PILOTO E4 - MOSAICO EDITORIAL DE CITAS
+   ========================================================= */
+
+.clientes_piloto_humano {
+    .clientes_box_layout {
+        gap: clamp(1.5rem, 3vw, 2.35rem);
+    }
+
+    @include m.telefonoXL {
+        .clientes_card:first-child {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @include m.tabletXL {
+        .clientes_box_layout {
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+        }
+
+        .clientes_card {
+            grid-column: span 4;
+        }
+
+        .clientes_card:nth-child(1),
+        .clientes_card:nth-child(2) {
+            grid-column: span 6;
+        }
+
+        .clientes_card:nth-child(3) {
+            grid-column: 2 / span 4;
+        }
+
+        .clientes_card:nth-child(4) {
+            grid-column: 6 / span 4;
+        }
+
+        .clientes_card:nth-child(5) {
+            grid-column: 10 / span 3;
+        }
+    }
+}
+
 @media (max-width: 35.99rem) {
     .clientes {
         padding-inline: .8rem;

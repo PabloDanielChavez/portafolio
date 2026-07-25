@@ -1081,6 +1081,121 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    MÓVIL
    ========================================================= */
 
+/* =========================================================
+   PILOTO E3 — CONVERSIÓN Y SOPORTE
+   ========================================================= */
+
+.contacto_piloto_conversion {
+    .contacto_main_grid {
+        @include m.tabletXL {
+            grid-template-columns: minmax(0, 1.7fr) minmax(280px, .8fr);
+            gap: clamp(1.8rem, 3.5vw, 3.2rem);
+        }
+    }
+
+    .contacto_form {
+        border-top: 4px solid $orange-main;
+        box-shadow: 8px 9px 0 rgba($orange-main, .16), 0 24px 52px rgba($shadow-brown, .14);
+    }
+
+    .contacto_sidebar {
+        gap: 1rem;
+
+        @include m.tabletXL {
+            top: 104px;
+        }
+    }
+
+    .contacto_trust_panel,
+    .contacto_channels_panel {
+        background: rgba($paper-white, .68);
+        box-shadow: 3px 4px 0 rgba($shadow-brown, .07);
+    }
+
+    .contacto_trust_panel {
+        border-left: 3px solid rgba($shadow-brown, .32);
+    }
+
+    .contacto_channels_panel {
+        border-left: 3px solid rgba($orange-main, .7);
+    }
+
+    .contacto_faq_section {
+        margin-top: clamp(3.5rem, 7vw, 6rem);
+    }
+
+    @include m.tabletXL {
+        .contacto_trust_panel,
+        .contacto_channels_panel {
+            padding: 1.1rem;
+            box-shadow: 2px 3px 0 rgba($shadow-brown, .06);
+        }
+
+        .contacto_trust_panel,
+        .contacto_channels_panel {
+            h2,
+            h3 {
+                margin-top: .55rem;
+                font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+                line-height: 1.14;
+            }
+
+            > p {
+                margin-top: .6rem;
+                font-size: .86rem;
+                line-height: 1.6;
+            }
+        }
+
+        .contacto_trust_grid {
+            gap: .4rem;
+            margin-top: .85rem;
+
+            li {
+                padding: .55rem .6rem;
+                border-width: 0 0 0 2px;
+                border-left-color: rgba($shadow-brown, .34);
+                background: transparent;
+                box-shadow: none;
+                font-size: .81rem;
+                line-height: 1.42;
+            }
+        }
+
+        .contacto_panel_heading {
+            gap: .55rem;
+            margin-bottom: .75rem;
+        }
+
+        .contacto_availability {
+            padding: .35rem .52rem;
+            font-size: .64rem;
+        }
+
+        .contacto_social_grid {
+            gap: .45rem;
+        }
+
+        .contacto_social_card {
+            gap: .6rem;
+            padding: .55rem;
+            box-shadow: 2px 2px 0 rgba($shadow-brown, .05);
+        }
+
+        .contacto_social_icon {
+            width: 2.3rem;
+            height: 2.3rem;
+        }
+
+        .contacto_response_note {
+            margin-top: .75rem;
+            padding-top: .7rem;
+            font-size: .75rem;
+            line-height: 1.5;
+        }
+    }
+}
+
 @media (max-width: 35.99rem) {
     .contacto {
         padding-inline: .8rem;

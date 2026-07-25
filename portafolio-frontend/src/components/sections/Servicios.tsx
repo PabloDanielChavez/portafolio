@@ -23,15 +23,19 @@ type Props = {
     servicios: ServiciosType[];
     showBackLink?: boolean;
     headingLevel?: "h1" | "h2";
+    modoInicio?: boolean;
 };
 
 export default function Servicios({
     servicios,
     showBackLink = true,
-    headingLevel = "h2"
+    headingLevel = "h2",
+    modoInicio = false
 }: Props) {
     const cardHeadingLevel = headingLevel === "h1" ? "h2" : "h3";
     const DecisionHeading = headingLevel === "h1" ? "h2" : "h3";
+    const esPaginaServicios = showBackLink;
+    const usaOrientacion = esPaginaServicios || modoInicio;
 
     const renderIcono = (nombre: string) => {
         if (nombre === "LuMonitorSmartphone") return <LuMonitorSmartphone />;
@@ -44,7 +48,11 @@ export default function Servicios({
 
     return (
         <section
-            className={styles.servicios}
+            className={`${styles.servicios} ${
+                usaOrientacion
+                    ? styles.servicios_piloto_orientacion
+                    : ""
+            }`}
             id="servicios"
             aria-labelledby="servicios-title"
         >
@@ -62,6 +70,11 @@ export default function Servicios({
                     description={serviciosSectionContent.description}
                     headingLevel={headingLevel}
                     headingId="servicios-title"
+                    variante={
+                        usaOrientacion
+                            ? "orientacion"
+                            : undefined
+                    }
                 />
 
                 <div className={styles.servicios_contenido_box_layout}>

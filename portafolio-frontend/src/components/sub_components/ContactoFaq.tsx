@@ -92,6 +92,7 @@ export default function ContactoFaq({ items }: ContactoFaqProps) {
                 icon={<BsQuestionCircle aria-hidden="true" />}
                 title="Preguntas frecuentes sobre desarrollo web"
                 description="Respuestas claras sobre Landing Page Profesional, Sitio Web Profesional y Aplicación Web a Medida: alcance, presupuesto, plazos y próximos pasos."
+                variante="soporte"
             />
 
             <div className={style.contacto_faq_layout}>

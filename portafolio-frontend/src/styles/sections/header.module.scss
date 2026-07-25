@@ -803,6 +803,109 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    ICONOS MÓVILES
    ========================================================= */
 
+.header_enlace_accion {
+    border-color: $orange-dark;
+    background: $orange-main;
+    color: $paper-bright;
+
+    box-shadow:
+        3px 3px 0 $charcoal,
+        0 8px 16px rgba($shadow-brown, .14);
+
+    .header_icon {
+        border-color: rgba($paper-bright, .72);
+        background: rgba($paper-bright, .14);
+        color: $paper-bright;
+
+        box-shadow:
+            2px 2px 0 rgba($charcoal, .24);
+    }
+
+    &::after {
+        background: $paper-bright;
+        transform: scaleX(.28);
+    }
+
+    &:hover,
+    &:focus-visible {
+        border-color: $charcoal;
+        background: $orange-light;
+        color: $charcoal;
+
+        box-shadow:
+            4px 4px 0 $charcoal,
+            0 10px 20px rgba($shadow-brown, .16);
+
+        .header_icon {
+            border-color: $charcoal;
+            background: rgba($paper-bright, .68);
+            color: $charcoal;
+        }
+
+        &::after {
+            transform: scaleX(1);
+        }
+    }
+
+    &[aria-current='page'],
+    &[data-active='true'] {
+        border-color: $charcoal;
+        background: $orange-light;
+        color: $charcoal;
+
+        .header_icon {
+            border-color: $charcoal;
+            background: rgba($paper-bright, .68);
+            color: $charcoal;
+        }
+
+        &::after {
+            transform: scaleX(1);
+        }
+    }
+
+    @include m.tablet {
+        margin-left: .35rem;
+
+        border: 1px solid $orange-dark;
+        border-radius: .18rem;
+
+        background: $orange-main;
+        color: $paper-bright;
+
+        box-shadow:
+            3px 3px 0 $charcoal,
+            0 7px 14px rgba($shadow-brown, .14);
+
+        &::after {
+            right: .55rem;
+            bottom: .22rem;
+            left: .55rem;
+            background: $charcoal;
+        }
+
+        &:hover,
+        &:focus-visible {
+            border-color: $charcoal;
+            background: $orange-light;
+            color: $charcoal;
+
+            box-shadow:
+                4px 4px 0 $charcoal,
+                0 9px 16px rgba($shadow-brown, .16);
+
+            transform: translateY(-1px);
+        }
+
+        &[aria-current='page'],
+        &[data-active='true'] {
+            border-color: $charcoal;
+            background: $orange-light;
+            color: $charcoal;
+        }
+    }
+}
+
 .header_icon {
     display: inline-grid;
     width: 1.85rem;

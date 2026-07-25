@@ -301,7 +301,7 @@ export default function Contacto({ perfil }: Props) {
         <section
             ref={sectionRef}
             id="contacto"
-            className={`${style.contacto} ${
+            className={`${style.contacto} ${style.contacto_piloto_conversion} ${
                 isVisible ? style.contacto_visible : ""
             }`}
             aria-label="Contacto para proyectos de desarrollo web"

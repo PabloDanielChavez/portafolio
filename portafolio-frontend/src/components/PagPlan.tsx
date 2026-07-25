@@ -13,6 +13,14 @@ type PlanDetalleProps = {
     plan: string;
 };
 
+type VarianteDetallePlan = "landing" | "sitio" | "aplicacion";
+
+function obtenerVarianteDetallePlan(plan: string): VarianteDetallePlan {
+    if (plan === "landing_page") return "landing";
+    if (plan === "sitio_web") return "sitio";
+    return "aplicacion";
+}
+
 export default function PlanDetalle({ plan }: PlanDetalleProps) {
     const planSeleccionado = getPlanByTag(plan);
 
@@ -21,9 +29,15 @@ export default function PlanDetalle({ plan }: PlanDetalleProps) {
     }
 
     const whatsappHref = getWhatsappHref(planSeleccionado.whatsappMensaje);
+    const varianteDetallePlan = obtenerVarianteDetallePlan(plan);
+    const claseVarianteDetalle = {
+        landing: styles.planes_detalle_variante_landing,
+        sitio: styles.planes_detalle_variante_sitio,
+        aplicacion: styles.planes_detalle_variante_aplicacion,
+    }[varianteDetallePlan];
 
     return (
-        <article className={styles.planes_detalle}>
+        <article className={`${styles.planes_detalle} ${claseVarianteDetalle}`}>
             <section
                 className={styles.planes_detalle_hero}
                 aria-labelledby="plan-title"

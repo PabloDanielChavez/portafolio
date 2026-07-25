@@ -7,15 +7,30 @@ import SectionHeader from "../sub_components/SectionHeader";
 import PlanCard from "../sub_components/PlanCard";
 import { planes } from "@/components/utils/planes.data";
 
-export default function Planes() {
+type VariantePlanes = "comparacion";
+
+type Props = {
+    variante?: VariantePlanes;
+};
+
+export default function Planes({ variante }: Props) {
+    const esComparacion = variante === "comparacion";
+
     return (
-        <section className={styles.planes} id="planes" aria-labelledby="planes-title">
+        <section
+            className={`${styles.planes} ${
+                esComparacion ? styles.planes_comparacion : ""
+            }`}
+            id="planes"
+            aria-labelledby="planes-title"
+        >
             <div className={styles.planes_layout}>
                 <SectionHeader
                     icon={<TbChartBarPopular />}
                     title="Elegí el desarrollo web adecuado para tu proyecto"
                     description="Compará para qué sirve cada desarrollo, qué variables definen su alcance y cómo se establece el presupuesto. Si todavía no sabés por dónde empezar, revisamos juntos qué necesitás resolver."
                     headingId="planes-title"
+                    variante={esComparacion ? "comparacion" : undefined}
                 />
 
                 <div className={styles.planes_content}>

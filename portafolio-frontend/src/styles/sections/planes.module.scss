@@ -502,6 +502,121 @@ $font-editorial: Georgia, 'Times New Roman', serif;
    PÁGINA DE DETALLE DEL PLAN
    ========================================================= */
 
+/* =========================================================
+   VARIANTE COMPARACION — SOLO /SERVICIOS
+   ========================================================= */
+
+.planes_comparacion {
+    padding-top: clamp(4rem, 7vw, 6rem);
+    border-top: 4px solid $orange-main;
+    background:
+        linear-gradient(180deg, rgba($paper-white, .34), transparent 12rem),
+        linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);
+
+    &::after {
+        display: none;
+    }
+
+    .planes_layout {
+        gap: clamp(2rem, 4vw, 3.25rem);
+    }
+
+    .planes_grid {
+        position: relative;
+        gap: 1rem;
+
+        @include m.tablet {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: clamp(.8rem, 1.5vw, 1.35rem);
+        }
+    }
+
+    .planes_card {
+        border-radius: .18rem;
+        box-shadow: 3px 4px 0 rgba($shadow-brown, .07), 0 16px 30px rgba($shadow-brown, .08);
+
+        &::after {
+            display: none;
+        }
+
+        &:hover {
+            box-shadow: 5px 6px 0 rgba($orange-main, .1), 0 20px 36px rgba($shadow-brown, .11);
+        }
+    }
+
+    .planes_card_destacado {
+        border-color: rgba($shadow-brown, .26);
+        background: linear-gradient(145deg, rgba(255, 255, 255, .25), transparent 38%), rgba($paper-light, .94);
+        box-shadow: 3px 4px 0 rgba($shadow-brown, .07), 0 16px 30px rgba($shadow-brown, .08);
+
+        &::after {
+            display: none;
+        }
+
+        @include m.tabletXL {
+            transform: none;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+        }
+    }
+
+    .planes_card_badge {
+        border-color: rgba($orange-dark, .34);
+        background: rgba($paper-white, .9);
+        color: $orange-dark;
+        box-shadow: 2px 2px 0 rgba($shadow-brown, .16);
+    }
+
+    .planes_card_ideal {
+        border-left-width: 2px;
+        background: rgba($paper-white, .56);
+    }
+
+    .planes_card_precio {
+        padding-top: .95rem;
+        border-top: 1px solid rgba($shadow-brown, .2);
+    }
+
+    .planes_help {
+        margin-top: .4rem;
+        border-top: 3px solid $charcoal;
+        border-radius: .18rem;
+        background: rgba($paper-white, .5);
+        box-shadow: 3px 4px 0 rgba($shadow-brown, .07);
+
+        &::before {
+            display: none;
+        }
+    }
+
+    @include m.tablet {
+        .planes_card_link {
+            display: grid;
+            grid-template-rows: minmax(3.6rem, auto) minmax(6.7rem, auto) minmax(7.25rem, auto) minmax(3.5rem, auto) minmax(3.45rem, auto) minmax(0, 1fr) auto;
+        }
+
+        .planes_card_titulo,
+        .planes_card_descripcion,
+        .planes_card_ideal,
+        .planes_card_precio,
+        .planes_card_plazo,
+        .planes_card_lista,
+        .planes_boton {
+            align-self: start;
+        }
+
+        .planes_card_lista {
+            width: 100%;
+        }
+
+        .planes_boton {
+            align-self: end;
+        }
+    }
+}
+
 .planes_detalle {
     position: relative;
     isolation: isolate;
@@ -1332,6 +1447,89 @@ $font-editorial: Georgia, 'Times New Roman', serif;
 /* =========================================================
    MÓVIL
    ========================================================= */
+
+/* =========================================================
+   VARIANTES DE PROCESO — DETALLE DE PLANES
+   ========================================================= */
+
+.planes_detalle_variante_landing,
+.planes_detalle_variante_sitio,
+.planes_detalle_variante_aplicacion {
+    .planes_detalle_process {
+        position: relative;
+    }
+
+    .planes_detalle_process_card {
+        z-index: 1;
+    }
+}
+
+.planes_detalle_variante_landing {
+    .planes_detalle_process_card {
+        border-top: 3px solid $orange-main;
+    }
+
+    @include m.tabletXL {
+        .planes_detalle_process {
+            gap: 1.35rem;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 1.5rem;
+                right: 8%;
+                left: 8%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, rgba($orange-main, .58), transparent);
+            }
+        }
+
+        .planes_detalle_process_card {
+            background: rgba($paper-white, .72);
+        }
+    }
+}
+
+.planes_detalle_variante_sitio {
+    .planes_detalle_process_card {
+        border-left: 3px solid $orange-main;
+
+        &:nth-child(even) {
+            background: rgba($paper-white, .72);
+        }
+    }
+
+    @include m.tabletXL {
+        .planes_detalle_process {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem 1.35rem;
+        }
+    }
+}
+
+.planes_detalle_variante_aplicacion {
+    .planes_detalle_process_card {
+        border-top: 3px solid $charcoal;
+
+        &:nth-child(even) {
+            background: rgba($paper-white, .72);
+        }
+    }
+
+    @include m.tabletXL {
+        .planes_detalle_process {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            align-items: start;
+        }
+
+        .planes_detalle_process_card {
+            &:nth-child(2),
+            &:nth-child(4) {
+                margin-top: 1.2rem;
+            }
+        }
+    }
+}
 
 @media (max-width: 35.99rem) {
     .planes,

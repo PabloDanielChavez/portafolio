@@ -8,12 +8,56 @@ $desktop: 1624px;
 $desktopXL: 1827px;
 $desktopXXL: 3000px;
 
+// Alias semánticos de los umbrales existentes. Conservan los valores actuales
+// para que cada módulo pueda migrar de forma explícita en su fase propietaria.
+$punto-corte-telefono: $telefono;
+$punto-corte-telefono-amplio: $telefonoXL;
+$punto-corte-telefono-grande: $telefonoXXL;
+$punto-corte-tableta: $tablet;
+$punto-corte-tableta-amplia: $tabletXL;
+$punto-corte-escritorio: $desktop;
+$punto-corte-escritorio-amplio: $desktopXL;
+
 // principal / fondo de papel: #E1D0BB 
 // Crema claro / rellenos suaves: #E4D4C0 
 // Negro carbón / color dominante: #232322 
 // Gris tierra / líneas secundarias y textura: #5E5750 
 // Marrón oscuro / sombras y profundidad: #4D423B
 
+// Contrato editorial aditivo. Las secciones lo adoptarán de forma explícita
+// en fases posteriores; los alias oscuros/violetas existentes se conservan.
+$papel-principal: #e1d0bb;
+$papel-claro: #e4d4c0;
+$papel-brillante: #f3e7d7;
+$papel-blanco: #f8f0e5;
+$papel-kraft: #ceb89c;
+$papel-apagado: #d8c5ac;
+$carbon: #232322;
+$carbon-suave: #343331;
+$gris-tierra: #5e5750;
+$marron-sombra: #4d423b;
+$naranja-oscuro: #b54723;
+$naranja-principal: #c14d28;
+$naranja-claro: #d66538;
+$fuente-editorial: Georgia, "Times New Roman", serif;
+$texto-sobre-papel: $carbon;
+$texto-sobre-papel-secundario: $gris-tierra;
+$texto-sobre-carbon: $papel-blanco;
+$color-foco-visible: $naranja-oscuro;
+
+// Límites reutilizables de lectura, ritmo y escala. No sustituyen tokens
+// existentes hasta que una fase propietaria adopte cada alias.
+$contenedor-maximo-legible: 1240px;
+$separacion-contenedor: clamp(1rem, 3vw, 2rem);
+$espacio-2xs: clamp(.25rem, .2vw + .2rem, .4rem);
+$espacio-xs: clamp(.5rem, .35vw + .4rem, .7rem);
+$espacio-sm: clamp(.75rem, .5vw + .6rem, 1rem);
+$espacio-md: clamp(1rem, .9vw + .8rem, 1.5rem);
+$espacio-lg: clamp(1.5rem, 1.6vw + 1.1rem, 2.5rem);
+$espacio-xl: clamp(2.5rem, 3.5vw + 1.5rem, 4.5rem);
+$escala-tipo-pie: clamp(.75rem, .15vw + .72rem, .82rem);
+$escala-tipo-cuerpo: clamp(1rem, .3vw + .94rem, 1.1rem);
+$escala-tipo-titulo: clamp(2rem, 4vw + 1rem, 4.5rem);
 
 // Sistema visual base
 $background-main: #08080c;

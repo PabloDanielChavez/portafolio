@@ -63,7 +63,7 @@ export default function Perfil() {
     ];
 
     return (
-        <article className={styles.perfil}>
+        <article className={`${styles.perfil} ${styles.perfil_piloto_humano}`}>
             <div className={styles.perfil_layout}>
                 <section className={styles.perfil_header}>
                     <div className={styles.perfil_header_box_imagen}>

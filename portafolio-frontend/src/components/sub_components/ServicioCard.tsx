@@ -17,7 +17,7 @@ export default function ServicioCard({
     icono,
     headingLevel
 }: Props) {
-    const [visible, setVisible] = useState(false);
+    const [debeAnimarse, establecerDebeAnimarse] = useState(false);
     const ref = useRef<HTMLElement>(null);
     const Heading = headingLevel;
     const commercialContent = getServicioCommercialContent(servicio);
@@ -26,14 +26,13 @@ export default function ServicioCard({
         const card = ref.current;
 
         if (!card || typeof IntersectionObserver === "undefined") {
-            setVisible(true);
             return;
         }
 
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setVisible(true);
+                    establecerDebeAnimarse(true);
                     observer.disconnect();
                 }
             },
@@ -47,7 +46,7 @@ export default function ServicioCard({
     return (
         <article
             ref={ref}
-            className={`${styles.servicios_card} ${visible ? styles.servicios_card_visible : ""}`}
+            className={`${styles.servicios_card} ${debeAnimarse ? styles.servicios_card_animada : ""}`}
         >
             <span className={styles.servicios_card_icon} aria-hidden="true">
                 {icono}
