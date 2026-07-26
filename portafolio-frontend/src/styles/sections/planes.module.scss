@@ -508,7 +508,6 @@ $font-editorial: Georgia, 'Times New Roman', serif;
 
 .planes_comparacion {
     padding-top: clamp(4rem, 7vw, 6rem);
-    border-top: 4px solid $orange-main;
     background:
         linear-gradient(180deg, rgba($paper-white, .34), transparent 12rem),
         linear-gradient(145deg, $paper-bright 0%, $paper-main 52%, $paper-light 100%);

@@ -27,7 +27,6 @@ $font-editorial: Georgia, 'Times New Roman', serif;
     isolation: isolate;
     overflow: hidden;
     overflow: clip;
-    border-top: 1px solid rgba($paper-main, .12);
     background: radial-gradient(circle at 10% 30%, rgba($orange-main, .08), transparent 24rem), linear-gradient(135deg, $charcoal 0%, $charcoal-dark 58%, $charcoal-deep 100%);
     color: $paper-bright;
     box-shadow: 0 -12px 35px rgba($shadow-brown, .13);
