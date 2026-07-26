@@ -92,9 +92,10 @@ temp/
 # ==================================================
 # 📄 ARCHIVOS PERSONALES / PRIVADOS
 # ==================================================
-documentacion/
-documentos/
-/docs/
-.local-backups/
+**/.agents/
+**/documentacion/
+**/documentos/
+**/.local-backups/
+**/.codex
+**/AGENTS.md
 AGENTS.md
-.gitignore
