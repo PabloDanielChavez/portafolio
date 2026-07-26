@@ -19,13 +19,14 @@ export const siteConfig = {
   siteName: "PaginasWebChavez",
   defaultTitle:
     "Diseño y Desarrollo de Páginas Web Profesionales | PaginasWebChavez",
+
   description:
-    "Diseño y desarrollo de páginas web profesionales para empresas y negocios. Landing pages, sitios web corporativos, SEO y desarrollo web a medida para generar clientes.",
+    "Páginas web para negocios, profesional, emprendimientos y pequeños equipos que necesitan presentar mejor lo que ofrecen o resolver una necesidad concreta de su actividad.",
   locale: "es_AR",
   language: "es-AR",
   defaultOpenGraphImage:
-    "/img/Logotipo_Portafolio_PDC/Logo/logo_PW.png",
-  icon: "/img/Logotipo_Portafolio_PDC/Icono/Icono_48x48px.png",
+    "/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.svg",
+  icon: "/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.ico",
   routes: mainRoutes,
   planRoutes,
 } as const;

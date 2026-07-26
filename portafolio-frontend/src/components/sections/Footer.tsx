@@ -51,12 +51,12 @@ export default function Footer() {
             <div className={styles.footer_layout}>
                 <div className={styles.footer_brand}>
                     <Link href="/" aria-label="Ir al inicio">
-                        <Image
-                            src="/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.png"
+                        <img
+                            className={styles.header_logo_img}
+                            src="/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.svg"
                             alt="PaginasWeb Chavez"
-                            width={56}
-                            height={56}
-                            sizes="56px"
+                            width={50}
+                            height={50}
                         />
                     </Link>
                     <div>

@@ -215,14 +215,12 @@ export default function Header() {
                     onClick={handleNavigation}
                 >
                     <span className={styles.header_logo_box}>
-                        <Image
+                        <img
                             className={styles.header_logo_img}
-                            src="/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.png"
+                            src="/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.svg"
                             alt="PaginasWeb Chavez"
                             width={50}
                             height={50}
-                            sizes="50px"
-                            priority
                         />
                     </span>
                 </Link>
