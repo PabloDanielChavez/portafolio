@@ -9,7 +9,7 @@ async function getPortfolioEndpoints(endpoints: string[]) {
   return Promise.all(
     endpoints.map(endpoint =>
       fetch(`${urlBase}${endpoint}`, {
-        next: { revalidate: 3600 }
+        next: { revalidate: 604800 }
       })
         .then(res => res.ok ? res.json() : [])
         .catch(() => [])
@@ -82,7 +82,7 @@ export async function getTrabajos(): Promise<TrabajosType[]> {
 
   try {
     response = await fetch(`${urlBase}trabajos`, {
-      next: { revalidate: 3600 }
+      next: { revalidate: 604800 }
     });
   } catch {
     throw new Error("No se pudo consultar el listado de proyectos.");
@@ -118,7 +118,7 @@ export async function getTrabajoBySlug(
 
   try {
     response = await fetch(`${urlBase}trabajos/${encodeURIComponent(slug)}`, {
-      next: { revalidate: 3600 }
+      next: { revalidate: 604800 }
     });
   } catch {
     throw new Error("No se pudo consultar el proyecto.");

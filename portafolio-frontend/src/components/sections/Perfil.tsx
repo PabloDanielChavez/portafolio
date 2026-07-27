@@ -30,7 +30,7 @@ export default function Perfil() {
         {
             name: "Instagram",
             icon: <FaInstagram />,
-            url: "https://www.instagram.com/paginasweb.chavez/"
+            url: "https://www.instagram.com/paginaswebchavez/"
         }
     ];
 

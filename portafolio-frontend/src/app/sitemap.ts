@@ -5,7 +5,7 @@ import { siteConfig } from "@/config/site";
 import { getTrabajos } from "@/services/fetchData";
 import type { TrabajosType } from "@/types/trabajos";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 const sitemapEntries = [
   {
