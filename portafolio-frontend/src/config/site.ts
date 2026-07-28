@@ -24,7 +24,7 @@ export const siteConfig = {
     "Páginas web para negocios, profesional, emprendimientos y pequeños equipos que necesitan presentar mejor lo que ofrecen o resolver una necesidad concreta de su actividad.",
   locale: "es_AR",
   language: "es-AR",
-  defaultOpenGraphImage:"/img/Logotipo_Portafolio_PDC/Logo/PWC-COMPARTIR.png",
+  defaultOpenGraphImage:"/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.png",
   organizationLogo:"/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.png",
   icon: "/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.ico",
   routes: mainRoutes,
