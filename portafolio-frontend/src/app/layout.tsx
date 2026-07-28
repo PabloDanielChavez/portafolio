@@ -4,7 +4,8 @@ import type { Metadata, Viewport } from "next";
 import "@/styles/main.scss";
 
 import Header from "@/components/sections/Header";
-import { siteConfig } from "@/config/site";
+
+import { getAbsoluteUrl, siteConfig } from "@/config/site";
 
 const Footer = dynamic(() => import("@/components/sections/Footer"));
 const GTM_ID = "GTM-537VNSFP";
@@ -123,7 +124,7 @@ const jsonLd = {
       "@id": `${siteConfig.siteUrl}/#organization`,
       name: siteConfig.siteName,
       url: siteConfig.siteUrl,
-      logo: `${siteConfig.siteUrl}${siteConfig.defaultOpenGraphImage}`,
+      logo: getAbsoluteUrl(siteConfig.organizationLogo),
       founder: {
         "@type": "Person",
         name: "Pablo Daniel Chavez",

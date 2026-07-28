@@ -24,8 +24,8 @@ export const siteConfig = {
     "Páginas web para negocios, profesional, emprendimientos y pequeños equipos que necesitan presentar mejor lo que ofrecen o resolver una necesidad concreta de su actividad.",
   locale: "es_AR",
   language: "es-AR",
-  defaultOpenGraphImage:
-    "/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.svg",
+  defaultOpenGraphImage:"/img/Logotipo_Portafolio_PDC/Logo/PWC-COMPARTIR.png",
+  organizationLogo:"/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.png",
   icon: "/img/Logotipo_Portafolio_PDC/Logo/logo_pwc.ico",
   routes: mainRoutes,
   planRoutes,
@@ -55,9 +55,11 @@ export const createPageMetadata = ({
   return {
     title,
     description,
+
     alternates: {
       canonical: canonicalUrl,
     },
+
     openGraph: {
       title,
       description,
@@ -68,15 +70,23 @@ export const createPageMetadata = ({
       images: [
         {
           url: imageUrl,
+          width: 1200,
+          height: 630,
           alt: title,
         },
       ],
     },
+
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [imageUrl],
+      images: [
+        {
+          url: imageUrl,
+          alt: title,
+        },
+      ],
     },
   };
 };
