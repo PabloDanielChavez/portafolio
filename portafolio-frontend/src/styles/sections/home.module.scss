@@ -530,7 +530,6 @@ $font-editorial: Georgia, 'Times New Roman', serif;
         content: "";
         position: absolute;
         top: 1.45rem;
-        left: 1.15rem;
         z-index: -1;
 
         width: 2px;
@@ -626,8 +625,7 @@ $font-editorial: Georgia, 'Times New Roman', serif;
         1px solid rgba($orange-dark, .26);
     border-radius: 50%;
 
-    background:
-        rgba($orange-main, .1);
+    background: white;
 
     color: $orange-dark;
 

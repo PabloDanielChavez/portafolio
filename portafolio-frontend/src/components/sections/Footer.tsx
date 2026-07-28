@@ -94,7 +94,7 @@ export default function Footer() {
                 </div>
 
                 <p className={styles.footer_copy}>
-                    © 2026 PaginasWeb Chavez · Pablo Daniel Chavez
+                    © 2026 PaginasWebChavez · Pablo Daniel Chavez
                 </p>
             </div>
         </div>
